@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AvatarModal from "../components/AvatarModal.astro";
+import MotionHeadline from "../components/MotionHeadline.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+---
+
+<BaseLayout
+  title="星帆测试站"
+  description="星帆Starsail 的个人静态网站入口，目前是一个待探索的测试空间。"
+>
+  <section class="stage" aria-label="星帆测试站首页">
+    <SiteHeader />
+
+    <main>
+      <div class="eyebrow">目前仅供测试</div>
+      <MotionHeadline text="待探索的空间" />
+      <p class="subcopy">
+        恭喜你发现了这里。现在，这里只是一个<strong>安静的入口</strong>，通向星帆小狼的一处小窝。之后在里面放些什么呢？还有待探索。
+      </p>
+      <div class="actions">
+        <div class="status" aria-live="polite">版本状态：测试中</div>
+        <nav class="controls" aria-label="文字动效模式">
+          <button type="button" data-mode="calm" aria-pressed="true">Calm</button>
+          <button type="button" data-mode="float" aria-pressed="false">Float</button>
+          <button type="button" data-mode="shine" aria-pressed="false">Shine</button>
+          <button type="button" data-mode="focus" aria-pressed="false">Focus</button>
+        </nav>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="hint">金鞍玉勒寻芳客，未信我庐别有春。</div>
+      <div class="footer-note">Astro + CSS + JavaScript</div>
+    </footer>
+  </section>
+
+  <AvatarModal />
+</BaseLayout>

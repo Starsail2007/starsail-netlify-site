@@ -1,0 +1,28 @@
+---
+import "../styles/tokens.css";
+import "../styles/base.css";
+import "../styles/home.css";
+
+const {
+  title = "星帆测试站",
+  description = "星帆Starsail 的个人静态网站入口。"
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+    <script>
+      import "../scripts/theme.js";
+      import "../scripts/motion.js";
+      import "../scripts/avatar-modal.js";
+    </script>
+  </body>
+</html>

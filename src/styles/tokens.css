@@ -1,0 +1,53 @@
+:root {
+  --bg: #08080a;
+  --fg: #f5f5f7;
+  --muted: #a1a1a6;
+  --soft: rgba(245, 245, 247, .12);
+  --blue: #2997ff;
+  --blue-soft: rgba(41, 151, 255, .16);
+  --surface: rgba(28, 28, 30, .72);
+  --page-top: #161619;
+  --page-bottom: #030304;
+  --spot: rgba(41, 151, 255, .16);
+  --spot-muted: rgba(116, 116, 128, .14);
+  --orb-a: rgba(41, 151, 255, .1);
+  --orb-b: rgba(142, 142, 147, .08);
+  --avatar-bg: rgba(245, 245, 247, .14);
+  --control-bg: rgba(28, 28, 30, .58);
+  --button-active: rgba(245, 245, 247, .12);
+  --button-ring: rgba(245, 245, 247, .08);
+  --shadow: rgba(0, 0, 0, .32);
+  --modal-bg: rgba(0, 0, 0, .58);
+  --modal-card: rgba(28, 28, 30, .66);
+  --modal-ring: rgba(245, 245, 247, .14);
+  --shine-base: #f5f5f7;
+  --shine-highlight: #8fd0ff;
+  --x: 72%;
+  --y: 24%;
+}
+
+html[data-theme="light"] {
+  --bg: #f5f5f7;
+  --fg: #1d1d1f;
+  --muted: #6e6e73;
+  --soft: rgba(29, 29, 31, .08);
+  --blue: #0071e3;
+  --blue-soft: rgba(0, 113, 227, .12);
+  --surface: rgba(255, 255, 255, .72);
+  --page-top: #ffffff;
+  --page-bottom: #eeeeef;
+  --spot: rgba(0, 113, 227, .11);
+  --spot-muted: rgba(130, 130, 138, .1);
+  --orb-a: rgba(0, 113, 227, .08);
+  --orb-b: rgba(130, 130, 138, .06);
+  --avatar-bg: rgba(255, 255, 255, .82);
+  --control-bg: rgba(255, 255, 255, .62);
+  --button-active: #ffffff;
+  --button-ring: rgba(29, 29, 31, .06);
+  --shadow: rgba(0, 0, 0, .1);
+  --modal-bg: rgba(245, 245, 247, .58);
+  --modal-card: rgba(255, 255, 255, .74);
+  --modal-ring: rgba(29, 29, 31, .08);
+  --shine-base: #1d1d1f;
+  --shine-highlight: #7aa7d9;
+}

@@ -1,6 +1,8 @@
 .DS_Store
 node_modules/
+.astro/
 dist/
 build/
 .netlify/
 *.log
+pnpm-debug.log*

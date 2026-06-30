@@ -1,0 +1,7 @@
+---
+const { text = "待探索的空间" } = Astro.props;
+---
+
+<h1 class="headline" id="headline" aria-label={text}>
+  <span class="line" data-text={text}>{text}</span>
+</h1>

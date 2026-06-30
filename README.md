@@ -1,54 +1,76 @@
-# 星帆测试站
+# Starsail Netlify Site
 
-这是 `https://starsail.netlify.app/` 的静态网站源码。
+这是星帆 Starsail 的个人静态网站项目，当前公网地址是 `https://starsail.netlify.app/`。
+
+这个仓库已经从单页 HTML 演示整理成轻量 Astro 项目：页面、组件、样式、脚本、资源和说明文档分开存放，方便之后继续设计、扩展、重构或交给新的 Codex 线程接着做。
+
+## 快速开始
+
+```bash
+pnpm install
+pnpm dev
+```
+
+本地开发服务器默认打开 `http://127.0.0.1:4321/`。构建检查使用：
+
+```bash
+pnpm build
+```
+
+也可以使用更直观的上线检查命令：
+
+```bash
+pnpm deploy:check
+```
 
 ## 项目结构
 
 ```text
 .
-├── index.html
-├── avatar.jpeg
+├── AGENTS.md
+├── design/
+│   ├── exports/
+│   └── references/
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── DESIGN_WORKFLOW.md
+│   ├── EDITING_GUIDE.md
+│   └── PROJECT_BRIEF.md
+├── public/
+│   └── assets/avatar.jpeg
+├── src/
+│   ├── components/
+│   ├── layouts/
+│   ├── pages/
+│   ├── scripts/
+│   └── styles/
+├── astro.config.mjs
 ├── netlify.toml
+├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
 └── README.md
-```
-
-## 本地预览
-
-在项目目录运行：
-
-```bash
-python3 -m http.server 8765
-```
-
-然后打开：
-
-```text
-http://127.0.0.1:8765/
 ```
 
 ## 部署
 
-这个项目适合用 Netlify 部署。
-
-如果已经连接 GitHub 仓库，Netlify 设置为：
+Netlify 连接 GitHub 仓库后使用：
 
 ```text
-Build command: 留空
-Publish directory: .
+Build command: pnpm build
+Publish directory: dist
 ```
 
-## 修改文字
+`netlify.toml` 已经写好这些配置。
 
-主要文案都在 `index.html` 里。主标题需要改 `data-text`：
+以后常规上线路径是：
 
-```html
-<span class="line" data-text="先把空间"></span>
-<span class="line" data-text="留出来"></span>
+```text
+本地/Codex 修改 -> GitHub -> Netlify 自动构建 -> 公网更新
 ```
 
-## 当前功能
+如果从 Canva 或 Figma 做设计，建议先把设计链接、截图或导出素材放进 `design/`，再让 Codex 把它们转成 `src/` 里的页面、组件和样式。最终上线仍以这个代码项目为准。
 
-- 夜间风格默认开启
-- 图形按钮切换白天/夜间风格
-- 文字动效模式：Calm / Float / Shine / Focus
-- 圆形头像和署名
+## 和 Codex 协作
+
+新的 Codex 线程进入项目后，先读 `AGENTS.md`、`docs/PROJECT_BRIEF.md` 和 `docs/ARCHITECTURE.md`。如果只是改文案，可以看 `docs/EDITING_GUIDE.md`。

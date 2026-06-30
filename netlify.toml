@@ -1,2 +1,3 @@
 [build]
-  publish = "."
+  command = "pnpm build"
+  publish = "dist"
