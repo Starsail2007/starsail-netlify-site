@@ -24,6 +24,9 @@
       --button-active: rgba(245, 245, 247, .12);
       --button-ring: rgba(245, 245, 247, .08);
       --shadow: rgba(0, 0, 0, .32);
+      --modal-bg: rgba(0, 0, 0, .58);
+      --modal-card: rgba(28, 28, 30, .66);
+      --modal-ring: rgba(245, 245, 247, .14);
       --shine-base: #f5f5f7;
       --shine-highlight: #8fd0ff;
       --x: 72%;
@@ -49,6 +52,9 @@
       --button-active: #ffffff;
       --button-ring: rgba(29, 29, 31, .06);
       --shadow: rgba(0, 0, 0, .1);
+      --modal-bg: rgba(245, 245, 247, .58);
+      --modal-card: rgba(255, 255, 255, .74);
+      --modal-ring: rgba(29, 29, 31, .08);
       --shine-base: #1d1d1f;
       --shine-highlight: #7aa7d9;
     }
@@ -74,6 +80,10 @@
       display: grid;
       place-items: center;
       overflow-x: hidden;
+    }
+
+    body.modal-open {
+      overflow: hidden;
     }
 
     .stage {
@@ -137,14 +147,19 @@
     }
 
     .theme-toggle {
-      width: 44px;
-      min-width: 44px;
+      width: auto;
+      flex: 0 0 auto;
+      min-width: 92px;
       height: 44px;
       min-height: 44px;
-      display: grid;
-      place-items: center;
-      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 14px 0 12px;
       border: 1px solid var(--soft);
+      border-radius: 999px;
+      color: var(--fg);
       background: var(--surface);
       box-shadow: 0 14px 34px var(--shadow);
       backdrop-filter: blur(18px);
@@ -180,6 +195,13 @@
       transform: rotate(45deg) scale(.9);
     }
 
+    .theme-label {
+      min-width: 28px;
+      font-size: 13px;
+      font-weight: 650;
+      line-height: 1;
+    }
+
     .avatar-link {
       width: clamp(64px, 8vw, 88px);
       aspect-ratio: 1;
@@ -198,6 +220,13 @@
       box-shadow:
         0 0 0 1px rgba(41, 151, 255, .32),
         0 24px 56px var(--shadow);
+    }
+
+    .avatar-link:focus-visible,
+    .theme-toggle:focus-visible,
+    .modal-close:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 4px;
     }
 
     .avatar-link img {
@@ -384,6 +413,122 @@
       white-space: nowrap;
     }
 
+    .avatar-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: var(--modal-bg);
+      backdrop-filter: blur(24px) saturate(1.12);
+      opacity: 0;
+      transition: opacity .34s ease;
+    }
+
+    .avatar-modal[hidden] {
+      display: none;
+    }
+
+    .avatar-modal.is-open {
+      opacity: 1;
+    }
+
+    .avatar-card {
+      width: min(430px, calc(100vw - 40px));
+      display: grid;
+      justify-items: center;
+      gap: 20px;
+      padding: clamp(22px, 5vw, 36px);
+      border: 1px solid var(--modal-ring);
+      border-radius: 28px;
+      color: var(--fg);
+      background: var(--modal-card);
+      box-shadow: 0 34px 90px var(--shadow);
+      text-align: center;
+      transform: translateY(18px) scale(.96);
+      opacity: 0;
+      transition:
+        transform .42s cubic-bezier(.2, .8, .2, 1),
+        opacity .3s ease;
+    }
+
+    .avatar-modal.is-open .avatar-card {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    .avatar-large {
+      width: min(260px, 64vw);
+      aspect-ratio: 1;
+      padding: 5px;
+      border-radius: 50%;
+      background:
+        linear-gradient(145deg, rgba(245, 245, 247, .9), rgba(41, 151, 255, .34)),
+        var(--avatar-bg);
+      box-shadow:
+        0 0 0 1px rgba(245, 245, 247, .22),
+        0 28px 72px var(--shadow);
+    }
+
+    .avatar-large img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .avatar-modal-copy {
+      display: grid;
+      gap: 10px;
+    }
+
+    .avatar-modal-copy h2 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    .avatar-motto,
+    .avatar-desc {
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .avatar-motto {
+      color: var(--fg);
+      font-size: clamp(16px, 3.6vw, 20px);
+      font-weight: 650;
+    }
+
+    .avatar-desc {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .modal-close {
+      position: fixed;
+      top: max(18px, env(safe-area-inset-top));
+      right: max(18px, env(safe-area-inset-right));
+      width: 44px;
+      min-width: 44px;
+      height: 44px;
+      min-height: 44px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 1px solid var(--soft);
+      border-radius: 50%;
+      color: var(--fg);
+      background: var(--surface);
+      box-shadow: 0 18px 42px var(--shadow);
+      backdrop-filter: blur(18px);
+      font-size: 22px;
+      line-height: 1;
+    }
+
     @keyframes intro {
       from {
         opacity: 0;
@@ -464,6 +609,10 @@
         align-items: center;
       }
 
+      .theme-toggle {
+        min-width: 88px;
+      }
+
       .avatar-link {
         width: 60px;
       }
@@ -496,6 +645,10 @@
         text-align: left;
         white-space: normal;
       }
+
+      .avatar-card {
+        border-radius: 24px;
+      }
     }
   </style>
 </head>
@@ -507,11 +660,12 @@
         <span>Personal test space</span>
       </div>
       <div class="header-actions">
-        <button class="theme-toggle" type="button" aria-label="切换到白天风格" title="切换风格">
+        <button class="theme-toggle" type="button" aria-label="当前为夜间风格，点击切换到白天风格" title="切换风格">
           <span class="theme-glyph" aria-hidden="true"></span>
+          <span class="theme-label">夜间</span>
         </button>
         <div class="builder" aria-label="网站搭建者">
-          <a class="avatar-link" href="#" aria-label="Designed by 星帆Starsail">
+          <a class="avatar-link" href="#avatar-modal" aria-label="放大查看星帆Starsail 的头像" aria-controls="avatar-modal">
             <img src="starsail-github-upload/avatar.jpeg" alt="星帆Starsail 的头像">
           </a>
           <div class="credit">
@@ -524,11 +678,10 @@
 
     <main>
       <div class="eyebrow">目前仅供测试</div>
-      <h1 class="headline" id="headline" aria-label="先把空间留出来">
-        <span class="line" data-text="先把空间"></span>
-        <span class="line" data-text="留出来"></span>
+      <h1 class="headline" id="headline" aria-label="待探索的空间">
+        <span class="line" data-text="待探索的空间"></span>
       </h1>
-      <p class="subcopy">这个网站现在只是一个<strong>安静的入口</strong>。先测试排版、头像和基础交互，之后再慢慢放进作品、记录、想法，或者任何真正属于自己的内容。</p>
+      <p class="subcopy">恭喜你发现了这里。现在，这里只是一个<strong>安静的入口</strong>，通向星帆小狼的一处小窝。之后在里面放些什么呢？还有待探索。</p>
       <div class="actions">
         <div class="status" aria-live="polite">版本状态：测试中</div>
         <nav class="controls" aria-label="文字动效模式">
@@ -541,18 +694,45 @@
     </main>
 
     <footer>
-      <div class="hint">这版把视觉重心放在留白、字体层级和轻量动效上，适合作为之后扩展内容的门户页。</div>
+      <div class="hint">金鞍玉勒寻芳客，未信我庐别有春。</div>
       <div class="footer-note">HTML + CSS + JavaScript</div>
     </footer>
   </section>
+
+  <div class="avatar-modal" id="avatar-modal" role="dialog" aria-modal="true" aria-labelledby="avatar-modal-title" hidden>
+    <button class="modal-close" type="button" aria-label="关闭头像展示">×</button>
+    <div class="avatar-card">
+      <div class="avatar-large">
+        <img src="starsail-github-upload/avatar.jpeg" alt="星帆Starsail 的头像放大图">
+      </div>
+      <div class="avatar-modal-copy">
+        <h2 id="avatar-modal-title">星帆Starsail</h2>
+        <p class="avatar-motto">天接云涛连晓雾，星河欲转千帆舞。</p>
+        <p class="avatar-desc">该小窝由星帆Starsail筑成。</p>
+      </div>
+    </div>
+  </div>
 
   <script>
     const headline = document.querySelector("#headline");
     const lines = [...document.querySelectorAll(".line")];
     const buttons = [...document.querySelectorAll("[data-mode]")];
     const themeToggle = document.querySelector(".theme-toggle");
+    const themeLabel = document.querySelector(".theme-label");
+    const avatarLink = document.querySelector(".avatar-link");
+    const avatarModal = document.querySelector("#avatar-modal");
+    const modalClose = document.querySelector(".modal-close");
+    let lastFocusedElement = null;
 
-    document.documentElement.dataset.theme = "dark";
+    const setTheme = (theme) => {
+      document.documentElement.dataset.theme = theme;
+      themeLabel.textContent = theme === "dark" ? "夜间" : "日间";
+      themeToggle.setAttribute("aria-label", theme === "dark"
+        ? "当前为夜间风格，点击切换到白天风格"
+        : "当前为日间风格，点击切换到夜间风格");
+    };
+
+    setTheme("dark");
 
     let index = 0;
     for (const line of lines) {
@@ -578,8 +758,42 @@
 
     themeToggle.addEventListener("click", () => {
       const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-      document.documentElement.dataset.theme = nextTheme;
-      themeToggle.setAttribute("aria-label", nextTheme === "dark" ? "切换到白天风格" : "切换到夜间风格");
+      setTheme(nextTheme);
+    });
+
+    const openAvatarModal = (event) => {
+      event.preventDefault();
+      lastFocusedElement = document.activeElement;
+      avatarModal.hidden = false;
+      document.body.classList.add("modal-open");
+      window.requestAnimationFrame(() => {
+        avatarModal.classList.add("is-open");
+        modalClose.focus({ preventScroll: true });
+      });
+    };
+
+    const closeAvatarModal = () => {
+      avatarModal.classList.remove("is-open");
+      document.body.classList.remove("modal-open");
+      window.setTimeout(() => {
+        avatarModal.hidden = true;
+        lastFocusedElement?.focus({ preventScroll: true });
+      }, 340);
+    };
+
+    avatarLink.addEventListener("click", openAvatarModal);
+    modalClose.addEventListener("click", closeAvatarModal);
+
+    avatarModal.addEventListener("click", (event) => {
+      if (event.target === avatarModal) {
+        closeAvatarModal();
+      }
+    });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !avatarModal.hidden) {
+        closeAvatarModal();
+      }
     });
 
     window.addEventListener("pointermove", (event) => {
