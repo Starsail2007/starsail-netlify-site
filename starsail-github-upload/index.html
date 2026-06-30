@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>星帆测试站</title>
+  <style>
+    :root {
+      --bg: #08080a;
+      --fg: #f5f5f7;
+      --muted: #a1a1a6;
+      --soft: rgba(245, 245, 247, .12);
+      --blue: #2997ff;
+      --blue-soft: rgba(41, 151, 255, .16);
+      --surface: rgba(28, 28, 30, .72);
+      --page-top: #161619;
+      --page-bottom: #030304;
+      --spot: rgba(41, 151, 255, .16);
+      --spot-muted: rgba(116, 116, 128, .14);
+      --orb-a: rgba(41, 151, 255, .1);
+      --orb-b: rgba(142, 142, 147, .08);
+      --avatar-bg: rgba(245, 245, 247, .14);
+      --control-bg: rgba(28, 28, 30, .58);
+      --button-active: rgba(245, 245, 247, .12);
+      --button-ring: rgba(245, 245, 247, .08);
+      --shadow: rgba(0, 0, 0, .32);
+      --shine-base: #f5f5f7;
+      --shine-highlight: #8fd0ff;
+      --x: 72%;
+      --y: 24%;
+    }
+
+    html[data-theme="light"] {
+      --bg: #f5f5f7;
+      --fg: #1d1d1f;
+      --muted: #6e6e73;
+      --soft: rgba(29, 29, 31, .08);
+      --blue: #0071e3;
+      --blue-soft: rgba(0, 113, 227, .12);
+      --surface: rgba(255, 255, 255, .72);
+      --page-top: #ffffff;
+      --page-bottom: #eeeeef;
+      --spot: rgba(0, 113, 227, .11);
+      --spot-muted: rgba(130, 130, 138, .1);
+      --orb-a: rgba(0, 113, 227, .08);
+      --orb-b: rgba(130, 130, 138, .06);
+      --avatar-bg: rgba(255, 255, 255, .82);
+      --control-bg: rgba(255, 255, 255, .62);
+      --button-active: #ffffff;
+      --button-ring: rgba(29, 29, 31, .06);
+      --shadow: rgba(0, 0, 0, .1);
+      --shine-base: #1d1d1f;
+      --shine-highlight: #7aa7d9;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      margin: 0;
+      color: var(--fg);
+      background:
+        radial-gradient(circle at var(--x) var(--y), var(--spot), transparent 25rem),
+        radial-gradient(circle at 74% 12%, var(--spot-muted), transparent 18rem),
+        linear-gradient(180deg, var(--page-top) 0%, var(--bg) 58%, var(--page-bottom) 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      overflow-x: hidden;
+    }
+
+    .stage {
+      width: min(1180px, calc(100vw - 40px));
+      min-height: min(760px, calc(100svh - 40px));
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: clamp(28px, 5vw, 56px);
+      padding: clamp(20px, 4vw, 52px);
+      position: relative;
+      isolation: isolate;
+    }
+
+    .stage::before {
+      content: "";
+      position: absolute;
+      inset: auto 6% 7% auto;
+      width: min(460px, 70vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--orb-a), var(--orb-b));
+      filter: blur(16px);
+      z-index: -1;
+      transform: translate3d(calc((var(--x) - 50%) / 16), calc((var(--y) - 50%) / 16), 0);
+      transition: transform .35s ease;
+    }
+
+    header,
+    footer {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .mark {
+      color: var(--fg);
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .builder {
+      display: grid;
+      justify-items: end;
+      gap: 10px;
+      text-align: right;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .theme-toggle {
+      width: 44px;
+      min-width: 44px;
+      height: 44px;
+      min-height: 44px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 1px solid var(--soft);
+      background: var(--surface);
+      box-shadow: 0 14px 34px var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .theme-toggle:hover {
+      background: var(--button-active);
+      box-shadow: 0 18px 42px var(--shadow);
+    }
+
+    .theme-glyph {
+      width: 18px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--fg);
+      box-shadow:
+        0 0 0 4px rgba(41, 151, 255, .08),
+        inset -6px -5px 0 0 var(--surface);
+      transition: transform .28s ease, box-shadow .28s ease, background .28s ease;
+    }
+
+    html[data-theme="light"] .theme-glyph {
+      background: var(--blue);
+      box-shadow:
+        0 -9px 0 -7px var(--blue),
+        0 9px 0 -7px var(--blue),
+        9px 0 0 -7px var(--blue),
+        -9px 0 0 -7px var(--blue),
+        6px 6px 0 -7px var(--blue),
+        -6px -6px 0 -7px var(--blue),
+        6px -6px 0 -7px var(--blue),
+        -6px 6px 0 -7px var(--blue);
+      transform: rotate(45deg) scale(.9);
+    }
+
+    .avatar-link {
+      width: clamp(64px, 8vw, 88px);
+      aspect-ratio: 1;
+      display: block;
+      border-radius: 50%;
+      padding: 2px;
+      background: var(--avatar-bg);
+      box-shadow:
+        0 0 0 1px rgba(245, 245, 247, .12),
+        0 18px 44px var(--shadow);
+      transition: transform .28s cubic-bezier(.2, .8, .2, 1), box-shadow .28s ease;
+    }
+
+    .avatar-link:hover {
+      transform: translateY(-2px) scale(1.025);
+      box-shadow:
+        0 0 0 1px rgba(41, 151, 255, .32),
+        0 24px 56px var(--shadow);
+    }
+
+    .avatar-link img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .credit {
+      display: grid;
+      gap: 2px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    .credit strong {
+      color: var(--fg);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    main {
+      display: grid;
+      align-content: center;
+      gap: clamp(18px, 3vw, 28px);
+    }
+
+    .eyebrow {
+      width: fit-content;
+      color: var(--blue);
+      background: var(--blue-soft);
+      border: 1px solid rgba(41, 151, 255, .18);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 13px;
+      font-weight: 650;
+      line-height: 1;
+    }
+
+    .headline {
+      margin: 0;
+      max-width: 980px;
+      font-size: clamp(54px, 10vw, 136px);
+      line-height: .96;
+      font-weight: 760;
+      letter-spacing: 0;
+      animation: headlineCalm 8.8s ease-in-out infinite;
+    }
+
+    .headline.mode-float,
+    .headline.mode-shine,
+    .headline.mode-focus {
+      animation: none;
+    }
+
+    .line {
+      display: flex;
+      gap: .02em;
+      min-height: 1em;
+      white-space: nowrap;
+    }
+
+    .char {
+      display: inline-block;
+      transform-origin: 50% 70%;
+      animation:
+        intro 950ms cubic-bezier(.2, .8, .2, 1) both,
+        calm 6.6s ease-in-out infinite;
+      animation-delay: calc(var(--i) * 42ms), calc(var(--i) * -240ms);
+    }
+
+    .headline.mode-float .char {
+      animation:
+        intro 950ms cubic-bezier(.2, .8, .2, 1) both,
+        float 6.4s ease-in-out infinite;
+      animation-delay: calc(var(--i) * 42ms), calc(var(--i) * -130ms);
+    }
+
+    .headline.mode-shine .char {
+      color: transparent;
+      background: linear-gradient(110deg, var(--shine-base) 0%, var(--shine-base) 38%, var(--shine-highlight) 50%, var(--shine-base) 62%, var(--shine-base) 100%);
+      background-size: 260% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation:
+        intro 950ms cubic-bezier(.2, .8, .2, 1) both,
+        shine 5.8s ease-in-out infinite;
+      animation-delay: calc(var(--i) * 42ms), calc(var(--i) * -72ms);
+    }
+
+    .headline.mode-focus .char {
+      animation:
+        intro 950ms cubic-bezier(.2, .8, .2, 1) both,
+        focus 4.8s ease-in-out infinite;
+      animation-delay: calc(var(--i) * 42ms), calc(var(--i) * -90ms);
+    }
+
+    .subcopy {
+      width: min(680px, 100%);
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.55;
+      font-weight: 420;
+    }
+
+    .subcopy strong {
+      color: var(--fg);
+      font-weight: 620;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .status {
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid var(--soft);
+      background: var(--surface);
+      padding: 0 16px;
+      color: var(--muted);
+      font-size: 13px;
+      box-shadow: 0 16px 34px var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .controls {
+      display: inline-flex;
+      gap: 4px;
+      min-height: 38px;
+      border: 1px solid var(--soft);
+      border-radius: 999px;
+      padding: 3px;
+      background: var(--control-bg);
+      box-shadow: 0 16px 34px var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    button {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      min-width: 68px;
+      min-height: 30px;
+      padding: 0 12px;
+      color: var(--muted);
+      background: transparent;
+      font: inherit;
+      font-size: 13px;
+      letter-spacing: 0;
+      cursor: pointer;
+      transition: color .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+
+    button:hover,
+    button[aria-pressed="true"] {
+      color: var(--fg);
+      background: var(--button-active);
+      box-shadow: inset 0 0 0 1px var(--button-ring);
+    }
+
+    footer {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .hint {
+      max-width: 54ch;
+    }
+
+    .footer-note {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    @keyframes intro {
+      from {
+        opacity: 0;
+        filter: blur(10px);
+      }
+      to {
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
+
+    @keyframes calm {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+      28% {
+        transform: translateY(-.055em) scale(1.008);
+      }
+      62% {
+        transform: translateY(.018em) scale(.998);
+      }
+    }
+
+    @keyframes headlineCalm {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-.055em); }
+    }
+
+    @keyframes shine {
+      0%, 18% { background-position: 0% 50%; }
+      60%, 100% { background-position: 220% 50%; }
+    }
+
+    @keyframes focus {
+      0%, 100% {
+        opacity: .82;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.015);
+      }
+    }
+
+    @media (max-width: 720px) {
+      body {
+        place-items: stretch;
+      }
+
+      .stage {
+        width: 100%;
+        min-height: 100svh;
+        padding: 18px;
+      }
+
+      header,
+      footer {
+        flex-direction: column;
+      }
+
+      .builder {
+        grid-template-columns: auto 1fr;
+        justify-items: start;
+        align-items: center;
+        text-align: left;
+      }
+
+      .header-actions {
+        align-items: center;
+      }
+
+      .avatar-link {
+        width: 60px;
+      }
+
+      .headline {
+        font-size: clamp(46px, 14vw, 74px);
+      }
+
+      .line {
+        flex-wrap: wrap;
+        white-space: normal;
+      }
+
+      .actions {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .controls {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      button {
+        min-width: 0;
+        flex: 1;
+      }
+
+      .footer-note {
+        text-align: left;
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="stage" aria-label="星帆测试站首页">
+    <header>
+      <div class="brand">
+        <span class="mark">星帆 Starsail</span>
+        <span>Personal test space</span>
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" aria-label="切换到白天风格" title="切换风格">
+          <span class="theme-glyph" aria-hidden="true"></span>
+        </button>
+        <div class="builder" aria-label="网站搭建者">
+          <a class="avatar-link" href="#" aria-label="Designed by 星帆Starsail">
+            <img src="avatar.jpeg" alt="星帆Starsail 的头像">
+          </a>
+          <div class="credit">
+            <span>Designed by</span>
+            <strong>星帆Starsail</strong>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="eyebrow">目前仅供测试</div>
+      <h1 class="headline" id="headline" aria-label="先把空间留出来">
+        <span class="line" data-text="先把空间"></span>
+        <span class="line" data-text="留出来"></span>
+      </h1>
+      <p class="subcopy">这个网站现在只是一个<strong>安静的入口</strong>。先测试排版、头像和基础交互，之后再慢慢放进作品、记录、想法，或者任何真正属于自己的内容。</p>
+      <div class="actions">
+        <div class="status" aria-live="polite">版本状态：测试中</div>
+        <nav class="controls" aria-label="文字动效模式">
+          <button type="button" data-mode="calm" aria-pressed="true">Calm</button>
+          <button type="button" data-mode="float" aria-pressed="false">Float</button>
+          <button type="button" data-mode="shine" aria-pressed="false">Shine</button>
+          <button type="button" data-mode="focus" aria-pressed="false">Focus</button>
+        </nav>
+      </div>
+    </main>
+
+    <footer>
+      <div class="hint">这版把视觉重心放在留白、字体层级和轻量动效上，适合作为之后扩展内容的门户页。</div>
+      <div class="footer-note">HTML + CSS + JavaScript</div>
+    </footer>
+  </section>
+
+  <script>
+    const headline = document.querySelector("#headline");
+    const lines = [...document.querySelectorAll(".line")];
+    const buttons = [...document.querySelectorAll("[data-mode]")];
+    const themeToggle = document.querySelector(".theme-toggle");
+
+    document.documentElement.dataset.theme = "dark";
+
+    let index = 0;
+    for (const line of lines) {
+      const chars = [...line.dataset.text];
+      line.replaceChildren(...chars.map((char) => {
+        const span = document.createElement("span");
+        span.className = "char";
+        span.textContent = char;
+        span.style.setProperty("--i", index++);
+        return span;
+      }));
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const mode = button.dataset.mode;
+        headline.className = `headline${mode === "calm" ? "" : ` mode-${mode}`}`;
+        buttons.forEach((item) => {
+          item.setAttribute("aria-pressed", String(item === button));
+        });
+      });
+    });
+
+    themeToggle.addEventListener("click", () => {
+      const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = nextTheme;
+      themeToggle.setAttribute("aria-label", nextTheme === "dark" ? "切换到白天风格" : "切换到夜间风格");
+    });
+
+    window.addEventListener("pointermove", (event) => {
+      const x = `${Math.round((event.clientX / window.innerWidth) * 100)}%`;
+      const y = `${Math.round((event.clientY / window.innerHeight) * 100)}%`;
+      document.documentElement.style.setProperty("--x", x);
+      document.documentElement.style.setProperty("--y", y);
+    });
+  </script>
+</body>
+</html>
