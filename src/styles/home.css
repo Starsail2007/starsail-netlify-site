@@ -7,6 +7,10 @@
   padding: clamp(20px, 4vw, 52px);
   position: relative;
   isolation: isolate;
+  overflow: hidden;
+  overscroll-behavior: none;
+  /* Keep mobile drag gestures available to the pointer-follow effect instead of page scrolling. */
+  touch-action: none;
 }
 
 .stage::before {
@@ -21,6 +25,10 @@
   z-index: -1;
   transform: translate3d(calc((var(--x) - 50%) / 16), calc((var(--y) - 50%) / 16), 0);
   transition: transform .35s ease;
+}
+
+.stage.is-touching::before {
+  transition-duration: 80ms;
 }
 
 .site-header,
