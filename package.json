@@ -11,6 +11,8 @@
     "text:check": "node scripts/check-site-text.mjs",
     "preview": "astro preview --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
+    "worldcup:update": "node scripts/worldcup/update-live-data.mjs",
+    "worldcup:update:force": "node scripts/worldcup/update-live-data.mjs --force",
     "maimai:update": "tsx scripts/maimai/cli.ts update",
     "maimai:status": "tsx scripts/maimai/cli.ts status",
     "maimai:history": "tsx scripts/maimai/cli.ts history",

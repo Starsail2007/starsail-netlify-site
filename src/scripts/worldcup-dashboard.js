@@ -5,12 +5,17 @@ import { TEAM_ISO2, TEAM_NAME_ZH } from "../worldcup/lib/teamIsoMap.js";
 import siteText from "../content/siteText";
 
 const MATCH_WINDOW_INTERVAL = 5 * 60 * 1_000;
-const NEAR_MATCH_INTERVAL = 30 * 60 * 1_000;
+const NEAR_MATCH_INTERVAL = 60 * 60 * 1_000;
 const QUIET_INTERVAL = 6 * 60 * 60 * 1_000;
-const PRE_MATCH_WINDOW = 15 * 60 * 1_000;
-const POST_KICKOFF_WINDOW = 130 * 60 * 1_000;
+const NEAR_MATCH_WINDOW = 24 * 60 * 60 * 1_000;
+const PRE_MATCH_WINDOW = 30 * 60 * 1_000;
+const POST_KICKOFF_WINDOW = 150 * 60 * 1_000;
 const GOAL_VISIBLE_MS = 2_400;
-export const DATA_ENDPOINT = "/.netlify/functions/worldcup-live";
+const REPOSITORY_DATA_ENDPOINT = "https://raw.githubusercontent.com/Starsail2007/starsail-netlify-site/worldcup-data/public/data/worldcup-live.json";
+const STATIC_DATA_ENDPOINT = "/data/worldcup-live.json";
+const NETLIFY_FUNCTION_ENDPOINT = "/.netlify/functions/worldcup-live";
+export const DATA_ENDPOINT = REPOSITORY_DATA_ENDPOINT;
+export const DATA_ENDPOINTS = buildDataEndpoints();
 const worldcupText = siteText.worldcup;
 const runtimeText = worldcupText.runtime;
 const STATUS_LABEL = runtimeText.statusLabels;
@@ -106,13 +111,7 @@ if (root) {
 
 export async function fetchWorldCupData(currentData, tick, elements) {
   try {
-    const response = await fetch(DATA_ENDPOINT, { cache: "no-store" });
-
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-
-    const payload = await response.json();
+    const payload = await fetchDataPayload();
     clearError(elements);
 
     if (payload.source === "mock" && currentData?.source === "mock") {
@@ -150,6 +149,41 @@ export async function fetchWorldCupData(currentData, tick, elements) {
       message
     };
   }
+}
+
+async function fetchDataPayload() {
+  let lastError = null;
+
+  for (const endpoint of DATA_ENDPOINTS) {
+    try {
+      const response = await fetch(withCacheBust(endpoint), { cache: "no-store" });
+
+      if (!response.ok) {
+        throw new Error(`${endpoint} returned HTTP ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  throw lastError || new Error("No World Cup data endpoint is available.");
+}
+
+function buildDataEndpoints() {
+  const localHosts = new Set(["localhost", "127.0.0.1", "::1"]);
+
+  if (localHosts.has(window.location.hostname)) {
+    return [STATIC_DATA_ENDPOINT, REPOSITORY_DATA_ENDPOINT, NETLIFY_FUNCTION_ENDPOINT];
+  }
+
+  return [REPOSITORY_DATA_ENDPOINT, STATIC_DATA_ENDPOINT, NETLIFY_FUNCTION_ENDPOINT];
+}
+
+function withCacheBust(endpoint) {
+  const separator = endpoint.includes("?") ? "&" : "?";
+  return `${endpoint}${separator}t=${Date.now()}`;
 }
 
 export function normalizeClientPayload(payload) {
@@ -254,7 +288,7 @@ function getRefreshSchedule(nextData) {
       };
     }
 
-    if (nextKickoff - now <= 24 * 60 * 60 * 1_000) {
+    if (nextKickoff - now <= NEAR_MATCH_WINDOW) {
       return {
         delayMs: NEAR_MATCH_INTERVAL,
         label: runtimeText.refreshLabels.hasTodayMatches

@@ -125,6 +125,29 @@ pnpm --package=netlify-cli dlx netlify deploy --dir=dist
 
 确认 draft URL 正常后，再将该 deploy 发布为 production。这个应急流程不应替代长期额度治理。
 
+### 世界杯数据刷新
+
+世界杯页面优先读取 GitHub `worldcup-data` 分支上的静态 JSON：
+
+```text
+public/data/worldcup-live.json
+```
+
+`.github/workflows/worldcup-live-data.yml` 每 5 分钟唤醒一次，但脚本会根据完整 104 场赛程决定是否真正抓取数据：
+
+- 距离下一场超过 24 小时：约 6 小时更新一次
+- 距离下一场 24 小时内：约 1 小时更新一次
+- 赛前 30 分钟到开球后 150 分钟：约 5 分钟更新一次
+
+数据更新写入 `worldcup-data` 分支，不推送 `main`，因此不会反复触发 Netlify 自动构建。前端读取顺序是 GitHub 静态 JSON、本地静态 JSON、Netlify Function 兜底。
+
+本地手动刷新：
+
+```bash
+pnpm worldcup:update
+pnpm worldcup:update:force
+```
+
 如果从 Canva 或 Figma 做设计，建议先把设计链接、截图或导出素材放进 `design/`，再让 Codex 把它们转成 `src/` 里的页面、组件和样式。最终上线仍以这个代码项目为准。
 
 ## 修改网页文字
