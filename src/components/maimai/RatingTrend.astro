@@ -1,4 +1,5 @@
 ---
+import siteText from "../../content/siteText";
 import { formatDateTime } from "../../lib/maimai/format";
 import type { MaimaiRatingPoint } from "../../lib/maimai/types";
 
@@ -7,6 +8,7 @@ interface Props {
 }
 
 const { points } = Astro.props;
+const text = siteText.maimai.sections.trend;
 const ordered = [...points].sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt));
 const ratings = ordered.map((point) => point.rating);
 const min = Math.min(...ratings, ratings[0] ?? 0);
@@ -22,20 +24,20 @@ const path = ordered.map((point, index) => {
 <section class="maimai-panel trend-panel" aria-labelledby="maimai-trend-title">
   <div class="section-heading">
     <div>
-      <h2 id="maimai-trend-title">Rating Trend</h2>
-      <p>最近同步快照</p>
+      <h2 id="maimai-trend-title">{text.title}</h2>
+      <p>{text.subtitle}</p>
     </div>
     <span class="section-count">{ordered.length}</span>
   </div>
   <div class="trend-chart" data-maimai-trend>
     {ordered.length > 0 ? (
       <>
-        <svg viewBox="0 0 300 128" role="img" aria-label="Rating 折线图">
+        <svg viewBox="0 0 300 128" role="img" aria-label={text.chartAriaLabel}>
           <path class="trend-grid-line" d="M 12 24 H 288" />
           <path class="trend-grid-line" d="M 12 68 H 288" />
           <path class="trend-grid-line" d="M 12 112 H 288" />
           <path class="trend-line" d={path} />
-          {ordered.map((point, index) => {
+          {ordered.length <= 80 && ordered.map((point, index) => {
             const x = ordered.length <= 1 ? 12 : 12 + (index / (ordered.length - 1)) * 276;
             const y = 112 - ((point.rating - min) / range) * 88;
             return <circle class="trend-point" cx={x} cy={y} r="4" />;
@@ -48,7 +50,7 @@ const path = ordered.map((point, index) => {
         </div>
       </>
     ) : (
-      <p class="empty-note">暂无 Rating 历史。</p>
+      <p class="empty-note">{text.empty}</p>
     )}
   </div>
 </section>

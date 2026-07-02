@@ -1,4 +1,5 @@
 ---
+import siteText from "../../content/siteText";
 import { formatDateTime } from "../../lib/maimai/format";
 import type { MaimaiRatingPoint } from "../../lib/maimai/types";
 
@@ -7,14 +8,15 @@ interface Props {
 }
 
 const { points } = Astro.props;
+const text = siteText.maimai.sections.timeline;
 const ordered = [...points].sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
 ---
 
 <section class="maimai-panel timeline-panel" aria-labelledby="maimai-timeline-title">
   <div class="section-heading">
     <div>
-      <h2 id="maimai-timeline-title">Sync Log</h2>
-      <p>最近数据更新时间线</p>
+      <h2 id="maimai-timeline-title">{text.title}</h2>
+      <p>{text.subtitle}</p>
     </div>
   </div>
   <ol class="timeline-list" data-maimai-timeline>
@@ -28,6 +30,6 @@ const ordered = [...points].sort((a, b) => Date.parse(b.createdAt) - Date.parse(
           <em>{delta >= 0 ? `+${delta}` : delta}</em>
         </li>
       );
-    }) : <li class="empty-note">暂无同步记录。</li>}
+    }) : <li class="empty-note">{text.empty}</li>}
   </ol>
 </section>

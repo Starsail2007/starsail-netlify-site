@@ -143,3 +143,11 @@ pnpm maimai:lxns-probe -- --mode user
 ```
 
 Developer mode requires `LXNS_DEVELOPER_TOKEN` and either `LXNS_FRIEND_CODE` or `MAIMAI_QQ`. User mode requires `LXNS_USER_TOKEN`.
+
+After the Lxns developer token and permissions are ready, import historical rating trend points into Supabase:
+
+```bash
+pnpm maimai:trend-import
+```
+
+Use `pnpm maimai:trend-import -- --dry-run` to check how many points will be parsed without writing the database. The public `maimai-history` function prefers imported Lxns trend points and falls back to B50 snapshot history when no imported trend exists.

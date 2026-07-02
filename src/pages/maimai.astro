@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
 import MaimaiDashboard from "../components/maimai/MaimaiDashboard.astro";
+import siteText from "../content/siteText";
 import latestSnapshot from "../data/maimai/latest.snapshot.json";
 import historySnapshots from "../data/maimai/history.snapshots.json";
 import "../styles/maimai.css";
@@ -13,21 +14,22 @@ const history = historySnapshots.map((snapshot) => ({
   b15Rating: snapshot.b15Rating
 }));
 const initialDataJson = JSON.stringify({ snapshot: latestSnapshot, history }).replaceAll("<", "\\u003c");
+const text = siteText.maimai;
 ---
 
 <BaseLayout
-  title="Starsail's maimai DX Dashboard"
-  description="星帆 Starsail 的舞萌 DX B50、Rating 曲线与同步记录。"
+  title={text.meta.title}
+  description={text.meta.description}
   bodyClass="maimai-body"
 >
   <div class="maimai-page">
-    <div class="maimai-page-tools" aria-label="页面工具">
+    <div class="maimai-page-tools" aria-label={text.pageToolsAriaLabel}>
       <ThemeToggle />
     </div>
     <MaimaiDashboard snapshot={latestSnapshot} history={history} />
     <div class="maimai-empty-state" data-maimai-empty hidden>
-      <strong>还没有同步到成绩数据。</strong>
-      <span>请先在本地运行 pnpm maimai:update，或确认水鱼账号允许查询成绩。</span>
+      <strong>{text.emptyState.title}</strong>
+      <span>{text.emptyState.description}</span>
     </div>
   </div>
 

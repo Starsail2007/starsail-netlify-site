@@ -6,9 +6,10 @@ import { runMusicCache } from "./music-cache";
 import { runRecordsProbe } from "./records-probe";
 import { runRecordsSave } from "./records-save";
 import { runStatus } from "./status";
+import { runTrendImport } from "./trend-import";
 import { runUpdate } from "./update";
 
-type Command = "update" | "status" | "history" | "music-cache" | "export" | "records-probe" | "records-save" | "lxns-probe";
+type Command = "update" | "status" | "history" | "music-cache" | "export" | "records-probe" | "records-save" | "lxns-probe" | "trend-import";
 
 function parseNumberOption(args: string[], name: string): number | undefined {
   const index = args.indexOf(name);
@@ -38,12 +39,14 @@ Commands:
   records-probe Probe complete record API shape without saving
   records-save  Fetch complete records and save local/Supabase snapshots
   lxns-probe    Probe Lxns history/trend API shape without saving
+  trend-import  Import Lxns rating trend into Supabase
 
 Options:
   history --limit 50
   music-cache --force
   records-probe --source import-token|developer-token|test-data --limit 5
-  lxns-probe --mode developer|user --friend-code 123 --skip-history`);
+  lxns-probe --mode developer|user --friend-code 123 --skip-history
+  trend-import --friend-code 123 --dry-run`);
 }
 
 async function main(): Promise<void> {
@@ -75,6 +78,9 @@ async function main(): Promise<void> {
       break;
     case "lxns-probe":
       await runLxnsProbe(args);
+      break;
+    case "trend-import":
+      await runTrendImport(args);
       break;
     default:
       printHelp();

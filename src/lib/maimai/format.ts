@@ -11,6 +11,11 @@ export function formatDateTime(value: string | undefined): string {
     return "--";
   }
 
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    const [, month, day] = value.split("-");
+    return `${month}/${day}`;
+  }
+
   const date = new Date(value);
 
   if (Number.isNaN(date.getTime())) {

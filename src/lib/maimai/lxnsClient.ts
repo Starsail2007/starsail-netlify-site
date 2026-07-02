@@ -15,6 +15,10 @@ interface FetchOptions {
   timeoutMs?: number;
 }
 
+interface LxnsTrendOptions extends FetchOptions {
+  version?: number;
+}
+
 function withTimeout(timeoutMs = DEFAULT_TIMEOUT_MS): { signal: AbortSignal; cancel: () => void } {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), timeoutMs);
@@ -114,6 +118,10 @@ export async function fetchLxnsDeveloperJson(
   return fetchLxnsJson(path, { Authorization: token }, options);
 }
 
+export async function fetchLxnsPublicJson(path: string, options?: FetchOptions): Promise<unknown> {
+  return fetchLxnsJson(path, {}, options);
+}
+
 export async function fetchLxnsUserJson(
   path: string,
   userToken: string,
@@ -155,9 +163,13 @@ export async function fetchLxnsScores(
 export async function fetchLxnsTrend(
   friendCode: string,
   developerToken: string,
-  options?: FetchOptions
+  options?: LxnsTrendOptions
 ): Promise<unknown> {
-  return fetchLxnsDeveloperJson(`/maimai/player/${encodeURIComponent(friendCode)}/trend`, developerToken, options);
+  const query = typeof options?.version === "number"
+    ? `?version=${encodeURIComponent(String(options.version))}`
+    : "";
+
+  return fetchLxnsDeveloperJson(`/maimai/player/${encodeURIComponent(friendCode)}/trend${query}`, developerToken, options);
 }
 
 export async function fetchLxnsScoreHistory(
@@ -174,4 +186,8 @@ export async function fetchLxnsUserPlayer(userToken: string, options?: FetchOpti
 
 export async function fetchLxnsUserScores(userToken: string, options?: FetchOptions): Promise<unknown> {
   return fetchLxnsUserJson("/user/maimai/player/scores", userToken, options);
+}
+
+export async function fetchLxnsSongList(options?: FetchOptions): Promise<unknown> {
+  return fetchLxnsPublicJson("/maimai/song/list", options);
 }

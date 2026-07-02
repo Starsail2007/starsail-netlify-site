@@ -1,11 +1,12 @@
 ---
 import "../styles/tokens.css";
 import "../styles/base.css";
-import "../styles/home.css";
+import siteText from "../content/siteText";
 
 const {
-  title = "星帆测试站",
-  description = "星帆Starsail 的个人静态网站入口。"
+  title = siteText.shared.defaults.title,
+  description = siteText.shared.defaults.description,
+  bodyClass = ""
 } = Astro.props;
 ---
 
@@ -17,12 +18,7 @@ const {
     <meta name="description" content={description} />
     <title>{title}</title>
   </head>
-  <body>
+  <body class={bodyClass || undefined}>
     <slot />
-    <script>
-      import "../scripts/theme.js";
-      import "../scripts/motion.js";
-      import "../scripts/avatar-modal.js";
-    </script>
   </body>
 </html>

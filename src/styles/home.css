@@ -274,6 +274,29 @@ main {
   backdrop-filter: blur(16px);
 }
 
+.project-link {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--soft);
+  background: var(--surface);
+  padding: 0 16px;
+  color: var(--fg);
+  font-size: 13px;
+  font-weight: 680;
+  text-decoration: none;
+  box-shadow: 0 16px 34px var(--shadow);
+  backdrop-filter: blur(16px);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.project-link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(41, 151, 255, .28);
+  box-shadow: 0 20px 42px var(--shadow);
+}
+
 .controls {
   display: inline-flex;
   gap: 4px;

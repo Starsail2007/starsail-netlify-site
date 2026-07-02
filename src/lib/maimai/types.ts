@@ -79,6 +79,9 @@ export interface MaimaiRatingPoint {
   rating: number;
   b35Rating?: number;
   b15Rating?: number;
+  source?: "snapshot" | "lxns" | "manual";
+  standardRating?: number;
+  dxRating?: number;
 }
 
 export interface MaimaiMusicCacheMeta {

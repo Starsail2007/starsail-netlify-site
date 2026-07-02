@@ -1,7 +1,10 @@
+import siteText from "../content/siteText";
+
 const initialDataElement = document.getElementById("maimai-initial-data");
 const dashboard = document.querySelector("[data-maimai-dashboard]");
 const emptyState = document.querySelector("[data-maimai-empty]");
 const defaultCover = "/assets/maimai/default-cover.png";
+const text = siteText.maimai;
 
 const readInitialData = () => {
   if (!initialDataElement?.textContent) {
@@ -22,9 +25,16 @@ const escapeHtml = (value) => String(value ?? "")
   .replaceAll('"', "&quot;")
   .replaceAll("'", "&#039;");
 
+const escapeAttribute = escapeHtml;
+
 const formatDateTime = (value) => {
   if (!value) {
     return "--";
+  }
+
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    const [, month, day] = value.split("-");
+    return `${month}/${day}`;
   }
 
   const date = new Date(value);
@@ -89,7 +99,7 @@ const renderCard = (item) => {
   const badges = [item.rate, item.fc, item.fs].filter(Boolean);
   const badgeHtml = badges.length > 0
     ? badges.map((badge) => `<span>${escapeHtml(String(badge).toUpperCase())}</span>`).join("")
-    : "<span>PLAY</span>";
+    : `<span>${escapeHtml(text.b50.playBadge)}</span>`;
 
   return `
     <article class="b50-card ${difficultyClass(item.difficulty)}" data-b50-card>
@@ -97,7 +107,7 @@ const renderCard = (item) => {
       <img
         class="maimai-cover"
         src="${escapeHtml(item.coverUrl || defaultCover)}"
-        alt="${escapeHtml(item.title)} 曲绘"
+        alt="${escapeHtml(item.title)} ${escapeHtml(text.b50.coverAltSuffix)}"
         loading="lazy"
         decoding="async"
         data-cover-fallback="${defaultCover}"
@@ -108,12 +118,12 @@ const renderCard = (item) => {
           <span>${escapeHtml(item.difficulty)}</span>
         </div>
         <h3 title="${escapeHtml(item.title)}">${escapeHtml(item.title)}</h3>
-        <p>${escapeHtml(item.artist || item.version || "maimai DX")}</p>
+        <p>${escapeHtml(item.artist || item.version || text.b50.defaultArtist)}</p>
         <div class="b50-score-row">
           <strong>${formatAchievement(item.achievements)}</strong>
-          <span>${Number(item.ds || 0).toFixed(1)} -> ${escapeHtml(item.ra)}</span>
+          <span>${Number(item.ds || 0).toFixed(1)} ${escapeHtml(text.b50.scoreSeparator)} ${escapeHtml(item.ra)}</span>
         </div>
-        <div class="b50-badges" aria-label="成绩标签">${badgeHtml}</div>
+        <div class="b50-badges" aria-label="${escapeAttribute(text.b50.badgesAriaLabel)}">${badgeHtml}</div>
       </div>
     </article>
   `;
@@ -123,7 +133,7 @@ const renderTrend = (history) => {
   const ordered = [...history].sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt));
 
   if (ordered.length === 0) {
-    return `<p class="empty-note">暂无 Rating 历史。</p>`;
+    return `<p class="empty-note">${escapeHtml(text.sections.trend.empty)}</p>`;
   }
 
   const ratings = ordered.map((point) => Number(point.rating || 0));
@@ -139,13 +149,15 @@ const renderTrend = (history) => {
     const { x, y } = pointFor(point, index);
     return `${index === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`;
   }).join(" ");
-  const circles = ordered.map((point, index) => {
-    const { x, y } = pointFor(point, index);
-    return `<circle class="trend-point" cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="4" />`;
-  }).join("");
+  const circles = ordered.length <= 80
+    ? ordered.map((point, index) => {
+      const { x, y } = pointFor(point, index);
+      return `<circle class="trend-point" cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="4" />`;
+    }).join("")
+    : "";
 
   return `
-    <svg viewBox="0 0 300 128" role="img" aria-label="Rating 折线图">
+    <svg viewBox="0 0 300 128" role="img" aria-label="${escapeAttribute(text.sections.trend.chartAriaLabel)}">
       <path class="trend-grid-line" d="M 12 24 H 288" />
       <path class="trend-grid-line" d="M 12 68 H 288" />
       <path class="trend-grid-line" d="M 12 112 H 288" />
@@ -164,7 +176,7 @@ const renderTimeline = (history) => {
   const ordered = [...history].sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
 
   if (ordered.length === 0) {
-    return `<li class="empty-note">暂无同步记录。</li>`;
+    return `<li class="empty-note">${escapeHtml(text.sections.timeline.empty)}</li>`;
   }
 
   return ordered.slice(0, 8).map((point, index) => {
@@ -182,9 +194,9 @@ const renderTimeline = (history) => {
 
 const renderSuggestions = (snapshot) => {
   const groups = [
-    ["接近评价线", getNearRankUpItems(snapshot)],
-    ["B50 边缘曲", getBorderItems(snapshot)],
-    ["高价值练习", getHighValuePracticeItems(snapshot)]
+    [text.sections.suggestions.groups.nearRankUp, getNearRankUpItems(snapshot)],
+    [text.sections.suggestions.groups.borderItems, getBorderItems(snapshot)],
+    [text.sections.suggestions.groups.practiceItems, getHighValuePracticeItems(snapshot)]
   ];
 
   return groups.map(([title, items]) => `
@@ -199,7 +211,7 @@ const renderSuggestions = (snapshot) => {
             </li>
           `).join("")}
         </ol>
-      ` : `<p class="empty-note">暂无明显目标。</p>`}
+      ` : `<p class="empty-note">${escapeHtml(text.sections.suggestions.empty)}</p>`}
     </div>
   `).join("");
 };
@@ -229,10 +241,10 @@ const renderDashboard = (snapshot, history) => {
   const heroStats = dashboard.querySelector(".hero-stats");
   if (heroStats) {
     heroStats.innerHTML = [
-      renderStatusBadge("B35", snapshot.b35Rating ?? "--"),
-      renderStatusBadge("B15", snapshot.b15Rating ?? "--"),
-      renderStatusBadge("Source", formatSource(snapshot.source)),
-      renderStatusBadge("Updated", formatDateTime(snapshot.createdAt))
+      renderStatusBadge(text.hero.stats.b35, snapshot.b35Rating ?? "--"),
+      renderStatusBadge(text.hero.stats.b15, snapshot.b15Rating ?? "--"),
+      renderStatusBadge(text.hero.stats.source, formatSource(snapshot.source)),
+      renderStatusBadge(text.hero.stats.updated, formatDateTime(snapshot.createdAt))
     ].join("");
   }
 
@@ -299,7 +311,7 @@ const loadRemoteData = async () => {
   try {
     const [latestResponse, historyResponse] = await Promise.all([
       fetch("/.netlify/functions/maimai-latest", { headers: { accept: "application/json" } }),
-      fetch("/.netlify/functions/maimai-history?limit=100", { headers: { accept: "application/json" } })
+      fetch("/.netlify/functions/maimai-history?limit=1000", { headers: { accept: "application/json" } })
     ]);
 
     if (!latestResponse.ok) {

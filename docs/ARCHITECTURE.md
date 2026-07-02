@@ -20,6 +20,12 @@ design/
 Codex 可以读取这里的材料，再把设计落到 `src/` 的代码中。
 
 ```text
+src/content/
+```
+
+结构化内容源。`src/content/site-text.md` 是网页静态文字的统一编辑入口，页面标题、meta description、按钮、面板标题、空状态和提示语都从这里读取。B50、Rating、世界杯赛程/比分等实时内容仍由数据文件、接口和脚本生成，来源说明也写在这个文件的 `dynamicTextSources` 字段里。
+
+```text
 src/pages/
 ```
 

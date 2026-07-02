@@ -1,6 +1,10 @@
 import { getMaimaiIdentityFromEnv, readPositiveLimit } from "../../src/lib/maimai/config";
 import { getRatingHistoryLocal } from "../../src/lib/maimai/localStore";
-import { canUseMaimaiRemoteStorage, getMaimaiRatingHistory } from "../../src/lib/maimai/storage";
+import {
+  canUseMaimaiRemoteStorage,
+  getMaimaiHistoricalRatingHistory,
+  getMaimaiRatingHistory
+} from "../../src/lib/maimai/storage";
 
 export default async function handler(request: Request): Promise<Response> {
   if (request.method === "OPTIONS") {
@@ -13,17 +17,26 @@ export default async function handler(request: Request): Promise<Response> {
 
   try {
     const url = new URL(request.url);
-    const limit = readPositiveLimit(url.searchParams.get("limit"), 100);
+    const limit = readPositiveLimit(url.searchParams.get("limit"), 500, 2000);
     const identity = getMaimaiIdentityFromEnv();
-    let source: "supabase" | "local" = "local";
+    let source: "supabase-trend" | "supabase-snapshot" | "local" = "local";
     let history = [];
 
     if (canUseMaimaiRemoteStorage()) {
       try {
-        history = await getMaimaiRatingHistory(identity.playerKey, limit);
-        source = "supabase";
+        history = await getMaimaiHistoricalRatingHistory(identity.playerKey, limit);
+        source = "supabase-trend";
       } catch (error) {
-        console.warn("[maimai-history] Supabase read failed, using local fallback.", error);
+        console.warn("[maimai-history] Supabase trend read failed, using snapshot fallback.", error);
+      }
+
+      if (history.length === 0) {
+        try {
+          history = await getMaimaiRatingHistory(identity.playerKey, limit);
+          source = "supabase-snapshot";
+        } catch (error) {
+          console.warn("[maimai-history] Supabase snapshot read failed, using local fallback.", error);
+        }
       }
     }
 

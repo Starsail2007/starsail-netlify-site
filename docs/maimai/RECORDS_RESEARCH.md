@@ -108,7 +108,8 @@ Recommended second implementation:
 1. Add an Lxns client with `LXNS_DEVELOPER_TOKEN` / `LXNS_USER_TOKEN` and `LXNS_FRIEND_CODE`.
 2. Probe `/trend`, `/score/history`, and `/scores`.
 3. Decide whether Lxns can provide enough historical depth for this player.
-4. Normalize Lxns trend points into the existing dashboard curve.
+4. Normalize Lxns trend points into `maimai_rating_trend_points`.
+5. Let `maimai-history` prefer imported trend points and fall back to B50 snapshot history.
 
 Local probe command:
 
@@ -118,6 +119,15 @@ pnpm maimai:lxns-probe -- --mode user
 ```
 
 Developer mode uses `LXNS_DEVELOPER_TOKEN` and can probe trend/history by friend code. User mode uses `LXNS_USER_TOKEN` and can probe the current user's player/scores endpoints.
+
+Historical rating import command:
+
+```bash
+pnpm maimai:trend-import
+pnpm maimai:trend-import -- --dry-run
+```
+
+This requires the `maimai_rating_trend_points` table from `supabase/schema.sql`.
 
 ## Recommended Phase 5 Gate
 

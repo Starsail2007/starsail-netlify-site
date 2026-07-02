@@ -6,8 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev --host 127.0.0.1",
-    "build": "astro build",
-    "deploy:check": "astro build",
+    "build": "pnpm text:check && astro build",
+    "deploy:check": "pnpm build",
+    "text:check": "node scripts/check-site-text.mjs",
     "preview": "astro preview --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
     "maimai:update": "tsx scripts/maimai/cli.ts update",
@@ -17,7 +18,8 @@
     "maimai:export": "tsx scripts/maimai/cli.ts export",
     "maimai:records-probe": "tsx scripts/maimai/cli.ts records-probe",
     "maimai:records-save": "tsx scripts/maimai/cli.ts records-save",
-    "maimai:lxns-probe": "tsx scripts/maimai/cli.ts lxns-probe"
+    "maimai:lxns-probe": "tsx scripts/maimai/cli.ts lxns-probe",
+    "maimai:trend-import": "tsx scripts/maimai/cli.ts trend-import"
   },
   "engines": {
     "node": ">=24.14.0",

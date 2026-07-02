@@ -1,9 +1,15 @@
+---
+import siteText from "../content/siteText";
+
+const text = siteText.shared.theme;
+---
+
 <button
   class="theme-toggle"
   type="button"
-  aria-label="当前为夜间风格，点击切换到白天风格"
-  title="切换风格"
+  aria-label={text.darkAriaLabel}
+  title={text.title}
 >
   <span class="theme-glyph" aria-hidden="true"></span>
-  <span class="theme-label">夜间</span>
+  <span class="theme-label">{text.initialLabel}</span>
 </button>

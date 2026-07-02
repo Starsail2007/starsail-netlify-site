@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import type { MaimaiHistoricalRatingPoint } from "./ratingTrend";
 import { getSupabaseServerClient, hasSupabaseServerConfig } from "./supabaseServer";
 import type { MaimaiFullRecordsSnapshot, MaimaiRatingPoint, MaimaiSnapshot } from "./types";
 
@@ -38,6 +39,20 @@ interface FullRecordsSnapshotRow {
   created_at: string;
 }
 
+interface HistoricalRatingPointRow {
+  id: string;
+  player_key: string;
+  source: "lxns" | "manual";
+  source_point_id: string | null;
+  point_date: string;
+  rating: number | null;
+  standard_rating: number | null;
+  dx_rating: number | null;
+  payload: unknown;
+  created_at: string;
+  updated_at: string;
+}
+
 function hashPayload(payload: unknown): string {
   return createHash("sha256").update(JSON.stringify(payload)).digest("hex");
 }
@@ -68,6 +83,26 @@ function rowToFullRecordsSnapshot(row: FullRecordsSnapshotRow): MaimaiFullRecord
     recordCount: row.record_count ?? row.payload.recordCount,
     createdAt: row.created_at
   };
+}
+
+function rowToHistoricalRatingPoint(row: HistoricalRatingPointRow): MaimaiRatingPoint {
+  return {
+    createdAt: row.point_date,
+    rating: Number(row.rating ?? 0),
+    source: row.source,
+    standardRating: row.standard_rating === null ? undefined : Number(row.standard_rating),
+    dxRating: row.dx_rating === null ? undefined : Number(row.dx_rating)
+  };
+}
+
+function pointDateKey(createdAt: string): string {
+  const date = new Date(createdAt);
+
+  if (Number.isNaN(date.getTime())) {
+    return createdAt.slice(0, 10);
+  }
+
+  return date.toISOString().slice(0, 10);
 }
 
 export async function saveMaimaiSnapshot(snapshot: MaimaiSnapshot): Promise<{ id: string; payloadHash: string }> {
@@ -137,8 +172,63 @@ export async function getMaimaiRatingHistory(
     createdAt: String(row.created_at),
     rating: Number(row.rating ?? 0),
     b35Rating: row.b35_rating === null ? undefined : Number(row.b35_rating),
-    b15Rating: row.b15_rating === null ? undefined : Number(row.b15_rating)
+    b15Rating: row.b15_rating === null ? undefined : Number(row.b15_rating),
+    source: "snapshot"
   }));
+}
+
+export async function saveMaimaiHistoricalRatingPoints(
+  points: MaimaiHistoricalRatingPoint[]
+): Promise<{ count: number }> {
+  if (points.length === 0) {
+    return { count: 0 };
+  }
+
+  const supabase = getSupabaseServerClient();
+  const updatedAt = new Date().toISOString();
+  const { data, error } = await supabase
+    .from("maimai_rating_trend_points")
+    .upsert(points.map((point) => ({
+      player_key: point.playerKey,
+      source: point.source,
+      source_point_id: point.sourcePointId ?? null,
+      point_date: pointDateKey(point.createdAt),
+      rating: point.rating,
+      standard_rating: point.standardRating ?? null,
+      dx_rating: point.dxRating ?? null,
+      payload: point.raw,
+      updated_at: updatedAt
+    })), {
+      onConflict: "player_key,source,point_date"
+    })
+    .select("id");
+
+  if (error) {
+    throw new Error(`保存 Supabase historical rating trend 失败：${error.message}`);
+  }
+
+  return { count: data?.length ?? points.length };
+}
+
+export async function getMaimaiHistoricalRatingHistory(
+  playerKey: string,
+  limit = 500
+): Promise<MaimaiRatingPoint[]> {
+  const supabase = getSupabaseServerClient();
+  const safeLimit = Math.max(1, Math.min(2000, Math.trunc(limit)));
+  const { data, error } = await supabase
+    .from("maimai_rating_trend_points")
+    .select("*")
+    .eq("player_key", playerKey)
+    .order("point_date", { ascending: false })
+    .limit(safeLimit)
+    .returns<HistoricalRatingPointRow[]>();
+
+  if (error) {
+    throw new Error(`读取 Supabase historical rating trend 失败：${error.message}`);
+  }
+
+  return (data ?? []).map(rowToHistoricalRatingPoint);
 }
 
 export async function saveMaimaiFullRecordsSnapshot(

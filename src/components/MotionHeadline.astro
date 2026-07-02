@@ -1,5 +1,7 @@
 ---
-const { text = "待探索的空间" } = Astro.props;
+import siteText from "../content/siteText";
+
+const { text = siteText.home.hero.headline } = Astro.props;
 ---
 
 <h1 class="headline" id="headline" aria-label={text}>

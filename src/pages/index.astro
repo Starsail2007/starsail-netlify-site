@@ -3,37 +3,49 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import AvatarModal from "../components/AvatarModal.astro";
 import MotionHeadline from "../components/MotionHeadline.astro";
 import SiteHeader from "../components/SiteHeader.astro";
+import siteText from "../content/siteText";
+import "../styles/home.css";
+
+const text = siteText.home;
 ---
 
 <BaseLayout
-  title="星帆测试站"
-  description="星帆Starsail 的个人静态网站入口，目前是一个待探索的测试空间。"
+  title={text.meta.title}
+  description={text.meta.description}
 >
-  <section class="stage" aria-label="星帆测试站首页" data-interactive-root>
+  <section class="stage" aria-label={text.stageAriaLabel} data-interactive-root>
     <SiteHeader />
 
     <main>
-      <div class="eyebrow">目前仅供测试</div>
-      <MotionHeadline text="待探索的空间" />
+      <div class="eyebrow">{text.hero.eyebrow}</div>
+      <MotionHeadline text={text.hero.headline} />
       <p class="subcopy">
-        恭喜你发现了这里。现在，这里只是一个<strong>安静的入口</strong>，通向星帆小狼的一处小窝。之后在里面放些什么呢？还有待探索。
+        {text.hero.subcopy.beforeStrong}<strong>{text.hero.subcopy.strong}</strong>{text.hero.subcopy.afterStrong}
       </p>
       <div class="actions">
-        <div class="status" aria-live="polite">版本状态：测试中</div>
-        <nav class="controls" aria-label="文字动效模式">
-          <button type="button" data-mode="calm" aria-pressed="true">Calm</button>
-          <button type="button" data-mode="float" aria-pressed="false">Float</button>
-          <button type="button" data-mode="shine" aria-pressed="false">Shine</button>
-          <button type="button" data-mode="focus" aria-pressed="false">Focus</button>
+        <div class="status" aria-live="polite">{text.hero.status}</div>
+        <a class="project-link" href="/worldcup/">{text.hero.worldcupLink}</a>
+        <nav class="controls" aria-label={text.hero.motionAriaLabel}>
+          {text.hero.motionModes.map((mode, index) => (
+            <button type="button" data-mode={mode.key} aria-pressed={String(index === 0)}>
+              {mode.label}
+            </button>
+          ))}
         </nav>
       </div>
     </main>
 
     <footer class="site-footer">
-      <div class="hint">金鞍玉勒寻芳客，未信我庐别有春。</div>
-      <div class="footer-note">Astro + CSS + JavaScript</div>
+      <div class="hint">{text.footer.hint}</div>
+      <div class="footer-note">{text.footer.techNote}</div>
     </footer>
   </section>
 
   <AvatarModal />
 </BaseLayout>
+
+<script>
+  import "../scripts/theme.js";
+  import "../scripts/motion.js";
+  import "../scripts/avatar-modal.js";
+</script>

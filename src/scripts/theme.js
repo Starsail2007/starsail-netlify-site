@@ -1,6 +1,9 @@
+import siteText from "../content/siteText";
+
 const themeToggle = document.querySelector(".theme-toggle");
 const themeLabel = document.querySelector(".theme-label");
 const storageKey = "starsail-theme";
+const themeText = siteText.shared.theme;
 
 const readSavedTheme = () => {
   try {
@@ -25,16 +28,17 @@ const setTheme = (theme) => {
     return;
   }
 
-  themeLabel.textContent = theme === "dark" ? "夜间" : "日间";
+  themeLabel.textContent = theme === "dark" ? themeText.darkLabel : themeText.lightLabel;
   themeToggle.setAttribute(
     "aria-label",
     theme === "dark"
-      ? "当前为夜间风格，点击切换到白天风格"
-      : "当前为日间风格，点击切换到夜间风格"
+      ? themeText.darkAriaLabel
+      : themeText.lightAriaLabel
   );
 };
 
-const initialTheme = readSavedTheme() === "light" ? "light" : "dark";
+const forceDarkInitialTheme = document.body.classList.contains("maimai-body");
+const initialTheme = forceDarkInitialTheme ? "dark" : readSavedTheme() === "light" ? "light" : "dark";
 setTheme(initialTheme);
 
 themeToggle?.addEventListener("click", () => {

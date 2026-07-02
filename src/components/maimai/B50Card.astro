@@ -1,5 +1,6 @@
 ---
 import CoverImage from "./CoverImage.astro";
+import siteText from "../../content/siteText";
 import { formatAchievement } from "../../lib/maimai/format";
 import type { MaimaiB50Item } from "../../lib/maimai/types";
 
@@ -10,24 +11,25 @@ interface Props {
 const { item } = Astro.props;
 const difficultyClass = `difficulty-${String(item.difficulty).toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 const badges = [item.rate, item.fc, item.fs].filter(Boolean);
+const text = siteText.maimai.b50;
 ---
 
 <article class:list={["b50-card", difficultyClass]} data-b50-card>
   <div class="b50-rank">#{item.rankIndex}</div>
-  <CoverImage src={item.coverUrl} alt={`${item.title} 曲绘`} />
+  <CoverImage src={item.coverUrl} alt={`${item.title} ${text.coverAltSuffix}`} />
   <div class="b50-card-body">
     <div class="b50-card-topline">
       <span>{item.type}</span>
       <span>{item.difficulty}</span>
     </div>
     <h3 title={item.title}>{item.title}</h3>
-    <p>{item.artist || item.version || "maimai DX"}</p>
+    <p>{item.artist || item.version || text.defaultArtist}</p>
     <div class="b50-score-row">
       <strong>{formatAchievement(item.achievements)}</strong>
-      <span>{item.ds.toFixed(1)} -> {item.ra}</span>
+      <span>{item.ds.toFixed(1)} {text.scoreSeparator} {item.ra}</span>
     </div>
-    <div class="b50-badges" aria-label="成绩标签">
-      {badges.length > 0 ? badges.map((badge) => <span>{String(badge).toUpperCase()}</span>) : <span>PLAY</span>}
+    <div class="b50-badges" aria-label={text.badgesAriaLabel}>
+      {badges.length > 0 ? badges.map((badge) => <span>{String(badge).toUpperCase()}</span>) : <span>{text.playBadge}</span>}
     </div>
   </div>
 </article>

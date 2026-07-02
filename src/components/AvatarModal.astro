@@ -1,3 +1,9 @@
+---
+import siteText from "../content/siteText";
+
+const text = siteText.home.avatarModal;
+---
+
 <div
   class="avatar-modal"
   id="avatar-modal"
@@ -6,15 +12,17 @@
   aria-labelledby="avatar-modal-title"
   hidden
 >
-  <button class="modal-close" type="button" aria-label="关闭头像展示">x</button>
+  <button class="modal-close" type="button" aria-label={text.closeAriaLabel}>
+    {text.closeButton}
+  </button>
   <div class="avatar-card">
     <div class="avatar-large">
-      <img src="/assets/avatar.jpeg" alt="星帆Starsail 的头像放大图" />
+      <img src="/assets/avatar.jpeg" alt={text.avatarAlt} />
     </div>
     <div class="avatar-modal-copy">
-      <h2 id="avatar-modal-title">星帆Starsail</h2>
-      <p class="avatar-motto">天接云涛连晓雾，星河欲转千帆舞。</p>
-      <p class="avatar-desc">该小窝由星帆Starsail筑成。</p>
+      <h2 id="avatar-modal-title">{text.title}</h2>
+      <p class="avatar-motto">{text.motto}</p>
+      <p class="avatar-desc">{text.description}</p>
     </div>
   </div>
 </div>
