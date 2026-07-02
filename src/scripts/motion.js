@@ -2,8 +2,6 @@ const headline = document.querySelector("#headline");
 const lines = [...document.querySelectorAll(".line")];
 const buttons = [...document.querySelectorAll("[data-mode]")];
 const interactiveRoot = document.querySelector("[data-interactive-root]") || document.documentElement;
-const interactiveSelector = "button, a, input, textarea, select, [role='button'], [data-allow-touch-scroll]";
-let activeTouchPointerId = null;
 
 if (headline && lines.length) {
   let index = 0;
@@ -41,36 +39,6 @@ const updatePointerPosition = (clientX, clientY) => {
   document.documentElement.style.setProperty("--y", y);
 };
 
-const isInteractiveElement = (target) => (
-  target instanceof Element && Boolean(target.closest(interactiveSelector))
-);
-
-const capturePointer = (event) => {
-  if (!interactiveRoot.setPointerCapture || event.pointerId == null) {
-    return;
-  }
-
-  try {
-    interactiveRoot.setPointerCapture(event.pointerId);
-  } catch {
-    // Some browsers can reject capture if the pointer already ended.
-  }
-};
-
-const releasePointer = (event) => {
-  if (!interactiveRoot.releasePointerCapture || event.pointerId == null) {
-    return;
-  }
-
-  try {
-    if (!interactiveRoot.hasPointerCapture || interactiveRoot.hasPointerCapture(event.pointerId)) {
-      interactiveRoot.releasePointerCapture(event.pointerId);
-    }
-  } catch {
-    // Ignore stale pointer ids after cancellation.
-  }
-};
-
 const handlePointerMove = (event) => {
   updatePointerPosition(event.clientX, event.clientY);
 };
@@ -82,21 +50,38 @@ const handlePointerDown = (event) => {
     return;
   }
 
-  activeTouchPointerId = event.pointerId;
   interactiveRoot.classList.add("is-touching");
-
-  if (!isInteractiveElement(event.target)) {
-    capturePointer(event);
-  }
 };
 
 const handlePointerEnd = (event) => {
-  if (event.pointerType === "touch" && activeTouchPointerId === event.pointerId) {
-    activeTouchPointerId = null;
+  if (event.pointerType === "touch") {
     interactiveRoot.classList.remove("is-touching");
   }
+};
 
-  releasePointer(event);
+const getPrimaryTouch = (event) => event.touches[0] || event.changedTouches[0];
+
+const handleTouchMove = (event) => {
+  const touch = getPrimaryTouch(event);
+
+  if (!touch) {
+    return;
+  }
+
+  updatePointerPosition(touch.clientX, touch.clientY);
+};
+
+const handleTouchStart = (event) => {
+  interactiveRoot.classList.add("is-touching");
+  handleTouchMove(event);
+};
+
+const handleTouchEnd = (event) => {
+  handleTouchMove(event);
+
+  if (event.touches.length === 0) {
+    interactiveRoot.classList.remove("is-touching");
+  }
 };
 
 window.addEventListener("pointermove", handlePointerMove, { passive: true });
@@ -104,3 +89,7 @@ interactiveRoot.addEventListener("pointerdown", handlePointerDown, { passive: tr
 interactiveRoot.addEventListener("pointerup", handlePointerEnd, { passive: true });
 interactiveRoot.addEventListener("pointercancel", handlePointerEnd, { passive: true });
 interactiveRoot.addEventListener("pointerleave", handlePointerEnd, { passive: true });
+interactiveRoot.addEventListener("touchstart", handleTouchStart, { passive: true });
+interactiveRoot.addEventListener("touchmove", handleTouchMove, { passive: true });
+interactiveRoot.addEventListener("touchend", handleTouchEnd, { passive: true });
+interactiveRoot.addEventListener("touchcancel", handleTouchEnd, { passive: true });

@@ -7,10 +7,8 @@
   padding: clamp(20px, 4vw, 52px);
   position: relative;
   isolation: isolate;
-  overflow: hidden;
-  overscroll-behavior: none;
-  /* Keep mobile drag gestures available to the pointer-follow effect instead of page scrolling. */
-  touch-action: none;
+  /* Let the page keep vertical scrolling while touch listeners update the follow effect. */
+  touch-action: pan-y pinch-zoom;
 }
 
 .stage::before {
