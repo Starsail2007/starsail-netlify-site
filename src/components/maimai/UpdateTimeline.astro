@@ -1,0 +1,33 @@
+---
+import { formatDateTime } from "../../lib/maimai/format";
+import type { MaimaiRatingPoint } from "../../lib/maimai/types";
+
+interface Props {
+  points: MaimaiRatingPoint[];
+}
+
+const { points } = Astro.props;
+const ordered = [...points].sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
+---
+
+<section class="maimai-panel timeline-panel" aria-labelledby="maimai-timeline-title">
+  <div class="section-heading">
+    <div>
+      <h2 id="maimai-timeline-title">Sync Log</h2>
+      <p>最近数据更新时间线</p>
+    </div>
+  </div>
+  <ol class="timeline-list" data-maimai-timeline>
+    {ordered.length > 0 ? ordered.slice(0, 8).map((point, index) => {
+      const previous = ordered[index + 1];
+      const delta = previous ? point.rating - previous.rating : 0;
+      return (
+        <li>
+          <span>{formatDateTime(point.createdAt)}</span>
+          <strong>{point.rating}</strong>
+          <em>{delta >= 0 ? `+${delta}` : delta}</em>
+        </li>
+      );
+    }) : <li class="empty-note">暂无同步记录。</li>}
+  </ol>
+</section>

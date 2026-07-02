@@ -1,0 +1,17 @@
+---
+import { DEFAULT_COVER_URL } from "../../lib/maimai/covers";
+
+const {
+  src = DEFAULT_COVER_URL,
+  alt = ""
+} = Astro.props;
+---
+
+<img
+  class="maimai-cover"
+  src={src}
+  alt={alt}
+  loading="lazy"
+  decoding="async"
+  data-cover-fallback={DEFAULT_COVER_URL}
+/>

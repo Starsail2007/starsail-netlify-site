@@ -1,0 +1,37 @@
+---
+import StatusBadge from "./StatusBadge.astro";
+import { formatDateTime, formatRating, formatSource } from "../../lib/maimai/format";
+import type { MaimaiSnapshot } from "../../lib/maimai/types";
+
+interface Props {
+  snapshot: MaimaiSnapshot;
+}
+
+const { snapshot } = Astro.props;
+---
+
+<section class="maimai-hero maimai-panel">
+  <div class="hero-copy">
+    <a class="maimai-back-link" href="/">Starsail</a>
+    <p class="maimai-eyebrow">舞萌 DX 成绩仪表盘</p>
+    <h1>maimai DX Dashboard</h1>
+    <p>记录 B50、Rating 曲线与每次同步的变化。</p>
+  </div>
+
+  <div class="player-card">
+    <div>
+      <span class="player-label">Player</span>
+      <strong data-maimai-field="nickname">{snapshot.nickname}</strong>
+    </div>
+    <div class="rating-display">
+      <span>Rating</span>
+      <strong data-maimai-field="rating">{formatRating(snapshot.rating)}</strong>
+    </div>
+    <div class="hero-stats">
+      <StatusBadge label="B35" value={formatRating(snapshot.b35Rating)} />
+      <StatusBadge label="B15" value={formatRating(snapshot.b15Rating)} />
+      <StatusBadge label="Source" value={formatSource(snapshot.source)} />
+      <StatusBadge label="Updated" value={formatDateTime(snapshot.createdAt)} />
+    </div>
+  </div>
+</section>

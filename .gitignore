@@ -1,4 +1,7 @@
 .DS_Store
+.env
+.env.*
+!.env.example
 node_modules/
 .astro/
 dist/
@@ -6,3 +9,4 @@ build/
 .netlify/
 *.log
 pnpm-debug.log*
+src/data/maimai/*.full-records.json

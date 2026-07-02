@@ -1,0 +1,54 @@
+---
+import { formatDateTime } from "../../lib/maimai/format";
+import type { MaimaiRatingPoint } from "../../lib/maimai/types";
+
+interface Props {
+  points: MaimaiRatingPoint[];
+}
+
+const { points } = Astro.props;
+const ordered = [...points].sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt));
+const ratings = ordered.map((point) => point.rating);
+const min = Math.min(...ratings, ratings[0] ?? 0);
+const max = Math.max(...ratings, ratings[0] ?? 0);
+const range = Math.max(1, max - min);
+const path = ordered.map((point, index) => {
+  const x = ordered.length <= 1 ? 12 : 12 + (index / (ordered.length - 1)) * 276;
+  const y = 112 - ((point.rating - min) / range) * 88;
+  return `${index === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`;
+}).join(" ");
+---
+
+<section class="maimai-panel trend-panel" aria-labelledby="maimai-trend-title">
+  <div class="section-heading">
+    <div>
+      <h2 id="maimai-trend-title">Rating Trend</h2>
+      <p>最近同步快照</p>
+    </div>
+    <span class="section-count">{ordered.length}</span>
+  </div>
+  <div class="trend-chart" data-maimai-trend>
+    {ordered.length > 0 ? (
+      <>
+        <svg viewBox="0 0 300 128" role="img" aria-label="Rating 折线图">
+          <path class="trend-grid-line" d="M 12 24 H 288" />
+          <path class="trend-grid-line" d="M 12 68 H 288" />
+          <path class="trend-grid-line" d="M 12 112 H 288" />
+          <path class="trend-line" d={path} />
+          {ordered.map((point, index) => {
+            const x = ordered.length <= 1 ? 12 : 12 + (index / (ordered.length - 1)) * 276;
+            const y = 112 - ((point.rating - min) / range) * 88;
+            return <circle class="trend-point" cx={x} cy={y} r="4" />;
+          })}
+        </svg>
+        <div class="trend-meta">
+          <span>{formatDateTime(ordered[0]?.createdAt)}</span>
+          <strong>{ordered[ordered.length - 1]?.rating}</strong>
+          <span>{formatDateTime(ordered[ordered.length - 1]?.createdAt)}</span>
+        </div>
+      </>
+    ) : (
+      <p class="empty-note">暂无 Rating 历史。</p>
+    )}
+  </div>
+</section>

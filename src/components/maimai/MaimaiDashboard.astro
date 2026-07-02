@@ -1,0 +1,32 @@
+---
+import B50Grid from "./B50Grid.astro";
+import PlayerHero from "./PlayerHero.astro";
+import RatingTrend from "./RatingTrend.astro";
+import SuggestionPanel from "./SuggestionPanel.astro";
+import UpdateTimeline from "./UpdateTimeline.astro";
+import { getBorderItems, getHighValuePracticeItems, getNearRankUpItems } from "../../lib/maimai/suggestions";
+import type { MaimaiRatingPoint, MaimaiSnapshot } from "../../lib/maimai/types";
+
+interface Props {
+  snapshot: MaimaiSnapshot;
+  history: MaimaiRatingPoint[];
+}
+
+const { snapshot, history } = Astro.props;
+const nearRankUp = getNearRankUpItems(snapshot);
+const borderItems = getBorderItems(snapshot);
+const practiceItems = getHighValuePracticeItems(snapshot);
+---
+
+<div class="maimai-dashboard" data-maimai-dashboard>
+  <PlayerHero snapshot={snapshot} />
+
+  <div class="maimai-main-grid">
+    <RatingTrend points={history} />
+    <UpdateTimeline points={history} />
+  </div>
+
+  <B50Grid title="Best 35" subtitle="旧版本成绩池" items={snapshot.b35} target="b35" />
+  <B50Grid title="New 15" subtitle="当前版本成绩池" items={snapshot.b15} target="b15" />
+  <SuggestionPanel nearRankUp={nearRankUp} borderItems={borderItems} practiceItems={practiceItems} />
+</div>

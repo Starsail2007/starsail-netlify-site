@@ -1,0 +1,26 @@
+---
+import B50Card from "./B50Card.astro";
+import type { MaimaiB50Item } from "../../lib/maimai/types";
+
+interface Props {
+  title: string;
+  subtitle: string;
+  items: MaimaiB50Item[];
+  target: "b35" | "b15";
+}
+
+const { title, subtitle, items, target } = Astro.props;
+---
+
+<section class="maimai-panel b50-section" aria-labelledby={`maimai-${target}-title`}>
+  <div class="section-heading">
+    <div>
+      <h2 id={`maimai-${target}-title`}>{title}</h2>
+      <p>{subtitle}</p>
+    </div>
+    <span class="section-count" data-maimai-count={target}>{items.length}</span>
+  </div>
+  <div class="b50-grid" data-maimai-grid={target}>
+    {items.map((item) => <B50Card item={item} />)}
+  </div>
+</section>

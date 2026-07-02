@@ -1,0 +1,45 @@
+---
+import { formatAchievement } from "../../lib/maimai/format";
+import type { MaimaiB50Item } from "../../lib/maimai/types";
+
+interface Props {
+  nearRankUp: MaimaiB50Item[];
+  borderItems: MaimaiB50Item[];
+  practiceItems: MaimaiB50Item[];
+}
+
+const { nearRankUp, borderItems, practiceItems } = Astro.props;
+const groups = [
+  ["接近评价线", nearRankUp],
+  ["B50 边缘曲", borderItems],
+  ["高价值练习", practiceItems]
+] as const;
+---
+
+<section class="maimai-panel suggestion-panel" aria-labelledby="maimai-suggestion-title">
+  <div class="section-heading">
+    <div>
+      <h2 id="maimai-suggestion-title">Push Ideas</h2>
+      <p>基于当前 B50 的简单建议</p>
+    </div>
+  </div>
+  <div class="suggestion-groups" data-maimai-suggestions>
+    {groups.map(([title, items]) => (
+      <div class="suggestion-group">
+        <h3>{title}</h3>
+        {items.length > 0 ? (
+          <ol>
+            {items.slice(0, 4).map((item) => (
+              <li>
+                <span>{item.title}</span>
+                <strong>{formatAchievement(item.achievements)}</strong>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <p class="empty-note">暂无明显目标。</p>
+        )}
+      </div>
+    ))}
+  </div>
+</section>

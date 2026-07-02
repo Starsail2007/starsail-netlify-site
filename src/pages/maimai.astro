@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import MaimaiDashboard from "../components/maimai/MaimaiDashboard.astro";
+import latestSnapshot from "../data/maimai/latest.snapshot.json";
+import historySnapshots from "../data/maimai/history.snapshots.json";
+import "../styles/maimai.css";
+
+const history = historySnapshots.map((snapshot) => ({
+  createdAt: snapshot.createdAt,
+  rating: snapshot.rating,
+  b35Rating: snapshot.b35Rating,
+  b15Rating: snapshot.b15Rating
+}));
+const initialDataJson = JSON.stringify({ snapshot: latestSnapshot, history }).replaceAll("<", "\\u003c");
+---
+
+<BaseLayout
+  title="Starsail's maimai DX Dashboard"
+  description="星帆 Starsail 的舞萌 DX B50、Rating 曲线与同步记录。"
+  bodyClass="maimai-body"
+>
+  <div class="maimai-page">
+    <div class="maimai-page-tools" aria-label="页面工具">
+      <ThemeToggle />
+    </div>
+    <MaimaiDashboard snapshot={latestSnapshot} history={history} />
+    <div class="maimai-empty-state" data-maimai-empty hidden>
+      <strong>还没有同步到成绩数据。</strong>
+      <span>请先在本地运行 pnpm maimai:update，或确认水鱼账号允许查询成绩。</span>
+    </div>
+  </div>
+
+  <script type="application/json" id="maimai-initial-data" set:html={initialDataJson} />
+  <script>
+    import "../scripts/theme.js";
+    import "../scripts/maimai-dashboard.js";
+  </script>
+</BaseLayout>
