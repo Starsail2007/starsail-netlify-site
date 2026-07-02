@@ -8,23 +8,22 @@ The current pipeline is based on Diving-Fish `/query/player`.
 
 - It fetches public B50 data by QQ or Diving-Fish username.
 - It saves each fetched B50 snapshot locally and, when configured, to Supabase.
-- Netlify has a scheduled function at `netlify/functions/maimai-scheduled-update.ts`.
-- The scheduled function runs every 6 hours after the site is deployed on Netlify with the required environment variables.
+- Netlify scheduled updates have been removed to reduce credit usage.
+- Updates should run locally or from GitHub Actions using `pnpm maimai:update`.
 
-This means the project can automatically build a rating curve from the first successful scheduled snapshot onward. It cannot reconstruct old per-play history from B50 snapshots alone.
+This means the project can build a rating curve from the first saved snapshot onward. It cannot reconstruct old per-play history from B50 snapshots alone.
 
-Required Netlify environment variables for automatic recording:
+Environment variables for local or GitHub Actions updates:
 
 ```env
 MAIMAI_SOURCE=diving_fish
 MAIMAI_QQ=1012169369
-MAIMAI_UPDATE_SECRET=...
 SUPABASE_URL=...
 SUPABASE_SERVICE_ROLE_KEY=...
 MAIMAI_LOCAL_CACHE_DIR=src/data/maimai
 ```
 
-`SUPABASE_SERVICE_ROLE_KEY`, `MAIMAI_UPDATE_SECRET`, and any record tokens must stay server-side only.
+`SUPABASE_SERVICE_ROLE_KEY` and any record tokens must stay server-side only.
 
 ## Why The Current Curve Has No Past History
 

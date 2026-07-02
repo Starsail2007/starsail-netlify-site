@@ -14,6 +14,7 @@ const history = historySnapshots.map((snapshot) => ({
   b15Rating: snapshot.b15Rating
 }));
 const initialDataJson = JSON.stringify({ snapshot: latestSnapshot, history }).replaceAll("<", "\\u003c");
+const remoteRefresh = import.meta.env.PUBLIC_MAIMAI_REMOTE_REFRESH === "true";
 const text = siteText.maimai;
 ---
 
@@ -26,7 +27,7 @@ const text = siteText.maimai;
     <div class="maimai-page-tools" aria-label={text.pageToolsAriaLabel}>
       <ThemeToggle />
     </div>
-    <MaimaiDashboard snapshot={latestSnapshot} history={history} />
+    <MaimaiDashboard snapshot={latestSnapshot} history={history} remoteRefresh={remoteRefresh} />
     <div class="maimai-empty-state" data-maimai-empty hidden>
       <strong>{text.emptyState.title}</strong>
       <span>{text.emptyState.description}</span>

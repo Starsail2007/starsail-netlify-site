@@ -308,6 +308,10 @@ const loadRemoteData = async () => {
     return;
   }
 
+  if (dashboard.dataset.maimaiRemoteRefresh !== "true") {
+    return;
+  }
+
   try {
     const [latestResponse, historyResponse] = await Promise.all([
       fetch("/.netlify/functions/maimai-latest", { headers: { accept: "application/json" } }),

@@ -97,6 +97,34 @@ API-Football
 本地/Codex 修改 -> GitHub -> Netlify 自动构建 -> 公网更新
 ```
 
+### Netlify 额度与省额度部署
+
+本项目不依赖 Netlify AI 开发。常规开发流程是本地改代码、运行 `pnpm build` 验证、推送 GitHub，再由 Netlify 普通自动部署。不要在 Netlify Dashboard 中使用 `Build with an AI agent` / `Run AI agent`，这些属于 Netlify Agent Runners，会消耗 AI inference credits。
+
+如果 Netlify deploy 显示：
+
+```text
+Skipped due to account credit usage exceeded
+```
+
+说明团队 credits 已超额，部署会被跳过。这通常不是代码构建失败，也不是 GitHub 连接损坏；本地仍然可以继续开发并用 `pnpm build` 验证。
+
+省额度建议：
+
+- 在 Netlify `Team settings > AI enablement` 里关闭 AI features，或把 Agent Runner 成员额度设为 `0`
+- 不配置 `OPENAI_API_KEY`，除非明确需要 AI fallback
+- 注意 Netlify Functions / Scheduled Functions 也会消耗普通 credits
+- GitHub 仓库是源码主线，Netlify 只是公网部署出口
+
+应急时可以先发布 draft deploy：
+
+```bash
+pnpm build
+pnpm --package=netlify-cli dlx netlify deploy --dir=dist
+```
+
+确认 draft URL 正常后，再将该 deploy 发布为 production。这个应急流程不应替代长期额度治理。
+
 如果从 Canva 或 Figma 做设计，建议先把设计链接、截图或导出素材放进 `design/`，再让 Codex 把它们转成 `src/` 里的页面、组件和样式。最终上线仍以这个代码项目为准。
 
 ## 修改网页文字

@@ -69,12 +69,18 @@ pnpm maimai:history  # reads Supabase history first, with local fallback
 
 ## Phase 3 Netlify Functions
 
-Phase 3 adds these endpoints:
+Phase 3 keeps these optional endpoints:
 
 ```text
 GET  /.netlify/functions/maimai-latest
 GET  /.netlify/functions/maimai-history?limit=100
 POST /.netlify/functions/maimai-update
+```
+
+The public maimai page renders the bundled static JSON by default and does not call these endpoints on page load. To opt back into remote refreshes for a deployment, set:
+
+```env
+PUBLIC_MAIMAI_REMOTE_REFRESH=true
 ```
 
 `maimai-update` requires this request header:
@@ -92,21 +98,23 @@ MAIMAI_UPDATE_SECRET=...
 SUPABASE_URL=...
 SUPABASE_SERVICE_ROLE_KEY=...
 MAIMAI_LOCAL_CACHE_DIR=src/data/maimai
+PUBLIC_MAIMAI_REMOTE_REFRESH=false
 ```
 
-Scheduled updates are handled by:
+## Low-Credit Update Path
+
+The Netlify scheduled update function has been removed to keep Netlify credits quiet. Use `pnpm maimai:update` locally, or run the same command from a GitHub Actions workflow with the required secrets. The command updates `src/data/maimai/latest.snapshot.json` and `src/data/maimai/history.snapshots.json`, and saves to Supabase when `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` are configured.
+
+Recommended low-credit flow:
 
 ```text
-netlify/functions/maimai-scheduled-update.ts
+pnpm maimai:update
+git add src/data/maimai
+git commit -m "Update maimai data"
+git push origin main
 ```
 
-It runs every 6 hours with this UTC cron expression:
-
-```text
-0 */6 * * *
-```
-
-The scheduled function is the automatic recording path. Once deployed with the required Netlify environment variables, every successful run saves a Supabase snapshot and update log. Rating curves produced by this project begin at the first saved snapshot.
+Netlify then only serves the generated static JSON and page assets. Rating curves begin from the first snapshot saved by this project unless Lxns trend data is imported.
 
 ## Full Records Research
 
