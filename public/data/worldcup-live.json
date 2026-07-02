@@ -4783,9 +4783,9 @@
     },
     {
       "id": "84",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
+      "status": "LIVE",
+      "statusText": "进行中",
+      "minute": 105,
       "stage": "Round of 32",
       "round": "Round of 32",
       "group": "",
@@ -10182,9 +10182,9 @@
     },
     {
       "id": "84",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
+      "status": "LIVE",
+      "statusText": "进行中",
+      "minute": 105,
       "stage": "Round of 32",
       "round": "Round of 32",
       "group": "",
@@ -10799,34 +10799,6 @@
   ],
   "upcomingMatches": [
     {
-      "id": "84",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Los Angeles (Inglewood)",
-      "kickoffTime": "2026-07-02T19:00:00.000Z",
-      "home": {
-        "name": "Spain",
-        "code": "S",
-        "iso2": "es",
-        "logo": "https://flagcdn.com/es.svg",
-        "flagUrl": "https://flagcdn.com/es.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Austria",
-        "code": "A",
-        "iso2": "at",
-        "logo": "https://flagcdn.com/at.svg",
-        "flagUrl": "https://flagcdn.com/at.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
       "id": "83",
       "status": "NS",
       "statusText": "未开始",
@@ -11295,6 +11267,34 @@
       "away": {
         "name": "W96",
         "code": "W96",
+        "iso2": "",
+        "logo": "",
+        "flagUrl": "",
+        "score": null
+      },
+      "events": []
+    },
+    {
+      "id": "101",
+      "status": "NS",
+      "statusText": "未开始",
+      "minute": null,
+      "stage": "Semi-final",
+      "round": "Semi-final",
+      "group": "",
+      "venue": "Dallas (Arlington)",
+      "kickoffTime": "2026-07-14T19:00:00.000Z",
+      "home": {
+        "name": "W97",
+        "code": "W97",
+        "iso2": "",
+        "logo": "",
+        "flagUrl": "",
+        "score": null
+      },
+      "away": {
+        "name": "W98",
+        "code": "W98",
         "iso2": "",
         "logo": "",
         "flagUrl": "",
@@ -17309,21 +17309,21 @@
   "leagueId": "1",
   "season": "2026",
   "polling": {
-    "mode": "near-match",
-    "label": "near-match",
+    "mode": "live",
+    "label": "live",
     "due": false,
-    "intervalSeconds": 3600,
-    "nextFetchAt": "2026-07-02T18:03:06.838Z",
-    "generatedAt": "2026-07-02T17:03:06.838Z",
+    "intervalSeconds": 300,
+    "nextFetchAt": "2026-07-02T20:50:03.064Z",
+    "generatedAt": "2026-07-02T20:45:03.064Z",
     "nextMatch": {
       "id": "84",
       "stage": "Round of 32",
       "kickoffTime": "2026-07-02T19:00:00.000Z",
       "home": "Spain",
       "away": "Austria",
-      "status": "NS"
+      "status": "LIVE"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-02T17:03:06.838Z"
+  "lastUpdated": "2026-07-02T20:45:03.064Z"
 }
