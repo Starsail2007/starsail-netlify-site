@@ -144,6 +144,7 @@ worldcup:
     bracket:
       title: "淘汰赛晋级图"
       subtitle: "宽屏晋级路径"
+      dragAriaLabel: "可横向拖动查看完整淘汰赛晋级图"
   champion:
     logoAlt: "2026 FIFA World Cup 标识"
     logoSrc: "https://commons.wikimedia.org/wiki/Special:FilePath/2026%20FIFA%20World%20Cup%20emblem%20%28with%20wordmark%29.svg"
@@ -225,6 +226,8 @@ worldcup:
       groupStandingPlayed: "赛"
       groupStandingGoalDifference: "净胜"
       groupStandingPoints: "分"
+      bracketRunnerUp: "亚军"
+      bracketThirdPlace: "季军"
       groupFixtureCountTemplate: "{played}/{total} 场已完赛"
       moreEventsTemplate: "还有 {count} 个瞬间"
       openMomentDetail: "打开完整关键瞬间"

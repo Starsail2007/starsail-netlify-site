@@ -1,0 +1,133 @@
+---
+import ThemeToggle from "../ThemeToggle.astro";
+
+const { text } = Astro.props;
+const headlineChars = [...text.hero.headline];
+const modalId = "entry-original-avatar-modal";
+---
+
+<section class="original-stage" aria-label={text.stageAriaLabel} data-interactive-root>
+  <header class="original-header">
+    <div class="original-header-actions">
+      <ThemeToggle />
+      <div class="original-builder" aria-label={text.header.builderAriaLabel}>
+        <button
+          class="original-avatar-link"
+          type="button"
+          aria-label={text.header.avatarOpenAriaLabel}
+          data-entry-avatar-open={modalId}
+        >
+          <img src="/assets/avatar.jpeg" alt={text.header.avatarAlt} />
+        </button>
+        <div class="original-credit">
+          <span>{text.header.creditLabel}</span>
+          <strong>{text.header.creditName}</strong>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="original-main">
+    <div class="original-hero">
+      <h1 class="original-headline" aria-label={text.hero.headline}>
+        {headlineChars.map((char, index) => (
+          <span style={`--char-index: ${index};`}>{char}</span>
+        ))}
+      </h1>
+      <p class="original-subcopy">
+        {text.hero.subcopy.beforeStrong}<strong>{text.hero.subcopy.strong}</strong>{text.hero.subcopy.afterStrong}
+      </p>
+    </div>
+
+    <nav class="original-option-rail" aria-label={text.options.ariaLabel}>
+      {text.options.items.map((item, index) => (
+        <a
+          class="original-option"
+          href={item.href}
+          style={`--option-index: ${index};`}
+          aria-disabled={item.href === "#" ? "true" : undefined}
+          data-entry-disabled={item.href === "#" ? "true" : undefined}
+          data-option-prompt={item.prompt || undefined}
+        >
+          <strong>{item.label || item.name}</strong>
+        </a>
+      ))}
+    </nav>
+  </main>
+
+  <footer class="original-footer">
+    <div>{text.footer.hint}</div>
+    <button
+      class="original-changelog-button"
+      type="button"
+      aria-label={text.changelog.ariaLabel}
+      data-original-changelog-open
+    >
+      {text.changelog.label}
+    </button>
+  </footer>
+</section>
+
+<div
+  class="original-avatar-modal"
+  id={modalId}
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby={`${modalId}-title`}
+  hidden
+  data-entry-avatar-modal
+>
+  <div class="original-modal-backdrop" data-entry-modal-close></div>
+  <section class="original-avatar-card">
+    <button
+      class="entry-modal-close original-modal-close"
+      type="button"
+      aria-label={text.avatarModal.closeAriaLabel}
+      data-entry-modal-close
+    ></button>
+    <div class="original-profile-shell">
+      <div class="original-avatar-visual">
+        <div class="original-orbit-field" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="original-avatar-large">
+          <img src="/assets/avatar.jpeg" alt={text.avatarModal.avatarAlt} />
+        </div>
+      </div>
+      <div class="original-profile-main">
+        <div class="original-avatar-copy">
+          <h2 id={`${modalId}-title`}>{text.avatarModal.title}</h2>
+          <p class="original-avatar-motto">{text.avatarModal.motto}</p>
+          <p>{text.avatarModal.description}</p>
+        </div>
+        <div class="original-social-slots" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div
+  class="original-changelog-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-label={text.changelog.label}
+  hidden
+  data-original-changelog-modal
+>
+  <div class="original-modal-backdrop" data-original-changelog-close></div>
+  <section class="original-changelog-card">
+    <button
+      class="entry-modal-close original-modal-close"
+      type="button"
+      aria-label={text.changelog.closeAriaLabel}
+      data-original-changelog-close
+    ></button>
+  </section>
+</div>

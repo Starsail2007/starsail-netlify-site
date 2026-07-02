@@ -1,0 +1,44 @@
+---
+const { id, copy, shared } = Astro.props;
+const modalClass = `entry-avatar-modal entry-avatar-modal-${copy.modalStyle}`;
+---
+
+<div
+  class={modalClass}
+  id={id}
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby={`${id}-title`}
+  hidden
+  data-entry-avatar-modal
+>
+  <div class="entry-modal-backdrop" data-entry-modal-close></div>
+  <section class="entry-modal-card">
+    <button
+      class="entry-modal-close"
+      type="button"
+      aria-label={shared.closeAriaLabel}
+      data-entry-modal-close
+    >
+      {shared.closeButton}
+    </button>
+    <div class="entry-modal-art" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="entry-avatar-large">
+      <img src="/assets/avatar.jpeg" alt={shared.avatarLargeAlt} />
+    </div>
+    <div class="entry-modal-copy">
+      <p class="entry-modal-kicker">{copy.modalTitle}</p>
+      <h2 id={`${id}-title`}>{shared.profileName}</h2>
+      <p class="entry-modal-motto">{shared.profileMotto}</p>
+      <p>{copy.modalDescription}</p>
+      <p class="entry-modal-footnote">{shared.modalFootnote}</p>
+    </div>
+  </section>
+</div>

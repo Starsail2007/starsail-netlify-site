@@ -1,0 +1,102 @@
+---
+import siteText from "../../content/siteText";
+
+const text = siteText.worldcup;
+---
+
+<section class="worldcup-page" data-worldcup-root aria-label={text.pageAriaLabel}>
+  <header class="worldcup-topbar">
+    <a class="worldcup-back" href="/" aria-label={text.topbar.backAriaLabel}>{text.topbar.backLink}</a>
+    <div class="worldcup-live-pill" data-source-pill>{text.topbar.sourcePillInitial}</div>
+  </header>
+
+  <main class="worldcup-shell">
+    <section class="worldcup-overview-grid">
+      <div class="worldcup-hero-copy" aria-labelledby="worldcup-title">
+        <p class="worldcup-kicker">{text.hero.kicker}</p>
+        <h1 id="worldcup-title">{text.hero.title}</h1>
+        <p class="worldcup-intro">
+          {text.hero.intro}
+        </p>
+      </div>
+
+      <section class="worldcup-panel timeline-preview-panel" aria-labelledby="timeline-title">
+        <div class="panel-heading">
+          <h2 id="timeline-title">{text.panels.timeline.title}</h2>
+          <a class="panel-link" href={text.panels.timeline.href}>{text.panels.timeline.viewAll}</a>
+        </div>
+        <div class="timeline-list timeline-preview-list" data-timeline></div>
+      </section>
+    </section>
+
+    <section class="worldcup-status-row" aria-label={text.statusRow.ariaLabel}>
+      <div class="worldcup-chip" data-live-count>{text.statusRow.liveCountInitial}</div>
+      <div class="worldcup-chip" data-updated-at>{text.statusRow.updatedAtInitial}</div>
+      <div class="worldcup-chip" data-refresh-policy>{text.statusRow.refreshPolicyInitial}</div>
+      <div class="worldcup-chip worldcup-error" data-error hidden></div>
+      <button class="worldcup-icon-button" type="button" data-refresh aria-label={text.statusRow.refreshButtonAriaLabel}>
+        ↻
+      </button>
+    </section>
+
+    <section class="worldcup-main-stack">
+      <section data-match-hero class="match-hero match-card loading-card">
+        <div class="loading-line"></div>
+        <div class="loading-line short"></div>
+      </section>
+
+      <section class="worldcup-panel" aria-labelledby="schedule-title">
+        <div class="panel-heading">
+          <h2 id="schedule-title">{text.panels.schedule.title}</h2>
+          <span>{text.panels.schedule.subtitle}</span>
+        </div>
+        <div class="schedule-strip" data-schedule-strip></div>
+      </section>
+
+      <section class="worldcup-panel bracket-panel" aria-labelledby="bracket-title">
+        <div class="panel-heading">
+          <h2 id="bracket-title">{text.panels.bracket.title}</h2>
+          <span>{text.panels.bracket.subtitle}</span>
+        </div>
+        <div class="bracket-scroll" data-bracket></div>
+      </section>
+
+      <section class="worldcup-panel" aria-labelledby="group-stage-title">
+        <div class="panel-heading">
+          <h2 id="group-stage-title">{text.panels.groupStage.title}</h2>
+          <span>{text.panels.groupStage.subtitle}</span>
+        </div>
+        <div class="group-stage-scroll" data-group-stage></div>
+      </section>
+    </section>
+  </main>
+
+  <div class="goal-overlay" data-goal-overlay hidden>
+    <div class="goal-flash">
+      <p>{text.goalOverlay.title}</p>
+      <strong data-goal-team></strong>
+      <span data-goal-player></span>
+    </div>
+  </div>
+
+  <section class="champion-celebration" data-champion-celebration hidden>
+    <div class="champion-flag-field" aria-hidden="true"></div>
+    <div class="champion-fireworks" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="champion-content">
+      <img src={text.champion.logoSrc} alt={text.champion.logoAlt} loading="lazy" />
+      <p data-champion-kicker>{text.champion.kicker}</p>
+      <h2 data-champion-title>{text.champion.titleInitial}</h2>
+      <strong data-champion-badge hidden>{text.champion.demoBadge}</strong>
+      <span data-champion-copy></span>
+    </div>
+  </section>
+</section>

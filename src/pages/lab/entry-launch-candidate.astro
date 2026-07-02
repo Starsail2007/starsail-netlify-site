@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import siteText from "../../content/siteText";
+import EntryPrototypeC from "../../components/prototypes/EntryPrototypeC.astro";
+import "../../styles/entry-redesign.css";
+
+const text = siteText.entryRedesign;
+const copy = text.variants.chart;
+---
+
+<BaseLayout
+  title={copy.headline}
+  description={copy.subcopy}
+  bodyClass="entry-redesign-body entry-candidate-body"
+>
+  <main class="entry-redesign-page entry-candidate-page" aria-label={copy.ariaLabel}>
+    <EntryPrototypeC copy={copy} shared={text.shared} active />
+  </main>
+</BaseLayout>
+
+<script>
+  import "../../scripts/entry-redesign.js";
+</script>

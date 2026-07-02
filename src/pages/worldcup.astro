@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import WorldCupDashboard from "../worldcup/components/WorldCupDashboard.astro";
+import siteText from "../content/siteText";
+import "../styles/worldcup.css";
+
+const text = siteText.worldcup;
+---
+
+<BaseLayout
+  title={text.meta.title}
+  description={text.meta.description}
+  bodyClass="worldcup-body"
+>
+  <WorldCupDashboard />
+</BaseLayout>
+
+<script>
+  import "../scripts/worldcup-dashboard.js";
+</script>

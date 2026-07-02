@@ -1,0 +1,69 @@
+---
+import AvatarPreviewModal from "./AvatarPreviewModal.astro";
+
+const { copy, shared, active = false } = Astro.props;
+const modalId = `entry-avatar-modal-${copy.id}`;
+const headlineChars = [...copy.headline];
+---
+
+<section
+  class="entry-prototype entry-prototype-c"
+  data-entry-panel={copy.id}
+  aria-label={copy.ariaLabel}
+  hidden={!active}
+>
+  <div class="entry-chart-layout">
+    <div class="entry-chart-copy">
+      <p class="entry-eyebrow">{copy.eyebrow}</p>
+      <h2 class="entry-headline entry-headline-chart" aria-label={copy.headline}>
+        {headlineChars.map((char, index) => (
+          <span style={`--char-index: ${index};`}>{char}</span>
+        ))}
+      </h2>
+      <p class="entry-subcopy">{copy.subcopy}</p>
+      <p class="entry-signature">{copy.signature}</p>
+    </div>
+
+    <div class="entry-chart-map">
+      <div class="entry-chart-lines" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <button
+        class="entry-avatar-button entry-avatar-button-chart"
+        type="button"
+        aria-label={shared.openAvatarAriaLabel}
+        data-entry-avatar-open={modalId}
+      >
+        <span class="entry-chart-rings" aria-hidden="true"></span>
+        <span class="entry-avatar-frame">
+          <img src="/assets/avatar.jpeg" alt={shared.avatarAlt} />
+        </span>
+      </button>
+      <div class="entry-avatar-caption entry-chart-caption">
+        <strong>{copy.avatarCaption}</strong>
+        <span>{copy.avatarSubcaption}</span>
+      </div>
+
+      {copy.entries.map((entry, index) => (
+        <a
+          class="entry-card entry-chart-node"
+          href={entry.href}
+          style={`--node-index: ${index};`}
+          aria-disabled={entry.href === "#" ? "true" : undefined}
+          data-entry-disabled={entry.href === "#" ? "true" : undefined}
+          data-chart-node={String(index + 1)}
+        >
+          <span class="entry-card-icon" aria-hidden="true">{entry.icon}</span>
+          <span class="entry-card-main">
+            <strong>{entry.name}</strong>
+            {entry.description && <span>{entry.description}</span>}
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <AvatarPreviewModal id={modalId} copy={copy} shared={shared} />
+</section>

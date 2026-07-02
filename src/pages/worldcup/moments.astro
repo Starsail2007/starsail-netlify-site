@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import siteText from "../../content/siteText";
+import "../../styles/worldcup.css";
+
+const text = siteText.worldcup;
+const pageText = text.momentsPage;
+---
+
+<BaseLayout
+  title={pageText.meta.title}
+  description={pageText.meta.description}
+  bodyClass="worldcup-body"
+>
+  <section class="worldcup-page worldcup-moments-page" data-worldcup-moments-root aria-label={pageText.pageAriaLabel}>
+    <header class="worldcup-topbar">
+      <a class="worldcup-back" href="/worldcup/">{pageText.backLink}</a>
+      <div class="worldcup-live-pill" data-source-pill>{pageText.sourceInitial}</div>
+    </header>
+
+    <main class="worldcup-shell">
+      <section class="moments-hero" aria-labelledby="moments-title">
+        <p class="worldcup-kicker">{text.panels.timeline.title}</p>
+        <h1 id="moments-title">{pageText.title}</h1>
+        <p>{pageText.intro}</p>
+      </section>
+
+      <section class="worldcup-status-row" aria-label={text.statusRow.ariaLabel}>
+        <div class="worldcup-chip" data-updated-at>{pageText.updatedAtInitial}</div>
+        <div class="worldcup-chip worldcup-error" data-error hidden></div>
+        <button class="worldcup-icon-button" type="button" data-refresh aria-label={pageText.refreshButtonAriaLabel}>
+          ↻
+        </button>
+      </section>
+
+      <section class="worldcup-panel moments-full-panel" aria-labelledby="moments-list-title">
+        <div class="panel-heading">
+          <h2 id="moments-list-title">{text.panels.timeline.title}</h2>
+          <span>{text.panels.timeline.subtitle}</span>
+        </div>
+        <div class="timeline-list timeline-full-list" data-moments-timeline>
+          <div class="loading-line"></div>
+          <div class="loading-line short"></div>
+        </div>
+      </section>
+    </main>
+  </section>
+</BaseLayout>
+
+<script>
+  import "../../scripts/worldcup-moments.js";
+</script>

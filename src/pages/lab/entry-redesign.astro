@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import siteText from "../../content/siteText";
+import EntryOriginalDemo from "../../components/prototypes/EntryOriginalDemo.astro";
+import "../../styles/entry-original-demo.css";
+
+const text = siteText.entryRedesign;
+const demo = text.originalDemo;
+---
+
+<BaseLayout
+  title={demo.meta.title}
+  description={demo.meta.description}
+  bodyClass="original-demo-body"
+>
+  <main class="original-demo-page" aria-label={demo.pageAriaLabel}>
+    <EntryOriginalDemo text={demo} />
+  </main>
+</BaseLayout>
+
+<script>
+  import "../../scripts/entry-redesign.js";
+  import "../../scripts/theme.js";
+  import "../../scripts/motion.js";
+</script>
