@@ -29,6 +29,7 @@ let playerNameDataPromise = null;
 
 const root = document.querySelector("[data-worldcup-root]");
 let dismissedChampionKey = "";
+let selectedScheduleDate = "";
 
 if (root) {
   const elements = {
@@ -39,6 +40,10 @@ if (root) {
     schedulePanel: root.querySelector("[data-schedule-wheel-panel]"),
     schedule: root.querySelector("[data-schedule-wheel]"),
     scheduleCenter: root.querySelector("[data-schedule-center]"),
+    scheduleDateFilter: root.querySelector("[data-schedule-date-filter]"),
+    scheduleDateToggle: root.querySelector("[data-schedule-date-toggle]"),
+    scheduleDateLabel: root.querySelector("[data-schedule-date-label]"),
+    scheduleDateMenu: root.querySelector("[data-schedule-date-menu]"),
     groupStage: root.querySelector("[data-group-stage]"),
     timeline: root.querySelector("[data-timeline]"),
     momentsModeButtons: [...root.querySelectorAll("[data-moments-mode]")],
@@ -111,6 +116,9 @@ if (root) {
   elements.refresh?.addEventListener("click", loadData);
   setupWorldCupTabs(elements, () => data);
   setupScheduleWheel(elements, () => data);
+  setupScheduleDateFilter(elements, () => data, (nextDate) => {
+    selectedScheduleDate = nextDate;
+  }, () => selectedScheduleDate);
   setupMomentsControls(elements, () => data, () => ({ activeMomentsMode, momentsSortDirection }), (nextState) => {
     activeMomentsMode = nextState.activeMomentsMode ?? activeMomentsMode;
     momentsSortDirection = nextState.momentsSortDirection ?? momentsSortDirection;
@@ -211,6 +219,15 @@ if (root) {
   function setupScheduleWheel(pageElements, readData) {
     pageElements.scheduleCenter?.addEventListener("click", () => {
       stopScheduleInertia(pageElements, scheduleDragState);
+
+      if (selectedScheduleDate) {
+        selectedScheduleDate = "";
+        closeScheduleDateMenu(pageElements);
+        pageElements.schedule.dataset.hasAutoCentered = "";
+        renderDashboard(readData(), null, pageElements);
+        return;
+      }
+
       centerScheduleWheel(pageElements);
       pageElements.schedule.dataset.hasAutoCentered = "true";
     });
@@ -260,6 +277,44 @@ if (root) {
       centerScheduleWheel(pageElements);
       pageElements.schedule.dataset.hasAutoCentered = "true";
     }
+  }
+
+  function setupScheduleDateFilter(pageElements, readData, writeDate, readDate) {
+    pageElements.scheduleDateToggle?.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const isOpen = pageElements.scheduleDateToggle.getAttribute("aria-expanded") === "true";
+
+      if (isOpen) {
+        closeScheduleDateMenu(pageElements);
+      } else {
+        openScheduleDateMenu(pageElements);
+      }
+    });
+
+    pageElements.scheduleDateMenu?.addEventListener("click", (event) => {
+      const option = event.target.closest("[data-schedule-date-option]");
+
+      if (!option) {
+        return;
+      }
+
+      writeDate(option.dataset.scheduleDateOption || "");
+      closeScheduleDateMenu(pageElements);
+      pageElements.schedule.dataset.hasAutoCentered = "";
+      renderDashboard(readData(), null, pageElements);
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!pageElements.scheduleDateFilter?.contains(event.target)) {
+        closeScheduleDateMenu(pageElements);
+      }
+    });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && readDate() !== undefined) {
+        closeScheduleDateMenu(pageElements);
+      }
+    });
   }
 }
 
@@ -354,6 +409,138 @@ function readMomentsState(elements) {
     activeMomentsMode: root?.dataset.activeMomentsMode || "time",
     momentsSortDirection: elements.momentsSort?.dataset.sortDirection || "desc"
   };
+}
+
+function renderScheduleDateFilter(matches, elements) {
+  if (!elements.scheduleDateLabel || !elements.scheduleDateMenu || !elements.scheduleDateToggle) {
+    return;
+  }
+
+  const dateText = worldcupText.panels.schedule.dateFilter;
+  const dates = buildScheduleDateOptions(matches);
+  const selected = dates.find((date) => date.key === selectedScheduleDate);
+  const label = selected ? selected.label : dateText.allLabel;
+
+  elements.scheduleDateLabel.textContent = label;
+  elements.scheduleDateToggle.classList.toggle("is-filtered", Boolean(selected));
+  elements.scheduleDateToggle.setAttribute("aria-label", selected ? label : dateText.toggleAriaLabel);
+
+  if (!dates.length) {
+    elements.scheduleDateMenu.innerHTML = `<div class="schedule-date-empty">${escapeHtml(dateText.emptyLabel)}</div>`;
+    return;
+  }
+
+  elements.scheduleDateMenu.innerHTML = `
+    ${renderScheduleDateOption({
+      key: "",
+      label: dateText.allOptionLabel,
+      count: matches.length,
+      isActive: !selectedScheduleDate
+    })}
+    <div class="schedule-date-grid">
+      ${dates.map((date) => renderScheduleDateOption({
+        ...date,
+        isActive: date.key === selectedScheduleDate
+      })).join("")}
+    </div>
+  `;
+}
+
+function renderScheduleDateOption(option) {
+  const dateText = worldcupText.panels.schedule.dateFilter;
+
+  return `
+    <button class="schedule-date-option ${option.isActive ? "is-active" : ""}" type="button" role="option" aria-selected="${String(option.isActive)}" data-schedule-date-option="${escapeAttribute(option.key)}">
+      <span>${escapeHtml(option.label)}</span>
+      <em>${escapeHtml(formatTemplate(dateText.countTemplate, { count: option.count }))}</em>
+    </button>
+  `;
+}
+
+function buildScheduleDateOptions(matches) {
+  const byDate = new Map();
+
+  for (const match of matches) {
+    const key = scheduleDateKey(match);
+
+    if (!key) {
+      continue;
+    }
+
+    const entry = byDate.get(key) || {
+      key,
+      label: formatScheduleDateLabel(key),
+      count: 0
+    };
+
+    entry.count += 1;
+    byDate.set(key, entry);
+  }
+
+  return [...byDate.values()].sort((a, b) => a.key.localeCompare(b.key));
+}
+
+function normalizeSelectedScheduleDate(dateKey, matches) {
+  if (!dateKey) {
+    return "";
+  }
+
+  const availableDates = new Set(matches.map(scheduleDateKey).filter(Boolean));
+  return availableDates.has(dateKey) ? dateKey : "";
+}
+
+function filterMatchesByScheduleDate(matches, dateKey) {
+  if (!dateKey) {
+    return matches;
+  }
+
+  return matches.filter((match) => scheduleDateKey(match) === dateKey);
+}
+
+function scheduleDateKey(match) {
+  const date = new Date(match?.kickoffTime || "");
+
+  if (!Number.isFinite(date.getTime())) {
+    return "";
+  }
+
+  return [
+    date.getFullYear(),
+    padDatePart(date.getMonth() + 1),
+    padDatePart(date.getDate())
+  ].join("-");
+}
+
+function formatScheduleDateLabel(dateKey) {
+  const date = new Date(`${dateKey}T00:00:00`);
+
+  return new Intl.DateTimeFormat("zh-CN", {
+    month: "numeric",
+    day: "numeric",
+    weekday: "short"
+  }).format(date);
+}
+
+function padDatePart(value) {
+  return String(value).padStart(2, "0");
+}
+
+function openScheduleDateMenu(elements) {
+  if (!elements.scheduleDateMenu || !elements.scheduleDateToggle) {
+    return;
+  }
+
+  elements.scheduleDateMenu.hidden = false;
+  elements.scheduleDateToggle.setAttribute("aria-expanded", "true");
+}
+
+function closeScheduleDateMenu(elements) {
+  if (!elements.scheduleDateMenu || !elements.scheduleDateToggle) {
+    return;
+  }
+
+  elements.scheduleDateMenu.hidden = true;
+  elements.scheduleDateToggle.setAttribute("aria-expanded", "false");
 }
 
 function renderScheduleWheel(matches, previousData) {
@@ -1084,10 +1271,13 @@ function withFreshTimestamp(sourceData) {
 
 function renderDashboard(nextData, previousData, elements) {
   const allMatches = sortMatchesByKickoff(getAllMatches(nextData));
+  selectedScheduleDate = normalizeSelectedScheduleDate(selectedScheduleDate, allMatches);
+  renderScheduleDateFilter(allMatches, elements);
+  const scheduleMatches = filterMatchesByScheduleDate(allMatches, selectedScheduleDate);
   const scheduleScrollTop = elements.schedule.scrollTop;
   const shouldAutoCenterSchedule = elements.schedule.dataset.hasAutoCentered !== "true";
 
-  elements.schedule.innerHTML = renderScheduleWheel(allMatches, previousData);
+  elements.schedule.innerHTML = renderScheduleWheel(scheduleMatches, previousData);
   if (!shouldAutoCenterSchedule) {
     elements.schedule.scrollTop = scheduleScrollTop;
   }

@@ -596,6 +596,159 @@
   gap: 4px;
 }
 
+.schedule-heading-actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.schedule-date-filter {
+  position: relative;
+}
+
+.schedule-date-button {
+  min-height: 36px;
+  max-width: 176px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 232, 149, .18);
+  border-radius: 999px;
+  color: rgba(248, 250, 252, .78);
+  background:
+    linear-gradient(135deg, rgba(255, 232, 149, .1), rgba(134, 231, 255, .055)),
+    rgba(7, 11, 24, .52);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 840;
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .1),
+    0 12px 28px rgba(0, 0, 0, .16);
+  transition: color .18s ease, border-color .18s ease, background .18s ease, transform .18s ease;
+}
+
+.schedule-date-button svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.schedule-date-button span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.schedule-date-button:hover,
+.schedule-date-button.is-filtered,
+.schedule-date-button[aria-expanded="true"] {
+  color: #fff;
+  border-color: rgba(255, 232, 149, .42);
+  background:
+    linear-gradient(135deg, rgba(255, 232, 149, .16), rgba(134, 231, 255, .09)),
+    rgba(7, 11, 24, .68);
+}
+
+.schedule-date-button:active {
+  transform: translateY(1px);
+}
+
+.schedule-date-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 20;
+  width: min(336px, calc(100vw - 32px));
+  max-height: 360px;
+  overflow: auto;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(134, 231, 255, .12), transparent 38%),
+    linear-gradient(135deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, .04)),
+    rgba(5, 9, 22, .92);
+  box-shadow:
+    0 26px 72px rgba(0, 0, 0, .46),
+    inset 0 1px 0 rgba(255, 255, 255, .12);
+  backdrop-filter: blur(22px) saturate(1.15);
+}
+
+.schedule-date-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  margin-top: 7px;
+}
+
+.schedule-date-option {
+  min-width: 0;
+  min-height: 42px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  padding: 0 11px;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 8px;
+  color: rgba(248, 250, 252, .72);
+  background: rgba(255, 255, 255, .045);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: color .18s ease, border-color .18s ease, background .18s ease, transform .18s ease;
+}
+
+.schedule-date-option span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 860;
+}
+
+.schedule-date-option em {
+  color: rgba(134, 231, 255, .62);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 820;
+  white-space: nowrap;
+}
+
+.schedule-date-option:hover,
+.schedule-date-option.is-active {
+  color: #fff;
+  border-color: rgba(134, 231, 255, .28);
+  background:
+    linear-gradient(135deg, rgba(134, 231, 255, .13), rgba(255, 232, 149, .07)),
+    rgba(255, 255, 255, .07);
+}
+
+.schedule-date-option:active {
+  transform: translateY(1px);
+}
+
+.schedule-date-empty {
+  padding: 16px 12px;
+  color: rgba(248, 250, 252, .5);
+  font-size: 12px;
+  font-weight: 760;
+  text-align: center;
+}
+
 .schedule-center-button {
   min-height: 36px;
   padding: 0 14px;
@@ -2710,7 +2863,32 @@ a.timeline-match:hover {
     justify-content: stretch;
   }
 
+  .schedule-heading-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .schedule-date-filter {
+    flex: 1 1 150px;
+  }
+
+  .schedule-date-button {
+    width: 100%;
+    max-width: none;
+  }
+
+  .schedule-date-menu {
+    left: 0;
+    right: auto;
+    width: min(100%, calc(100vw - 28px));
+  }
+
+  .schedule-date-grid {
+    grid-template-columns: 1fr;
+  }
+
   .schedule-center-button {
+    flex: 1 1 150px;
     width: 100%;
   }
 
