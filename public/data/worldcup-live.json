@@ -5155,19 +5155,19 @@
       "venue": "Dallas (Arlington)",
       "kickoffTime": "2026-07-06T19:00:00.000Z",
       "home": {
-        "name": "W83",
-        "code": "W83",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Portugal",
+        "code": "P",
+        "iso2": "pt",
+        "logo": "https://flagcdn.com/pt.svg",
+        "flagUrl": "https://flagcdn.com/pt.svg",
         "score": null
       },
       "away": {
-        "name": "W84",
-        "code": "W84",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
         "score": null
       },
       "events": []
@@ -5239,11 +5239,11 @@
       "venue": "Vancouver",
       "kickoffTime": "2026-07-07T20:00:00.000Z",
       "home": {
-        "name": "W85",
-        "code": "W85",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Switzerland",
+        "code": "S",
+        "iso2": "ch",
+        "logo": "https://flagcdn.com/ch.svg",
+        "flagUrl": "https://flagcdn.com/ch.svg",
         "score": null
       },
       "away": {
@@ -10637,19 +10637,19 @@
       "venue": "Dallas (Arlington)",
       "kickoffTime": "2026-07-06T19:00:00.000Z",
       "home": {
-        "name": "W83",
-        "code": "W83",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Portugal",
+        "code": "P",
+        "iso2": "pt",
+        "logo": "https://flagcdn.com/pt.svg",
+        "flagUrl": "https://flagcdn.com/pt.svg",
         "score": null
       },
       "away": {
-        "name": "W84",
-        "code": "W84",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
         "score": null
       },
       "events": []
@@ -10721,11 +10721,11 @@
       "venue": "Vancouver",
       "kickoffTime": "2026-07-07T20:00:00.000Z",
       "home": {
-        "name": "W85",
-        "code": "W85",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Switzerland",
+        "code": "S",
+        "iso2": "ch",
+        "logo": "https://flagcdn.com/ch.svg",
+        "flagUrl": "https://flagcdn.com/ch.svg",
         "score": null
       },
       "away": {
@@ -11171,19 +11171,19 @@
       "venue": "Dallas (Arlington)",
       "kickoffTime": "2026-07-06T19:00:00.000Z",
       "home": {
-        "name": "W83",
-        "code": "W83",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Portugal",
+        "code": "P",
+        "iso2": "pt",
+        "logo": "https://flagcdn.com/pt.svg",
+        "flagUrl": "https://flagcdn.com/pt.svg",
         "score": null
       },
       "away": {
-        "name": "W84",
-        "code": "W84",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
         "score": null
       },
       "events": []
@@ -11255,11 +11255,11 @@
       "venue": "Vancouver",
       "kickoffTime": "2026-07-07T20:00:00.000Z",
       "home": {
-        "name": "W85",
-        "code": "W85",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Switzerland",
+        "code": "S",
+        "iso2": "ch",
+        "logo": "https://flagcdn.com/ch.svg",
+        "flagUrl": "https://flagcdn.com/ch.svg",
         "score": null
       },
       "away": {
@@ -17326,8 +17326,8 @@
     {
       "id": "93",
       "round": "Round of 16",
-      "home": "W83",
-      "away": "W84",
+      "home": "Portugal",
+      "away": "Spain",
       "homeScore": null,
       "awayScore": null,
       "winner": "",
@@ -17368,7 +17368,7 @@
     {
       "id": "96",
       "round": "Round of 16",
-      "home": "W85",
+      "home": "Switzerland",
       "away": "W87",
       "homeScore": null,
       "awayScore": null,
@@ -17520,8 +17520,8 @@
     "label": "near-match",
     "due": false,
     "intervalSeconds": 3600,
-    "nextFetchAt": "2026-07-03T09:37:18.829Z",
-    "generatedAt": "2026-07-03T08:37:18.829Z",
+    "nextFetchAt": "2026-07-03T16:45:25.562Z",
+    "generatedAt": "2026-07-03T15:45:25.562Z",
     "nextMatch": {
       "id": "88",
       "stage": "Round of 32",
@@ -17532,5 +17532,5 @@
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-03T08:37:18.829Z"
+  "lastUpdated": "2026-07-03T15:45:25.562Z"
 }
