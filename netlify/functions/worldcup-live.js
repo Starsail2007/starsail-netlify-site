@@ -4,6 +4,11 @@ import {
   normalizeOpenFootballData,
   normalizeOpenAIScheduleData
 } from "../../src/worldcup/lib/normalizeWorldCupData.js";
+import { RESULT_OVERRIDES } from "../../src/worldcup/data/resultOverrides.js";
+import {
+  patchOpenFootballScoresWithOpenAI,
+  patchOpenFootballScoresWithOverrides
+} from "../../src/worldcup/lib/openAiScorePatch.js";
 
 const API_FOOTBALL_BASE_URL = "https://v3.football.api-sports.io";
 const DEFAULT_LEAGUE_ID = "1";
@@ -108,7 +113,8 @@ async function scheduleFallback({ reason, leagueId, season }) {
     return jsonResponse({
       ...openFootballSchedule,
       source: "openfootball",
-      message: `${reason} 已改用 openfootball 免费公开赛程。`,
+      message: `${reason} 已改用 openfootball 免费公开赛程。${openFootballFallback?.meta?.scorePatches?.length ? ` Patched ${openFootballFallback.meta.scorePatches.length} recent result(s).` : ""}`,
+      meta: openFootballFallback?.meta || null,
       leagueId,
       season,
       polling: {
@@ -169,11 +175,22 @@ async function fetchOpenFootballScheduleFallback() {
     }
 
     const raw = await response.json();
+    const overridePatch = patchOpenFootballScoresWithOverrides(raw, RESULT_OVERRIDES);
+    const scorePatch = await patchOpenFootballScoresWithOpenAI(overridePatch.data, {
+      apiKey: process.env.OPENAI_API_KEY || "",
+      model: process.env.OPENAI_SCORE_MODEL || process.env.OPENAI_SCHEDULE_MODEL || DEFAULT_OPENAI_MODEL,
+      now: new Date()
+    });
     const window = getScheduleWindow();
-    const normalized = normalizeOpenFootballData(raw, window);
+    const normalized = normalizeOpenFootballData(scorePatch.data, window);
+    const scorePatches = [...overridePatch.patches, ...scorePatch.patches];
 
     return {
       data: normalized.matches.length ? normalized : null,
+      meta: {
+        scorePatches,
+        scorePatchError: scorePatch.error || ""
+      },
       error: normalized.matches.length ? "" : "openfootball 当前日期窗口内没有赛程"
     };
   } catch (error) {

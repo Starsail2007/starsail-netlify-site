@@ -2,6 +2,7 @@ import { detectGoal } from "../worldcup/lib/detectGoal.js";
 import { createMockWorldCupUpdate, mockWorldCupData } from "../worldcup/lib/mockWorldCupData.js";
 import { flagUrl } from "../worldcup/lib/flagUrl.js";
 import { TEAM_ISO2, TEAM_NAME_ZH } from "../worldcup/lib/teamIsoMap.js";
+import { simplifyChinese } from "../worldcup/lib/simplifyChinese.js";
 import siteText from "../content/siteText";
 
 const MATCH_WINDOW_INTERVAL = 5 * 60 * 1_000;
@@ -11,6 +12,7 @@ const NEAR_MATCH_WINDOW = 24 * 60 * 60 * 1_000;
 const PRE_MATCH_WINDOW = 30 * 60 * 1_000;
 const POST_KICKOFF_WINDOW = 150 * 60 * 1_000;
 const GOAL_VISIBLE_MS = 2_400;
+const DATA_STALE_GRACE_MS = 2 * 60 * 1_000;
 const REPOSITORY_DATA_ENDPOINT = "https://raw.githubusercontent.com/Starsail2007/starsail-netlify-site/worldcup-data/public/data/worldcup-live.json";
 const STATIC_DATA_ENDPOINT = "/data/worldcup-live.json";
 const NETLIFY_FUNCTION_ENDPOINT = "/.netlify/functions/worldcup-live";
@@ -20,17 +22,30 @@ const worldcupText = siteText.worldcup;
 const runtimeText = worldcupText.runtime;
 const STATUS_LABEL = runtimeText.statusLabels;
 const STAGE_LABEL = runtimeText.stageLabels;
-const TIMELINE_PREVIEW_MATCH_LIMIT = 3;
+const SECTION_TABS = ["schedule", "overview", "moments"];
+let playerNameIndex = buildPlayerNameIndex(null, null, worldcupText.moments?.playerNames || {});
+let playerNameDataPromise = null;
 
 const root = document.querySelector("[data-worldcup-root]");
 let dismissedChampionKey = "";
 
 if (root) {
   const elements = {
-    hero: root.querySelector("[data-match-hero]"),
-    schedule: root.querySelector("[data-schedule-strip]"),
+    sectionTabs: [...root.querySelectorAll("[data-worldcup-tab]")],
+    tabViewport: root.querySelector("[data-worldcup-tabs]"),
+    tabTrack: root.querySelector("[data-worldcup-tab-track]"),
+    tabPanels: [...root.querySelectorAll("[data-worldcup-panel]")],
+    schedulePanel: root.querySelector("[data-schedule-wheel-panel]"),
+    schedule: root.querySelector("[data-schedule-wheel]"),
+    scheduleCenter: root.querySelector("[data-schedule-center]"),
     groupStage: root.querySelector("[data-group-stage]"),
     timeline: root.querySelector("[data-timeline]"),
+    momentsModeButtons: [...root.querySelectorAll("[data-moments-mode]")],
+    momentsPanels: [...root.querySelectorAll("[data-moments-panel]")],
+    momentsSort: root.querySelector("[data-moments-sort]"),
+    momentsStructure: root.querySelector("[data-moments-structure]"),
+    momentsModal: root.querySelector("[data-moments-modal]"),
+    momentsDetail: root.querySelector("[data-moments-detail]"),
     bracket: root.querySelector("[data-bracket]"),
     liveCount: root.querySelector("[data-live-count]"),
     updatedAt: root.querySelector("[data-updated-at]"),
@@ -52,6 +67,21 @@ if (root) {
   let tick = 0;
   let goalTimer = 0;
   let refreshTimer = 0;
+  let activeSectionTab = "schedule";
+  let activeMomentsMode = "time";
+  let momentsSortDirection = "desc";
+  let scheduleScrollFrame = 0;
+  const scheduleDragState = {
+    active: false,
+    frame: 0,
+    lastTime: 0,
+    lastY: 0,
+    pointerId: 0,
+    samples: [],
+    totalDelta: 0,
+    velocity: 0,
+    wheelTimer: 0
+  };
 
   const loadData = async () => {
     window.clearTimeout(refreshTimer);
@@ -78,6 +108,12 @@ if (root) {
   };
 
   elements.refresh?.addEventListener("click", loadData);
+  setupWorldCupTabs(elements, () => data);
+  setupScheduleWheel(elements, () => data);
+  setupMomentsControls(elements, () => data, () => ({ activeMomentsMode, momentsSortDirection }), (nextState) => {
+    activeMomentsMode = nextState.activeMomentsMode ?? activeMomentsMode;
+    momentsSortDirection = nextState.momentsSortDirection ?? momentsSortDirection;
+  });
   setupDraggableBracket(elements.bracket);
   elements.championCelebration?.addEventListener("click", (event) => {
     if (event.target.closest(".champion-content")) {
@@ -90,6 +126,10 @@ if (root) {
     if (event.key === "Escape" && elements.championCelebration && !elements.championCelebration.hidden) {
       dismissChampionCelebration(elements);
     }
+
+    if (event.key === "Escape" && elements.momentsModal && !elements.momentsModal.hidden) {
+      clearMomentsDetail(elements);
+    }
   });
   loadData();
 
@@ -100,6 +140,8 @@ if (root) {
 
   window.addEventListener("resize", () => {
     window.requestAnimationFrame(() => drawBracketLines(elements.bracket));
+    window.requestAnimationFrame(() => syncTabViewportHeight(elements, activeSectionTab));
+    window.requestAnimationFrame(() => updateScheduleWheelState(elements));
   });
 
   function scheduleNextRefresh(nextData, callback, pageElements) {
@@ -107,6 +149,791 @@ if (root) {
     refreshTimer = window.setTimeout(callback, schedule.delayMs);
     renderRefreshPolicy(schedule, pageElements);
   }
+
+  function setupWorldCupTabs(pageElements, readData) {
+    setActiveSectionTab(pageElements, activeSectionTab);
+
+    for (const button of pageElements.sectionTabs) {
+      button.addEventListener("click", () => {
+        activeSectionTab = button.dataset.worldcupTab || "schedule";
+        setActiveSectionTab(pageElements, activeSectionTab);
+        renderActivePanelData(readData(), pageElements);
+      });
+    }
+  }
+
+  function setupMomentsControls(pageElements, readData, readState, writeState) {
+    for (const button of pageElements.momentsModeButtons) {
+      button.addEventListener("click", () => {
+        const state = readState();
+        writeState({
+          ...state,
+          activeMomentsMode: button.dataset.momentsMode || "time"
+        });
+        renderMomentsPanelFromData(readData(), pageElements);
+      });
+    }
+
+    pageElements.momentsSort?.addEventListener("click", () => {
+      const state = readState();
+      writeState({
+        ...state,
+        momentsSortDirection: state.momentsSortDirection === "desc" ? "asc" : "desc"
+      });
+      renderMomentsPanelFromData(readData(), pageElements);
+    });
+
+    pageElements.momentsStructure?.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-moments-match-id]");
+
+      if (!button) {
+        return;
+      }
+
+      renderMomentsDetail(button.dataset.momentsMatchId, readData(), pageElements);
+      syncTabViewportHeight(pageElements, activeSectionTab);
+    });
+
+    pageElements.momentsModal?.addEventListener("click", (event) => {
+      const closeButton = event.target.closest("[data-moments-close]");
+      const dismissTarget = event.target.closest("[data-moments-modal-dismiss]");
+
+      if (!closeButton && !dismissTarget) {
+        return;
+      }
+
+      clearMomentsDetail(pageElements);
+      syncTabViewportHeight(pageElements, activeSectionTab);
+    });
+  }
+
+  function setupScheduleWheel(pageElements, readData) {
+    pageElements.scheduleCenter?.addEventListener("click", () => {
+      stopScheduleInertia(pageElements, scheduleDragState);
+      centerScheduleWheel(pageElements);
+      pageElements.schedule.dataset.hasAutoCentered = "true";
+    });
+
+    pageElements.schedule?.addEventListener("scroll", () => {
+      window.cancelAnimationFrame(scheduleScrollFrame);
+      scheduleScrollFrame = window.requestAnimationFrame(() => {
+        updateScheduleWheelState(pageElements);
+      });
+    }, { passive: true });
+
+    pageElements.schedule?.addEventListener("wheel", () => {
+      handleScheduleWheelInput(pageElements, scheduleDragState);
+    }, { passive: true });
+
+    pageElements.schedule?.addEventListener("pointerdown", (event) => {
+      beginScheduleDrag(event, pageElements, scheduleDragState);
+    });
+
+    pageElements.schedule?.addEventListener("pointermove", (event) => {
+      moveScheduleDrag(event, pageElements, scheduleDragState);
+    });
+
+    pageElements.schedule?.addEventListener("pointerup", (event) => {
+      endScheduleDrag(event, pageElements, scheduleDragState);
+    });
+
+    pageElements.schedule?.addEventListener("pointercancel", (event) => {
+      endScheduleDrag(event, pageElements, scheduleDragState);
+    });
+
+    pageElements.schedule?.addEventListener("lostpointercapture", (event) => {
+      endScheduleDrag(event, pageElements, scheduleDragState);
+    });
+
+    pageElements.schedule?.addEventListener("keydown", (event) => {
+      if (event.key !== "Home") {
+        return;
+      }
+
+      event.preventDefault();
+      stopScheduleInertia(pageElements, scheduleDragState);
+      centerScheduleWheel(pageElements);
+    });
+
+    if (readData()) {
+      centerScheduleWheel(pageElements);
+      pageElements.schedule.dataset.hasAutoCentered = "true";
+    }
+  }
+}
+
+function setActiveSectionTab(elements, tab) {
+  const nextTab = SECTION_TABS.includes(tab) ? tab : "schedule";
+  const index = SECTION_TABS.indexOf(nextTab);
+
+  if (root) {
+    root.dataset.activeWorldcupTab = nextTab;
+  }
+
+  if (elements.tabTrack) {
+    elements.tabTrack.style.transform = `translate3d(-${index * 100}%, 0, 0)`;
+  }
+
+  for (const button of elements.sectionTabs || []) {
+    const isActive = button.dataset.worldcupTab === nextTab;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-selected", String(isActive));
+  }
+
+  for (const panel of elements.tabPanels || []) {
+    const isActive = panel.dataset.worldcupPanel === nextTab;
+    panel.classList.toggle("is-active", isActive);
+    panel.setAttribute("aria-hidden", String(!isActive));
+  }
+
+  syncTabViewportHeight(elements, nextTab);
+  window.setTimeout(() => syncTabViewportHeight(elements, nextTab), 460);
+}
+
+function syncTabViewportHeight(elements, tab) {
+  if (!elements.tabViewport) {
+    return;
+  }
+
+  const activePanel = (elements.tabPanels || [])
+    .find((panel) => panel.dataset.worldcupPanel === tab)
+    || (elements.tabPanels || []).find((panel) => panel.classList.contains("is-active"));
+
+  if (!activePanel) {
+    return;
+  }
+
+  elements.tabViewport.style.height = `${activePanel.scrollHeight}px`;
+}
+
+function renderActivePanelData(nextData, elements) {
+  if (!nextData) {
+    syncTabViewportHeight(elements, root?.dataset.activeWorldcupTab || "schedule");
+    return;
+  }
+
+  const activeTab = root?.dataset.activeWorldcupTab || "schedule";
+
+  if (activeTab === "overview") {
+    renderOverviewPanelFromData(nextData, elements);
+  }
+
+  if (activeTab === "moments") {
+    renderMomentsPanelFromData(nextData, elements);
+  }
+
+  window.requestAnimationFrame(() => syncTabViewportHeight(elements, activeTab));
+  window.setTimeout(() => syncTabViewportHeight(elements, activeTab), 320);
+}
+
+function renderOverviewPanelFromData(nextData, elements) {
+  elements.groupStage.innerHTML = renderGroupStage(nextData.groupStage || []);
+  elements.bracket.innerHTML = renderBracket(nextData.knockout || [], nextData.groupStage || []);
+  window.requestAnimationFrame(() => drawBracketLines(elements.bracket));
+  window.setTimeout(() => drawBracketLines(elements.bracket), 280);
+}
+
+function renderMomentsPanelFromData(nextData, elements) {
+  if (!nextData) {
+    return;
+  }
+
+  renderMomentsFromData(nextData, elements, readMomentsState(elements));
+  loadPlayerNameData().then(() => {
+    if (root?.dataset.activeWorldcupTab !== "moments") {
+      return;
+    }
+
+    renderMomentsFromData(nextData, elements, readMomentsState(elements));
+  });
+}
+
+function readMomentsState(elements) {
+  return {
+    activeMomentsMode: root?.dataset.activeMomentsMode || "time",
+    momentsSortDirection: elements.momentsSort?.dataset.sortDirection || "desc"
+  };
+}
+
+function renderScheduleWheel(matches, previousData) {
+  if (!matches.length) {
+    return `<div class="empty-state">${escapeHtml(runtimeText.states.noUpcomingMatches)}</div>`;
+  }
+
+  const orderedMatches = sortMatchesByKickoff(matches);
+  const focusMatch = pickScheduleWheelFocus(orderedMatches);
+
+  return orderedMatches
+    .map((match) => renderScheduleWheelCard(match, previousData, focusMatch?.id))
+    .join("");
+}
+
+function renderScheduleWheelCard(match, previousData, focusMatchId) {
+  const previousMatch = findPreviousMatch(previousData, match.id);
+  const homeChanged = scoreChanged(match.home?.score, previousMatch?.home?.score);
+  const awayChanged = scoreChanged(match.away?.score, previousMatch?.away?.score);
+  const homeFlag = teamFlagUrl(match.home);
+  const awayFlag = teamFlagUrl(match.away);
+  const homeName = teamDisplayName(match.home?.name);
+  const awayName = teamDisplayName(match.away?.name);
+
+  return `
+    <article class="schedule-wheel-card status-${escapeAttribute(String(match.status || "").toLowerCase())}" data-schedule-card data-match-id="${escapeAttribute(match.id)}" data-focus-match="${String(match.id) === String(focusMatchId) ? "true" : "false"}" data-home-flag="${escapeAttribute(homeFlag)}" data-away-flag="${escapeAttribute(awayFlag)}">
+      <div class="schedule-wheel-team schedule-wheel-team-home">
+        ${renderTeamImage(match.home)}
+        <strong>${escapeHtml(homeName)}</strong>
+      </div>
+      <div class="schedule-wheel-score">
+        <span>${escapeHtml(stageLabel(match.stage))}</span>
+        <strong aria-label="${escapeAttribute(scoreLabel(match))}">
+          <b class="${homeChanged ? "score-pop" : ""}">${formatScore(match.home?.score)}</b>
+          <em>:</em>
+          <b class="${awayChanged ? "score-pop" : ""}">${formatScore(match.away?.score)}</b>
+        </strong>
+        <small>${escapeHtml(match.minute ? formatEventMinute(match.minute) : formatKickoffDateTime(match.kickoffTime))}</small>
+      </div>
+      <div class="schedule-wheel-team schedule-wheel-team-away">
+        ${renderTeamImage(match.away)}
+        <strong>${escapeHtml(awayName)}</strong>
+      </div>
+      <div class="schedule-wheel-venue">
+        ${renderStatus(match)}
+        <span>${escapeHtml(match.venue || runtimeText.states.defaultVenue)}</span>
+      </div>
+    </article>
+  `;
+}
+
+function pickScheduleWheelFocus(matches) {
+  const now = Date.now();
+  const live = matches.find((match) => isLive(match.status));
+
+  if (live) {
+    return live;
+  }
+
+  const recentFinished = [...matches]
+    .filter((match) => isFinished(match.status))
+    .filter((match) => now - matchKickoffTime(match) <= POST_KICKOFF_WINDOW)
+    .sort((a, b) => matchKickoffTime(b) - matchKickoffTime(a))[0];
+
+  if (recentFinished) {
+    return recentFinished;
+  }
+
+  const nextMatch = matches
+    .filter((match) => match.status === "NS")
+    .filter((match) => matchKickoffTime(match) >= now)
+    .sort((a, b) => matchKickoffTime(a) - matchKickoffTime(b))[0];
+
+  if (nextMatch) {
+    return nextMatch;
+  }
+
+  return [...matches]
+    .filter((match) => match.status !== "NS")
+    .sort((a, b) => matchKickoffTime(b) - matchKickoffTime(a))[0] || matches[0] || null;
+}
+
+function centerScheduleWheel(elements) {
+  const wheel = elements.schedule;
+  const focusCard = wheel?.querySelector('[data-focus-match="true"]');
+
+  if (!wheel || !focusCard) {
+    updateScheduleWheelState(elements);
+    return;
+  }
+
+  focusCard.scrollIntoView({
+    block: "center",
+    behavior: "smooth"
+  });
+
+  window.setTimeout(() => updateScheduleWheelState(elements), 360);
+}
+
+function beginScheduleDrag(event, elements, state) {
+  const wheel = elements.schedule;
+
+  if (!wheel || event.pointerType === "touch" || event.button > 0) {
+    return;
+  }
+
+  stopScheduleInertia(elements, state);
+  state.active = true;
+  state.lastY = event.clientY;
+  state.lastTime = performance.now();
+  state.pointerId = event.pointerId;
+  state.samples = [{ time: state.lastTime, y: state.lastY }];
+  state.totalDelta = 0;
+  state.velocity = 0;
+  wheel.classList.add("is-dragging");
+  wheel.setPointerCapture?.(event.pointerId);
+  event.preventDefault();
+}
+
+function handleScheduleWheelInput(elements, state) {
+  const wheel = elements.schedule;
+
+  if (!wheel || state.active) {
+    return;
+  }
+
+  window.cancelAnimationFrame(state.frame);
+  state.frame = 0;
+  wheel.classList.add("is-gliding");
+  window.clearTimeout(state.wheelTimer);
+  state.wheelTimer = window.setTimeout(() => {
+    state.wheelTimer = 0;
+    wheel.classList.remove("is-gliding");
+    snapScheduleWheelToNearest(elements);
+  }, 260);
+}
+
+function moveScheduleDrag(event, elements, state) {
+  const wheel = elements.schedule;
+
+  if (!wheel || !state.active || state.pointerId !== event.pointerId) {
+    return;
+  }
+
+  const now = performance.now();
+  const deltaScroll = state.lastY - event.clientY;
+  const deltaTime = Math.max(1, now - state.lastTime);
+  const nextVelocity = deltaScroll / deltaTime;
+
+  wheel.scrollTop += deltaScroll;
+  state.totalDelta += deltaScroll;
+  state.velocity = state.velocity * .58 + nextVelocity * .42;
+  state.lastY = event.clientY;
+  state.lastTime = now;
+  state.samples.push({ time: now, y: event.clientY });
+  state.samples = state.samples.filter((sample) => now - sample.time <= 140);
+  updateScheduleWheelState(elements);
+  event.preventDefault();
+}
+
+function endScheduleDrag(event, elements, state) {
+  const wheel = elements.schedule;
+
+  if (!wheel || !state.active || state.pointerId !== event.pointerId) {
+    return;
+  }
+
+  state.active = false;
+  wheel.classList.remove("is-dragging");
+
+  try {
+    wheel.releasePointerCapture?.(event.pointerId);
+  } catch {
+    // The browser can release capture before pointerup in some drag paths.
+  }
+
+  const releaseVelocity = calculateScheduleReleaseVelocity(state);
+  const dragDirection = Math.sign(state.totalDelta || releaseVelocity);
+  const minimumThrowVelocity = Math.min(Math.max(Math.abs(state.totalDelta) / 210, .62), 1.45);
+  const naturalVelocity = Math.abs(state.totalDelta) > 28 && Math.abs(releaseVelocity) < minimumThrowVelocity
+    ? dragDirection * minimumThrowVelocity
+    : releaseVelocity;
+
+  if (Math.abs(naturalVelocity) > .018) {
+    state.velocity = naturalVelocity;
+    startScheduleInertia(elements, state);
+    return;
+  }
+
+  snapScheduleWheelToNearest(elements);
+}
+
+function startScheduleInertia(elements, state) {
+  const wheel = elements.schedule;
+
+  if (!wheel) {
+    return;
+  }
+
+  const speed = Math.min(Math.abs(state.velocity), 3.6);
+  const direction = Math.sign(state.velocity);
+  const distance = direction * Math.min(
+    Math.max(speed * 1900, 420),
+    wheel.clientHeight * 6.2
+  );
+  const duration = Math.min(1800, Math.max(620, 520 + speed * 420));
+  const startTop = wheel.scrollTop;
+  const startedAt = performance.now();
+
+  wheel.classList.add("is-gliding");
+
+  const step = (time) => {
+    const progress = Math.min(1, (time - startedAt) / duration);
+    const easedProgress = 1 - Math.pow(1 - progress, 3);
+    const previousTop = wheel.scrollTop;
+
+    wheel.scrollTop = startTop + distance * easedProgress;
+    updateScheduleWheelState(elements);
+
+    const atScrollBoundary = progress > .08 && Math.abs(wheel.scrollTop - previousTop) < .05;
+
+    if (progress >= 1 || atScrollBoundary) {
+      state.frame = 0;
+      wheel.classList.remove("is-gliding");
+      snapScheduleWheelToNearest(elements);
+      return;
+    }
+
+    state.frame = window.requestAnimationFrame(step);
+  };
+
+  window.cancelAnimationFrame(state.frame);
+  state.frame = window.requestAnimationFrame(step);
+}
+
+function stopScheduleInertia(elements, state) {
+  window.cancelAnimationFrame(state.frame);
+  window.clearTimeout(state.wheelTimer);
+  state.frame = 0;
+  state.wheelTimer = 0;
+  state.velocity = 0;
+  state.samples = [];
+  state.totalDelta = 0;
+  elements.schedule?.classList.remove("is-dragging", "is-gliding");
+}
+
+function calculateScheduleReleaseVelocity(state) {
+  const samples = state.samples || [];
+
+  if (samples.length < 2) {
+    return state.velocity;
+  }
+
+  const newestSample = samples[samples.length - 1];
+  const oldestSample = samples[0];
+  const deltaTime = Math.max(1, newestSample.time - oldestSample.time);
+  const sampledVelocity = (oldestSample.y - newestSample.y) / deltaTime;
+
+  return sampledVelocity * .74 + state.velocity * .26;
+}
+
+function snapScheduleWheelToNearest(elements) {
+  const wheel = elements.schedule;
+  const card = getNearestScheduleCard(wheel);
+
+  if (!wheel || !card) {
+    updateScheduleWheelState(elements);
+    return;
+  }
+
+  const targetTop = card.offsetTop + card.offsetHeight / 2 - wheel.clientHeight / 2;
+  wheel.scrollTo({
+    top: targetTop,
+    behavior: "smooth"
+  });
+  window.setTimeout(() => updateScheduleWheelState(elements), 320);
+}
+
+function getNearestScheduleCard(wheel) {
+  if (!wheel) {
+    return null;
+  }
+
+  const centerY = wheel.scrollTop + wheel.clientHeight / 2;
+  let nearestCard = null;
+  let nearestDistance = Number.POSITIVE_INFINITY;
+
+  for (const card of wheel.querySelectorAll("[data-schedule-card]")) {
+    const cardCenter = card.offsetTop + card.offsetHeight / 2;
+    const distance = Math.abs(cardCenter - centerY);
+
+    if (distance < nearestDistance) {
+      nearestDistance = distance;
+      nearestCard = card;
+    }
+  }
+
+  return nearestCard;
+}
+
+function updateScheduleWheelState(elements) {
+  const wheel = elements.schedule;
+
+  if (!wheel) {
+    return;
+  }
+
+  const cards = [...wheel.querySelectorAll("[data-schedule-card]")];
+
+  if (!cards.length) {
+    return;
+  }
+
+  const centerY = wheel.scrollTop + wheel.clientHeight / 2;
+  const influenceRange = Math.max(1, wheel.clientHeight / 2);
+  let activeCard = cards[0];
+  let bestDistance = Number.POSITIVE_INFINITY;
+
+  for (const card of cards) {
+    const cardCenter = card.offsetTop + card.offsetHeight / 2;
+    const distance = (cardCenter - centerY) / influenceRange;
+    const clampedDistance = Math.max(-1.35, Math.min(1.35, distance));
+    const absDistance = Math.abs(distance);
+
+    card.style.setProperty("--wheel-distance", clampedDistance.toFixed(3));
+    card.style.setProperty("--wheel-tilt", `${(-clampedDistance * 5).toFixed(2)}deg`);
+    card.style.setProperty("--wheel-scale", Math.max(.92, 1 - absDistance * .06).toFixed(3));
+    card.style.setProperty("--wheel-opacity", Math.max(.48, 1 - absDistance * .24).toFixed(3));
+    card.classList.toggle("is-before-center", distance < -.22);
+    card.classList.toggle("is-after-center", distance > .22);
+
+    if (absDistance < bestDistance) {
+      bestDistance = absDistance;
+      activeCard = card;
+    }
+  }
+
+  for (const card of cards) {
+    card.classList.toggle("is-active", card === activeCard);
+  }
+
+  updateScheduleFlagWash(elements, activeCard);
+}
+
+function updateScheduleFlagWash(elements, card) {
+  if (!elements.schedulePanel || !card) {
+    return;
+  }
+
+  const homeFlag = card.dataset.homeFlag || "";
+  const awayFlag = card.dataset.awayFlag || "";
+  const distance = card.style.getPropertyValue("--wheel-distance") || "0";
+
+  elements.schedulePanel.style.setProperty("--wheel-home-flag", homeFlag ? `url('${homeFlag}')` : "none");
+  elements.schedulePanel.style.setProperty("--wheel-away-flag", awayFlag ? `url('${awayFlag}')` : "none");
+  elements.schedulePanel.style.setProperty("--wheel-distance", distance);
+}
+
+function renderMomentsFromData(nextData, elements, state = {}) {
+  if (!nextData) {
+    return;
+  }
+
+  const activeMode = state.activeMomentsMode || "time";
+  const sortDirection = state.momentsSortDirection === "asc" ? "asc" : "desc";
+  const matches = getMomentSourceMatches(nextData);
+
+  if (root) {
+    root.dataset.activeMomentsMode = activeMode;
+  }
+
+  for (const button of elements.momentsModeButtons || []) {
+    const isActive = button.dataset.momentsMode === activeMode;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-selected", String(isActive));
+  }
+
+  for (const panel of elements.momentsPanels || []) {
+    const isActive = panel.dataset.momentsPanel === activeMode;
+    panel.classList.toggle("is-active", isActive);
+    panel.hidden = !isActive;
+  }
+
+  if (elements.momentsSort) {
+    elements.momentsSort.hidden = activeMode !== "time";
+    elements.momentsSort.dataset.sortDirection = sortDirection;
+    elements.momentsSort.textContent = sortDirection === "asc"
+      ? worldcupText.moments.sort.asc
+      : worldcupText.moments.sort.desc;
+  }
+
+  if (elements.timeline) {
+    elements.timeline.innerHTML = renderTimeline(matches, {
+      limit: Number.POSITIVE_INFINITY,
+      sortMode: sortDirection === "asc" ? "matchTimeAsc" : "matchTimeDesc"
+    });
+  }
+
+  if (elements.momentsStructure) {
+    elements.momentsStructure.innerHTML = renderMomentsStructure(
+      matches,
+      nextData.groupStage || [],
+      nextData.knockout || [],
+      elements.momentsDetail?.dataset.selectedMatchId || ""
+    );
+  }
+
+  if (elements.momentsDetail?.dataset.selectedMatchId) {
+    renderMomentsDetail(elements.momentsDetail.dataset.selectedMatchId, nextData, elements);
+  } else {
+    clearMomentsDetail(elements);
+  }
+
+  syncTabViewportHeight(elements, root?.dataset.activeWorldcupTab || "schedule");
+}
+
+function getMomentSourceMatches(nextData) {
+  const allMatches = getAllMatches(nextData);
+
+  if (allMatches.length) {
+    return allMatches;
+  }
+
+  return nextData?.timelineMatches || [];
+}
+
+function renderMomentsStructure(matches, groupStage, knockout, selectedMatchId = "") {
+  const groups = buildTimelineGroups(matches, "matchTimeDesc");
+
+  if (!groups.length) {
+    return `<div class="empty-state">${escapeHtml(runtimeText.states.noTimelineEvents)}</div>`;
+  }
+
+  const groupSections = renderMomentGroupStageSections(groups, groupStage, selectedMatchId);
+  const knockoutSections = renderMomentKnockoutSections(groups, knockout, selectedMatchId);
+  const fallbackSections = groupSections || knockoutSections
+    ? ""
+    : renderMomentStageSection(stageLabel("Group Stage"), groups, selectedMatchId);
+
+  return `
+    ${groupSections}
+    ${knockoutSections}
+    ${fallbackSections}
+  `;
+}
+
+function renderMomentGroupStageSections(momentGroups, groupStage, selectedMatchId) {
+  if (!groupStage.length) {
+    const groupOnly = momentGroups.filter(({ match }) => isGroupStageMatch(match));
+    return groupOnly.length
+      ? renderMomentStageSection(stageLabel("Group Stage"), groupOnly, selectedMatchId)
+      : "";
+  }
+
+  const groupMap = new Map(momentGroups.map((group) => [String(group.match.id), group]));
+
+  return groupStage.map((group) => {
+    const sectionGroups = sortMatchesByKickoff(group.matches || [])
+      .map((match) => groupMap.get(String(match.id)))
+      .filter(Boolean);
+
+    if (!sectionGroups.length) {
+      return "";
+    }
+
+    return renderMomentStageSection(formatGroupLabel(group.group), sectionGroups, selectedMatchId);
+  }).join("");
+}
+
+function renderMomentKnockoutSections(momentGroups, knockout, selectedMatchId) {
+  const knockoutIds = new Set((knockout || []).map((match) => String(match.id)));
+  const byStage = new Map();
+
+  for (const group of momentGroups) {
+    const match = group.match;
+
+    if (isGroupStageMatch(match) && !knockoutIds.has(String(match.id))) {
+      continue;
+    }
+
+    const stage = stageLabel(match.stage || match.round);
+
+    if (!byStage.has(stage)) {
+      byStage.set(stage, []);
+    }
+
+    byStage.get(stage).push(group);
+  }
+
+  return [...byStage.entries()]
+    .map(([stage, groups]) => renderMomentStageSection(stage, groups, selectedMatchId))
+    .join("");
+}
+
+function renderMomentStageSection(title, groups, selectedMatchId) {
+  return `
+    <section class="moments-structure-section">
+      <h3>${escapeHtml(title)}</h3>
+      <div class="moments-match-list">
+        ${groups.map((group) => renderMomentMatchButton(group, selectedMatchId)).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderMomentMatchButton(group, selectedMatchId) {
+  const { match, events } = group;
+  const selected = String(match.id) === String(selectedMatchId);
+  const score = `${formatScore(match.home?.score)}:${formatScore(match.away?.score)}`;
+
+  return `
+    <button class="moments-match-button ${selected ? "is-selected" : ""}" type="button" data-moments-match-id="${escapeAttribute(match.id)}" aria-label="${escapeAttribute(formatTemplate(worldcupText.moments.expandMatchAriaLabel, { match: formatMatchTitle(match) }))}">
+      <span class="moments-match-meta">
+        <b>${escapeHtml(formatKickoffDateTime(match.kickoffTime))}</b>
+        <em>${escapeHtml(formatTemplate(worldcupText.moments.matchEventsTemplate, { count: events.length }))}</em>
+      </span>
+      <span class="moments-match-teams">
+        <span>${renderTeamFlag(match.home?.name)}${escapeHtml(teamDisplayName(match.home?.name))}</span>
+        <strong>${escapeHtml(score)}</strong>
+        <span>${renderTeamFlag(match.away?.name)}${escapeHtml(teamDisplayName(match.away?.name))}</span>
+      </span>
+    </button>
+  `;
+}
+
+function renderMomentsDetail(matchId, nextData, elements) {
+  const group = buildTimelineGroups(getMomentSourceMatches(nextData), "matchTimeDesc")
+    .find(({ match }) => String(match.id) === String(matchId));
+
+  if (!elements.momentsDetail || !elements.momentsModal || !group) {
+    clearMomentsDetail(elements);
+    return;
+  }
+
+  elements.momentsDetail.dataset.selectedMatchId = String(matchId);
+  elements.momentsModal.hidden = false;
+  elements.momentsModal.classList.add("is-visible");
+  elements.momentsDetail.innerHTML = renderMomentDetailCard(group.match, group.events);
+
+  for (const button of elements.momentsStructure?.querySelectorAll("[data-moments-match-id]") || []) {
+    button.classList.toggle("is-selected", button.dataset.momentsMatchId === String(matchId));
+  }
+}
+
+function clearMomentsDetail(elements) {
+  if (!elements.momentsDetail) {
+    return;
+  }
+
+  delete elements.momentsDetail.dataset.selectedMatchId;
+  elements.momentsDetail.innerHTML = "";
+
+  if (elements.momentsModal) {
+    elements.momentsModal.classList.remove("is-visible");
+    elements.momentsModal.hidden = true;
+  }
+
+  for (const button of elements.momentsStructure?.querySelectorAll("[data-moments-match-id]") || []) {
+    button.classList.remove("is-selected");
+  }
+}
+
+function renderMomentDetailCard(match, events) {
+  return `
+    <article class="moments-detail-card">
+      <header class="moments-detail-header">
+        <div>
+          <strong>${escapeHtml(formatMatchTitle(match))}</strong>
+          <span>${escapeHtml(formatKickoffDateTime(match.kickoffTime))} · ${escapeHtml(match.group ? formatGroupLabel(match.group) : stageLabel(match.stage))}</span>
+        </div>
+        <button type="button" data-moments-close>${escapeHtml(worldcupText.moments.closeDetail)}</button>
+      </header>
+      <div class="timeline-event-list">
+        ${events.map((event) => renderTimelineEvent(event)).join("")}
+      </div>
+    </article>
+  `;
+}
+
+function isGroupStageMatch(match) {
+  return match?.stage === "Group Stage" || Boolean(match?.group);
 }
 
 export async function fetchWorldCupData(currentData, tick, elements) {
@@ -151,8 +978,9 @@ export async function fetchWorldCupData(currentData, tick, elements) {
   }
 }
 
-async function fetchDataPayload() {
+export async function fetchDataPayload() {
   let lastError = null;
+  const stalePayloads = [];
 
   for (const endpoint of DATA_ENDPOINTS) {
     try {
@@ -162,10 +990,22 @@ async function fetchDataPayload() {
         throw new Error(`${endpoint} returned HTTP ${response.status}`);
       }
 
-      return await response.json();
+      const payload = await response.json();
+
+      if (!isPayloadRefreshOverdue(payload)) {
+        return payload;
+      }
+
+      stalePayloads.push(payload);
     } catch (error) {
       lastError = error;
     }
+  }
+
+  const newestStalePayload = pickNewestPayload(stalePayloads);
+
+  if (newestStalePayload) {
+    return newestStalePayload;
   }
 
   throw lastError || new Error("No World Cup data endpoint is available.");
@@ -184,6 +1024,23 @@ function buildDataEndpoints() {
 function withCacheBust(endpoint) {
   const separator = endpoint.includes("?") ? "&" : "?";
   return `${endpoint}${separator}t=${Date.now()}`;
+}
+
+function isPayloadRefreshOverdue(payload) {
+  const nextFetchAt = new Date(payload?.polling?.nextFetchAt || "").getTime();
+
+  return Number.isFinite(nextFetchAt) && nextFetchAt + DATA_STALE_GRACE_MS < Date.now();
+}
+
+function pickNewestPayload(payloads) {
+  return [...payloads]
+    .filter(Boolean)
+    .sort((left, right) => {
+      const leftTime = new Date(left?.lastUpdated || 0).getTime();
+      const rightTime = new Date(right?.lastUpdated || 0).getTime();
+
+      return rightTime - leftTime;
+    })[0] || null;
 }
 
 export function normalizeClientPayload(payload) {
@@ -214,31 +1071,32 @@ function withFreshTimestamp(sourceData) {
 }
 
 function renderDashboard(nextData, previousData, elements) {
-  const matches = sortMatchesForFocus(nextData.matches || []);
   const allMatches = sortMatchesByKickoff(getAllMatches(nextData));
-  const upcomingMatches = getUpcomingMatches(nextData, allMatches);
-  const timelineMatches = nextData.timelineMatches?.length ? nextData.timelineMatches : allMatches;
-  const focusMatch = pickFocusMatch(matches);
-  const previousFocusMatch = findPreviousMatch(previousData, focusMatch?.id);
+  const scheduleScrollTop = elements.schedule.scrollTop;
+  const shouldAutoCenterSchedule = elements.schedule.dataset.hasAutoCentered !== "true";
 
-  elements.hero.innerHTML = renderHero(focusMatch, previousFocusMatch, nextData);
-  elements.schedule.innerHTML = renderSchedule(upcomingMatches, previousData);
-  elements.timeline.innerHTML = renderTimeline(timelineMatches, {
-    compact: true,
-    limit: TIMELINE_PREVIEW_MATCH_LIMIT,
-    linked: true
+  elements.schedule.innerHTML = renderScheduleWheel(allMatches, previousData);
+  if (!shouldAutoCenterSchedule) {
+    elements.schedule.scrollTop = scheduleScrollTop;
+  }
+  window.requestAnimationFrame(() => {
+    if (shouldAutoCenterSchedule) {
+      centerScheduleWheel(elements);
+      elements.schedule.dataset.hasAutoCentered = "true";
+    }
+    updateScheduleWheelState(elements);
   });
-  elements.groupStage.innerHTML = renderGroupStage(nextData.groupStage || []);
-  elements.bracket.innerHTML = renderBracket(nextData.knockout || [], nextData.groupStage || []);
-  window.requestAnimationFrame(() => drawBracketLines(elements.bracket));
-  window.setTimeout(() => drawBracketLines(elements.bracket), 280);
+  renderActivePanelData(nextData, elements);
+  window.requestAnimationFrame(() => syncTabViewportHeight(elements, root.dataset.activeWorldcupTab || "schedule"));
 
   const liveCount = allMatches.filter((match) => isLive(match.status)).length;
   elements.liveCount.textContent = formatTemplate(worldcupText.statusRow.liveCountTemplate, { count: liveCount });
   elements.updatedAt.textContent = formatTemplate(worldcupText.statusRow.updatedAtTemplate, {
     time: formatTime(nextData.lastUpdated)
   });
-  elements.sourcePill.textContent = sourceLabel(nextData.source);
+  if (elements.sourcePill) {
+    elements.sourcePill.textContent = sourceLabel(nextData.source);
+  }
   renderChampionCelebration(nextData, elements);
 }
 
@@ -246,7 +1104,6 @@ function getRefreshSchedule(nextData) {
   if (
     nextData?.polling?.mode === "api-empty-fallback"
     || nextData?.polling?.mode === "api-plan-fallback"
-    || nextData?.polling?.mode === "openfootball-schedule-fallback"
     || nextData?.polling?.mode === "openai-schedule-fallback"
   ) {
     return {
@@ -337,8 +1194,8 @@ function renderHero(match, previousMatch, data) {
   const latestGoal = [...(match.events || [])].reverse().find((event) => event.type === "Goal");
 
   return `
-    <div class="flag-wash flag-home" style="--flag-url: url('${escapeAttribute(match.home.flagUrl)}')"></div>
-    <div class="flag-wash flag-away" style="--flag-url: url('${escapeAttribute(match.away.flagUrl)}')"></div>
+    ${renderFlagWash(match.home, "home")}
+    ${renderFlagWash(match.away, "away")}
     <div class="hero-meta">
       ${renderStatus(match)}
       <span>${escapeHtml(stageLabel(match.stage))}</span>
@@ -347,9 +1204,9 @@ function renderHero(match, previousMatch, data) {
     <div class="hero-versus">
       ${renderHeroTeam(match.home, "home")}
       <div class="hero-score" aria-label="${escapeAttribute(scoreLabel(match))}">
-        <span class="score-number ${homeChanged ? "score-pop" : ""}">${formatScore(match.home.score)}</span>
+        <span class="score-number ${homeChanged ? "score-pop" : ""}">${formatMatchScoreValue(match.home.score, match.status)}</span>
         <span class="score-divider">:</span>
-        <span class="score-number ${awayChanged ? "score-pop" : ""}">${formatScore(match.away.score)}</span>
+        <span class="score-number ${awayChanged ? "score-pop" : ""}">${formatMatchScoreValue(match.away.score, match.status)}</span>
       </div>
       ${renderHeroTeam(match.away, "away")}
     </div>
@@ -357,7 +1214,7 @@ function renderHero(match, previousMatch, data) {
       <span>${match.minute ? `${match.minute}'` : formatKickoff(match.kickoffTime)}</span>
       <span>${escapeHtml(latestGoal ? formatTemplate(runtimeText.states.latestGoalTemplate, {
         minute: latestGoal.minute,
-        player: latestGoal.player || teamDisplayName(latestGoal.team)
+        player: latestGoal.player ? formatPlayerDisplayName(latestGoal.player, latestGoal.team) : teamDisplayName(latestGoal.team)
       }) : runtimeText.states.waitingKickoff)}</span>
       <span>${escapeHtml(data.source === "mock" ? runtimeText.states.mockSource : runtimeText.states.liveSource)}</span>
     </div>
@@ -367,8 +1224,8 @@ function renderHero(match, previousMatch, data) {
 function renderHeroTeam(team, side) {
   return `
     <div class="hero-team ${side}">
-      <img src="${escapeAttribute(team.flagUrl)}" alt="" loading="lazy" />
-      <span>${escapeHtml(team.code)}</span>
+      ${renderTeamImage(team)}
+      ${renderHeroTeamCode(team)}
       <strong>${escapeHtml(teamDisplayName(team.name))}</strong>
     </div>
   `;
@@ -409,9 +1266,9 @@ function renderMatchCard(match, previousData) {
 function renderMiniTeam(team) {
   return `
     <div class="mini-team">
-      <img src="${escapeAttribute(team.flagUrl)}" alt="" loading="lazy" />
+      ${renderTeamImage(team)}
       <span>${escapeHtml(teamDisplayName(team.name))}</span>
-      <strong>${escapeHtml(team.code)}</strong>
+      ${renderMiniTeamCode(team)}
     </div>
   `;
 }
@@ -456,12 +1313,17 @@ export function renderTimeline(matches, options = {}) {
 }
 
 function renderTimelineEvent(event) {
+  const teamName = event.teamName || event.team || "";
+
   return `
     <div class="timeline-event">
-      <span>${escapeHtml(formatEventMinute(event.minute))}</span>
+      <span class="timeline-event-minute">${escapeHtml(formatEventMinute(event.minute))}</span>
       <div>
-        <strong>${eventTypeLabel(event.type)} · ${escapeHtml(teamDisplayName(event.teamName || event.team))}</strong>
-        <p>${escapeHtml(event.player || runtimeText.states.defaultGoalPlayer)}</p>
+        <strong class="timeline-event-team">
+          ${renderTeamFlag(teamName)}
+          <span>${escapeHtml(eventTypeLabel(event.type))} · ${escapeHtml(teamDisplayName(teamName))}</span>
+        </strong>
+        <p class="timeline-player-name">${escapeHtml(formatPlayerDisplayName(event.player, teamName))}</p>
       </div>
     </div>
   `;
@@ -1017,14 +1879,89 @@ function renderStatus(match) {
   `;
 }
 
-function renderTeamFlag(name) {
-  const iso2 = TEAM_ISO2[name];
-
-  if (!iso2) {
+function renderHeroTeamCode(team) {
+  if (!shouldShowTeamCode(team)) {
     return "";
   }
 
-  return `<img src="${escapeAttribute(flagUrl(iso2))}" alt="" loading="lazy" />`;
+  return `<span>${escapeHtml(team.code)}</span>`;
+}
+
+function renderMiniTeamCode(team) {
+  if (!shouldShowTeamCode(team)) {
+    return "";
+  }
+
+  return `<strong>${escapeHtml(team.code)}</strong>`;
+}
+
+function shouldShowTeamCode(team) {
+  const code = String(team?.code || "").trim();
+  const name = String(team?.name || "").trim();
+
+  return Boolean(code)
+    && !isPlaceholderParticipant(name)
+    && code !== name
+    && code !== teamDisplayName(name);
+}
+
+function renderFlagWash(team, side) {
+  const url = teamFlagUrl(team);
+
+  if (!url) {
+    return "";
+  }
+
+  return `<div class="flag-wash flag-${escapeAttribute(side)}" style="--flag-url: url('${escapeAttribute(url)}')"></div>`;
+}
+
+function renderTeamImage(team) {
+  const url = teamFlagUrl(team);
+
+  if (!url) {
+    return "";
+  }
+
+  return `<img src="${escapeAttribute(url)}" alt="" loading="lazy" />`;
+}
+
+function renderTeamFlag(name) {
+  const url = teamFlagUrl(name);
+
+  if (!url) {
+    return "";
+  }
+
+  return `<img src="${escapeAttribute(url)}" alt="" loading="lazy" />`;
+}
+
+function teamFlagUrl(teamOrName) {
+  const name = typeof teamOrName === "string" ? teamOrName : teamOrName?.name;
+
+  if (isPlaceholderParticipant(name)) {
+    return "";
+  }
+
+  const iso2 = TEAM_ISO2[name];
+
+  if (iso2) {
+    return flagUrl(iso2);
+  }
+
+  if (typeof teamOrName === "object" && teamOrName) {
+    return teamOrName.flagUrl || teamOrName.logo || "";
+  }
+
+  return "";
+}
+
+function isPlaceholderParticipant(value) {
+  const normalized = String(value || "").trim();
+  return !normalized
+    || /^(?:W|L)\d+$/i.test(normalized)
+    || /^(?:TBD|To be determined)$/i.test(normalized)
+    || normalized === runtimeText.states.defaultTeam
+    || /^(?:Winner|Loser)\b/i.test(normalized);
 }
 
 function findGoal(nextData, previousData) {
@@ -1036,7 +1973,7 @@ function findGoal(nextData, previousData) {
 function showGoal(goal, elements) {
   elements.goalTeam.textContent = teamDisplayName(goal.team.name);
   elements.goalPlayer.textContent = goal.player
-    ? `${goal.minute}' · ${goal.player}`
+    ? `${goal.minute}' · ${formatPlayerDisplayName(goal.player, goal.team?.name)}`
     : `${goal.minute}'`;
   elements.goalOverlay.hidden = false;
   elements.goalOverlay.classList.remove("is-visible");
@@ -1150,6 +2087,10 @@ function isLive(status) {
   return status === "LIVE" || status === "HT";
 }
 
+function isFinished(status) {
+  return status === "FT" || status === "AET" || status === "PEN";
+}
+
 function scoreChanged(current, previous) {
   return previous !== undefined && Number(current ?? -1) !== Number(previous ?? -1);
 }
@@ -1158,8 +2099,16 @@ function formatScore(score) {
   return score === null || score === undefined ? "–" : String(score);
 }
 
+function formatMatchScoreValue(score, status) {
+  if (status === "NS" && (score === null || score === undefined)) {
+    return "?";
+  }
+
+  return formatScore(score);
+}
+
 function scoreLabel(match) {
-  return `${teamDisplayName(match.home.name)} ${formatScore(match.home.score)}, ${teamDisplayName(match.away.name)} ${formatScore(match.away.score)}`;
+  return `${teamDisplayName(match.home.name)} ${formatMatchScoreValue(match.home.score, match.status)}, ${teamDisplayName(match.away.name)} ${formatMatchScoreValue(match.away.score, match.status)}`;
 }
 
 export function formatTime(value) {
@@ -1198,7 +2147,114 @@ function formatDelay(delayMs) {
 }
 
 function teamDisplayName(name) {
-  return TEAM_NAME_ZH[name] || name || runtimeText.states.defaultTeam;
+  return simplifyChinese(TEAM_NAME_ZH[name] || name || runtimeText.states.defaultTeam);
+}
+
+function formatPlayerDisplayName(playerName, teamName = "") {
+  const original = String(playerName || "").trim();
+
+  if (!original) {
+    return runtimeText.states.defaultGoalPlayer;
+  }
+
+  const mapped = findPlayerMapping(original, teamName);
+
+  if (!mapped?.zhName || mapped.zhName === original) {
+    return original;
+  }
+
+  return simplifyChinese(mapped.displayName || formatTemplate(worldcupText.moments.playerNameTemplate, {
+    zh: mapped.zhName,
+    original: mapped.originalName || original
+  }));
+}
+
+function findPlayerMapping(playerName, teamName = "") {
+  const exactCandidates = [
+    playerName,
+    teamName ? `${teamName}::${playerName}` : ""
+  ].filter(Boolean);
+
+  for (const candidate of exactCandidates) {
+    const exact = playerNameIndex.exact.get(candidate);
+
+    if (exact) {
+      return exact;
+    }
+  }
+
+  return playerNameIndex.normalized.get(normalizePlayerName(playerName)) || null;
+}
+
+function buildPlayerNameIndex(mapData, dataOverrides, textOverrides) {
+  const index = {
+    exact: new Map(),
+    normalized: new Map()
+  };
+
+  for (const [key, entry] of Object.entries(mapData?.players || {})) {
+    addPlayerMapping(index, key, entry);
+  }
+
+  for (const [key, entry] of Object.entries(dataOverrides?.players || {})) {
+    addPlayerMapping(index, key, {
+      ...mapData?.players?.[key],
+      ...entry
+    });
+  }
+
+  for (const [name, zhName] of Object.entries(textOverrides || {})) {
+    addPlayerMapping(index, name, {
+      aliases: [name],
+      zhName,
+      originalName: name
+    });
+  }
+
+  return index;
+}
+
+function addPlayerMapping(index, key, entry) {
+  const names = uniqueStrings([
+    key,
+    entry.playerName,
+    entry.commonName,
+    entry.originalName,
+    entry.nameOnShirt,
+    ...(entry.aliases || [])
+  ]);
+  const originalName = entry.originalName || entry.commonName || names[0] || key;
+  const normalizedEntry = {
+    ...entry,
+    originalName,
+    displayName: entry.displayName || (entry.zhName ? formatTemplate(worldcupText.moments.playerNameTemplate, {
+      zh: entry.zhName,
+      original: originalName
+    }) : "")
+  };
+
+  for (const name of names) {
+    index.exact.set(name, normalizedEntry);
+    index.normalized.set(normalizePlayerName(name), normalizedEntry);
+
+    if (entry.teamName) {
+      index.exact.set(`${entry.teamName}::${name}`, normalizedEntry);
+      index.normalized.set(normalizePlayerName(`${entry.teamName}::${name}`), normalizedEntry);
+    }
+  }
+}
+
+function normalizePlayerName(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .toLocaleLowerCase("en-US")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function uniqueStrings(values) {
+  return [...new Set(values.map((value) => String(value || "").trim()).filter(Boolean))];
 }
 
 function formatMatchTitle(match) {
@@ -1268,6 +2324,10 @@ function buildTimelineGroups(matches, sortMode = "eventTimeDesc") {
       latestEventTime: latestEventTime(match)
     }))
     .sort((a, b) => {
+      if (sortMode === "matchTimeAsc") {
+        return a.kickoffTime - b.kickoffTime;
+      }
+
       if (sortMode === "matchTimeDesc") {
         return b.kickoffTime - a.kickoffTime;
       }
@@ -1334,6 +2394,29 @@ export function sourceLabel(source) {
   }
 
   return runtimeText.states.unknownSource;
+}
+
+export function loadPlayerNameData() {
+  if (playerNameDataPromise) {
+    return playerNameDataPromise;
+  }
+
+  playerNameDataPromise = Promise.all([
+    import("../worldcup/data/player-name-map.json"),
+    import("../worldcup/data/player-name-overrides.json")
+  ])
+    .then(([mapModule, overridesModule]) => {
+      playerNameIndex = buildPlayerNameIndex(
+        mapModule.default,
+        overridesModule.default,
+        worldcupText.moments?.playerNames || {}
+      );
+
+      return playerNameIndex;
+    })
+    .catch(() => playerNameIndex);
+
+  return playerNameDataPromise;
 }
 
 function eventTypeLabel(type) {

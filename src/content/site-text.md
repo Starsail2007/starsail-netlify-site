@@ -63,6 +63,8 @@ maimai:
     title: "Starsail's maimai DX Dashboard"
     description: "星帆 Starsail 的舞萌 DX B50、Rating 曲线与同步记录。"
   pageToolsAriaLabel: "页面工具"
+  topbar:
+    homeAriaLabel: "返回星帆首页"
   emptyState:
     title: "还没有同步到成绩数据。"
     description: "请先在本地运行 pnpm maimai:update，或确认水鱼账号允许查询成绩。"
@@ -119,8 +121,10 @@ worldcup:
     sourcePillInitial: "模拟数据"
   hero:
     kicker: "世界杯实时赛事大屏"
-    title: "世界赛事大屏"
+    title: "FIFA World Cup 2026"
     intro: "汇集实时比分、国家色彩、淘汰赛晋级线和关键比赛瞬间，做成一个克制但有冲击力的赛事观察室。"
+    logoAlt: "2026 FIFA World Cup 徽标"
+    logoSrc: "/assets/worldcup/2026-emblem-clean.svg"
   statusRow:
     ariaLabel: "数据状态"
     liveCountInitial: "进行中 0"
@@ -131,8 +135,11 @@ worldcup:
     refreshButtonAriaLabel: "刷新比赛数据"
   panels:
     schedule:
-      title: "接下来赛程"
-      subtitle: "按开赛时间排序"
+      title: "赛程追踪"
+      subtitle: "完赛 / 进行中 / 即将开球"
+      centerButton: "回到当前赛程"
+      centerButtonAriaLabel: "将赛程滚轮回到正在开球或最近结束的比赛"
+      wheelAriaLabel: "世界杯赛程滚轮"
     groupStage:
       title: "小组赛阶段"
       subtitle: "分组赛程与积分"
@@ -145,9 +152,44 @@ worldcup:
       title: "淘汰赛晋级图"
       subtitle: "宽屏晋级路径"
       dragAriaLabel: "可横向拖动查看完整淘汰赛晋级图"
+  tabs:
+    ariaLabel: "世界杯内容分区"
+    schedule: "赛程追踪"
+    overview: "赛况一览"
+    moments: "精彩瞬间"
+  moments:
+    modes:
+      ariaLabel: "精彩瞬间展示方式"
+      time: "时间排序"
+      structure: "赛事结构"
+    sort:
+      ariaLabel: "切换精彩瞬间时间顺序"
+      asc: "正序"
+      desc: "倒序"
+    structureSubtitle: "先看场次，点击后放大查看精彩瞬间"
+    detailEmpty: "选择一场比赛查看精彩瞬间"
+    matchEventsTemplate: "{count} 个瞬间"
+    expandMatch: "查看本场瞬间"
+    expandMatchAriaLabel: "查看 {match} 的精彩瞬间"
+    closeDetail: "收起"
+    modalTitle: "本场精彩瞬间"
+    modalAriaLabel: "精彩瞬间详情窗口"
+    playerNameTemplate: "{zh}（{original}）"
+    playerNames:
+      Julián Quiñones: "胡利安·基尼奥内斯"
+      Raúl Jiménez: "劳尔·希门尼斯"
+      Ladislav Krejcí: "拉迪斯拉夫·克雷伊奇"
+      Hwang In-Beom: "黄仁范"
+      Oh Hyeon-Gyu: "吴贤揆"
+      Jovo Lukić: "约沃·卢基奇"
+      Cyle Larin: "赛尔·拉林"
+      Folarin Balogun: "福拉林·巴洛贡"
+      Giovanni Reyna: "吉奥瓦尼·雷纳"
+      Breel Embolo: "布雷尔·恩博洛"
+      Miro Muheim: "米罗·穆海姆"
   champion:
     logoAlt: "2026 FIFA World Cup 标识"
-    logoSrc: "https://commons.wikimedia.org/wiki/Special:FilePath/2026%20FIFA%20World%20Cup%20emblem%20%28with%20wordmark%29.svg"
+    logoSrc: "/assets/worldcup/2026-emblem-clean.svg"
     kicker: "冠军时刻"
     slotTitle: "冠军"
     titleInitial: "冠军即将诞生"
@@ -426,7 +468,7 @@ entryRedesign:
           icon: "3"
           prompt: ""
         - name: "世界杯"
-          label: "一起来关注世界杯！！！"
+          label: "一起来关注世界杯⚽️🏆！！！"
           href: "/worldcup/"
           icon: "4"
           prompt: ""

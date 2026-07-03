@@ -1,0 +1,40 @@
+{
+  "source": {
+    "note": "Manual locked player-name overrides. Keep this file small and source-backed; generated player-name-map.json will merge these rows before automatic matches."
+  },
+  "players": {
+    "FRA::MBAPPE Kylian": {
+      "zhName": "基利安·姆巴佩",
+      "source": "manual-wikidata",
+      "sourceId": "Q21621995",
+      "sourceLabel": "基利安·姆巴佩",
+      "sourceDescription": "法国足球运动员",
+      "sourceBirthDate": "1998-12-20",
+      "searchQuery": "Kylian Mbappé",
+      "confidence": "manual",
+      "note": "Locked from Wikidata zh label after automatic exact-label matching missed the accented common-name variant."
+    },
+    "ESP::YAMAL Lamine": {
+      "zhName": "拉明·亚马尔",
+      "source": "manual-wikidata",
+      "sourceId": "Q113704154",
+      "sourceLabel": "拉明·亚马尔",
+      "sourceDescription": "西班牙足球运动员",
+      "sourceBirthDate": "2007-07-13",
+      "searchQuery": "Lamine Yamal",
+      "confidence": "manual",
+      "note": "Locked from Wikidata zh label because Wikidata search returns a given-name item before the footballer entity."
+    },
+    "GER::HAVERTZ Kai": {
+      "zhName": "凯·哈弗茨",
+      "source": "manual-common",
+      "sourceId": "Q27310755",
+      "sourceLabel": "凯·哈弗茨",
+      "sourceDescription": "德国足球运动员",
+      "sourceBirthDate": "1999-06-11",
+      "searchQuery": "Kai Havertz",
+      "confidence": "manual",
+      "note": "Force simplified Chinese common mainland rendering instead of Wikidata's traditional zh label."
+    }
+  }
+}

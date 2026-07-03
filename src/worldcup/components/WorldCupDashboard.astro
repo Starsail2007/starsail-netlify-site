@@ -6,68 +6,125 @@ const text = siteText.worldcup;
 
 <section class="worldcup-page" data-worldcup-root aria-label={text.pageAriaLabel}>
   <header class="worldcup-topbar">
-    <a class="worldcup-back" href="/" aria-label={text.topbar.backAriaLabel}>{text.topbar.backLink}</a>
-    <div class="worldcup-live-pill" data-source-pill>{text.topbar.sourcePillInitial}</div>
+    <a class="worldcup-back worldcup-home-button" href="/" aria-label={text.topbar.backAriaLabel}>
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M3 10.8 12 3l9 7.8" />
+        <path d="M5.5 9.4V21h13V9.4" />
+        <path d="M9.5 21v-6h5v6" />
+      </svg>
+    </a>
   </header>
 
   <main class="worldcup-shell">
     <section class="worldcup-overview-grid">
       <div class="worldcup-hero-copy" aria-labelledby="worldcup-title">
-        <p class="worldcup-kicker">{text.hero.kicker}</p>
-        <h1 id="worldcup-title">{text.hero.title}</h1>
-        <p class="worldcup-intro">
-          {text.hero.intro}
-        </p>
-      </div>
-
-      <section class="worldcup-panel timeline-preview-panel" aria-labelledby="timeline-title">
-        <div class="panel-heading">
-          <h2 id="timeline-title">{text.panels.timeline.title}</h2>
-          <a class="panel-link" href={text.panels.timeline.href}>{text.panels.timeline.viewAll}</a>
+        <div class="worldcup-hero-title-row">
+          <h1 id="worldcup-title">{text.hero.title}</h1>
+          <div class="worldcup-trophy-mark" aria-hidden="true">
+            <img class="worldcup-trophy-logo" src={text.hero.logoSrc} alt={text.hero.logoAlt} loading="lazy" />
+          </div>
         </div>
-        <div class="timeline-list timeline-preview-list" data-timeline></div>
-      </section>
+      </div>
     </section>
 
     <section class="worldcup-status-row" aria-label={text.statusRow.ariaLabel}>
       <div class="worldcup-chip" data-live-count>{text.statusRow.liveCountInitial}</div>
       <div class="worldcup-chip" data-updated-at>{text.statusRow.updatedAtInitial}</div>
       <div class="worldcup-chip" data-refresh-policy>{text.statusRow.refreshPolicyInitial}</div>
-      <div class="worldcup-chip worldcup-error" data-error hidden></div>
-      <button class="worldcup-icon-button" type="button" data-refresh aria-label={text.statusRow.refreshButtonAriaLabel}>
-        ↻
-      </button>
     </section>
 
-    <section class="worldcup-main-stack">
-      <section data-match-hero class="match-hero match-card loading-card">
-        <div class="loading-line"></div>
-        <div class="loading-line short"></div>
-      </section>
+    <nav class="worldcup-section-tabs" aria-label={text.tabs.ariaLabel} role="tablist">
+      <button class="worldcup-section-tab is-active" type="button" data-worldcup-tab="schedule" role="tab" aria-selected="true">
+        {text.tabs.schedule}
+      </button>
+      <button class="worldcup-section-tab" type="button" data-worldcup-tab="overview" role="tab" aria-selected="false">
+        {text.tabs.overview}
+      </button>
+      <button class="worldcup-section-tab" type="button" data-worldcup-tab="moments" role="tab" aria-selected="false">
+        {text.tabs.moments}
+      </button>
+    </nav>
 
-      <section class="worldcup-panel" aria-labelledby="schedule-title">
-        <div class="panel-heading">
-          <h2 id="schedule-title">{text.panels.schedule.title}</h2>
-          <span>{text.panels.schedule.subtitle}</span>
-        </div>
-        <div class="schedule-strip" data-schedule-strip></div>
-      </section>
+    <section class="worldcup-tab-viewport" data-worldcup-tabs>
+      <div class="worldcup-tab-track" data-worldcup-tab-track>
+        <section class="worldcup-tab-panel is-active" data-worldcup-panel="schedule" aria-label={text.tabs.schedule} role="tabpanel">
+          <div class="worldcup-main-stack">
+            <section class="worldcup-panel schedule-wheel-panel" data-schedule-wheel-panel aria-labelledby="schedule-title">
+              <div class="panel-heading schedule-wheel-heading">
+                <div>
+                  <h2 id="schedule-title">{text.panels.schedule.title}</h2>
+                  <span>{text.panels.schedule.subtitle}</span>
+                </div>
+                <button class="schedule-center-button" type="button" data-schedule-center aria-label={text.panels.schedule.centerButtonAriaLabel}>
+                  {text.panels.schedule.centerButton}
+                </button>
+              </div>
+              <div class="schedule-wheel-stage" data-schedule-wheel-stage>
+                <div class="schedule-flag-pane schedule-flag-pane-home" aria-hidden="true"></div>
+                <div class="schedule-flag-pane schedule-flag-pane-away" aria-hidden="true"></div>
+                <div class="schedule-wheel-focus" aria-hidden="true"></div>
+                <div class="schedule-wheel" data-schedule-wheel tabindex="0" aria-label={text.panels.schedule.wheelAriaLabel}>
+                  <div class="loading-line"></div>
+                  <div class="loading-line short"></div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
 
-      <section class="worldcup-panel bracket-panel" aria-labelledby="bracket-title">
-        <div class="panel-heading">
-          <h2 id="bracket-title">{text.panels.bracket.title}</h2>
-          <span>{text.panels.bracket.subtitle}</span>
-        </div>
-        <div class="bracket-scroll" data-bracket></div>
-      </section>
+        <section class="worldcup-tab-panel" data-worldcup-panel="overview" aria-label={text.tabs.overview} role="tabpanel" aria-hidden="true">
+          <div class="worldcup-main-stack">
+            <section class="worldcup-panel bracket-panel" aria-labelledby="bracket-title">
+              <div class="panel-heading">
+                <h2 id="bracket-title">{text.panels.bracket.title}</h2>
+                <span>{text.panels.bracket.subtitle}</span>
+              </div>
+              <div class="bracket-scroll" data-bracket></div>
+            </section>
 
-      <section class="worldcup-panel" aria-labelledby="group-stage-title">
-        <div class="panel-heading">
-          <h2 id="group-stage-title">{text.panels.groupStage.title}</h2>
-          <span>{text.panels.groupStage.subtitle}</span>
-        </div>
-        <div class="group-stage-scroll" data-group-stage></div>
-      </section>
+            <section class="worldcup-panel" aria-labelledby="group-stage-title">
+              <div class="panel-heading">
+                <h2 id="group-stage-title">{text.panels.groupStage.title}</h2>
+                <span>{text.panels.groupStage.subtitle}</span>
+              </div>
+              <div class="group-stage-scroll" data-group-stage></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="worldcup-tab-panel" data-worldcup-panel="moments" aria-label={text.tabs.moments} role="tabpanel" aria-hidden="true">
+          <section class="worldcup-panel moments-embedded-panel" aria-labelledby="moments-title">
+            <div class="panel-heading moments-panel-heading">
+              <div>
+                <h2 id="moments-title">{text.panels.timeline.title}</h2>
+                <span>{text.panels.timeline.subtitle}</span>
+              </div>
+              <div class="moments-controls">
+                <div class="moments-mode-toggle" role="tablist" aria-label={text.moments.modes.ariaLabel}>
+                  <button class="moments-mode-button is-active" type="button" data-moments-mode="time" aria-selected="true">
+                    {text.moments.modes.time}
+                  </button>
+                  <button class="moments-mode-button" type="button" data-moments-mode="structure" aria-selected="false">
+                    {text.moments.modes.structure}
+                  </button>
+                </div>
+                <button class="moments-sort-button" type="button" data-moments-sort aria-label={text.moments.sort.ariaLabel}>
+                  {text.moments.sort.desc}
+                </button>
+              </div>
+            </div>
+            <div class="moments-mode-panel is-active" data-moments-panel="time">
+              <div class="timeline-list timeline-full-list moments-time-list" data-timeline></div>
+            </div>
+            <div class="moments-mode-panel" data-moments-panel="structure" hidden>
+              <p class="moments-structure-note">{text.moments.structureSubtitle}</p>
+              <div class="moments-structure-layout">
+                <div class="moments-match-grid" data-moments-structure></div>
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
     </section>
   </main>
 
@@ -77,6 +134,19 @@ const text = siteText.worldcup;
       <strong data-goal-team></strong>
       <span data-goal-player></span>
     </div>
+  </div>
+
+  <div class="moments-detail-modal" data-moments-modal hidden role="dialog" aria-modal="true" aria-label={text.moments.modalAriaLabel}>
+    <div class="moments-modal-backdrop" data-moments-modal-dismiss aria-hidden="true"></div>
+    <section class="moments-modal-window">
+      <header class="moments-modal-titlebar">
+        <h2>{text.moments.modalTitle}</h2>
+        <button type="button" data-moments-close aria-label={text.moments.closeDetail}>
+          {text.moments.closeDetail}
+        </button>
+      </header>
+      <div class="moments-modal-body" data-moments-detail></div>
+    </section>
   </div>
 
   <section class="champion-celebration" data-champion-celebration hidden>

@@ -4783,8 +4783,8 @@
     },
     {
       "id": "84",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -4797,7 +4797,7 @@
         "iso2": "es",
         "logo": "https://flagcdn.com/es.svg",
         "flagUrl": "https://flagcdn.com/es.svg",
-        "score": null
+        "score": 3
       },
       "away": {
         "name": "Austria",
@@ -4805,14 +4805,45 @@
         "iso2": "at",
         "logo": "https://flagcdn.com/at.svg",
         "flagUrl": "https://flagcdn.com/at.svg",
-        "score": null
+        "score": 0
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "36",
+          "minuteSort": 36,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Mikel Oyarzabal",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "66",
+          "minuteSort": 66,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Pedro Porro",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "89",
+          "minuteSort": 89,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Mikel Oyarzabal",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "83",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -4825,7 +4856,7 @@
         "iso2": "pt",
         "logo": "https://flagcdn.com/pt.svg",
         "flagUrl": "https://flagcdn.com/pt.svg",
-        "score": null
+        "score": 2
       },
       "away": {
         "name": "Croatia",
@@ -4833,14 +4864,45 @@
         "iso2": "hr",
         "logo": "https://flagcdn.com/hr.svg",
         "flagUrl": "https://flagcdn.com/hr.svg",
-        "score": null
+        "score": 1
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "53",
+          "minuteSort": 53,
+          "team": "Croatia",
+          "teamName": "Croatia",
+          "player": "Ivan Perisic",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "68",
+          "minuteSort": 68,
+          "team": "Portugal",
+          "teamName": "Portugal",
+          "player": "Cristiano Ronaldo",
+          "penalty": true,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+4",
+          "minuteSort": 94,
+          "team": "Portugal",
+          "teamName": "Portugal",
+          "player": "Gonçalo Ramos",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "85",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -4853,7 +4915,7 @@
         "iso2": "ch",
         "logo": "https://flagcdn.com/ch.svg",
         "flagUrl": "https://flagcdn.com/ch.svg",
-        "score": null
+        "score": 2
       },
       "away": {
         "name": "Algeria",
@@ -4861,9 +4923,30 @@
         "iso2": "dz",
         "logo": "https://flagcdn.com/dz.svg",
         "flagUrl": "https://flagcdn.com/dz.svg",
-        "score": null
+        "score": 0
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "10",
+          "minuteSort": 10,
+          "team": "Switzerland",
+          "teamName": "Switzerland",
+          "player": "Breel Embolo",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "46",
+          "minuteSort": 46,
+          "team": "Switzerland",
+          "teamName": "Switzerland",
+          "player": "Dan Ndoye",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "88",
@@ -10182,8 +10265,8 @@
     },
     {
       "id": "84",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -10196,7 +10279,7 @@
         "iso2": "es",
         "logo": "https://flagcdn.com/es.svg",
         "flagUrl": "https://flagcdn.com/es.svg",
-        "score": null
+        "score": 3
       },
       "away": {
         "name": "Austria",
@@ -10204,14 +10287,45 @@
         "iso2": "at",
         "logo": "https://flagcdn.com/at.svg",
         "flagUrl": "https://flagcdn.com/at.svg",
-        "score": null
+        "score": 0
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "36",
+          "minuteSort": 36,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Mikel Oyarzabal",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "66",
+          "minuteSort": 66,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Pedro Porro",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "89",
+          "minuteSort": 89,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Mikel Oyarzabal",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "83",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -10224,7 +10338,7 @@
         "iso2": "pt",
         "logo": "https://flagcdn.com/pt.svg",
         "flagUrl": "https://flagcdn.com/pt.svg",
-        "score": null
+        "score": 2
       },
       "away": {
         "name": "Croatia",
@@ -10232,14 +10346,45 @@
         "iso2": "hr",
         "logo": "https://flagcdn.com/hr.svg",
         "flagUrl": "https://flagcdn.com/hr.svg",
-        "score": null
+        "score": 1
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "53",
+          "minuteSort": 53,
+          "team": "Croatia",
+          "teamName": "Croatia",
+          "player": "Ivan Perisic",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "68",
+          "minuteSort": 68,
+          "team": "Portugal",
+          "teamName": "Portugal",
+          "player": "Cristiano Ronaldo",
+          "penalty": true,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+4",
+          "minuteSort": 94,
+          "team": "Portugal",
+          "teamName": "Portugal",
+          "player": "Gonçalo Ramos",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "85",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -10252,7 +10397,7 @@
         "iso2": "ch",
         "logo": "https://flagcdn.com/ch.svg",
         "flagUrl": "https://flagcdn.com/ch.svg",
-        "score": null
+        "score": 2
       },
       "away": {
         "name": "Algeria",
@@ -10260,9 +10405,30 @@
         "iso2": "dz",
         "logo": "https://flagcdn.com/dz.svg",
         "flagUrl": "https://flagcdn.com/dz.svg",
-        "score": null
+        "score": 0
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "10",
+          "minuteSort": 10,
+          "team": "Switzerland",
+          "teamName": "Switzerland",
+          "player": "Breel Embolo",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "46",
+          "minuteSort": 46,
+          "team": "Switzerland",
+          "teamName": "Switzerland",
+          "player": "Dan Ndoye",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "88",
@@ -10799,90 +10965,6 @@
   ],
   "upcomingMatches": [
     {
-      "id": "84",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Los Angeles (Inglewood)",
-      "kickoffTime": "2026-07-02T19:00:00.000Z",
-      "home": {
-        "name": "Spain",
-        "code": "S",
-        "iso2": "es",
-        "logo": "https://flagcdn.com/es.svg",
-        "flagUrl": "https://flagcdn.com/es.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Austria",
-        "code": "A",
-        "iso2": "at",
-        "logo": "https://flagcdn.com/at.svg",
-        "flagUrl": "https://flagcdn.com/at.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
-      "id": "83",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Toronto",
-      "kickoffTime": "2026-07-02T23:00:00.000Z",
-      "home": {
-        "name": "Portugal",
-        "code": "P",
-        "iso2": "pt",
-        "logo": "https://flagcdn.com/pt.svg",
-        "flagUrl": "https://flagcdn.com/pt.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Croatia",
-        "code": "C",
-        "iso2": "hr",
-        "logo": "https://flagcdn.com/hr.svg",
-        "flagUrl": "https://flagcdn.com/hr.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
-      "id": "85",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Vancouver",
-      "kickoffTime": "2026-07-03T03:00:00.000Z",
-      "home": {
-        "name": "Switzerland",
-        "code": "S",
-        "iso2": "ch",
-        "logo": "https://flagcdn.com/ch.svg",
-        "flagUrl": "https://flagcdn.com/ch.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Algeria",
-        "code": "A",
-        "iso2": "dz",
-        "logo": "https://flagcdn.com/dz.svg",
-        "flagUrl": "https://flagcdn.com/dz.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
       "id": "88",
       "status": "NS",
       "statusText": "未开始",
@@ -11301,9 +11383,260 @@
         "score": null
       },
       "events": []
+    },
+    {
+      "id": "101",
+      "status": "NS",
+      "statusText": "未开始",
+      "minute": null,
+      "stage": "Semi-final",
+      "round": "Semi-final",
+      "group": "",
+      "venue": "Dallas (Arlington)",
+      "kickoffTime": "2026-07-14T19:00:00.000Z",
+      "home": {
+        "name": "W97",
+        "code": "W97",
+        "iso2": "",
+        "logo": "",
+        "flagUrl": "",
+        "score": null
+      },
+      "away": {
+        "name": "W98",
+        "code": "W98",
+        "iso2": "",
+        "logo": "",
+        "flagUrl": "",
+        "score": null
+      },
+      "events": []
+    },
+    {
+      "id": "102",
+      "status": "NS",
+      "statusText": "未开始",
+      "minute": null,
+      "stage": "Semi-final",
+      "round": "Semi-final",
+      "group": "",
+      "venue": "Atlanta",
+      "kickoffTime": "2026-07-15T19:00:00.000Z",
+      "home": {
+        "name": "W99",
+        "code": "W99",
+        "iso2": "",
+        "logo": "",
+        "flagUrl": "",
+        "score": null
+      },
+      "away": {
+        "name": "W100",
+        "code": "W100",
+        "iso2": "",
+        "logo": "",
+        "flagUrl": "",
+        "score": null
+      },
+      "events": []
+    },
+    {
+      "id": "103",
+      "status": "NS",
+      "statusText": "未开始",
+      "minute": null,
+      "stage": "Match for third place",
+      "round": "Match for third place",
+      "group": "",
+      "venue": "Miami (Miami Gardens)",
+      "kickoffTime": "2026-07-18T21:00:00.000Z",
+      "home": {
+        "name": "L101",
+        "code": "L101",
+        "iso2": "",
+        "logo": "",
+        "flagUrl": "",
+        "score": null
+      },
+      "away": {
+        "name": "L102",
+        "code": "L102",
+        "iso2": "",
+        "logo": "",
+        "flagUrl": "",
+        "score": null
+      },
+      "events": []
     }
   ],
   "timelineMatches": [
+    {
+      "id": "85",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Round of 32",
+      "round": "Round of 32",
+      "group": "",
+      "venue": "Vancouver",
+      "kickoffTime": "2026-07-03T03:00:00.000Z",
+      "home": {
+        "name": "Switzerland",
+        "code": "S",
+        "iso2": "ch",
+        "logo": "https://flagcdn.com/ch.svg",
+        "flagUrl": "https://flagcdn.com/ch.svg",
+        "score": 2
+      },
+      "away": {
+        "name": "Algeria",
+        "code": "A",
+        "iso2": "dz",
+        "logo": "https://flagcdn.com/dz.svg",
+        "flagUrl": "https://flagcdn.com/dz.svg",
+        "score": 0
+      },
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "10",
+          "minuteSort": 10,
+          "team": "Switzerland",
+          "teamName": "Switzerland",
+          "player": "Breel Embolo",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "46",
+          "minuteSort": 46,
+          "team": "Switzerland",
+          "teamName": "Switzerland",
+          "player": "Dan Ndoye",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
+    },
+    {
+      "id": "83",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Round of 32",
+      "round": "Round of 32",
+      "group": "",
+      "venue": "Toronto",
+      "kickoffTime": "2026-07-02T23:00:00.000Z",
+      "home": {
+        "name": "Portugal",
+        "code": "P",
+        "iso2": "pt",
+        "logo": "https://flagcdn.com/pt.svg",
+        "flagUrl": "https://flagcdn.com/pt.svg",
+        "score": 2
+      },
+      "away": {
+        "name": "Croatia",
+        "code": "C",
+        "iso2": "hr",
+        "logo": "https://flagcdn.com/hr.svg",
+        "flagUrl": "https://flagcdn.com/hr.svg",
+        "score": 1
+      },
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "53",
+          "minuteSort": 53,
+          "team": "Croatia",
+          "teamName": "Croatia",
+          "player": "Ivan Perisic",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "68",
+          "minuteSort": 68,
+          "team": "Portugal",
+          "teamName": "Portugal",
+          "player": "Cristiano Ronaldo",
+          "penalty": true,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+4",
+          "minuteSort": 94,
+          "team": "Portugal",
+          "teamName": "Portugal",
+          "player": "Gonçalo Ramos",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
+    },
+    {
+      "id": "84",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Round of 32",
+      "round": "Round of 32",
+      "group": "",
+      "venue": "Los Angeles (Inglewood)",
+      "kickoffTime": "2026-07-02T19:00:00.000Z",
+      "home": {
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
+        "score": 3
+      },
+      "away": {
+        "name": "Austria",
+        "code": "A",
+        "iso2": "at",
+        "logo": "https://flagcdn.com/at.svg",
+        "flagUrl": "https://flagcdn.com/at.svg",
+        "score": 0
+      },
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "36",
+          "minuteSort": 36,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Mikel Oyarzabal",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "66",
+          "minuteSort": 66,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Pedro Porro",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "89",
+          "minuteSort": 89,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Mikel Oyarzabal",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
+    },
     {
       "id": "81",
       "status": "FT",
@@ -11702,153 +12035,6 @@
           "team": "Morocco",
           "teamName": "Morocco",
           "player": "Issa Diop",
-          "penalty": false,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "74",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Boston (Foxborough)",
-      "kickoffTime": "2026-06-29T20:30:00.000Z",
-      "home": {
-        "name": "Germany",
-        "code": "G",
-        "iso2": "de",
-        "logo": "https://flagcdn.com/de.svg",
-        "flagUrl": "https://flagcdn.com/de.svg",
-        "score": 1
-      },
-      "away": {
-        "name": "Paraguay",
-        "code": "P",
-        "iso2": "py",
-        "logo": "https://flagcdn.com/py.svg",
-        "flagUrl": "https://flagcdn.com/py.svg",
-        "score": 1
-      },
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "42",
-          "minuteSort": 42,
-          "team": "Paraguay",
-          "teamName": "Paraguay",
-          "player": "Julio Enciso",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "54",
-          "minuteSort": 54,
-          "team": "Germany",
-          "teamName": "Germany",
-          "player": "Kai Havertz",
-          "penalty": false,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "76",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Houston",
-      "kickoffTime": "2026-06-29T17:00:00.000Z",
-      "home": {
-        "name": "Brazil",
-        "code": "B",
-        "iso2": "br",
-        "logo": "https://flagcdn.com/br.svg",
-        "flagUrl": "https://flagcdn.com/br.svg",
-        "score": 2
-      },
-      "away": {
-        "name": "Japan",
-        "code": "J",
-        "iso2": "jp",
-        "logo": "https://flagcdn.com/jp.svg",
-        "flagUrl": "https://flagcdn.com/jp.svg",
-        "score": 1
-      },
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "29",
-          "minuteSort": 29,
-          "team": "Japan",
-          "teamName": "Japan",
-          "player": "Kaishu Sano",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "56",
-          "minuteSort": 56,
-          "team": "Brazil",
-          "teamName": "Brazil",
-          "player": "Casemiro",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "90+5",
-          "minuteSort": 95,
-          "team": "Brazil",
-          "teamName": "Brazil",
-          "player": "Gabriel Martinelli",
-          "penalty": false,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "73",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Los Angeles (Inglewood)",
-      "kickoffTime": "2026-06-28T19:00:00.000Z",
-      "home": {
-        "name": "South Africa",
-        "code": "SA",
-        "iso2": "za",
-        "logo": "https://flagcdn.com/za.svg",
-        "flagUrl": "https://flagcdn.com/za.svg",
-        "score": 0
-      },
-      "away": {
-        "name": "Canada",
-        "code": "C",
-        "iso2": "ca",
-        "logo": "https://flagcdn.com/ca.svg",
-        "flagUrl": "https://flagcdn.com/ca.svg",
-        "score": 1
-      },
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "90+2",
-          "minuteSort": 92,
-          "team": "Canada",
-          "teamName": "Canada",
-          "player": "Stephan Eustáquio",
           "penalty": false,
           "ownGoal": false
         }
@@ -17002,10 +17188,10 @@
       "round": "Round of 32",
       "home": "Portugal",
       "away": "Croatia",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 2,
+      "awayScore": 1,
+      "winner": "Portugal",
+      "status": "FT",
       "nextMatchId": "93",
       "nextMatchIds": [
         "93"
@@ -17016,10 +17202,10 @@
       "round": "Round of 32",
       "home": "Spain",
       "away": "Austria",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 3,
+      "awayScore": 0,
+      "winner": "Spain",
+      "status": "FT",
       "nextMatchId": "93",
       "nextMatchIds": [
         "93"
@@ -17030,10 +17216,10 @@
       "round": "Round of 32",
       "home": "Switzerland",
       "away": "Algeria",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 2,
+      "awayScore": 0,
+      "winner": "Switzerland",
+      "status": "FT",
       "nextMatchId": "96",
       "nextMatchIds": [
         "96"
@@ -17305,25 +17491,46 @@
     }
   ],
   "source": "openfootball",
-  "message": "FOOTBALL_API_KEY is not configured. 已改用 openfootball 免费公开赛程。",
+  "message": "API-Football plan cannot access this season: Free plans do not have access to this season, try from 2022 to 2024. 已改用 openfootball 免费公开赛程。 Patched 1 recent result(s).",
+  "meta": {
+    "scorePatches": [
+      {
+        "num": "85",
+        "team1": "Switzerland",
+        "team2": "Algeria",
+        "score": {
+          "ft": [
+            2,
+            0
+          ],
+          "ht": [
+            1,
+            0
+          ]
+        },
+        "sourceUrl": "https://www.thescore.com/worldcup/event/93026"
+      }
+    ],
+    "scorePatchError": ""
+  },
   "leagueId": "1",
   "season": "2026",
   "polling": {
-    "mode": "near-match",
-    "label": "near-match",
+    "mode": "match-window",
+    "label": "match-window",
     "due": false,
-    "intervalSeconds": 3600,
-    "nextFetchAt": "2026-07-02T18:03:06.838Z",
-    "generatedAt": "2026-07-02T17:03:06.838Z",
+    "intervalSeconds": 300,
+    "nextFetchAt": "2026-07-03T04:41:43.588Z",
+    "generatedAt": "2026-07-03T04:36:43.588Z",
     "nextMatch": {
-      "id": "84",
+      "id": "85",
       "stage": "Round of 32",
-      "kickoffTime": "2026-07-02T19:00:00.000Z",
-      "home": "Spain",
-      "away": "Austria",
-      "status": "NS"
+      "kickoffTime": "2026-07-03T03:00:00.000Z",
+      "home": "Switzerland",
+      "away": "Algeria",
+      "status": "FT"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-02T17:03:06.838Z"
+  "lastUpdated": "2026-07-03T04:36:43.588Z"
 }

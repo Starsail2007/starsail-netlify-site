@@ -35,6 +35,8 @@ jobs:
           FOOTBALL_API_KEY: ${{ secrets.FOOTBALL_API_KEY }}
           FOOTBALL_LEAGUE_ID: ${{ vars.FOOTBALL_LEAGUE_ID || '1' }}
           FOOTBALL_SEASON: ${{ vars.FOOTBALL_SEASON || '2026' }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_SCORE_MODEL: ${{ vars.OPENAI_SCORE_MODEL || vars.OPENAI_SCHEDULE_MODEL || 'gpt-5.5' }}
           WORLD_CUP_CURRENT_DATA_URL: https://raw.githubusercontent.com/${{ github.repository }}/worldcup-data/public/data/worldcup-live.json
           WORLD_CUP_FORCE_UPDATE: ${{ github.event.inputs.force == 'true' && '1' || '0' }}
         run: |

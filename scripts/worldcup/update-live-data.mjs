@@ -6,6 +6,11 @@ import {
   normalizeApiFootballData,
   normalizeOpenFootballData
 } from "../../src/worldcup/lib/normalizeWorldCupData.js";
+import { RESULT_OVERRIDES } from "../../src/worldcup/data/resultOverrides.js";
+import {
+  patchOpenFootballScoresWithOpenAI,
+  patchOpenFootballScoresWithOverrides
+} from "../../src/worldcup/lib/openAiScorePatch.js";
 import { computeWorldCupRefreshPolicy } from "../../src/worldcup/lib/refreshPolicy.js";
 
 const API_FOOTBALL_BASE_URL = "https://v3.football.api-sports.io";
@@ -16,6 +21,7 @@ const DEFAULT_SEASON = "2026";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = resolve(__dirname, "../..");
 const args = parseArgs(process.argv.slice(2));
+await loadLocalEnv();
 const outputPath = resolve(projectRoot, args.output || process.env.WORLD_CUP_DATA_OUTPUT || "public/data/worldcup-live.json");
 const currentUrl = args.currentUrl || process.env.WORLD_CUP_CURRENT_DATA_URL || "";
 const force = args.force || process.env.WORLD_CUP_FORCE_UPDATE === "1";
@@ -44,6 +50,7 @@ const payload = {
   ...result.data,
   source: result.source,
   message: result.message,
+  meta: result.meta || null,
   leagueId: process.env.FOOTBALL_LEAGUE_ID || DEFAULT_LEAGUE_ID,
   season: process.env.FOOTBALL_SEASON || DEFAULT_SEASON,
   polling: {
@@ -147,12 +154,26 @@ async function fetchOpenFootballData(previousError = "") {
     }
 
     const raw = await response.json();
-    const normalized = normalizeOpenFootballData(raw);
+    const overridePatch = patchOpenFootballScoresWithOverrides(raw, RESULT_OVERRIDES);
+    const scorePatch = await patchOpenFootballScoresWithOpenAI(overridePatch.data, {
+      apiKey: process.env.OPENAI_API_KEY || "",
+      model: process.env.OPENAI_SCORE_MODEL || process.env.OPENAI_SCHEDULE_MODEL || "gpt-5.5",
+      now
+    });
+    const normalized = normalizeOpenFootballData(scorePatch.data);
+    const scorePatches = [...overridePatch.patches, ...scorePatch.patches];
+    const patchMessage = scorePatches.length
+      ? ` Patched ${scorePatches.length} recent result(s).`
+      : "";
 
     return {
       source: "openfootball",
-      message: `${previousError ? `${previousError} ` : ""}已改用 openfootball 免费公开赛程。`.trim(),
+      message: `${previousError ? `${previousError} ` : ""}已改用 openfootball 免费公开赛程。${patchMessage}`.trim(),
       data: normalized.matches.length ? normalized : null,
+      meta: {
+        scorePatches,
+        scorePatchError: scorePatch.error || ""
+      },
       error: normalized.matches.length ? "" : "openfootball returned no matches."
     };
   } catch (error) {
@@ -191,12 +212,52 @@ async function readCurrentData(path, url) {
   }
 }
 
+async function loadLocalEnv() {
+  const envPath = resolve(projectRoot, ".env");
+  const text = await readTextFile(envPath);
+
+  if (!text) {
+    return;
+  }
+
+  for (const line of text.split(/\r?\n/)) {
+    const match = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/);
+
+    if (!match || process.env[match[1]] !== undefined) {
+      continue;
+    }
+
+    process.env[match[1]] = stripEnvQuotes(match[2]);
+  }
+}
+
 async function readJsonFile(path) {
   try {
     return JSON.parse(await readFile(path, "utf8"));
   } catch {
     return null;
   }
+}
+
+async function readTextFile(path) {
+  try {
+    return await readFile(path, "utf8");
+  } catch {
+    return "";
+  }
+}
+
+function stripEnvQuotes(value) {
+  const trimmed = String(value || "").trim();
+
+  if (
+    (trimmed.startsWith("\"") && trimmed.endsWith("\""))
+    || (trimmed.startsWith("'") && trimmed.endsWith("'"))
+  ) {
+    return trimmed.slice(1, -1);
+  }
+
+  return trimmed;
 }
 
 function parseArgs(values) {
