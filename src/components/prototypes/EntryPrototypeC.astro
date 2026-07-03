@@ -1,9 +1,11 @@
 ---
 import AvatarPreviewModal from "./AvatarPreviewModal.astro";
+import { withBasePath } from "../../lib/basePath";
 
 const { copy, shared, active = false } = Astro.props;
 const modalId = `entry-avatar-modal-${copy.id}`;
 const headlineChars = [...copy.headline];
+const avatarSrc = withBasePath("/assets/avatar.jpeg");
 ---
 
 <section
@@ -38,7 +40,7 @@ const headlineChars = [...copy.headline];
       >
         <span class="entry-chart-rings" aria-hidden="true"></span>
         <span class="entry-avatar-frame">
-          <img src="/assets/avatar.jpeg" alt={shared.avatarAlt} />
+          <img src={avatarSrc} alt={shared.avatarAlt} />
         </span>
       </button>
       <div class="entry-avatar-caption entry-chart-caption">
@@ -49,7 +51,7 @@ const headlineChars = [...copy.headline];
       {copy.entries.map((entry, index) => (
         <a
           class="entry-card entry-chart-node"
-          href={entry.href}
+          href={withBasePath(entry.href)}
           style={`--node-index: ${index};`}
           aria-disabled={entry.href === "#" ? "true" : undefined}
           data-entry-disabled={entry.href === "#" ? "true" : undefined}

@@ -3,7 +3,18 @@ import siteText from "../content/siteText";
 const initialDataElement = document.getElementById("maimai-initial-data");
 const dashboard = document.querySelector("[data-maimai-dashboard]");
 const emptyState = document.querySelector("[data-maimai-empty]");
-const defaultCover = "/assets/maimai/default-cover.png";
+const BASE_PATH = import.meta.env.BASE_URL || "/";
+const withBasePath = (path) => {
+  if (!path || path === "#" || /^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(path)) {
+    return path;
+  }
+
+  const normalizedBase = BASE_PATH.endsWith("/") ? BASE_PATH : `${BASE_PATH}/`;
+  const cleanedPath = path.startsWith("/") ? path.slice(1) : path;
+
+  return `${normalizedBase}${cleanedPath}`;
+};
+const defaultCover = withBasePath("/assets/maimai/default-cover.png");
 const text = siteText.maimai;
 
 const readInitialData = () => {
@@ -106,7 +117,7 @@ const renderCard = (item) => {
       <div class="b50-rank">#${escapeHtml(item.rankIndex)}</div>
       <img
         class="maimai-cover"
-        src="${escapeHtml(item.coverUrl || defaultCover)}"
+        src="${escapeHtml(withBasePath(item.coverUrl || defaultCover))}"
         alt="${escapeHtml(item.title)} ${escapeHtml(text.b50.coverAltSuffix)}"
         loading="lazy"
         decoding="async"

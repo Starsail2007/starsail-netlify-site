@@ -1,9 +1,11 @@
 ---
 import ThemeToggle from "../ThemeToggle.astro";
+import { withBasePath } from "../../lib/basePath";
 
 const { text } = Astro.props;
 const headlineChars = [...text.hero.headline];
 const modalId = "entry-original-avatar-modal";
+const avatarSrc = withBasePath("/assets/avatar.jpeg");
 ---
 
 <section class="original-stage" aria-label={text.stageAriaLabel} data-interactive-root>
@@ -17,7 +19,7 @@ const modalId = "entry-original-avatar-modal";
           aria-label={text.header.avatarOpenAriaLabel}
           data-entry-avatar-open={modalId}
         >
-          <img src="/assets/avatar.jpeg" alt={text.header.avatarAlt} />
+          <img src={avatarSrc} alt={text.header.avatarAlt} />
         </button>
         <div class="original-credit">
           <span>{text.header.creditLabel}</span>
@@ -43,7 +45,7 @@ const modalId = "entry-original-avatar-modal";
       {text.options.items.map((item, index) => (
         <a
           class="original-option"
-          href={item.href}
+          href={withBasePath(item.href)}
           style={`--option-index: ${index};`}
           aria-disabled={item.href === "#" ? "true" : undefined}
           data-entry-disabled={item.href === "#" ? "true" : undefined}
@@ -93,7 +95,7 @@ const modalId = "entry-original-avatar-modal";
           <span></span>
         </div>
         <div class="original-avatar-large">
-          <img src="/assets/avatar.jpeg" alt={text.avatarModal.avatarAlt} />
+          <img src={avatarSrc} alt={text.avatarModal.avatarAlt} />
         </div>
       </div>
       <div class="original-profile-main">

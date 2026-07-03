@@ -13,9 +13,10 @@ const PRE_MATCH_WINDOW = 30 * 60 * 1_000;
 const POST_KICKOFF_WINDOW = 150 * 60 * 1_000;
 const GOAL_VISIBLE_MS = 2_400;
 const DATA_STALE_GRACE_MS = 2 * 60 * 1_000;
+const BASE_PATH = import.meta.env.BASE_URL || "/";
 const REPOSITORY_DATA_ENDPOINT = "https://raw.githubusercontent.com/Starsail2007/starsail-netlify-site/worldcup-data/public/data/worldcup-live.json";
-const STATIC_DATA_ENDPOINT = "/data/worldcup-live.json";
-const NETLIFY_FUNCTION_ENDPOINT = "/.netlify/functions/worldcup-live";
+const STATIC_DATA_ENDPOINT = withBasePath("/data/worldcup-live.json");
+const NETLIFY_FUNCTION_ENDPOINT = withBasePath("/.netlify/functions/worldcup-live");
 export const DATA_ENDPOINT = REPOSITORY_DATA_ENDPOINT;
 export const DATA_ENDPOINTS = buildDataEndpoints();
 const worldcupText = siteText.worldcup;
@@ -1019,6 +1020,17 @@ function buildDataEndpoints() {
   }
 
   return [REPOSITORY_DATA_ENDPOINT, STATIC_DATA_ENDPOINT, NETLIFY_FUNCTION_ENDPOINT];
+}
+
+function withBasePath(path) {
+  if (!path || path === "#" || /^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(path)) {
+    return path;
+  }
+
+  const normalizedBase = BASE_PATH.endsWith("/") ? BASE_PATH : `${BASE_PATH}/`;
+  const cleanedPath = path.startsWith("/") ? path.slice(1) : path;
+
+  return `${normalizedBase}${cleanedPath}`;
 }
 
 function withCacheBust(endpoint) {
@@ -2428,7 +2440,7 @@ function timelineAnchorId(match) {
 }
 
 function timelineMatchHref(match) {
-  return `/worldcup/moments/#${timelineAnchorId(match)}`;
+  return withBasePath(`/worldcup/moments/#${timelineAnchorId(match)}`);
 }
 
 function safeDomId(value) {

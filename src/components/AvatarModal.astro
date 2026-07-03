@@ -1,7 +1,9 @@
 ---
 import siteText from "../content/siteText";
+import { withBasePath } from "../lib/basePath";
 
 const text = siteText.home.avatarModal;
+const avatarSrc = withBasePath("/assets/avatar.jpeg");
 ---
 
 <div
@@ -17,7 +19,7 @@ const text = siteText.home.avatarModal;
   </button>
   <div class="avatar-card">
     <div class="avatar-large">
-      <img src="/assets/avatar.jpeg" alt={text.avatarAlt} />
+      <img src={avatarSrc} alt={text.avatarAlt} />
     </div>
     <div class="avatar-modal-copy">
       <h2 id="avatar-modal-title">{text.title}</h2>

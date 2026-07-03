@@ -93,4 +93,6 @@ pnpm build
 
 生成的静态文件位于 `dist/`，由 Netlify 发布。
 
+GitHub Pages 备用部署由 `.github/workflows/github-pages.yml` 负责。它同样构建 `dist/`，但会设置 `BASE_PATH=/starsail-netlify-site`，让静态资源和站内链接适配 GitHub Pages 的项目子路径。GitHub Pages 不能运行 Netlify Functions，因此需要依赖静态 JSON、GitHub Actions 定时数据或前端可直接访问的公开数据源。
+
 `pnpm-workspace.yaml` 记录了 Astro 构建链中允许执行安装脚本的依赖，便于本地和 Netlify 构建环境保持一致。

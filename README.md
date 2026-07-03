@@ -1,6 +1,12 @@
 # Starsail Netlify Site
 
-这是星帆 Starsail 的个人静态网站项目，当前公网地址是 `https://starsail.netlify.app/`。
+这是星帆 Starsail 的个人静态网站项目，当前 Netlify 公网地址是 `https://starsail.netlify.app/`。
+
+如果 Netlify 因额度或部署权限暂时不可用，可以启用 GitHub Pages 静态备用地址：
+
+```text
+https://starsail2007.github.io/starsail-netlify-site/
+```
 
 这个仓库已经从单页 HTML 演示整理成轻量 Astro 项目：页面、组件、样式、脚本、资源和说明文档分开存放，方便之后继续设计、扩展、重构或交给新的 Codex 线程接着做。
 
@@ -69,6 +75,28 @@ Publish directory: dist
 ```
 
 `netlify.toml` 已经写好这些配置。
+
+### GitHub Pages 静态备用部署
+
+仓库内的 `.github/workflows/github-pages.yml` 可以把同一套 Astro 静态站发布到 GitHub Pages。这个部署不支持 Netlify Functions，但首页、世界杯页、maimai 静态快照页都可以正常构建和访问。
+
+GitHub Pages 构建时会使用：
+
+```text
+SITE_URL=https://starsail2007.github.io/starsail-netlify-site
+BASE_PATH=/starsail-netlify-site
+PUBLIC_MAIMAI_REMOTE_REFRESH=false
+```
+
+其中 `BASE_PATH` 用来让 `/assets/...`、`/worldcup/`、`/maimai/` 这类站内路径在 GitHub Pages 子目录下也能正确解析。
+
+启用方式：
+
+1. 进入 GitHub 仓库 `Settings > Pages`
+2. 在 `Build and deployment` 里把 Source 设为 `GitHub Actions`
+3. 回到 `Actions`，手动运行 `Deploy static site to GitHub Pages`，或等待下一次推送 `main`
+
+世界杯实时赛事大屏在 GitHub Pages 上优先读取 `worldcup-data` 分支的静态 JSON，因此仍可配合 `.github/workflows/worldcup-live-data.yml` 自动更新数据。
 
 世界杯实时赛事大屏使用 Netlify Function 读取服务端环境变量。上线前在 Netlify 项目里配置：
 

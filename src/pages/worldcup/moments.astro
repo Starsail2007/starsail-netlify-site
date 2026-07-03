@@ -1,10 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import siteText from "../../content/siteText";
+import { withBasePath } from "../../lib/basePath";
 import "../../styles/worldcup.css";
 
 const text = siteText.worldcup;
 const pageText = text.momentsPage;
+const worldcupHref = withBasePath("/worldcup/");
 ---
 
 <BaseLayout
@@ -14,7 +16,7 @@ const pageText = text.momentsPage;
 >
   <section class="worldcup-page worldcup-moments-page" data-worldcup-moments-root aria-label={pageText.pageAriaLabel}>
     <header class="worldcup-topbar">
-      <a class="worldcup-back" href="/worldcup/">{pageText.backLink}</a>
+      <a class="worldcup-back" href={worldcupHref}>{pageText.backLink}</a>
       <div class="worldcup-live-pill" data-source-pill>{pageText.sourceInitial}</div>
     </header>
 

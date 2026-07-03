@@ -140,6 +140,12 @@ worldcup:
       centerButton: "回到当前赛程"
       centerButtonAriaLabel: "将赛程滚轮回到正在开球或最近结束的比赛"
       wheelAriaLabel: "世界杯赛程滚轮"
+      dateFilter:
+        toggleAriaLabel: "按日期筛选世界杯赛程"
+        allLabel: "全部日期"
+        allOptionLabel: "全部"
+        countTemplate: "{count} 场"
+        emptyLabel: "暂无赛程"
     groupStage:
       title: "小组赛阶段"
       subtitle: "分组赛程与积分"

@@ -1,12 +1,16 @@
 ---
 import siteText from "../../content/siteText";
+import { withBasePath } from "../../lib/basePath";
 
 const text = siteText.worldcup;
+const homeHref = withBasePath("/");
+const heroLogoSrc = withBasePath(text.hero.logoSrc);
+const championLogoSrc = withBasePath(text.champion.logoSrc);
 ---
 
 <section class="worldcup-page" data-worldcup-root aria-label={text.pageAriaLabel}>
   <header class="worldcup-topbar">
-    <a class="worldcup-back worldcup-home-button" href="/" aria-label={text.topbar.backAriaLabel}>
+    <a class="worldcup-back worldcup-home-button" href={homeHref} aria-label={text.topbar.backAriaLabel}>
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M3 10.8 12 3l9 7.8" />
         <path d="M5.5 9.4V21h13V9.4" />
@@ -21,7 +25,7 @@ const text = siteText.worldcup;
         <div class="worldcup-hero-title-row">
           <h1 id="worldcup-title">{text.hero.title}</h1>
           <div class="worldcup-trophy-mark" aria-hidden="true">
-            <img class="worldcup-trophy-logo" src={text.hero.logoSrc} alt={text.hero.logoAlt} loading="lazy" />
+            <img class="worldcup-trophy-logo" src={heroLogoSrc} alt={text.hero.logoAlt} loading="lazy" />
           </div>
         </div>
       </div>
@@ -55,9 +59,23 @@ const text = siteText.worldcup;
                   <h2 id="schedule-title">{text.panels.schedule.title}</h2>
                   <span>{text.panels.schedule.subtitle}</span>
                 </div>
-                <button class="schedule-center-button" type="button" data-schedule-center aria-label={text.panels.schedule.centerButtonAriaLabel}>
-                  {text.panels.schedule.centerButton}
-                </button>
+                <div class="schedule-heading-actions">
+                  <div class="schedule-date-filter" data-schedule-date-filter>
+                    <button class="schedule-date-button" type="button" data-schedule-date-toggle aria-haspopup="listbox" aria-expanded="false" aria-label={text.panels.schedule.dateFilter.toggleAriaLabel}>
+                      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M7 2.8v3.4" />
+                        <path d="M17 2.8v3.4" />
+                        <path d="M4.6 8.4h14.8" />
+                        <path d="M5.4 4.8h13.2c1 0 1.8.8 1.8 1.8v12.1c0 1-.8 1.8-1.8 1.8H5.4c-1 0-1.8-.8-1.8-1.8V6.6c0-1 .8-1.8 1.8-1.8Z" />
+                      </svg>
+                      <span data-schedule-date-label>{text.panels.schedule.dateFilter.allLabel}</span>
+                    </button>
+                    <div class="schedule-date-menu" data-schedule-date-menu role="listbox" hidden></div>
+                  </div>
+                  <button class="schedule-center-button" type="button" data-schedule-center aria-label={text.panels.schedule.centerButtonAriaLabel}>
+                    {text.panels.schedule.centerButton}
+                  </button>
+                </div>
               </div>
               <div class="schedule-wheel-stage" data-schedule-wheel-stage>
                 <div class="schedule-flag-pane schedule-flag-pane-home" aria-hidden="true"></div>
@@ -162,7 +180,7 @@ const text = siteText.worldcup;
       <span></span>
     </div>
     <div class="champion-content">
-      <img src={text.champion.logoSrc} alt={text.champion.logoAlt} loading="lazy" />
+      <img src={championLogoSrc} alt={text.champion.logoAlt} loading="lazy" />
       <p data-champion-kicker>{text.champion.kicker}</p>
       <h2 data-champion-title>{text.champion.titleInitial}</h2>
       <strong data-champion-badge hidden>{text.champion.demoBadge}</strong>

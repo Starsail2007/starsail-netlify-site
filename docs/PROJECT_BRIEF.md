@@ -13,6 +13,7 @@
 - 文字动效模式：Calm / Float / Shine / Focus
 - 头像交互：点击右上角头像后弹出放大展示
 - 公网地址：`https://starsail.netlify.app/`
+- GitHub Pages 静态备用地址：`https://starsail2007.github.io/starsail-netlify-site/`
 
 ## 为什么整理成这个结构
 

@@ -1,6 +1,9 @@
 ---
+import { withBasePath } from "../../lib/basePath";
+
 const { id, copy, shared } = Astro.props;
 const modalClass = `entry-avatar-modal entry-avatar-modal-${copy.modalStyle}`;
+const avatarSrc = withBasePath("/assets/avatar.jpeg");
 ---
 
 <div
@@ -31,7 +34,7 @@ const modalClass = `entry-avatar-modal entry-avatar-modal-${copy.modalStyle}`;
       <span></span>
     </div>
     <div class="entry-avatar-large">
-      <img src="/assets/avatar.jpeg" alt={shared.avatarLargeAlt} />
+      <img src={avatarSrc} alt={shared.avatarLargeAlt} />
     </div>
     <div class="entry-modal-copy">
       <p class="entry-modal-kicker">{copy.modalTitle}</p>

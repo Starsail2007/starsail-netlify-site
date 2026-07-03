@@ -1,8 +1,10 @@
 ---
 import ThemeToggle from "./ThemeToggle.astro";
 import siteText from "../content/siteText";
+import { withBasePath } from "../lib/basePath";
 
 const text = siteText.home.header;
+const avatarSrc = withBasePath("/assets/avatar.jpeg");
 ---
 
 <header class="site-header">
@@ -19,7 +21,7 @@ const text = siteText.home.header;
         aria-label={text.avatarOpenAriaLabel}
         aria-controls="avatar-modal"
       >
-        <img src="/assets/avatar.jpeg" alt={text.avatarAlt} />
+        <img src={avatarSrc} alt={text.avatarAlt} />
       </a>
       <div class="credit">
         <span>{text.creditLabel}</span>

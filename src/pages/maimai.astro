@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
 import MaimaiDashboard from "../components/maimai/MaimaiDashboard.astro";
 import siteText from "../content/siteText";
+import { withBasePath } from "../lib/basePath";
 import latestSnapshot from "../data/maimai/latest.snapshot.json";
 import historySnapshots from "../data/maimai/history.snapshots.json";
 import "../styles/maimai.css";
@@ -16,6 +17,7 @@ const history = historySnapshots.map((snapshot) => ({
 const initialDataJson = JSON.stringify({ snapshot: latestSnapshot, history }).replaceAll("<", "\\u003c");
 const remoteRefresh = import.meta.env.PUBLIC_MAIMAI_REMOTE_REFRESH === "true";
 const text = siteText.maimai;
+const homeHref = withBasePath("/");
 ---
 
 <BaseLayout
@@ -25,7 +27,7 @@ const text = siteText.maimai;
 >
   <div class="maimai-page">
     <header class="maimai-topbar" aria-label={text.pageToolsAriaLabel}>
-      <a class="maimai-home-button" href="/" aria-label={text.topbar.homeAriaLabel}>
+      <a class="maimai-home-button" href={homeHref} aria-label={text.topbar.homeAriaLabel}>
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="M3 10.8 12 3l9 7.8" />
           <path d="M5.5 9.4V21h13V9.4" />
