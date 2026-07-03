@@ -4950,8 +4950,8 @@
     },
     {
       "id": "88",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -10432,8 +10432,8 @@
     },
     {
       "id": "88",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -10965,34 +10965,6 @@
   ],
   "upcomingMatches": [
     {
-      "id": "88",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Dallas (Arlington)",
-      "kickoffTime": "2026-07-03T18:00:00.000Z",
-      "home": {
-        "name": "Australia",
-        "code": "A",
-        "iso2": "au",
-        "logo": "https://flagcdn.com/au.svg",
-        "flagUrl": "https://flagcdn.com/au.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Egypt",
-        "code": "E",
-        "iso2": "eg",
-        "logo": "https://flagcdn.com/eg.svg",
-        "flagUrl": "https://flagcdn.com/eg.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
       "id": "86",
       "status": "NS",
       "statusText": "未开始",
@@ -11461,6 +11433,34 @@
       "away": {
         "name": "L102",
         "code": "L102",
+        "iso2": "",
+        "logo": "",
+        "flagUrl": "",
+        "score": null
+      },
+      "events": []
+    },
+    {
+      "id": "104",
+      "status": "NS",
+      "statusText": "未开始",
+      "minute": null,
+      "stage": "Final",
+      "round": "Final",
+      "group": "",
+      "venue": "New York/New Jersey (East Rutherford)",
+      "kickoffTime": "2026-07-19T19:00:00.000Z",
+      "home": {
+        "name": "W101",
+        "code": "W101",
+        "iso2": "",
+        "logo": "",
+        "flagUrl": "",
+        "score": null
+      },
+      "away": {
+        "name": "W102",
+        "code": "W102",
         "iso2": "",
         "logo": "",
         "flagUrl": "",
@@ -17516,21 +17516,21 @@
   "leagueId": "1",
   "season": "2026",
   "polling": {
-    "mode": "near-match",
-    "label": "near-match",
+    "mode": "match-window",
+    "label": "match-window",
     "due": false,
-    "intervalSeconds": 3600,
-    "nextFetchAt": "2026-07-03T16:45:25.562Z",
-    "generatedAt": "2026-07-03T15:45:25.562Z",
+    "intervalSeconds": 300,
+    "nextFetchAt": "2026-07-03T20:26:32.875Z",
+    "generatedAt": "2026-07-03T20:21:32.875Z",
     "nextMatch": {
       "id": "88",
       "stage": "Round of 32",
       "kickoffTime": "2026-07-03T18:00:00.000Z",
       "home": "Australia",
       "away": "Egypt",
-      "status": "NS"
+      "status": "FT"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-03T15:45:25.562Z"
+  "lastUpdated": "2026-07-03T20:21:32.875Z"
 }
