@@ -24,12 +24,13 @@ const text = siteText.maimai;
 <div class="maimai-dashboard" data-maimai-dashboard data-maimai-remote-refresh={remoteRefresh ? "true" : "false"}>
   <PlayerHero snapshot={snapshot} />
 
+  <B50Grid title={text.sections.b35.title} subtitle={text.sections.b35.subtitle} items={snapshot.b35} target="b35" />
+  <B50Grid title={text.sections.b15.title} subtitle={text.sections.b15.subtitle} items={snapshot.b15} target="b15" />
+
   <div class="maimai-main-grid">
     <RatingTrend points={history} />
     <UpdateTimeline points={history} />
   </div>
 
-  <B50Grid title={text.sections.b35.title} subtitle={text.sections.b35.subtitle} items={snapshot.b35} target="b35" />
-  <B50Grid title={text.sections.b15.title} subtitle={text.sections.b15.subtitle} items={snapshot.b15} target="b15" />
   <SuggestionPanel nearRankUp={nearRankUp} borderItems={borderItems} practiceItems={practiceItems} />
 </div>

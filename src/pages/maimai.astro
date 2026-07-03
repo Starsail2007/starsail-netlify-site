@@ -24,9 +24,16 @@ const text = siteText.maimai;
   bodyClass="maimai-body"
 >
   <div class="maimai-page">
-    <div class="maimai-page-tools" aria-label={text.pageToolsAriaLabel}>
+    <header class="maimai-topbar" aria-label={text.pageToolsAriaLabel}>
+      <a class="maimai-home-button" href="/" aria-label={text.topbar.homeAriaLabel}>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M3 10.8 12 3l9 7.8" />
+          <path d="M5.5 9.4V21h13V9.4" />
+          <path d="M9.5 21v-6h5v6" />
+        </svg>
+      </a>
       <ThemeToggle />
-    </div>
+    </header>
     <MaimaiDashboard snapshot={latestSnapshot} history={history} remoteRefresh={remoteRefresh} />
     <div class="maimai-empty-state" data-maimai-empty hidden>
       <strong>{text.emptyState.title}</strong>

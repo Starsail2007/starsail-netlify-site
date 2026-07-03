@@ -671,9 +671,9 @@ html[data-theme="light"] .original-changelog-card {
 
 .original-avatar-motto {
   color: var(--original-fg);
-  font-size: clamp(16px, 3.6vw, 20px);
-  line-height: 1.6;
-  font-weight: 650;
+  font-size: 17px;
+  line-height: 1.55;
+  font-weight: 600;
 }
 
 .original-avatar-copy p:last-child {
