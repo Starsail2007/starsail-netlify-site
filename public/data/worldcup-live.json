@@ -5294,19 +5294,19 @@
       "venue": "Atlanta",
       "kickoffTime": "2026-07-07T16:00:00.000Z",
       "home": {
-        "name": "W86",
-        "code": "W86",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Argentina",
+        "code": "A",
+        "iso2": "ar",
+        "logo": "https://flagcdn.com/ar.svg",
+        "flagUrl": "https://flagcdn.com/ar.svg",
         "score": null
       },
       "away": {
-        "name": "W88",
-        "code": "W88",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Egypt",
+        "code": "E",
+        "iso2": "eg",
+        "logo": "https://flagcdn.com/eg.svg",
+        "flagUrl": "https://flagcdn.com/eg.svg",
         "score": null
       },
       "events": []
@@ -5330,11 +5330,11 @@
         "score": null
       },
       "away": {
-        "name": "W87",
-        "code": "W87",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Colombia",
+        "code": "C",
+        "iso2": "co",
+        "logo": "https://flagcdn.com/co.svg",
+        "flagUrl": "https://flagcdn.com/co.svg",
         "score": null
       },
       "events": []
@@ -10859,19 +10859,19 @@
       "venue": "Atlanta",
       "kickoffTime": "2026-07-07T16:00:00.000Z",
       "home": {
-        "name": "W86",
-        "code": "W86",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Argentina",
+        "code": "A",
+        "iso2": "ar",
+        "logo": "https://flagcdn.com/ar.svg",
+        "flagUrl": "https://flagcdn.com/ar.svg",
         "score": null
       },
       "away": {
-        "name": "W88",
-        "code": "W88",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Egypt",
+        "code": "E",
+        "iso2": "eg",
+        "logo": "https://flagcdn.com/eg.svg",
+        "flagUrl": "https://flagcdn.com/eg.svg",
         "score": null
       },
       "events": []
@@ -10895,11 +10895,11 @@
         "score": null
       },
       "away": {
-        "name": "W87",
-        "code": "W87",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Colombia",
+        "code": "C",
+        "iso2": "co",
+        "logo": "https://flagcdn.com/co.svg",
+        "flagUrl": "https://flagcdn.com/co.svg",
         "score": null
       },
       "events": []
@@ -11309,19 +11309,19 @@
       "venue": "Atlanta",
       "kickoffTime": "2026-07-07T16:00:00.000Z",
       "home": {
-        "name": "W86",
-        "code": "W86",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Argentina",
+        "code": "A",
+        "iso2": "ar",
+        "logo": "https://flagcdn.com/ar.svg",
+        "flagUrl": "https://flagcdn.com/ar.svg",
         "score": null
       },
       "away": {
-        "name": "W88",
-        "code": "W88",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Egypt",
+        "code": "E",
+        "iso2": "eg",
+        "logo": "https://flagcdn.com/eg.svg",
+        "flagUrl": "https://flagcdn.com/eg.svg",
         "score": null
       },
       "events": []
@@ -11345,11 +11345,11 @@
         "score": null
       },
       "away": {
-        "name": "W87",
-        "code": "W87",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Colombia",
+        "code": "C",
+        "iso2": "co",
+        "logo": "https://flagcdn.com/co.svg",
+        "flagUrl": "https://flagcdn.com/co.svg",
         "score": null
       },
       "events": []
@@ -17464,8 +17464,8 @@
     {
       "id": "95",
       "round": "Round of 16",
-      "home": "W86",
-      "away": "W88",
+      "home": "Argentina",
+      "away": "Egypt",
       "homeScore": null,
       "awayScore": null,
       "winner": "",
@@ -17479,7 +17479,7 @@
       "id": "96",
       "round": "Round of 16",
       "home": "Switzerland",
-      "away": "W87",
+      "away": "Colombia",
       "homeScore": null,
       "awayScore": null,
       "winner": "",
@@ -17630,8 +17630,8 @@
     "label": "near-match",
     "due": false,
     "intervalSeconds": 3600,
-    "nextFetchAt": "2026-07-04T10:10:35.624Z",
-    "generatedAt": "2026-07-04T09:10:35.624Z",
+    "nextFetchAt": "2026-07-04T13:50:03.342Z",
+    "generatedAt": "2026-07-04T12:50:03.342Z",
     "nextMatch": {
       "id": "90",
       "stage": "Round of 16",
@@ -17642,5 +17642,5 @@
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-04T09:10:35.624Z"
+  "lastUpdated": "2026-07-04T12:50:03.342Z"
 }
