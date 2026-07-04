@@ -5176,8 +5176,8 @@
     },
     {
       "id": "89",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -5190,7 +5190,7 @@
         "iso2": "py",
         "logo": "https://flagcdn.com/py.svg",
         "flagUrl": "https://flagcdn.com/py.svg",
-        "score": null
+        "score": 0
       },
       "away": {
         "name": "France",
@@ -5198,9 +5198,20 @@
         "iso2": "fr",
         "logo": "https://flagcdn.com/fr.svg",
         "flagUrl": "https://flagcdn.com/fr.svg",
-        "score": null
+        "score": 1
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "70",
+          "minuteSort": 70,
+          "team": "France",
+          "teamName": "France",
+          "player": "Kylian Mbappé",
+          "penalty": true,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "91",
@@ -10772,8 +10783,8 @@
     },
     {
       "id": "89",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -10786,7 +10797,7 @@
         "iso2": "py",
         "logo": "https://flagcdn.com/py.svg",
         "flagUrl": "https://flagcdn.com/py.svg",
-        "score": null
+        "score": 0
       },
       "away": {
         "name": "France",
@@ -10794,9 +10805,20 @@
         "iso2": "fr",
         "logo": "https://flagcdn.com/fr.svg",
         "flagUrl": "https://flagcdn.com/fr.svg",
-        "score": null
+        "score": 1
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "70",
+          "minuteSort": 70,
+          "team": "France",
+          "teamName": "France",
+          "player": "Kylian Mbappé",
+          "penalty": true,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "91",
@@ -11193,34 +11215,6 @@
   ],
   "upcomingMatches": [
     {
-      "id": "89",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 16",
-      "round": "Round of 16",
-      "group": "",
-      "venue": "Philadelphia",
-      "kickoffTime": "2026-07-04T21:00:00.000Z",
-      "home": {
-        "name": "Paraguay",
-        "code": "P",
-        "iso2": "py",
-        "logo": "https://flagcdn.com/py.svg",
-        "flagUrl": "https://flagcdn.com/py.svg",
-        "score": null
-      },
-      "away": {
-        "name": "France",
-        "code": "F",
-        "iso2": "fr",
-        "logo": "https://flagcdn.com/fr.svg",
-        "flagUrl": "https://flagcdn.com/fr.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
       "id": "91",
       "status": "NS",
       "statusText": "未开始",
@@ -11614,6 +11608,45 @@
     }
   ],
   "timelineMatches": [
+    {
+      "id": "89",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Round of 16",
+      "round": "Round of 16",
+      "group": "",
+      "venue": "Philadelphia",
+      "kickoffTime": "2026-07-04T21:00:00.000Z",
+      "home": {
+        "name": "Paraguay",
+        "code": "P",
+        "iso2": "py",
+        "logo": "https://flagcdn.com/py.svg",
+        "flagUrl": "https://flagcdn.com/py.svg",
+        "score": 0
+      },
+      "away": {
+        "name": "France",
+        "code": "F",
+        "iso2": "fr",
+        "logo": "https://flagcdn.com/fr.svg",
+        "flagUrl": "https://flagcdn.com/fr.svg",
+        "score": 1
+      },
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "70",
+          "minuteSort": 70,
+          "team": "France",
+          "teamName": "France",
+          "player": "Kylian Mbappé",
+          "penalty": true,
+          "ownGoal": false
+        }
+      ]
+    },
     {
       "id": "90",
       "status": "FT",
@@ -12131,65 +12164,6 @@
           "teamName": "Belgium",
           "player": "Youri Tielemans",
           "penalty": true,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "80",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Atlanta",
-      "kickoffTime": "2026-07-01T16:00:00.000Z",
-      "home": {
-        "name": "England",
-        "code": "E",
-        "iso2": "gb-eng",
-        "logo": "https://flagcdn.com/gb-eng.svg",
-        "flagUrl": "https://flagcdn.com/gb-eng.svg",
-        "score": 2
-      },
-      "away": {
-        "name": "DR Congo",
-        "code": "DC",
-        "iso2": "cd",
-        "logo": "https://flagcdn.com/cd.svg",
-        "flagUrl": "https://flagcdn.com/cd.svg",
-        "score": 1
-      },
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "7",
-          "minuteSort": 7,
-          "team": "DR Congo",
-          "teamName": "DR Congo",
-          "player": "Brian Cipenga",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "75",
-          "minuteSort": 75,
-          "team": "England",
-          "teamName": "England",
-          "player": "Harry Kane",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "86",
-          "minuteSort": 86,
-          "team": "England",
-          "teamName": "England",
-          "player": "Harry Kane",
-          "penalty": false,
           "ownGoal": false
         }
       ]
@@ -17426,10 +17400,10 @@
       "round": "Round of 16",
       "home": "Paraguay",
       "away": "France",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 0,
+      "awayScore": 1,
+      "winner": "France",
+      "status": "FT",
       "nextMatchId": "97",
       "nextMatchIds": [
         "97"
@@ -17674,17 +17648,17 @@
     "label": "near-match",
     "due": false,
     "intervalSeconds": 3600,
-    "nextFetchAt": "2026-07-04T20:30:00.000Z",
-    "generatedAt": "2026-07-04T20:17:05.563Z",
+    "nextFetchAt": "2026-07-05T00:46:27.452Z",
+    "generatedAt": "2026-07-04T23:46:27.452Z",
     "nextMatch": {
-      "id": "89",
+      "id": "91",
       "stage": "Round of 16",
-      "kickoffTime": "2026-07-04T21:00:00.000Z",
-      "home": "Paraguay",
-      "away": "France",
+      "kickoffTime": "2026-07-05T20:00:00.000Z",
+      "home": "Brazil",
+      "away": "Norway",
       "status": "NS"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-04T20:17:05.563Z"
+  "lastUpdated": "2026-07-04T23:46:27.452Z"
 }
