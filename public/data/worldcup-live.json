@@ -5013,7 +5013,7 @@
         "iso2": "ar",
         "logo": "https://flagcdn.com/ar.svg",
         "flagUrl": "https://flagcdn.com/ar.svg",
-        "score": null
+        "score": 3
       },
       "away": {
         "name": "Cape Verde",
@@ -5021,14 +5021,65 @@
         "iso2": "cv",
         "logo": "https://flagcdn.com/cv.svg",
         "flagUrl": "https://flagcdn.com/cv.svg",
-        "score": null
+        "score": 2
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "29",
+          "minuteSort": 29,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lionel Messi",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "59",
+          "minuteSort": 59,
+          "team": "Cape Verde",
+          "teamName": "Cape Verde",
+          "player": "Deroy Duarte",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "92",
+          "minuteSort": 92,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lisandro Martínez",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "103",
+          "minuteSort": 103,
+          "team": "Cape Verde",
+          "teamName": "Cape Verde",
+          "player": "Sidny Lopes Cabral",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "111",
+          "minuteSort": 111,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Diney Borges",
+          "penalty": false,
+          "ownGoal": true
+        }
+      ]
     },
     {
       "id": "87",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -5041,7 +5092,7 @@
         "iso2": "co",
         "logo": "https://flagcdn.com/co.svg",
         "flagUrl": "https://flagcdn.com/co.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Ghana",
@@ -5049,9 +5100,20 @@
         "iso2": "gh",
         "logo": "https://flagcdn.com/gh.svg",
         "flagUrl": "https://flagcdn.com/gh.svg",
-        "score": null
+        "score": 0
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "14",
+          "minuteSort": 14,
+          "team": "Colombia",
+          "teamName": "Colombia",
+          "player": "Jhon Arias",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "90",
@@ -10516,7 +10578,7 @@
         "iso2": "ar",
         "logo": "https://flagcdn.com/ar.svg",
         "flagUrl": "https://flagcdn.com/ar.svg",
-        "score": null
+        "score": 3
       },
       "away": {
         "name": "Cape Verde",
@@ -10524,14 +10586,65 @@
         "iso2": "cv",
         "logo": "https://flagcdn.com/cv.svg",
         "flagUrl": "https://flagcdn.com/cv.svg",
-        "score": null
+        "score": 2
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "29",
+          "minuteSort": 29,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lionel Messi",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "59",
+          "minuteSort": 59,
+          "team": "Cape Verde",
+          "teamName": "Cape Verde",
+          "player": "Deroy Duarte",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "92",
+          "minuteSort": 92,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lisandro Martínez",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "103",
+          "minuteSort": 103,
+          "team": "Cape Verde",
+          "teamName": "Cape Verde",
+          "player": "Sidny Lopes Cabral",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "111",
+          "minuteSort": 111,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Diney Borges",
+          "penalty": false,
+          "ownGoal": true
+        }
+      ]
     },
     {
       "id": "87",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -10544,7 +10657,7 @@
         "iso2": "co",
         "logo": "https://flagcdn.com/co.svg",
         "flagUrl": "https://flagcdn.com/co.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Ghana",
@@ -10552,9 +10665,20 @@
         "iso2": "gh",
         "logo": "https://flagcdn.com/gh.svg",
         "flagUrl": "https://flagcdn.com/gh.svg",
-        "score": null
+        "score": 0
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "14",
+          "minuteSort": 14,
+          "team": "Colombia",
+          "teamName": "Colombia",
+          "player": "Jhon Arias",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "90",
@@ -11007,34 +11131,6 @@
   ],
   "upcomingMatches": [
     {
-      "id": "87",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Kansas City",
-      "kickoffTime": "2026-07-04T01:30:00.000Z",
-      "home": {
-        "name": "Colombia",
-        "code": "C",
-        "iso2": "co",
-        "logo": "https://flagcdn.com/co.svg",
-        "flagUrl": "https://flagcdn.com/co.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Ghana",
-        "code": "G",
-        "iso2": "gh",
-        "logo": "https://flagcdn.com/gh.svg",
-        "flagUrl": "https://flagcdn.com/gh.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
       "id": "90",
       "status": "NS",
       "statusText": "未开始",
@@ -11485,6 +11581,124 @@
   ],
   "timelineMatches": [
     {
+      "id": "87",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Round of 32",
+      "round": "Round of 32",
+      "group": "",
+      "venue": "Kansas City",
+      "kickoffTime": "2026-07-04T01:30:00.000Z",
+      "home": {
+        "name": "Colombia",
+        "code": "C",
+        "iso2": "co",
+        "logo": "https://flagcdn.com/co.svg",
+        "flagUrl": "https://flagcdn.com/co.svg",
+        "score": 1
+      },
+      "away": {
+        "name": "Ghana",
+        "code": "G",
+        "iso2": "gh",
+        "logo": "https://flagcdn.com/gh.svg",
+        "flagUrl": "https://flagcdn.com/gh.svg",
+        "score": 0
+      },
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "14",
+          "minuteSort": 14,
+          "team": "Colombia",
+          "teamName": "Colombia",
+          "player": "Jhon Arias",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
+    },
+    {
+      "id": "86",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Round of 32",
+      "round": "Round of 32",
+      "group": "",
+      "venue": "Miami (Miami Gardens)",
+      "kickoffTime": "2026-07-03T22:00:00.000Z",
+      "home": {
+        "name": "Argentina",
+        "code": "A",
+        "iso2": "ar",
+        "logo": "https://flagcdn.com/ar.svg",
+        "flagUrl": "https://flagcdn.com/ar.svg",
+        "score": 3
+      },
+      "away": {
+        "name": "Cape Verde",
+        "code": "CV",
+        "iso2": "cv",
+        "logo": "https://flagcdn.com/cv.svg",
+        "flagUrl": "https://flagcdn.com/cv.svg",
+        "score": 2
+      },
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "29",
+          "minuteSort": 29,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lionel Messi",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "59",
+          "minuteSort": 59,
+          "team": "Cape Verde",
+          "teamName": "Cape Verde",
+          "player": "Deroy Duarte",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "92",
+          "minuteSort": 92,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lisandro Martínez",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "103",
+          "minuteSort": 103,
+          "team": "Cape Verde",
+          "teamName": "Cape Verde",
+          "player": "Sidny Lopes Cabral",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "111",
+          "minuteSort": 111,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Diney Borges",
+          "penalty": false,
+          "ownGoal": true
+        }
+      ]
+    },
+    {
       "id": "88",
       "status": "FT",
       "statusText": "完场",
@@ -11931,124 +12145,6 @@
           "team": "Mexico",
           "teamName": "Mexico",
           "player": "Raúl Jiménez",
-          "penalty": false,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "77",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "New York/New Jersey (East Rutherford)",
-      "kickoffTime": "2026-06-30T21:00:00.000Z",
-      "home": {
-        "name": "France",
-        "code": "F",
-        "iso2": "fr",
-        "logo": "https://flagcdn.com/fr.svg",
-        "flagUrl": "https://flagcdn.com/fr.svg",
-        "score": 3
-      },
-      "away": {
-        "name": "Sweden",
-        "code": "S",
-        "iso2": "se",
-        "logo": "https://flagcdn.com/se.svg",
-        "flagUrl": "https://flagcdn.com/se.svg",
-        "score": 0
-      },
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "45",
-          "minuteSort": 45,
-          "team": "France",
-          "teamName": "France",
-          "player": "Kylian Mbappé",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "53",
-          "minuteSort": 53,
-          "team": "France",
-          "teamName": "France",
-          "player": "Bradley Barcola",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "74",
-          "minuteSort": 74,
-          "team": "France",
-          "teamName": "France",
-          "player": "Kylian Mbappé",
-          "penalty": false,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "78",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Dallas (Arlington)",
-      "kickoffTime": "2026-06-30T17:00:00.000Z",
-      "home": {
-        "name": "Ivory Coast",
-        "code": "IC",
-        "iso2": "ci",
-        "logo": "https://flagcdn.com/ci.svg",
-        "flagUrl": "https://flagcdn.com/ci.svg",
-        "score": 1
-      },
-      "away": {
-        "name": "Norway",
-        "code": "N",
-        "iso2": "no",
-        "logo": "https://flagcdn.com/no.svg",
-        "flagUrl": "https://flagcdn.com/no.svg",
-        "score": 2
-      },
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "39",
-          "minuteSort": 39,
-          "team": "Norway",
-          "teamName": "Norway",
-          "player": "Antonio Nusa",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "74",
-          "minuteSort": 74,
-          "team": "Ivory Coast",
-          "teamName": "Ivory Coast",
-          "player": "Amad Diallo",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "86",
-          "minuteSort": 86,
-          "team": "Norway",
-          "teamName": "Norway",
-          "player": "Erling Haaland",
           "penalty": false,
           "ownGoal": false
         }
@@ -17244,10 +17340,10 @@
       "round": "Round of 32",
       "home": "Argentina",
       "away": "Cape Verde",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 3,
+      "awayScore": 2,
+      "winner": "Argentina",
+      "status": "FT",
       "nextMatchId": "95",
       "nextMatchIds": [
         "95"
@@ -17258,10 +17354,10 @@
       "round": "Round of 32",
       "home": "Colombia",
       "away": "Ghana",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 1,
+      "awayScore": 0,
+      "winner": "Colombia",
+      "status": "FT",
       "nextMatchId": "96",
       "nextMatchIds": [
         "96"
@@ -17530,21 +17626,21 @@
   "leagueId": "1",
   "season": "2026",
   "polling": {
-    "mode": "match-window",
-    "label": "match-window",
+    "mode": "near-match",
+    "label": "near-match",
     "due": false,
-    "intervalSeconds": 300,
-    "nextFetchAt": "2026-07-04T00:21:38.320Z",
-    "generatedAt": "2026-07-04T00:16:38.320Z",
+    "intervalSeconds": 3600,
+    "nextFetchAt": "2026-07-04T10:10:35.624Z",
+    "generatedAt": "2026-07-04T09:10:35.624Z",
     "nextMatch": {
-      "id": "86",
-      "stage": "Round of 32",
-      "kickoffTime": "2026-07-03T22:00:00.000Z",
-      "home": "Argentina",
-      "away": "Cape Verde",
-      "status": "FT"
+      "id": "90",
+      "stage": "Round of 16",
+      "kickoffTime": "2026-07-04T17:00:00.000Z",
+      "home": "Canada",
+      "away": "Morocco",
+      "status": "NS"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-04T00:16:38.320Z"
+  "lastUpdated": "2026-07-04T09:10:35.624Z"
 }
