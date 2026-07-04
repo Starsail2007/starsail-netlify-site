@@ -4964,7 +4964,7 @@
         "iso2": "au",
         "logo": "https://flagcdn.com/au.svg",
         "flagUrl": "https://flagcdn.com/au.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Egypt",
@@ -4972,14 +4972,35 @@
         "iso2": "eg",
         "logo": "https://flagcdn.com/eg.svg",
         "flagUrl": "https://flagcdn.com/eg.svg",
-        "score": null
+        "score": 1
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "13",
+          "minuteSort": 13,
+          "team": "Egypt",
+          "teamName": "Egypt",
+          "player": "Emam Ashour",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "55",
+          "minuteSort": 55,
+          "team": "Australia",
+          "teamName": "Australia",
+          "player": "Mohamed Hany",
+          "penalty": false,
+          "ownGoal": true
+        }
+      ]
     },
     {
       "id": "86",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -10446,7 +10467,7 @@
         "iso2": "au",
         "logo": "https://flagcdn.com/au.svg",
         "flagUrl": "https://flagcdn.com/au.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Egypt",
@@ -10454,14 +10475,35 @@
         "iso2": "eg",
         "logo": "https://flagcdn.com/eg.svg",
         "flagUrl": "https://flagcdn.com/eg.svg",
-        "score": null
+        "score": 1
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "13",
+          "minuteSort": 13,
+          "team": "Egypt",
+          "teamName": "Egypt",
+          "player": "Emam Ashour",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "55",
+          "minuteSort": 55,
+          "team": "Australia",
+          "teamName": "Australia",
+          "player": "Mohamed Hany",
+          "penalty": false,
+          "ownGoal": true
+        }
+      ]
     },
     {
       "id": "86",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -10965,34 +11007,6 @@
   ],
   "upcomingMatches": [
     {
-      "id": "86",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Miami (Miami Gardens)",
-      "kickoffTime": "2026-07-03T22:00:00.000Z",
-      "home": {
-        "name": "Argentina",
-        "code": "A",
-        "iso2": "ar",
-        "logo": "https://flagcdn.com/ar.svg",
-        "flagUrl": "https://flagcdn.com/ar.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Cape Verde",
-        "code": "CV",
-        "iso2": "cv",
-        "logo": "https://flagcdn.com/cv.svg",
-        "flagUrl": "https://flagcdn.com/cv.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
       "id": "87",
       "status": "NS",
       "statusText": "未开始",
@@ -11470,6 +11484,55 @@
     }
   ],
   "timelineMatches": [
+    {
+      "id": "88",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Round of 32",
+      "round": "Round of 32",
+      "group": "",
+      "venue": "Dallas (Arlington)",
+      "kickoffTime": "2026-07-03T18:00:00.000Z",
+      "home": {
+        "name": "Australia",
+        "code": "A",
+        "iso2": "au",
+        "logo": "https://flagcdn.com/au.svg",
+        "flagUrl": "https://flagcdn.com/au.svg",
+        "score": 1
+      },
+      "away": {
+        "name": "Egypt",
+        "code": "E",
+        "iso2": "eg",
+        "logo": "https://flagcdn.com/eg.svg",
+        "flagUrl": "https://flagcdn.com/eg.svg",
+        "score": 1
+      },
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "13",
+          "minuteSort": 13,
+          "team": "Egypt",
+          "teamName": "Egypt",
+          "player": "Emam Ashour",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "55",
+          "minuteSort": 55,
+          "team": "Australia",
+          "teamName": "Australia",
+          "player": "Mohamed Hany",
+          "penalty": false,
+          "ownGoal": true
+        }
+      ]
+    },
     {
       "id": "85",
       "status": "FT",
@@ -11986,55 +12049,6 @@
           "team": "Norway",
           "teamName": "Norway",
           "player": "Erling Haaland",
-          "penalty": false,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "75",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Monterrey (Guadalupe)",
-      "kickoffTime": "2026-06-30T01:00:00.000Z",
-      "home": {
-        "name": "Netherlands",
-        "code": "N",
-        "iso2": "nl",
-        "logo": "https://flagcdn.com/nl.svg",
-        "flagUrl": "https://flagcdn.com/nl.svg",
-        "score": 1
-      },
-      "away": {
-        "name": "Morocco",
-        "code": "M",
-        "iso2": "ma",
-        "logo": "https://flagcdn.com/ma.svg",
-        "flagUrl": "https://flagcdn.com/ma.svg",
-        "score": 1
-      },
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "72",
-          "minuteSort": 72,
-          "team": "Netherlands",
-          "teamName": "Netherlands",
-          "player": "Cody Gakpo",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "90+1",
-          "minuteSort": 91,
-          "team": "Morocco",
-          "teamName": "Morocco",
-          "player": "Issa Diop",
           "penalty": false,
           "ownGoal": false
         }
@@ -17258,10 +17272,10 @@
       "round": "Round of 32",
       "home": "Australia",
       "away": "Egypt",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 1,
+      "awayScore": 1,
+      "winner": "Egypt",
+      "status": "FT",
       "nextMatchId": "95",
       "nextMatchIds": [
         "95"
@@ -17520,17 +17534,17 @@
     "label": "match-window",
     "due": false,
     "intervalSeconds": 300,
-    "nextFetchAt": "2026-07-03T20:26:32.875Z",
-    "generatedAt": "2026-07-03T20:21:32.875Z",
+    "nextFetchAt": "2026-07-04T00:21:38.320Z",
+    "generatedAt": "2026-07-04T00:16:38.320Z",
     "nextMatch": {
-      "id": "88",
+      "id": "86",
       "stage": "Round of 32",
-      "kickoffTime": "2026-07-03T18:00:00.000Z",
-      "home": "Australia",
-      "away": "Egypt",
+      "kickoffTime": "2026-07-03T22:00:00.000Z",
+      "home": "Argentina",
+      "away": "Cape Verde",
       "status": "FT"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-03T20:21:32.875Z"
+  "lastUpdated": "2026-07-04T00:16:38.320Z"
 }
