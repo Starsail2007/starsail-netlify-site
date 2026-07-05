@@ -228,7 +228,7 @@ if (root) {
         return;
       }
 
-      centerScheduleWheel(pageElements);
+      centerScheduleWheel(pageElements, { behavior: "smooth" });
       pageElements.schedule.dataset.hasAutoCentered = "true";
     });
 
@@ -270,7 +270,7 @@ if (root) {
 
       event.preventDefault();
       stopScheduleInertia(pageElements, scheduleDragState);
-      centerScheduleWheel(pageElements);
+      centerScheduleWheel(pageElements, { behavior: "smooth" });
     });
 
     if (readData()) {
@@ -623,7 +623,7 @@ function pickScheduleWheelFocus(matches) {
     .sort((a, b) => matchKickoffTime(b) - matchKickoffTime(a))[0] || matches[0] || null;
 }
 
-function centerScheduleWheel(elements) {
+function centerScheduleWheel(elements, options = {}) {
   const wheel = elements.schedule;
   const focusCard = wheel?.querySelector('[data-focus-match="true"]');
 
@@ -632,12 +632,24 @@ function centerScheduleWheel(elements) {
     return;
   }
 
-  focusCard.scrollIntoView({
-    block: "center",
-    behavior: "smooth"
-  });
+  const targetTop = focusCard.offsetTop + focusCard.offsetHeight / 2 - wheel.clientHeight / 2;
+  const maxTop = Math.max(0, wheel.scrollHeight - wheel.clientHeight);
+  const clampedTop = Math.max(0, Math.min(maxTop, targetTop));
+  const behavior = options.behavior || "auto";
 
-  window.setTimeout(() => updateScheduleWheelState(elements), 360);
+  if (behavior === "smooth") {
+    wheel.scrollTo({
+      top: clampedTop,
+      behavior
+    });
+  } else {
+    const previousScrollBehavior = wheel.style.scrollBehavior;
+    wheel.style.scrollBehavior = "auto";
+    wheel.scrollTop = clampedTop;
+    wheel.style.scrollBehavior = previousScrollBehavior;
+  }
+
+  window.setTimeout(() => updateScheduleWheelState(elements), behavior === "smooth" ? 360 : 40);
 }
 
 function beginScheduleDrag(event, elements, state) {
