@@ -1,11 +1,13 @@
 import {
-  fetchDataPayload,
   formatTime,
   loadPlayerNameData,
-  normalizeClientPayload,
   renderTimeline,
   sourceLabel
 } from "./worldcup-dashboard.js";
+import {
+  fetchDataPayload,
+  normalizeClientPayload
+} from "./worldcup/data-client.js";
 import siteText from "../content/siteText";
 
 const worldcupText = siteText.worldcup;

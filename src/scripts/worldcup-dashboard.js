@@ -4,6 +4,12 @@ import { flagUrl } from "../worldcup/lib/flagUrl.js";
 import { TEAM_ISO2, TEAM_NAME_ZH } from "../worldcup/lib/teamIsoMap.js";
 import { simplifyChinese } from "../worldcup/lib/simplifyChinese.js";
 import siteText from "../content/siteText";
+import playerNameMapUrl from "../worldcup/data/player-name-map.json?url";
+import playerNameOverridesUrl from "../worldcup/data/player-name-overrides.json?url";
+import {
+  fetchDataPayload,
+  normalizeClientPayload
+} from "./worldcup/data-client.js";
 
 const MATCH_WINDOW_INTERVAL = 5 * 60 * 1_000;
 const NEAR_MATCH_INTERVAL = 60 * 60 * 1_000;
@@ -12,13 +18,7 @@ const NEAR_MATCH_WINDOW = 24 * 60 * 60 * 1_000;
 const PRE_MATCH_WINDOW = 30 * 60 * 1_000;
 const POST_KICKOFF_WINDOW = 150 * 60 * 1_000;
 const GOAL_VISIBLE_MS = 2_400;
-const DATA_STALE_GRACE_MS = 2 * 60 * 1_000;
 const BASE_PATH = import.meta.env.BASE_URL || "/";
-const REPOSITORY_DATA_ENDPOINT = "https://raw.githubusercontent.com/Starsail2007/starsail-netlify-site/worldcup-data/public/data/worldcup-live.json";
-const STATIC_DATA_ENDPOINT = withBasePath("/data/worldcup-live.json");
-const NETLIFY_FUNCTION_ENDPOINT = withBasePath("/.netlify/functions/worldcup-live");
-export const DATA_ENDPOINT = REPOSITORY_DATA_ENDPOINT;
-export const DATA_ENDPOINTS = buildDataEndpoints();
 const worldcupText = siteText.worldcup;
 const runtimeText = worldcupText.runtime;
 const STATUS_LABEL = runtimeText.statusLabels;
@@ -1199,49 +1199,6 @@ export async function fetchWorldCupData(currentData, tick, elements) {
   }
 }
 
-export async function fetchDataPayload() {
-  let lastError = null;
-  const stalePayloads = [];
-
-  for (const endpoint of DATA_ENDPOINTS) {
-    try {
-      const response = await fetch(withCacheBust(endpoint), { cache: "no-store" });
-
-      if (!response.ok) {
-        throw new Error(`${endpoint} returned HTTP ${response.status}`);
-      }
-
-      const payload = await response.json();
-
-      if (!isPayloadRefreshOverdue(payload)) {
-        return payload;
-      }
-
-      stalePayloads.push(payload);
-    } catch (error) {
-      lastError = error;
-    }
-  }
-
-  const newestStalePayload = pickNewestPayload(stalePayloads);
-
-  if (newestStalePayload) {
-    return newestStalePayload;
-  }
-
-  throw lastError || new Error("No World Cup data endpoint is available.");
-}
-
-function buildDataEndpoints() {
-  const localHosts = new Set(["localhost", "127.0.0.1", "::1"]);
-
-  if (localHosts.has(window.location.hostname)) {
-    return [STATIC_DATA_ENDPOINT, REPOSITORY_DATA_ENDPOINT, NETLIFY_FUNCTION_ENDPOINT];
-  }
-
-  return [REPOSITORY_DATA_ENDPOINT, STATIC_DATA_ENDPOINT, NETLIFY_FUNCTION_ENDPOINT];
-}
-
 function withBasePath(path) {
   if (!path || path === "#" || /^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(path)) {
     return path;
@@ -1251,48 +1208,6 @@ function withBasePath(path) {
   const cleanedPath = path.startsWith("/") ? path.slice(1) : path;
 
   return `${normalizedBase}${cleanedPath}`;
-}
-
-function withCacheBust(endpoint) {
-  const separator = endpoint.includes("?") ? "&" : "?";
-  return `${endpoint}${separator}t=${Date.now()}`;
-}
-
-function isPayloadRefreshOverdue(payload) {
-  const nextFetchAt = new Date(payload?.polling?.nextFetchAt || "").getTime();
-
-  return Number.isFinite(nextFetchAt) && nextFetchAt + DATA_STALE_GRACE_MS < Date.now();
-}
-
-function pickNewestPayload(payloads) {
-  return [...payloads]
-    .filter(Boolean)
-    .sort((left, right) => {
-      const leftTime = new Date(left?.lastUpdated || 0).getTime();
-      const rightTime = new Date(right?.lastUpdated || 0).getTime();
-
-      return rightTime - leftTime;
-    })[0] || null;
-}
-
-export function normalizeClientPayload(payload) {
-  const matches = Array.isArray(payload?.matches) ? payload.matches : [];
-  const allMatches = Array.isArray(payload?.allMatches) && payload.allMatches.length
-    ? payload.allMatches
-    : matches;
-
-  return {
-    source: payload?.source || "unknown",
-    message: payload?.message || "",
-    lastUpdated: payload?.lastUpdated || new Date().toISOString(),
-    matches,
-    allMatches,
-    upcomingMatches: Array.isArray(payload?.upcomingMatches) ? payload.upcomingMatches : [],
-    timelineMatches: Array.isArray(payload?.timelineMatches) ? payload.timelineMatches : [],
-    groupStage: Array.isArray(payload?.groupStage) ? payload.groupStage : [],
-    knockout: Array.isArray(payload?.knockout) ? payload.knockout : [],
-    polling: payload?.polling || null
-  };
 }
 
 function withFreshTimestamp(sourceData) {
@@ -1662,14 +1577,18 @@ function buildBracketColumns(knockout) {
   const columns = [];
   const orderedRounds = orderBracketRounds([...new Set(knockout.map((match) => match.round))]);
   const orderedMatches = buildOrderedBracketMatches(knockout);
-  const finals = [];
+  const finalMatches = [];
 
   for (const round of orderedRounds) {
     const matches = (orderedMatches.get(round) || knockout.filter((match) => match.round === round))
       .map((match, index) => ({ match, index }));
 
-    if (round === "Final" || round === "Match for third place") {
-      finals.push(...matches);
+    if (round === "Final") {
+      finalMatches.push(...matches);
+      continue;
+    }
+
+    if (round === "Match for third place") {
       continue;
     }
 
@@ -1680,11 +1599,11 @@ function buildBracketColumns(knockout) {
     });
   }
 
-  if (finals.length) {
+  if (finalMatches.length) {
     columns.push({
       round: "Finals",
       label: "Finals",
-      matches: finals.sort((a, b) => (a.match.round === "Final" ? -1 : 1) - (b.match.round === "Final" ? -1 : 1))
+      matches: finalMatches
     });
   }
 
@@ -1751,21 +1670,34 @@ function renderBracketGroupCutLine() {
 
 function renderChampionColumn(knockout) {
   const finalMatch = knockout.find((match) => match.round === "Final");
+  const thirdPlaceMatch = knockout.find((match) => match.round === "Match for third place");
   const champion = finalMatch?.winner || "";
+  const logoSrc = withBasePath(worldcupText.champion.logoSrc);
 
   return `
     <section class="bracket-champion-column" data-round="Champion">
       <h3>${escapeHtml(worldcupText.champion.slotTitle)}</h3>
       <div class="bracket-champion-track">
         <article class="bracket-champion-card" data-champion-slot>
-          <img class="bracket-worldcup-logo" src="${escapeAttribute(worldcupText.champion.logoSrc)}" alt="${escapeAttribute(worldcupText.champion.logoAlt)}" loading="lazy" />
+          <img class="bracket-worldcup-logo" src="${escapeAttribute(logoSrc)}" alt="${escapeAttribute(worldcupText.champion.logoAlt)}" loading="lazy" decoding="async" />
           <div>
             ${champion ? renderTeamFlag(champion) : ""}
             <strong>${escapeHtml(champion ? teamDisplayName(champion) : runtimeText.states.defaultTeam)}</strong>
           </div>
         </article>
+        ${thirdPlaceMatch ? renderBracketResultMatch(thirdPlaceMatch, thirdPlaceMatch.round) : ""}
       </div>
     </section>
+  `;
+}
+
+function renderBracketResultMatch(match, round) {
+  return `
+    <article class="bracket-match bracket-result-match bracket-third-place-match status-${escapeAttribute(match.status.toLowerCase())}" style="--slot: 21; --span: 5;" data-match-id="${escapeAttribute(match.id)}" data-bracket-round="${escapeAttribute(round)}">
+      <span class="bracket-result-kicker">${escapeHtml(stageLabel(round))}</span>
+      ${renderBracketTeamRow(match, round, "home")}
+      ${renderBracketTeamRow(match, round, "away")}
+    </article>
   `;
 }
 
@@ -2637,13 +2569,13 @@ export function loadPlayerNameData() {
   }
 
   playerNameDataPromise = Promise.all([
-    import("../worldcup/data/player-name-map.json"),
-    import("../worldcup/data/player-name-overrides.json")
+    fetchJsonAsset(playerNameMapUrl),
+    fetchJsonAsset(playerNameOverridesUrl)
   ])
-    .then(([mapModule, overridesModule]) => {
+    .then(([mapData, overridesData]) => {
       playerNameIndex = buildPlayerNameIndex(
-        mapModule.default,
-        overridesModule.default,
+        mapData,
+        overridesData,
         worldcupText.moments?.playerNames || {}
       );
 
@@ -2652,6 +2584,16 @@ export function loadPlayerNameData() {
     .catch(() => playerNameIndex);
 
   return playerNameDataPromise;
+}
+
+async function fetchJsonAsset(url) {
+  const response = await fetch(url, { cache: "force-cache" });
+
+  if (!response.ok) {
+    throw new Error(`${url} returned HTTP ${response.status}`);
+  }
+
+  return response.json();
 }
 
 function eventTypeLabel(type) {

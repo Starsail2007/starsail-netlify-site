@@ -1709,6 +1709,40 @@ a.timeline-match:hover {
     inset 0 1px 0 rgba(255, 255, 255, .18);
 }
 
+.bracket-result-match {
+  border-color: rgba(255, 232, 149, .28);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255, 232, 149, .13), transparent 46%),
+    linear-gradient(135deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .032)),
+    rgba(6, 10, 24, .78);
+  box-shadow:
+    0 16px 42px rgba(0, 0, 0, .2),
+    inset 0 1px 0 rgba(255, 255, 255, .1);
+}
+
+.bracket-third-place-match {
+  z-index: 1;
+  align-self: start;
+  transform: translateY(-64px);
+}
+
+.bracket-result-kicker {
+  min-height: 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0 6px;
+  border: 1px solid rgba(255, 232, 149, .22);
+  border-radius: 999px;
+  color: rgba(255, 232, 149, .82);
+  background: rgba(255, 232, 149, .08);
+  font-size: 9px;
+  font-weight: 860;
+  line-height: 1;
+}
+
 .bracket-champion-card::before {
   content: "";
   position: absolute;
@@ -1719,12 +1753,14 @@ a.timeline-match:hover {
 }
 
 .bracket-worldcup-logo {
-  width: min(70px, 78%);
-  max-height: 58px;
-  padding: 7px 9px;
-  border: 1px solid rgba(255, 232, 149, .18);
+  width: min(66px, 76%);
+  max-height: 62px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 232, 149, .24);
   border-radius: 7px;
-  background: rgba(255, 232, 149, .08);
+  background:
+    radial-gradient(circle at 50% 45%, rgba(255, 232, 149, .18), transparent 62%),
+    rgba(9, 14, 28, .56);
   object-fit: contain;
   filter:
     invert(88%)
@@ -1735,7 +1771,6 @@ a.timeline-match:hover {
     contrast(96%)
     drop-shadow(0 12px 22px rgba(255, 232, 149, .16));
   opacity: .9;
-  mix-blend-mode: screen;
 }
 
 .bracket-champion-card > div {
