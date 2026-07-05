@@ -236,6 +236,7 @@ if (root) {
       window.cancelAnimationFrame(scheduleScrollFrame);
       scheduleScrollFrame = window.requestAnimationFrame(() => {
         updateScheduleWheelState(pageElements);
+        queueScheduleWheelSnap(pageElements, scheduleDragState);
       });
     }, { passive: true });
 
@@ -359,7 +360,8 @@ function syncTabViewportHeight(elements, tab) {
     return;
   }
 
-  elements.tabViewport.style.height = `${activePanel.scrollHeight}px`;
+  const measuredHeight = activePanel.getBoundingClientRect().height || activePanel.scrollHeight;
+  elements.tabViewport.style.height = `${Math.ceil(measuredHeight)}px`;
 }
 
 function renderActivePanelData(nextData, elements) {
@@ -682,12 +684,23 @@ function handleScheduleWheelInput(elements, state) {
   window.cancelAnimationFrame(state.frame);
   state.frame = 0;
   wheel.classList.add("is-gliding");
+  queueScheduleWheelSnap(elements, state);
+}
+
+function queueScheduleWheelSnap(elements, state, delay = 560) {
+  const wheel = elements.schedule;
+
+  if (!wheel || state.active || state.frame) {
+    return;
+  }
+
+  wheel.classList.add("is-gliding");
   window.clearTimeout(state.wheelTimer);
   state.wheelTimer = window.setTimeout(() => {
     state.wheelTimer = 0;
     wheel.classList.remove("is-gliding");
     snapScheduleWheelToNearest(elements);
-  }, 260);
+  }, delay);
 }
 
 function moveScheduleDrag(event, elements, state) {
@@ -824,8 +837,16 @@ function snapScheduleWheelToNearest(elements) {
   }
 
   const targetTop = card.offsetTop + card.offsetHeight / 2 - wheel.clientHeight / 2;
+  const maxTop = Math.max(0, wheel.scrollHeight - wheel.clientHeight);
+  const clampedTop = Math.max(0, Math.min(maxTop, targetTop));
+
+  if (Math.abs(wheel.scrollTop - clampedTop) < 1) {
+    updateScheduleWheelState(elements);
+    return;
+  }
+
   wheel.scrollTo({
-    top: targetTop,
+    top: clampedTop,
     behavior: "smooth"
   });
   window.setTimeout(() => updateScheduleWheelState(elements), 320);

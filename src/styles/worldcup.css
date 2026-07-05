@@ -779,10 +779,12 @@
 }
 
 .schedule-wheel-stage {
+  --schedule-wheel-height: clamp(520px, 58vh, 620px);
   position: relative;
   isolation: isolate;
   width: min(880px, 100%);
-  min-height: min(66vh, 660px);
+  height: var(--schedule-wheel-height);
+  min-height: 0;
   margin-inline: auto;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, .055);
@@ -860,14 +862,14 @@
 .schedule-wheel {
   position: relative;
   z-index: 2;
-  height: min(66vh, 660px);
-  min-height: 560px;
+  height: 100%;
+  min-height: 0;
   overflow-y: auto;
   overscroll-behavior-y: contain;
-  scroll-behavior: smooth;
-  scroll-padding-block: calc(min(66vh, 660px) / 2 - 42px);
-  scroll-snap-type: y mandatory;
-  padding: calc(min(66vh, 660px) / 2 - 42px) clamp(14px, 4vw, 42px);
+  scroll-behavior: auto;
+  scroll-padding-block: calc(var(--schedule-wheel-height) / 2 - 42px);
+  scroll-snap-type: none;
+  padding: calc(var(--schedule-wheel-height) / 2 - 42px) clamp(14px, 4vw, 42px);
   perspective: 1100px;
   scrollbar-color: rgba(134, 231, 255, .38) rgba(255, 255, 255, .06);
   scrollbar-width: thin;
@@ -878,7 +880,6 @@
 .schedule-wheel.is-dragging,
 .schedule-wheel.is-gliding {
   scroll-behavior: auto;
-  scroll-snap-type: none;
 }
 
 .schedule-wheel.is-dragging {
@@ -2798,15 +2799,16 @@ a.timeline-match:hover {
   }
 
   .schedule-wheel-stage {
-    min-height: 560px;
+    --schedule-wheel-height: 540px;
+    height: var(--schedule-wheel-height);
   }
 
   .schedule-wheel {
-    height: 560px;
-    min-height: 560px;
-    padding-block: 236px;
+    height: 100%;
+    min-height: 0;
+    padding-block: calc(var(--schedule-wheel-height) / 2 - 40px);
     padding-inline: 16px;
-    scroll-padding-block: 236px;
+    scroll-padding-block: calc(var(--schedule-wheel-height) / 2 - 40px);
   }
 
   .schedule-wheel-card {
@@ -2911,15 +2913,16 @@ a.timeline-match:hover {
   }
 
   .schedule-wheel-stage {
-    min-height: 520px;
+    --schedule-wheel-height: 500px;
+    height: var(--schedule-wheel-height);
   }
 
   .schedule-wheel {
-    height: 520px;
-    min-height: 520px;
+    height: 100%;
+    min-height: 0;
     padding-inline: 10px;
-    padding-block: 218px;
-    scroll-padding-block: 218px;
+    padding-block: calc(var(--schedule-wheel-height) / 2 - 40px);
+    scroll-padding-block: calc(var(--schedule-wheel-height) / 2 - 40px);
   }
 
   .schedule-flag-pane {
