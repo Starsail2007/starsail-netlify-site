@@ -5215,8 +5215,8 @@
     },
     {
       "id": "91",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -5229,7 +5229,7 @@
         "iso2": "br",
         "logo": "https://flagcdn.com/br.svg",
         "flagUrl": "https://flagcdn.com/br.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Norway",
@@ -5237,9 +5237,40 @@
         "iso2": "no",
         "logo": "https://flagcdn.com/no.svg",
         "flagUrl": "https://flagcdn.com/no.svg",
-        "score": null
+        "score": 2
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "79",
+          "minuteSort": 79,
+          "team": "Norway",
+          "teamName": "Norway",
+          "player": "Erling Haaland",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90",
+          "minuteSort": 90,
+          "team": "Norway",
+          "teamName": "Norway",
+          "player": "Erling Haaland",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+10",
+          "minuteSort": 100,
+          "team": "Brazil",
+          "teamName": "Brazil",
+          "player": "Neymar",
+          "penalty": true,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "92",
@@ -5392,19 +5423,19 @@
       "venue": "Boston (Foxborough)",
       "kickoffTime": "2026-07-09T20:00:00.000Z",
       "home": {
-        "name": "W89",
-        "code": "W89",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "France",
+        "code": "F",
+        "iso2": "fr",
+        "logo": "https://flagcdn.com/fr.svg",
+        "flagUrl": "https://flagcdn.com/fr.svg",
         "score": null
       },
       "away": {
-        "name": "W90",
-        "code": "W90",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Morocco",
+        "code": "M",
+        "iso2": "ma",
+        "logo": "https://flagcdn.com/ma.svg",
+        "flagUrl": "https://flagcdn.com/ma.svg",
         "score": null
       },
       "events": []
@@ -10822,8 +10853,8 @@
     },
     {
       "id": "91",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -10836,7 +10867,7 @@
         "iso2": "br",
         "logo": "https://flagcdn.com/br.svg",
         "flagUrl": "https://flagcdn.com/br.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Norway",
@@ -10844,9 +10875,40 @@
         "iso2": "no",
         "logo": "https://flagcdn.com/no.svg",
         "flagUrl": "https://flagcdn.com/no.svg",
-        "score": null
+        "score": 2
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "79",
+          "minuteSort": 79,
+          "team": "Norway",
+          "teamName": "Norway",
+          "player": "Erling Haaland",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90",
+          "minuteSort": 90,
+          "team": "Norway",
+          "teamName": "Norway",
+          "player": "Erling Haaland",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+10",
+          "minuteSort": 100,
+          "team": "Brazil",
+          "teamName": "Brazil",
+          "player": "Neymar",
+          "penalty": true,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "92",
@@ -10999,19 +11061,19 @@
       "venue": "Boston (Foxborough)",
       "kickoffTime": "2026-07-09T20:00:00.000Z",
       "home": {
-        "name": "W89",
-        "code": "W89",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "France",
+        "code": "F",
+        "iso2": "fr",
+        "logo": "https://flagcdn.com/fr.svg",
+        "flagUrl": "https://flagcdn.com/fr.svg",
         "score": null
       },
       "away": {
-        "name": "W90",
-        "code": "W90",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Morocco",
+        "code": "M",
+        "iso2": "ma",
+        "logo": "https://flagcdn.com/ma.svg",
+        "flagUrl": "https://flagcdn.com/ma.svg",
         "score": null
       },
       "events": []
@@ -11215,34 +11277,6 @@
   ],
   "upcomingMatches": [
     {
-      "id": "91",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 16",
-      "round": "Round of 16",
-      "group": "",
-      "venue": "New York/New Jersey (East Rutherford)",
-      "kickoffTime": "2026-07-05T20:00:00.000Z",
-      "home": {
-        "name": "Brazil",
-        "code": "B",
-        "iso2": "br",
-        "logo": "https://flagcdn.com/br.svg",
-        "flagUrl": "https://flagcdn.com/br.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Norway",
-        "code": "N",
-        "iso2": "no",
-        "logo": "https://flagcdn.com/no.svg",
-        "flagUrl": "https://flagcdn.com/no.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
       "id": "92",
       "status": "NS",
       "statusText": "未开始",
@@ -11393,19 +11427,19 @@
       "venue": "Boston (Foxborough)",
       "kickoffTime": "2026-07-09T20:00:00.000Z",
       "home": {
-        "name": "W89",
-        "code": "W89",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "France",
+        "code": "F",
+        "iso2": "fr",
+        "logo": "https://flagcdn.com/fr.svg",
+        "flagUrl": "https://flagcdn.com/fr.svg",
         "score": null
       },
       "away": {
-        "name": "W90",
-        "code": "W90",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Morocco",
+        "code": "M",
+        "iso2": "ma",
+        "logo": "https://flagcdn.com/ma.svg",
+        "flagUrl": "https://flagcdn.com/ma.svg",
         "score": null
       },
       "events": []
@@ -11608,6 +11642,65 @@
     }
   ],
   "timelineMatches": [
+    {
+      "id": "91",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Round of 16",
+      "round": "Round of 16",
+      "group": "",
+      "venue": "New York/New Jersey (East Rutherford)",
+      "kickoffTime": "2026-07-05T20:00:00.000Z",
+      "home": {
+        "name": "Brazil",
+        "code": "B",
+        "iso2": "br",
+        "logo": "https://flagcdn.com/br.svg",
+        "flagUrl": "https://flagcdn.com/br.svg",
+        "score": 1
+      },
+      "away": {
+        "name": "Norway",
+        "code": "N",
+        "iso2": "no",
+        "logo": "https://flagcdn.com/no.svg",
+        "flagUrl": "https://flagcdn.com/no.svg",
+        "score": 2
+      },
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "79",
+          "minuteSort": 79,
+          "team": "Norway",
+          "teamName": "Norway",
+          "player": "Erling Haaland",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90",
+          "minuteSort": 90,
+          "team": "Norway",
+          "teamName": "Norway",
+          "player": "Erling Haaland",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+10",
+          "minuteSort": 100,
+          "team": "Brazil",
+          "teamName": "Brazil",
+          "player": "Neymar",
+          "penalty": true,
+          "ownGoal": false
+        }
+      ]
+    },
     {
       "id": "89",
       "status": "FT",
@@ -12085,85 +12178,6 @@
           "teamName": "USA",
           "player": "Malik Tillman",
           "penalty": false,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "82",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Seattle",
-      "kickoffTime": "2026-07-01T20:00:00.000Z",
-      "home": {
-        "name": "Belgium",
-        "code": "B",
-        "iso2": "be",
-        "logo": "https://flagcdn.com/be.svg",
-        "flagUrl": "https://flagcdn.com/be.svg",
-        "score": 3
-      },
-      "away": {
-        "name": "Senegal",
-        "code": "S",
-        "iso2": "sn",
-        "logo": "https://flagcdn.com/sn.svg",
-        "flagUrl": "https://flagcdn.com/sn.svg",
-        "score": 2
-      },
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "25",
-          "minuteSort": 25,
-          "team": "Senegal",
-          "teamName": "Senegal",
-          "player": "Habib Diarra",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "51",
-          "minuteSort": 51,
-          "team": "Senegal",
-          "teamName": "Senegal",
-          "player": "Ismaïla Sarr",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "86",
-          "minuteSort": 86,
-          "team": "Belgium",
-          "teamName": "Belgium",
-          "player": "Romelu Lukaku",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "89",
-          "minuteSort": 89,
-          "team": "Belgium",
-          "teamName": "Belgium",
-          "player": "Youri Tielemans",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "120+5",
-          "minuteSort": 125,
-          "team": "Belgium",
-          "teamName": "Belgium",
-          "player": "Youri Tielemans",
-          "penalty": true,
           "ownGoal": false
         }
       ]
@@ -17210,7 +17224,8 @@
       "status": "FT",
       "nextMatchId": "90",
       "nextMatchIds": [
-        "90"
+        "90",
+        "97"
       ]
     },
     {
@@ -17238,7 +17253,8 @@
       "status": "FT",
       "nextMatchId": "89",
       "nextMatchIds": [
-        "89"
+        "89",
+        "97"
       ]
     },
     {
@@ -17428,10 +17444,10 @@
       "round": "Round of 16",
       "home": "Brazil",
       "away": "Norway",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 1,
+      "awayScore": 2,
+      "winner": "Norway",
+      "status": "FT",
       "nextMatchId": "99",
       "nextMatchIds": [
         "99"
@@ -17510,8 +17526,8 @@
     {
       "id": "97",
       "round": "Quarter-final",
-      "home": "W89",
-      "away": "W90",
+      "home": "France",
+      "away": "Morocco",
       "homeScore": null,
       "awayScore": null,
       "winner": "",
@@ -17644,21 +17660,21 @@
   "leagueId": "1",
   "season": "2026",
   "polling": {
-    "mode": "near-match",
-    "label": "near-match",
+    "mode": "match-window",
+    "label": "match-window",
     "due": false,
-    "intervalSeconds": 3600,
-    "nextFetchAt": "2026-07-05T19:30:00.000Z",
-    "generatedAt": "2026-07-05T18:46:01.336Z",
+    "intervalSeconds": 300,
+    "nextFetchAt": "2026-07-05T22:20:29.821Z",
+    "generatedAt": "2026-07-05T22:15:29.821Z",
     "nextMatch": {
       "id": "91",
       "stage": "Round of 16",
       "kickoffTime": "2026-07-05T20:00:00.000Z",
       "home": "Brazil",
       "away": "Norway",
-      "status": "NS"
+      "status": "FT"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-05T18:46:01.336Z"
+  "lastUpdated": "2026-07-05T22:15:29.821Z"
 }
