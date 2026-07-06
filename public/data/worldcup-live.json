@@ -5353,9 +5353,9 @@
     },
     {
       "id": "93",
-      "status": "LIVE",
-      "statusText": "进行中",
-      "minute": 18,
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
       "group": "",
@@ -5367,7 +5367,7 @@
         "iso2": "pt",
         "logo": "https://flagcdn.com/pt.svg",
         "flagUrl": "https://flagcdn.com/pt.svg",
-        "score": null
+        "score": 0
       },
       "away": {
         "name": "Spain",
@@ -5375,9 +5375,20 @@
         "iso2": "es",
         "logo": "https://flagcdn.com/es.svg",
         "flagUrl": "https://flagcdn.com/es.svg",
-        "score": null
+        "score": 1
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "90+1",
+          "minuteSort": 91,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Mikel Merino",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "94",
@@ -11042,9 +11053,9 @@
     },
     {
       "id": "93",
-      "status": "LIVE",
-      "statusText": "进行中",
-      "minute": 18,
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
       "group": "",
@@ -11056,7 +11067,7 @@
         "iso2": "pt",
         "logo": "https://flagcdn.com/pt.svg",
         "flagUrl": "https://flagcdn.com/pt.svg",
-        "score": null
+        "score": 0
       },
       "away": {
         "name": "Spain",
@@ -11064,9 +11075,20 @@
         "iso2": "es",
         "logo": "https://flagcdn.com/es.svg",
         "flagUrl": "https://flagcdn.com/es.svg",
-        "score": null
+        "score": 1
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "90+1",
+          "minuteSort": 91,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Mikel Merino",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "94",
@@ -11689,6 +11711,45 @@
   ],
   "timelineMatches": [
     {
+      "id": "93",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Round of 16",
+      "round": "Round of 16",
+      "group": "",
+      "venue": "Dallas (Arlington)",
+      "kickoffTime": "2026-07-06T19:00:00.000Z",
+      "home": {
+        "name": "Portugal",
+        "code": "P",
+        "iso2": "pt",
+        "logo": "https://flagcdn.com/pt.svg",
+        "flagUrl": "https://flagcdn.com/pt.svg",
+        "score": 0
+      },
+      "away": {
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
+        "score": 1
+      },
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "90+1",
+          "minuteSort": 91,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Mikel Merino",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
+    },
+    {
       "id": "92",
       "status": "FT",
       "statusText": "完场",
@@ -12194,65 +12255,6 @@
           "team": "Portugal",
           "teamName": "Portugal",
           "player": "Gonçalo Ramos",
-          "penalty": false,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "84",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Los Angeles (Inglewood)",
-      "kickoffTime": "2026-07-02T19:00:00.000Z",
-      "home": {
-        "name": "Spain",
-        "code": "S",
-        "iso2": "es",
-        "logo": "https://flagcdn.com/es.svg",
-        "flagUrl": "https://flagcdn.com/es.svg",
-        "score": 3
-      },
-      "away": {
-        "name": "Austria",
-        "code": "A",
-        "iso2": "at",
-        "logo": "https://flagcdn.com/at.svg",
-        "flagUrl": "https://flagcdn.com/at.svg",
-        "score": 0
-      },
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "36",
-          "minuteSort": 36,
-          "team": "Spain",
-          "teamName": "Spain",
-          "player": "Mikel Oyarzabal",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "66",
-          "minuteSort": 66,
-          "team": "Spain",
-          "teamName": "Spain",
-          "player": "Pedro Porro",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "89",
-          "minuteSort": 89,
-          "team": "Spain",
-          "teamName": "Spain",
-          "player": "Mikel Oyarzabal",
           "penalty": false,
           "ownGoal": false
         }
@@ -17550,10 +17552,10 @@
       "round": "Round of 16",
       "home": "Portugal",
       "away": "Spain",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 0,
+      "awayScore": 1,
+      "winner": "Spain",
+      "status": "FT",
       "nextMatchId": "98",
       "nextMatchIds": [
         "98"
@@ -17738,21 +17740,21 @@
   "leagueId": "1",
   "season": "2026",
   "polling": {
-    "mode": "live",
-    "label": "live",
+    "mode": "near-match",
+    "label": "near-match",
     "due": false,
-    "intervalSeconds": 300,
-    "nextFetchAt": "2026-07-06T19:23:08.515Z",
-    "generatedAt": "2026-07-06T19:18:08.515Z",
+    "intervalSeconds": 3600,
+    "nextFetchAt": "2026-07-06T23:30:00.000Z",
+    "generatedAt": "2026-07-06T22:52:37.375Z",
     "nextMatch": {
-      "id": "93",
+      "id": "94",
       "stage": "Round of 16",
-      "kickoffTime": "2026-07-06T19:00:00.000Z",
-      "home": "Portugal",
-      "away": "Spain",
-      "status": "LIVE"
+      "kickoffTime": "2026-07-07T00:00:00.000Z",
+      "home": "USA",
+      "away": "Belgium",
+      "status": "NS"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-06T19:18:08.515Z"
+  "lastUpdated": "2026-07-06T22:52:37.375Z"
 }
