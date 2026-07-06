@@ -5274,8 +5274,8 @@
     },
     {
       "id": "92",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -5288,7 +5288,7 @@
         "iso2": "mx",
         "logo": "https://flagcdn.com/mx.svg",
         "flagUrl": "https://flagcdn.com/mx.svg",
-        "score": null
+        "score": 2
       },
       "away": {
         "name": "England",
@@ -5296,9 +5296,60 @@
         "iso2": "gb-eng",
         "logo": "https://flagcdn.com/gb-eng.svg",
         "flagUrl": "https://flagcdn.com/gb-eng.svg",
-        "score": null
+        "score": 3
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "36",
+          "minuteSort": 36,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "38",
+          "minuteSort": 38,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "42",
+          "minuteSort": 42,
+          "team": "Mexico",
+          "teamName": "Mexico",
+          "player": "Julián Quiñones",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "60",
+          "minuteSort": 60,
+          "team": "England",
+          "teamName": "England",
+          "player": "Harry Kane",
+          "penalty": true,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "69",
+          "minuteSort": 69,
+          "team": "Mexico",
+          "teamName": "Mexico",
+          "player": "Raúl Jiménez",
+          "penalty": true,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "93",
@@ -10912,8 +10963,8 @@
     },
     {
       "id": "92",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -10926,7 +10977,7 @@
         "iso2": "mx",
         "logo": "https://flagcdn.com/mx.svg",
         "flagUrl": "https://flagcdn.com/mx.svg",
-        "score": null
+        "score": 2
       },
       "away": {
         "name": "England",
@@ -10934,9 +10985,60 @@
         "iso2": "gb-eng",
         "logo": "https://flagcdn.com/gb-eng.svg",
         "flagUrl": "https://flagcdn.com/gb-eng.svg",
-        "score": null
+        "score": 3
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "36",
+          "minuteSort": 36,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "38",
+          "minuteSort": 38,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "42",
+          "minuteSort": 42,
+          "team": "Mexico",
+          "teamName": "Mexico",
+          "player": "Julián Quiñones",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "60",
+          "minuteSort": 60,
+          "team": "England",
+          "teamName": "England",
+          "player": "Harry Kane",
+          "penalty": true,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "69",
+          "minuteSort": 69,
+          "team": "Mexico",
+          "teamName": "Mexico",
+          "player": "Raúl Jiménez",
+          "penalty": true,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "93",
@@ -11277,34 +11379,6 @@
   ],
   "upcomingMatches": [
     {
-      "id": "92",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 16",
-      "round": "Round of 16",
-      "group": "",
-      "venue": "Mexico City",
-      "kickoffTime": "2026-07-06T00:00:00.000Z",
-      "home": {
-        "name": "Mexico",
-        "code": "M",
-        "iso2": "mx",
-        "logo": "https://flagcdn.com/mx.svg",
-        "flagUrl": "https://flagcdn.com/mx.svg",
-        "score": null
-      },
-      "away": {
-        "name": "England",
-        "code": "E",
-        "iso2": "gb-eng",
-        "logo": "https://flagcdn.com/gb-eng.svg",
-        "flagUrl": "https://flagcdn.com/gb-eng.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
       "id": "93",
       "status": "NS",
       "statusText": "未开始",
@@ -11642,6 +11716,85 @@
     }
   ],
   "timelineMatches": [
+    {
+      "id": "92",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Round of 16",
+      "round": "Round of 16",
+      "group": "",
+      "venue": "Mexico City",
+      "kickoffTime": "2026-07-06T00:00:00.000Z",
+      "home": {
+        "name": "Mexico",
+        "code": "M",
+        "iso2": "mx",
+        "logo": "https://flagcdn.com/mx.svg",
+        "flagUrl": "https://flagcdn.com/mx.svg",
+        "score": 2
+      },
+      "away": {
+        "name": "England",
+        "code": "E",
+        "iso2": "gb-eng",
+        "logo": "https://flagcdn.com/gb-eng.svg",
+        "flagUrl": "https://flagcdn.com/gb-eng.svg",
+        "score": 3
+      },
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "36",
+          "minuteSort": 36,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "38",
+          "minuteSort": 38,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "42",
+          "minuteSort": 42,
+          "team": "Mexico",
+          "teamName": "Mexico",
+          "player": "Julián Quiñones",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "60",
+          "minuteSort": 60,
+          "team": "England",
+          "teamName": "England",
+          "player": "Harry Kane",
+          "penalty": true,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "69",
+          "minuteSort": 69,
+          "team": "Mexico",
+          "teamName": "Mexico",
+          "player": "Raúl Jiménez",
+          "penalty": true,
+          "ownGoal": false
+        }
+      ]
+    },
     {
       "id": "91",
       "status": "FT",
@@ -12128,55 +12281,6 @@
           "team": "Spain",
           "teamName": "Spain",
           "player": "Mikel Oyarzabal",
-          "penalty": false,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "81",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "San Francisco Bay Area (Santa Clara)",
-      "kickoffTime": "2026-07-02T00:00:00.000Z",
-      "home": {
-        "name": "USA",
-        "code": "U",
-        "iso2": "us",
-        "logo": "https://flagcdn.com/us.svg",
-        "flagUrl": "https://flagcdn.com/us.svg",
-        "score": 2
-      },
-      "away": {
-        "name": "Bosnia & Herzegovina",
-        "code": "B&H",
-        "iso2": "ba",
-        "logo": "https://flagcdn.com/ba.svg",
-        "flagUrl": "https://flagcdn.com/ba.svg",
-        "score": 0
-      },
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "45",
-          "minuteSort": 45,
-          "team": "USA",
-          "teamName": "USA",
-          "player": "Folarin Balogun",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "82",
-          "minuteSort": 82,
-          "team": "USA",
-          "teamName": "USA",
-          "player": "Malik Tillman",
           "penalty": false,
           "ownGoal": false
         }
@@ -17458,10 +17562,10 @@
       "round": "Round of 16",
       "home": "Mexico",
       "away": "England",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 2,
+      "awayScore": 3,
+      "winner": "England",
+      "status": "FT",
       "nextMatchId": "99",
       "nextMatchIds": [
         "99"
@@ -17660,21 +17764,21 @@
   "leagueId": "1",
   "season": "2026",
   "polling": {
-    "mode": "match-window",
-    "label": "match-window",
+    "mode": "near-match",
+    "label": "near-match",
     "due": false,
-    "intervalSeconds": 300,
-    "nextFetchAt": "2026-07-05T22:20:29.821Z",
-    "generatedAt": "2026-07-05T22:15:29.821Z",
+    "intervalSeconds": 3600,
+    "nextFetchAt": "2026-07-06T13:31:39.448Z",
+    "generatedAt": "2026-07-06T12:31:39.448Z",
     "nextMatch": {
-      "id": "91",
+      "id": "93",
       "stage": "Round of 16",
-      "kickoffTime": "2026-07-05T20:00:00.000Z",
-      "home": "Brazil",
-      "away": "Norway",
-      "status": "FT"
+      "kickoffTime": "2026-07-06T19:00:00.000Z",
+      "home": "Portugal",
+      "away": "Spain",
+      "status": "NS"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-05T22:15:29.821Z"
+  "lastUpdated": "2026-07-06T12:31:39.448Z"
 }
