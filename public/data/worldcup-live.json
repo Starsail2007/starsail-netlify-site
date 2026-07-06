@@ -5353,9 +5353,9 @@
     },
     {
       "id": "93",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
+      "status": "LIVE",
+      "statusText": "进行中",
+      "minute": 18,
       "stage": "Round of 16",
       "round": "Round of 16",
       "group": "",
@@ -5530,19 +5530,19 @@
       "venue": "Miami (Miami Gardens)",
       "kickoffTime": "2026-07-11T21:00:00.000Z",
       "home": {
-        "name": "W91",
-        "code": "W91",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Norway",
+        "code": "N",
+        "iso2": "no",
+        "logo": "https://flagcdn.com/no.svg",
+        "flagUrl": "https://flagcdn.com/no.svg",
         "score": null
       },
       "away": {
-        "name": "W92",
-        "code": "W92",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "England",
+        "code": "E",
+        "iso2": "gb-eng",
+        "logo": "https://flagcdn.com/gb-eng.svg",
+        "flagUrl": "https://flagcdn.com/gb-eng.svg",
         "score": null
       },
       "events": []
@@ -11042,9 +11042,9 @@
     },
     {
       "id": "93",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
+      "status": "LIVE",
+      "statusText": "进行中",
+      "minute": 18,
       "stage": "Round of 16",
       "round": "Round of 16",
       "group": "",
@@ -11219,19 +11219,19 @@
       "venue": "Miami (Miami Gardens)",
       "kickoffTime": "2026-07-11T21:00:00.000Z",
       "home": {
-        "name": "W91",
-        "code": "W91",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Norway",
+        "code": "N",
+        "iso2": "no",
+        "logo": "https://flagcdn.com/no.svg",
+        "flagUrl": "https://flagcdn.com/no.svg",
         "score": null
       },
       "away": {
-        "name": "W92",
-        "code": "W92",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "England",
+        "code": "E",
+        "iso2": "gb-eng",
+        "logo": "https://flagcdn.com/gb-eng.svg",
+        "flagUrl": "https://flagcdn.com/gb-eng.svg",
         "score": null
       },
       "events": []
@@ -11379,34 +11379,6 @@
   ],
   "upcomingMatches": [
     {
-      "id": "93",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 16",
-      "round": "Round of 16",
-      "group": "",
-      "venue": "Dallas (Arlington)",
-      "kickoffTime": "2026-07-06T19:00:00.000Z",
-      "home": {
-        "name": "Portugal",
-        "code": "P",
-        "iso2": "pt",
-        "logo": "https://flagcdn.com/pt.svg",
-        "flagUrl": "https://flagcdn.com/pt.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Spain",
-        "code": "S",
-        "iso2": "es",
-        "logo": "https://flagcdn.com/es.svg",
-        "flagUrl": "https://flagcdn.com/es.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
       "id": "94",
       "status": "NS",
       "statusText": "未开始",
@@ -11557,19 +11529,19 @@
       "venue": "Miami (Miami Gardens)",
       "kickoffTime": "2026-07-11T21:00:00.000Z",
       "home": {
-        "name": "W91",
-        "code": "W91",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Norway",
+        "code": "N",
+        "iso2": "no",
+        "logo": "https://flagcdn.com/no.svg",
+        "flagUrl": "https://flagcdn.com/no.svg",
         "score": null
       },
       "away": {
-        "name": "W92",
-        "code": "W92",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "England",
+        "code": "E",
+        "iso2": "gb-eng",
+        "logo": "https://flagcdn.com/gb-eng.svg",
+        "flagUrl": "https://flagcdn.com/gb-eng.svg",
         "score": null
       },
       "events": []
@@ -17372,7 +17344,8 @@
       "status": "FT",
       "nextMatchId": "91",
       "nextMatchIds": [
-        "91"
+        "91",
+        "99"
       ]
     },
     {
@@ -17400,7 +17373,8 @@
       "status": "FT",
       "nextMatchId": "92",
       "nextMatchIds": [
-        "92"
+        "92",
+        "99"
       ]
     },
     {
@@ -17658,8 +17632,8 @@
     {
       "id": "99",
       "round": "Quarter-final",
-      "home": "W91",
-      "away": "W92",
+      "home": "Norway",
+      "away": "England",
       "homeScore": null,
       "awayScore": null,
       "winner": "",
@@ -17764,21 +17738,21 @@
   "leagueId": "1",
   "season": "2026",
   "polling": {
-    "mode": "near-match",
-    "label": "near-match",
+    "mode": "live",
+    "label": "live",
     "due": false,
-    "intervalSeconds": 3600,
-    "nextFetchAt": "2026-07-06T13:31:39.448Z",
-    "generatedAt": "2026-07-06T12:31:39.448Z",
+    "intervalSeconds": 300,
+    "nextFetchAt": "2026-07-06T19:23:08.515Z",
+    "generatedAt": "2026-07-06T19:18:08.515Z",
     "nextMatch": {
       "id": "93",
       "stage": "Round of 16",
       "kickoffTime": "2026-07-06T19:00:00.000Z",
       "home": "Portugal",
       "away": "Spain",
-      "status": "NS"
+      "status": "LIVE"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-06T12:31:39.448Z"
+  "lastUpdated": "2026-07-06T19:18:08.515Z"
 }
