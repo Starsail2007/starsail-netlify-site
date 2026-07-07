@@ -5392,8 +5392,8 @@
     },
     {
       "id": "94",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -5406,7 +5406,7 @@
         "iso2": "us",
         "logo": "https://flagcdn.com/us.svg",
         "flagUrl": "https://flagcdn.com/us.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Belgium",
@@ -5414,9 +5414,60 @@
         "iso2": "be",
         "logo": "https://flagcdn.com/be.svg",
         "flagUrl": "https://flagcdn.com/be.svg",
-        "score": null
+        "score": 4
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "9",
+          "minuteSort": 9,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Charles De Ketelaere",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "31",
+          "minuteSort": 31,
+          "team": "USA",
+          "teamName": "USA",
+          "player": "Malik Tillman",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "33",
+          "minuteSort": 33,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Charles De Ketelaere",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "57",
+          "minuteSort": 57,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Hans Vanaken",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+3",
+          "minuteSort": 93,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Romelu Lukaku",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "95",
@@ -11092,8 +11143,8 @@
     },
     {
       "id": "94",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -11106,7 +11157,7 @@
         "iso2": "us",
         "logo": "https://flagcdn.com/us.svg",
         "flagUrl": "https://flagcdn.com/us.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Belgium",
@@ -11114,9 +11165,60 @@
         "iso2": "be",
         "logo": "https://flagcdn.com/be.svg",
         "flagUrl": "https://flagcdn.com/be.svg",
-        "score": null
+        "score": 4
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "9",
+          "minuteSort": 9,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Charles De Ketelaere",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "31",
+          "minuteSort": 31,
+          "team": "USA",
+          "teamName": "USA",
+          "player": "Malik Tillman",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "33",
+          "minuteSort": 33,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Charles De Ketelaere",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "57",
+          "minuteSort": 57,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Hans Vanaken",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+3",
+          "minuteSort": 93,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Romelu Lukaku",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "95",
@@ -11401,34 +11503,6 @@
   ],
   "upcomingMatches": [
     {
-      "id": "94",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 16",
-      "round": "Round of 16",
-      "group": "",
-      "venue": "Seattle",
-      "kickoffTime": "2026-07-07T00:00:00.000Z",
-      "home": {
-        "name": "USA",
-        "code": "U",
-        "iso2": "us",
-        "logo": "https://flagcdn.com/us.svg",
-        "flagUrl": "https://flagcdn.com/us.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Belgium",
-        "code": "B",
-        "iso2": "be",
-        "logo": "https://flagcdn.com/be.svg",
-        "flagUrl": "https://flagcdn.com/be.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
       "id": "95",
       "status": "NS",
       "statusText": "未开始",
@@ -11710,6 +11784,85 @@
     }
   ],
   "timelineMatches": [
+    {
+      "id": "94",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Round of 16",
+      "round": "Round of 16",
+      "group": "",
+      "venue": "Seattle",
+      "kickoffTime": "2026-07-07T00:00:00.000Z",
+      "home": {
+        "name": "USA",
+        "code": "U",
+        "iso2": "us",
+        "logo": "https://flagcdn.com/us.svg",
+        "flagUrl": "https://flagcdn.com/us.svg",
+        "score": 1
+      },
+      "away": {
+        "name": "Belgium",
+        "code": "B",
+        "iso2": "be",
+        "logo": "https://flagcdn.com/be.svg",
+        "flagUrl": "https://flagcdn.com/be.svg",
+        "score": 4
+      },
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "9",
+          "minuteSort": 9,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Charles De Ketelaere",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "31",
+          "minuteSort": 31,
+          "team": "USA",
+          "teamName": "USA",
+          "player": "Malik Tillman",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "33",
+          "minuteSort": 33,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Charles De Ketelaere",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "57",
+          "minuteSort": 57,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Hans Vanaken",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+3",
+          "minuteSort": 93,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Romelu Lukaku",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
+    },
     {
       "id": "93",
       "status": "FT",
@@ -12196,65 +12349,6 @@
           "team": "Switzerland",
           "teamName": "Switzerland",
           "player": "Dan Ndoye",
-          "penalty": false,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "83",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Toronto",
-      "kickoffTime": "2026-07-02T23:00:00.000Z",
-      "home": {
-        "name": "Portugal",
-        "code": "P",
-        "iso2": "pt",
-        "logo": "https://flagcdn.com/pt.svg",
-        "flagUrl": "https://flagcdn.com/pt.svg",
-        "score": 2
-      },
-      "away": {
-        "name": "Croatia",
-        "code": "C",
-        "iso2": "hr",
-        "logo": "https://flagcdn.com/hr.svg",
-        "flagUrl": "https://flagcdn.com/hr.svg",
-        "score": 1
-      },
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "53",
-          "minuteSort": 53,
-          "team": "Croatia",
-          "teamName": "Croatia",
-          "player": "Ivan Perisic",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "68",
-          "minuteSort": 68,
-          "team": "Portugal",
-          "teamName": "Portugal",
-          "player": "Cristiano Ronaldo",
-          "penalty": true,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "90+4",
-          "minuteSort": 94,
-          "team": "Portugal",
-          "teamName": "Portugal",
-          "player": "Gonçalo Ramos",
           "penalty": false,
           "ownGoal": false
         }
@@ -17566,10 +17660,10 @@
       "round": "Round of 16",
       "home": "USA",
       "away": "Belgium",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 1,
+      "awayScore": 4,
+      "winner": "Belgium",
+      "status": "FT",
       "nextMatchId": "98",
       "nextMatchIds": [
         "98"
@@ -17744,17 +17838,17 @@
     "label": "near-match",
     "due": false,
     "intervalSeconds": 3600,
-    "nextFetchAt": "2026-07-06T23:30:00.000Z",
-    "generatedAt": "2026-07-06T22:52:37.375Z",
+    "nextFetchAt": "2026-07-07T11:39:17.408Z",
+    "generatedAt": "2026-07-07T10:39:17.408Z",
     "nextMatch": {
-      "id": "94",
+      "id": "95",
       "stage": "Round of 16",
-      "kickoffTime": "2026-07-07T00:00:00.000Z",
-      "home": "USA",
-      "away": "Belgium",
+      "kickoffTime": "2026-07-07T16:00:00.000Z",
+      "home": "Argentina",
+      "away": "Egypt",
       "status": "NS"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-06T22:52:37.375Z"
+  "lastUpdated": "2026-07-07T10:39:17.408Z"
 }
