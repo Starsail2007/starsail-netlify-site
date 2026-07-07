@@ -5471,8 +5471,8 @@
     },
     {
       "id": "95",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -5485,7 +5485,7 @@
         "iso2": "ar",
         "logo": "https://flagcdn.com/ar.svg",
         "flagUrl": "https://flagcdn.com/ar.svg",
-        "score": null
+        "score": 3
       },
       "away": {
         "name": "Egypt",
@@ -5493,9 +5493,60 @@
         "iso2": "eg",
         "logo": "https://flagcdn.com/eg.svg",
         "flagUrl": "https://flagcdn.com/eg.svg",
-        "score": null
+        "score": 2
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "15",
+          "minuteSort": 15,
+          "team": "Egypt",
+          "teamName": "Egypt",
+          "player": "Yasser Ibrahim",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "67",
+          "minuteSort": 67,
+          "team": "Egypt",
+          "teamName": "Egypt",
+          "player": "Mostafa Zico",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "79",
+          "minuteSort": 79,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Cristian Romero",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "83",
+          "minuteSort": 83,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lionel Messi",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+2",
+          "minuteSort": 92,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Enzo Fernández",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "96",
@@ -5564,19 +5615,19 @@
       "venue": "Los Angeles (Inglewood)",
       "kickoffTime": "2026-07-10T19:00:00.000Z",
       "home": {
-        "name": "W93",
-        "code": "W93",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
         "score": null
       },
       "away": {
-        "name": "W94",
-        "code": "W94",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Belgium",
+        "code": "B",
+        "iso2": "be",
+        "logo": "https://flagcdn.com/be.svg",
+        "flagUrl": "https://flagcdn.com/be.svg",
         "score": null
       },
       "events": []
@@ -11222,8 +11273,8 @@
     },
     {
       "id": "95",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -11236,7 +11287,7 @@
         "iso2": "ar",
         "logo": "https://flagcdn.com/ar.svg",
         "flagUrl": "https://flagcdn.com/ar.svg",
-        "score": null
+        "score": 3
       },
       "away": {
         "name": "Egypt",
@@ -11244,9 +11295,60 @@
         "iso2": "eg",
         "logo": "https://flagcdn.com/eg.svg",
         "flagUrl": "https://flagcdn.com/eg.svg",
-        "score": null
+        "score": 2
       },
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "15",
+          "minuteSort": 15,
+          "team": "Egypt",
+          "teamName": "Egypt",
+          "player": "Yasser Ibrahim",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "67",
+          "minuteSort": 67,
+          "team": "Egypt",
+          "teamName": "Egypt",
+          "player": "Mostafa Zico",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "79",
+          "minuteSort": 79,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Cristian Romero",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "83",
+          "minuteSort": 83,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lionel Messi",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+2",
+          "minuteSort": 92,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Enzo Fernández",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "96",
@@ -11315,19 +11417,19 @@
       "venue": "Los Angeles (Inglewood)",
       "kickoffTime": "2026-07-10T19:00:00.000Z",
       "home": {
-        "name": "W93",
-        "code": "W93",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
         "score": null
       },
       "away": {
-        "name": "W94",
-        "code": "W94",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Belgium",
+        "code": "B",
+        "iso2": "be",
+        "logo": "https://flagcdn.com/be.svg",
+        "flagUrl": "https://flagcdn.com/be.svg",
         "score": null
       },
       "events": []
@@ -11503,34 +11605,6 @@
   ],
   "upcomingMatches": [
     {
-      "id": "95",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 16",
-      "round": "Round of 16",
-      "group": "",
-      "venue": "Atlanta",
-      "kickoffTime": "2026-07-07T16:00:00.000Z",
-      "home": {
-        "name": "Argentina",
-        "code": "A",
-        "iso2": "ar",
-        "logo": "https://flagcdn.com/ar.svg",
-        "flagUrl": "https://flagcdn.com/ar.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Egypt",
-        "code": "E",
-        "iso2": "eg",
-        "logo": "https://flagcdn.com/eg.svg",
-        "flagUrl": "https://flagcdn.com/eg.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
       "id": "96",
       "status": "NS",
       "statusText": "未开始",
@@ -11597,19 +11671,19 @@
       "venue": "Los Angeles (Inglewood)",
       "kickoffTime": "2026-07-10T19:00:00.000Z",
       "home": {
-        "name": "W93",
-        "code": "W93",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
         "score": null
       },
       "away": {
-        "name": "W94",
-        "code": "W94",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Belgium",
+        "code": "B",
+        "iso2": "be",
+        "logo": "https://flagcdn.com/be.svg",
+        "flagUrl": "https://flagcdn.com/be.svg",
         "score": null
       },
       "events": []
@@ -11784,6 +11858,85 @@
     }
   ],
   "timelineMatches": [
+    {
+      "id": "95",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Round of 16",
+      "round": "Round of 16",
+      "group": "",
+      "venue": "Atlanta",
+      "kickoffTime": "2026-07-07T16:00:00.000Z",
+      "home": {
+        "name": "Argentina",
+        "code": "A",
+        "iso2": "ar",
+        "logo": "https://flagcdn.com/ar.svg",
+        "flagUrl": "https://flagcdn.com/ar.svg",
+        "score": 3
+      },
+      "away": {
+        "name": "Egypt",
+        "code": "E",
+        "iso2": "eg",
+        "logo": "https://flagcdn.com/eg.svg",
+        "flagUrl": "https://flagcdn.com/eg.svg",
+        "score": 2
+      },
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "15",
+          "minuteSort": 15,
+          "team": "Egypt",
+          "teamName": "Egypt",
+          "player": "Yasser Ibrahim",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "67",
+          "minuteSort": 67,
+          "team": "Egypt",
+          "teamName": "Egypt",
+          "player": "Mostafa Zico",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "79",
+          "minuteSort": 79,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Cristian Romero",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "83",
+          "minuteSort": 83,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lionel Messi",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+2",
+          "minuteSort": 92,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Enzo Fernández",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
+    },
     {
       "id": "94",
       "status": "FT",
@@ -12302,55 +12455,6 @@
           "player": "Mohamed Hany",
           "penalty": false,
           "ownGoal": true
-        }
-      ]
-    },
-    {
-      "id": "85",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Vancouver",
-      "kickoffTime": "2026-07-03T03:00:00.000Z",
-      "home": {
-        "name": "Switzerland",
-        "code": "S",
-        "iso2": "ch",
-        "logo": "https://flagcdn.com/ch.svg",
-        "flagUrl": "https://flagcdn.com/ch.svg",
-        "score": 2
-      },
-      "away": {
-        "name": "Algeria",
-        "code": "A",
-        "iso2": "dz",
-        "logo": "https://flagcdn.com/dz.svg",
-        "flagUrl": "https://flagcdn.com/dz.svg",
-        "score": 0
-      },
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "10",
-          "minuteSort": 10,
-          "team": "Switzerland",
-          "teamName": "Switzerland",
-          "player": "Breel Embolo",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "46",
-          "minuteSort": 46,
-          "team": "Switzerland",
-          "teamName": "Switzerland",
-          "player": "Dan Ndoye",
-          "penalty": false,
-          "ownGoal": false
         }
       ]
     }
@@ -17498,7 +17602,8 @@
       "status": "FT",
       "nextMatchId": "94",
       "nextMatchIds": [
-        "94"
+        "94",
+        "98"
       ]
     },
     {
@@ -17526,7 +17631,8 @@
       "status": "FT",
       "nextMatchId": "93",
       "nextMatchIds": [
-        "93"
+        "93",
+        "98"
       ]
     },
     {
@@ -17674,10 +17780,10 @@
       "round": "Round of 16",
       "home": "Argentina",
       "away": "Egypt",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 3,
+      "awayScore": 2,
+      "winner": "Argentina",
+      "status": "FT",
       "nextMatchId": "100",
       "nextMatchIds": [
         "100"
@@ -17714,8 +17820,8 @@
     {
       "id": "98",
       "round": "Quarter-final",
-      "home": "W93",
-      "away": "W94",
+      "home": "Spain",
+      "away": "Belgium",
       "homeScore": null,
       "awayScore": null,
       "winner": "",
@@ -17834,21 +17940,21 @@
   "leagueId": "1",
   "season": "2026",
   "polling": {
-    "mode": "near-match",
-    "label": "near-match",
+    "mode": "match-window",
+    "label": "match-window",
     "due": false,
-    "intervalSeconds": 3600,
-    "nextFetchAt": "2026-07-07T11:39:17.408Z",
-    "generatedAt": "2026-07-07T10:39:17.408Z",
+    "intervalSeconds": 300,
+    "nextFetchAt": "2026-07-07T18:30:06.180Z",
+    "generatedAt": "2026-07-07T18:25:06.180Z",
     "nextMatch": {
       "id": "95",
       "stage": "Round of 16",
       "kickoffTime": "2026-07-07T16:00:00.000Z",
       "home": "Argentina",
       "away": "Egypt",
-      "status": "NS"
+      "status": "FT"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-07T10:39:17.408Z"
+  "lastUpdated": "2026-07-07T18:25:06.180Z"
 }
