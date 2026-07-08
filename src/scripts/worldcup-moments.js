@@ -1,16 +1,14 @@
 import {
   formatTime,
-  loadPlayerNameData,
   renderTimeline,
-  sourceLabel
+  sourceLabel,
+  worldcupText
 } from "./worldcup-dashboard.js";
 import {
   fetchDataPayload,
   normalizeClientPayload
 } from "./worldcup/data-client.js";
-import siteText from "../content/siteText";
 
-const worldcupText = siteText.worldcup;
 const runtimeText = worldcupText.runtime;
 const root = document.querySelector("[data-worldcup-moments-root]");
 
@@ -34,11 +32,6 @@ if (root) {
       });
       elements.sourcePill.textContent = sourceLabel(payload.source);
       clearError(elements);
-      loadPlayerNameData().then(() => {
-        if (latestPayload === payload) {
-          renderMoments(payload, elements);
-        }
-      });
     } catch {
       showError(elements, runtimeText.fetchErrors.keepPrevious);
     }

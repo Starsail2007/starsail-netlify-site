@@ -1,4 +1,5 @@
 ---
+import CoverImage from "./CoverImage.astro";
 import siteText from "../../content/siteText";
 import { formatAchievement } from "../../lib/maimai/format";
 import type { MaimaiB50Item } from "../../lib/maimai/types";
@@ -11,6 +12,7 @@ interface Props {
 
 const { nearRankUp, borderItems, practiceItems } = Astro.props;
 const text = siteText.maimai.sections.suggestions;
+const b50Text = siteText.maimai.b50;
 const groups = [
   [text.groups.nearRankUp, nearRankUp],
   [text.groups.borderItems, borderItems],
@@ -32,8 +34,16 @@ const groups = [
         {items.length > 0 ? (
           <ol>
             {items.slice(0, 4).map((item) => (
-              <li>
-                <span>{item.title}</span>
+              <li class="suggestion-item">
+                <CoverImage src={item.coverUrl} alt={`${item.title} ${b50Text.coverAltSuffix}`} />
+                <div class="suggestion-song-copy">
+                  <span class="suggestion-title">{item.title}</span>
+                  <span class="suggestion-meta">
+                    <span>{item.type}</span>
+                    <span>{item.difficulty}</span>
+                    <span>{text.constantLabel} {item.ds.toFixed(1)}</span>
+                  </span>
+                </div>
                 <strong>{formatAchievement(item.achievements)}</strong>
               </li>
             ))}

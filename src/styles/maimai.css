@@ -485,6 +485,87 @@ html[data-theme="light"] .b50-card {
   box-shadow: 0 10px 24px rgba(0, 0, 0, .28);
 }
 
+.b50-empty-card {
+  border-style: dashed;
+  background:
+    linear-gradient(135deg, rgba(148, 163, 184, .1), rgba(255, 255, 255, .025)),
+    rgba(12, 14, 20, .5);
+  box-shadow:
+    0 12px 34px rgba(0, 0, 0, .18),
+    inset 0 0 0 1px rgba(255, 255, 255, .02);
+}
+
+.b50-empty-card:hover {
+  transform: translateY(-1px);
+  border-color: rgba(148, 163, 184, .32);
+}
+
+.b50-empty-card::before {
+  background: linear-gradient(180deg, rgba(148, 163, 184, .72), rgba(34, 211, 238, .24));
+}
+
+html[data-theme="light"] .b50-empty-card {
+  background:
+    linear-gradient(135deg, rgba(226, 232, 240, .88), rgba(255, 255, 255, .62)),
+    rgba(255, 255, 255, .7);
+  box-shadow:
+    0 12px 28px rgba(15, 23, 42, .08),
+    inset 0 0 0 1px rgba(255, 255, 255, .5);
+}
+
+.b50-empty-cover {
+  width: 100%;
+  max-width: 84px;
+  aspect-ratio: 1;
+  align-self: start;
+  position: relative;
+  border: 1px dashed rgba(148, 163, 184, .34);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(103, 232, 249, .16), transparent 44%),
+    linear-gradient(135deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .02));
+  box-shadow: inset 0 0 22px rgba(15, 23, 42, .2);
+}
+
+.b50-empty-cover span,
+.b50-empty-cover::before {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 26px;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, .6);
+  transform: translate(-50%, -50%);
+}
+
+.b50-empty-cover span {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.b50-empty-card .b50-card-topline,
+.b50-empty-card p,
+.b50-empty-card .b50-score-row span {
+  color: color-mix(in srgb, var(--muted) 78%, transparent);
+}
+
+.b50-empty-card h3 {
+  color: color-mix(in srgb, var(--fg) 72%, transparent);
+}
+
+.b50-empty-card .b50-score-row strong {
+  color: rgba(103, 232, 249, .64);
+}
+
+.b50-empty-card .b50-badges span {
+  background: rgba(148, 163, 184, .12);
+  color: rgba(226, 232, 240, .78);
+}
+
+html[data-theme="light"] .b50-empty-card .b50-badges span {
+  color: rgba(51, 65, 85, .72);
+}
+
 .b50-card-body {
   min-width: 0;
   display: grid;
@@ -579,29 +660,74 @@ html[data-theme="light"] .b50-card {
 
 .suggestion-group ol {
   display: grid;
-  gap: 10px;
+  gap: 12px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.suggestion-group li {
+.suggestion-item {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
   gap: 12px;
   align-items: center;
+  min-height: 64px;
+  padding: 8px;
+  border: 1px solid rgba(245, 245, 247, .08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .035);
   color: var(--muted);
 }
 
-.suggestion-group li span {
+.suggestion-item .maimai-cover {
+  width: 52px;
+  max-width: 52px;
+  border-radius: 7px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, .2);
+}
+
+.suggestion-song-copy {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.suggestion-title {
+  color: var(--fg);
+  font-weight: 800;
+  line-height: 1.2;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.suggestion-group li strong {
+.suggestion-meta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.suggestion-meta span {
+  border-radius: 999px;
+  background: rgba(148, 163, 184, .12);
+  padding: 3px 6px;
+  line-height: 1.1;
+}
+
+.suggestion-item strong {
+  justify-self: end;
   color: var(--fg);
   font-size: 13px;
+  white-space: nowrap;
+}
+
+html[data-theme="light"] .suggestion-item {
+  border-color: rgba(15, 23, 42, .08);
+  background: rgba(15, 23, 42, .03);
 }
 
 .empty-note,
@@ -706,6 +832,13 @@ html[data-theme="light"] .b50-card {
     box-shadow: 0 8px 18px rgba(0, 0, 0, .22);
   }
 
+  .b50-empty-cover {
+    width: min(100%, 72px);
+    max-width: 72px;
+    justify-self: center;
+    border-radius: 6px;
+  }
+
   .b50-card-body {
     gap: 4px;
   }
@@ -754,5 +887,31 @@ html[data-theme="light"] .b50-card {
   .timeline-panel,
   .suggestion-panel {
     padding: 18px;
+  }
+
+  .suggestion-item {
+    grid-template-columns: 46px minmax(0, 1fr);
+    gap: 9px;
+    padding: 7px;
+  }
+
+  .suggestion-item .maimai-cover {
+    width: 46px;
+    max-width: 46px;
+    justify-self: start;
+  }
+
+  .suggestion-item strong {
+    grid-column: 2;
+    font-size: 12px;
+  }
+
+  .suggestion-meta {
+    gap: 4px;
+    font-size: 10px;
+  }
+
+  .suggestion-meta span {
+    padding: 2px 5px;
   }
 }

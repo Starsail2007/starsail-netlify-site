@@ -1,5 +1,6 @@
 ---
 import B50Card from "./B50Card.astro";
+import B50EmptyCard from "./B50EmptyCard.astro";
 import type { MaimaiB50Item } from "../../lib/maimai/types";
 
 interface Props {
@@ -10,6 +11,12 @@ interface Props {
 }
 
 const { title, subtitle, items, target } = Astro.props;
+const targetCount = target === "b35" ? 35 : 15;
+const visibleItems = items.slice(0, targetCount);
+const emptyRanks = Array.from(
+  { length: Math.max(0, targetCount - visibleItems.length) },
+  (_, index) => visibleItems.length + index + 1
+);
 ---
 
 <section class="maimai-panel b50-section" aria-labelledby={`maimai-${target}-title`}>
@@ -18,9 +25,10 @@ const { title, subtitle, items, target } = Astro.props;
       <h2 id={`maimai-${target}-title`}>{title}</h2>
       <p>{subtitle}</p>
     </div>
-    <span class="section-count" data-maimai-count={target}>{items.length}</span>
+    <span class="section-count" data-maimai-count={target}>{visibleItems.length}/{targetCount}</span>
   </div>
   <div class="b50-grid" data-maimai-grid={target}>
-    {items.map((item) => <B50Card item={item} />)}
+    {visibleItems.map((item) => <B50Card item={item} />)}
+    {emptyRanks.map((rankIndex) => <B50EmptyCard rankIndex={rankIndex} />)}
   </div>
 </section>

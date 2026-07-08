@@ -1,5 +1,7 @@
 const BASE_PATH = import.meta.env.BASE_URL || "/";
 const DATA_STALE_GRACE_MS = 2 * 60 * 1_000;
+const LOCAL_DATA_TIMEOUT_MS = 1_200;
+const REMOTE_DATA_TIMEOUT_MS = 2_800;
 const REPOSITORY_DATA_ENDPOINT = "https://raw.githubusercontent.com/Starsail2007/starsail-netlify-site/worldcup-data/public/data/worldcup-live.json";
 const STATIC_DATA_ENDPOINT = withBasePath("/data/worldcup-live.json");
 const NETLIFY_FUNCTION_ENDPOINT = withBasePath("/.netlify/functions/worldcup-live");
@@ -15,13 +17,7 @@ export async function fetchDataPayload() {
 
   for (const endpoint of DATA_ENDPOINTS) {
     try {
-      const response = await fetch(withCacheBust(endpoint), { cache: "no-store" });
-
-      if (!response.ok) {
-        throw new Error(`${endpoint} returned HTTP ${response.status}`);
-      }
-
-      const payload = await response.json();
+      const payload = await fetchJsonWithTimeout(endpoint);
 
       if (!isPayloadRefreshOverdue(payload)) {
         return payload;
@@ -74,10 +70,10 @@ function buildDataEndpoints() {
   }
 
   if (ENABLE_NETLIFY_FUNCTION_FALLBACK) {
-    return uniqueEndpoints([REPOSITORY_DATA_ENDPOINT, STATIC_DATA_ENDPOINT, NETLIFY_FUNCTION_ENDPOINT, NETLIFY_FUNCTION_ORIGIN_ENDPOINT]);
+    return uniqueEndpoints([STATIC_DATA_ENDPOINT, REPOSITORY_DATA_ENDPOINT, NETLIFY_FUNCTION_ENDPOINT, NETLIFY_FUNCTION_ORIGIN_ENDPOINT]);
   }
 
-  return uniqueEndpoints([REPOSITORY_DATA_ENDPOINT, STATIC_DATA_ENDPOINT]);
+  return uniqueEndpoints([STATIC_DATA_ENDPOINT, REPOSITORY_DATA_ENDPOINT]);
 }
 
 function withBasePath(path) {
@@ -91,9 +87,28 @@ function withBasePath(path) {
   return `${normalizedBase}${cleanedPath}`;
 }
 
-function withCacheBust(endpoint) {
-  const separator = endpoint.includes("?") ? "&" : "?";
-  return `${endpoint}${separator}t=${Date.now()}`;
+async function fetchJsonWithTimeout(endpoint) {
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), getEndpointTimeout(endpoint));
+
+  try {
+    const response = await fetch(endpoint, {
+      cache: "no-cache",
+      signal: controller.signal
+    });
+
+    if (!response.ok) {
+      throw new Error(`${endpoint} returned HTTP ${response.status}`);
+    }
+
+    return await response.json();
+  } finally {
+    window.clearTimeout(timeout);
+  }
+}
+
+function getEndpointTimeout(endpoint) {
+  return endpoint === STATIC_DATA_ENDPOINT ? LOCAL_DATA_TIMEOUT_MS : REMOTE_DATA_TIMEOUT_MS;
 }
 
 function uniqueEndpoints(endpoints) {

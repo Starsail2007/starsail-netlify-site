@@ -1,0 +1,32 @@
+---
+import siteText from "../../content/siteText";
+
+interface Props {
+  rankIndex: number;
+}
+
+const { rankIndex } = Astro.props;
+const text = siteText.maimai.b50;
+const emptyText = text.emptySlot;
+---
+
+<article class="b50-card b50-empty-card" data-b50-card data-b50-empty>
+  <div class="b50-rank">#{rankIndex}</div>
+  <div class="b50-empty-cover" aria-hidden="true">
+    <span></span>
+  </div>
+  <div class="b50-card-body b50-empty-body">
+    <div class="b50-card-topline">
+      <span>{emptyText.meta}</span>
+    </div>
+    <h3>{emptyText.title}</h3>
+    <p>{emptyText.description}</p>
+    <div class="b50-score-row">
+      <strong>{emptyText.score}</strong>
+      <span>{emptyText.scoreMeta}</span>
+    </div>
+    <div class="b50-badges" aria-label={text.badgesAriaLabel}>
+      <span>{emptyText.badge}</span>
+    </div>
+  </div>
+</article>

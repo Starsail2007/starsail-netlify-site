@@ -1,12 +1,22 @@
 ---
 import siteText from "../../content/siteText";
 import { withBasePath } from "../../lib/basePath";
+import { serializeJsonForHtml } from "../../lib/htmlJson";
 import ThemeToggle from "../../components/ThemeToggle.astro";
 
 const text = siteText.worldcup;
 const homeHref = withBasePath("/");
 const heroLogoSrc = withBasePath(text.hero.logoSrc);
 const championLogoSrc = withBasePath(text.champion.logoSrc);
+const clientTextJson = serializeJsonForHtml({
+  worldcup: {
+    statusRow: text.statusRow,
+    panels: text.panels,
+    moments: text.moments,
+    champion: text.champion,
+    runtime: text.runtime
+  }
+});
 ---
 
 <section class="worldcup-page" data-worldcup-root aria-label={text.pageAriaLabel}>
@@ -201,4 +211,6 @@ const championLogoSrc = withBasePath(text.champion.logoSrc);
       <span data-champion-copy></span>
     </div>
   </section>
+
+  <script type="application/json" data-worldcup-client-text set:html={clientTextJson} />
 </section>

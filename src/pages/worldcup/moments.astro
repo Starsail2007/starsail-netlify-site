@@ -2,12 +2,22 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import siteText from "../../content/siteText";
 import { withBasePath } from "../../lib/basePath";
+import { serializeJsonForHtml } from "../../lib/htmlJson";
 import ThemeToggle from "../../components/ThemeToggle.astro";
 import "../../styles/worldcup.css";
 
 const text = siteText.worldcup;
 const pageText = text.momentsPage;
 const worldcupHref = withBasePath("/worldcup/");
+const clientTextJson = serializeJsonForHtml({
+  worldcup: {
+    statusRow: text.statusRow,
+    panels: text.panels,
+    moments: text.moments,
+    champion: text.champion,
+    runtime: text.runtime
+  }
+});
 ---
 
 <BaseLayout
@@ -50,6 +60,7 @@ const worldcupHref = withBasePath("/worldcup/");
         </div>
       </section>
     </main>
+    <script type="application/json" data-worldcup-client-text set:html={clientTextJson} />
   </section>
 </BaseLayout>
 

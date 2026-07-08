@@ -8,6 +8,8 @@ const {
   description = siteText.shared.defaults.description,
   bodyClass = ""
 } = Astro.props;
+
+const metaDescription = typeof description === "string" ? description.trim() : "";
 ---
 
 <!doctype html>
@@ -15,7 +17,7 @@ const {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
+    {metaDescription ? <meta name="description" content={metaDescription} /> : null}
     <title>{title}</title>
     <script is:inline>
       try {

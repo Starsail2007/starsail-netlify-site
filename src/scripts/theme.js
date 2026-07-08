@@ -1,9 +1,12 @@
-import siteText from "../content/siteText";
-
 const themeToggles = [...document.querySelectorAll(".theme-toggle")];
 const storageKey = "starsail-theme";
-const themeText = siteText.shared.theme;
 const validThemes = new Set(["dark", "light"]);
+const fallbackThemeText = {
+  darkLabel: "Dark",
+  lightLabel: "Light",
+  darkAriaLabel: "Switch to light theme",
+  lightAriaLabel: "Switch to dark theme"
+};
 
 const readSavedTheme = () => {
   try {
@@ -31,6 +34,7 @@ const setTheme = (theme) => {
   }
 
   themeToggles.forEach((toggle) => {
+    const themeText = readThemeText(toggle);
     const label = toggle.querySelector(".theme-label");
 
     if (label) {
@@ -45,6 +49,13 @@ const setTheme = (theme) => {
     );
   });
 };
+
+const readThemeText = (toggle) => ({
+  darkLabel: toggle.dataset.themeDarkLabel || fallbackThemeText.darkLabel,
+  lightLabel: toggle.dataset.themeLightLabel || fallbackThemeText.lightLabel,
+  darkAriaLabel: toggle.dataset.themeDarkAriaLabel || fallbackThemeText.darkAriaLabel,
+  lightAriaLabel: toggle.dataset.themeLightAriaLabel || fallbackThemeText.lightAriaLabel
+});
 
 setTheme(readSavedTheme() || document.documentElement.dataset.theme || "dark");
 

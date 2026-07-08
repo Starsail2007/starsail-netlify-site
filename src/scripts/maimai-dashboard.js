@@ -1,6 +1,5 @@
-import siteText from "../content/siteText";
-
 const initialDataElement = document.getElementById("maimai-initial-data");
+const clientTextElement = document.getElementById("maimai-client-text");
 const dashboard = document.querySelector("[data-maimai-dashboard]");
 const emptyState = document.querySelector("[data-maimai-empty]");
 const BASE_PATH = import.meta.env.BASE_URL || "/";
@@ -15,7 +14,50 @@ const withBasePath = (path) => {
   return `${normalizedBase}${cleanedPath}`;
 };
 const defaultCover = withBasePath("/assets/maimai/default-cover.png");
-const text = siteText.maimai;
+const DEFAULT_MAIMAI_TEXT = {
+  hero: {
+    stats: {
+      b35: "B35",
+      b15: "B15",
+      source: "Source",
+      updated: "Updated"
+    }
+  },
+  sections: {
+    trend: {
+      chartAriaLabel: "Rating chart",
+      empty: "No rating history."
+    },
+    timeline: {
+      empty: "No sync records."
+    },
+    suggestions: {
+      groups: {
+        nearRankUp: "Near rank-up",
+        borderItems: "Border items",
+        practiceItems: "Practice"
+      },
+      constantLabel: "Const.",
+      empty: "No suggestions."
+    }
+  },
+  b50: {
+    coverAltSuffix: "cover",
+    badgesAriaLabel: "Score badges",
+    playBadge: "PLAY",
+    defaultArtist: "maimai DX",
+    scoreSeparator: "->",
+    emptySlot: {
+      meta: "Unrecorded",
+      title: "Not played yet",
+      description: "Waiting for score sync",
+      score: "--.----%",
+      scoreMeta: "-- -> --",
+      badge: "Empty"
+    }
+  }
+};
+const text = readMaimaiText();
 
 const readInitialData = () => {
   if (!initialDataElement?.textContent) {
@@ -28,6 +70,37 @@ const readInitialData = () => {
     return null;
   }
 };
+
+function readMaimaiText() {
+  if (!clientTextElement?.textContent) {
+    return DEFAULT_MAIMAI_TEXT;
+  }
+
+  try {
+    const parsed = JSON.parse(clientTextElement.textContent);
+    return mergeText(DEFAULT_MAIMAI_TEXT, parsed?.maimai || parsed);
+  } catch {
+    return DEFAULT_MAIMAI_TEXT;
+  }
+}
+
+function mergeText(defaultText, overrideText) {
+  if (!isPlainObject(defaultText) || !isPlainObject(overrideText)) {
+    return overrideText ?? defaultText;
+  }
+
+  const merged = { ...defaultText };
+
+  for (const [key, value] of Object.entries(overrideText)) {
+    merged[key] = mergeText(defaultText[key], value);
+  }
+
+  return merged;
+}
+
+function isPlainObject(value) {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
 
 const escapeHtml = (value) => String(value ?? "")
   .replaceAll("&", "&amp;")
@@ -71,6 +144,10 @@ const formatSource = (value) => value === "diving_fish" ? "Diving-Fish" : value 
 const difficultyClass = (difficulty) => `difficulty-${String(difficulty).toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 
 const allItems = (snapshot) => [...(snapshot?.b35 || []), ...(snapshot?.b15 || [])];
+const b50Targets = {
+  b35: 35,
+  b15: 15
+};
 
 const getNearRankUpItems = (snapshot) => {
   const lines = [100.5, 100, 99.5, 99];
@@ -138,6 +215,47 @@ const renderCard = (item) => {
       </div>
     </article>
   `;
+};
+
+const renderEmptyCard = (rankIndex) => {
+  const emptyText = text.b50.emptySlot;
+
+  return `
+    <article class="b50-card b50-empty-card" data-b50-card data-b50-empty>
+      <div class="b50-rank">#${escapeHtml(rankIndex)}</div>
+      <div class="b50-empty-cover" aria-hidden="true">
+        <span></span>
+      </div>
+      <div class="b50-card-body b50-empty-body">
+        <div class="b50-card-topline">
+          <span>${escapeHtml(emptyText.meta)}</span>
+        </div>
+        <h3>${escapeHtml(emptyText.title)}</h3>
+        <p>${escapeHtml(emptyText.description)}</p>
+        <div class="b50-score-row">
+          <strong>${escapeHtml(emptyText.score)}</strong>
+          <span>${escapeHtml(emptyText.scoreMeta)}</span>
+        </div>
+        <div class="b50-badges" aria-label="${escapeAttribute(text.b50.badgesAriaLabel)}">
+          <span>${escapeHtml(emptyText.badge)}</span>
+        </div>
+      </div>
+    </article>
+  `;
+};
+
+const normalizeB50Items = (items, target) => {
+  const targetCount = b50Targets[target] || (items || []).length;
+  const visibleItems = (items || []).slice(0, targetCount);
+  const emptyCards = Array.from(
+    { length: Math.max(0, targetCount - visibleItems.length) },
+    (_, index) => renderEmptyCard(visibleItems.length + index + 1)
+  );
+
+  return {
+    countLabel: `${visibleItems.length}/${targetCount}`,
+    html: `${visibleItems.map(renderCard).join("")}${emptyCards.join("")}`
+  };
 };
 
 const renderTrend = (history) => {
@@ -216,8 +334,23 @@ const renderSuggestions = (snapshot) => {
       ${items.length > 0 ? `
         <ol>
           ${items.slice(0, 4).map((item) => `
-            <li>
-              <span>${escapeHtml(item.title)}</span>
+            <li class="suggestion-item">
+              <img
+                class="maimai-cover"
+                src="${escapeHtml(withBasePath(item.coverUrl || defaultCover))}"
+                alt="${escapeHtml(item.title)} ${escapeHtml(text.b50.coverAltSuffix)}"
+                loading="lazy"
+                decoding="async"
+                data-cover-fallback="${defaultCover}"
+              />
+              <div class="suggestion-song-copy">
+                <span class="suggestion-title">${escapeHtml(item.title)}</span>
+                <span class="suggestion-meta">
+                  <span>${escapeHtml(item.type)}</span>
+                  <span>${escapeHtml(item.difficulty)}</span>
+                  <span>${escapeHtml(text.sections.suggestions.constantLabel)} ${Number(item.ds || 0).toFixed(1)}</span>
+                </span>
+              </div>
               <strong>${formatAchievement(item.achievements)}</strong>
             </li>
           `).join("")}
@@ -266,21 +399,23 @@ const renderDashboard = (snapshot, history) => {
   const trend = dashboard.querySelector("[data-maimai-trend]");
   const timeline = dashboard.querySelector("[data-maimai-timeline]");
   const suggestions = dashboard.querySelector("[data-maimai-suggestions]");
+  const b35Content = normalizeB50Items(snapshot.b35, "b35");
+  const b15Content = normalizeB50Items(snapshot.b15, "b15");
 
   if (b35Grid) {
-    b35Grid.innerHTML = (snapshot.b35 || []).map(renderCard).join("");
+    b35Grid.innerHTML = b35Content.html;
   }
 
   if (b15Grid) {
-    b15Grid.innerHTML = (snapshot.b15 || []).map(renderCard).join("");
+    b15Grid.innerHTML = b15Content.html;
   }
 
   if (b35Count) {
-    b35Count.textContent = String((snapshot.b35 || []).length);
+    b35Count.textContent = b35Content.countLabel;
   }
 
   if (b15Count) {
-    b15Count.textContent = String((snapshot.b15 || []).length);
+    b15Count.textContent = b15Content.countLabel;
   }
 
   if (trend) {

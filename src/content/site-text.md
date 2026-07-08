@@ -8,7 +8,7 @@ contentStatus:
 shared:
   defaults:
     title: "Starsail的小窝"
-    description: "星帆Starsail 的个人静态网站入口。"
+    description: ""
   theme:
     title: "切换风格"
     initialLabel: "夜间"
@@ -103,6 +103,7 @@ maimai:
         nearRankUp: "接近评价线"
         borderItems: "B50 边缘曲"
         practiceItems: "高价值练习"
+      constantLabel: "定数"
       empty: "暂无明显目标。"
   b50:
     coverAltSuffix: "曲绘"
@@ -110,6 +111,13 @@ maimai:
     playBadge: "PLAY"
     defaultArtist: "maimai DX"
     scoreSeparator: "->"
+    emptySlot:
+      meta: "未记录"
+      title: "尚未游玩"
+      description: "等待成绩同步"
+      score: "--.----%"
+      scoreMeta: "-- -> --"
+      badge: "空位"
 worldcup:
   meta:
     title: "世界杯实时赛事大屏 | Starsail"

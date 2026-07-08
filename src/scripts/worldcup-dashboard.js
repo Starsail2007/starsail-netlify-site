@@ -3,9 +3,6 @@ import { createMockWorldCupUpdate, mockWorldCupData } from "../worldcup/lib/mock
 import { flagUrl } from "../worldcup/lib/flagUrl.js";
 import { TEAM_ISO2, TEAM_NAME_ZH } from "../worldcup/lib/teamIsoMap.js";
 import { simplifyChinese } from "../worldcup/lib/simplifyChinese.js";
-import siteText from "../content/siteText";
-import playerNameMapUrl from "../worldcup/data/player-name-map.json?url";
-import playerNameOverridesUrl from "../worldcup/data/player-name-overrides.json?url";
 import {
   fetchDataPayload,
   normalizeClientPayload
@@ -19,18 +16,182 @@ const PRE_MATCH_WINDOW = 30 * 60 * 1_000;
 const POST_KICKOFF_WINDOW = 150 * 60 * 1_000;
 const GOAL_VISIBLE_MS = 2_400;
 const BASE_PATH = import.meta.env.BASE_URL || "/";
-const worldcupText = siteText.worldcup;
+const PLAYER_NAME_MANIFEST_ENDPOINT = withBasePath("/data/worldcup/player-names/manifest.json");
+const DEFAULT_WORLDCUP_TEXT = {
+  statusRow: {
+    liveCountTemplate: "Live {count}",
+    updatedAtTemplate: "Updated {time}"
+  },
+  panels: {
+    schedule: {
+      dateFilter: {
+        toggleAriaLabel: "Filter matches by date",
+        allLabel: "All dates",
+        allOptionLabel: "All",
+        countTemplate: "{count} matches",
+        emptyLabel: "No matches"
+      }
+    },
+    groupStage: {
+      title: "Group Stage"
+    },
+    timeline: {
+      title: "Key Moments"
+    },
+    bracket: {
+      title: "Knockout Bracket",
+      dragAriaLabel: "Drag horizontally to view the full bracket"
+    }
+  },
+  moments: {
+    sort: {
+      asc: "Ascending",
+      desc: "Descending"
+    },
+    dateFilter: {
+      toggleAriaLabel: "Filter moments by date",
+      allLabel: "All dates",
+      allOptionLabel: "All",
+      countTemplate: "{count} matches",
+      emptyLabel: "No moment dates"
+    },
+    matchEventsTemplate: "{count} moments",
+    expandMatchAriaLabel: "View moments for {match}",
+    playerNameTemplate: "{zh}（{original}）",
+    playerNames: {}
+  },
+  champion: {
+    logoAlt: "2026 FIFA World Cup logo",
+    logoSrc: "/assets/worldcup/2026-emblem-clean.svg",
+    slotTitle: "Champion",
+    titleTemplate: "Congratulations to {team}",
+    copyTemplate: "{team} are the World Cup champions."
+  },
+  runtime: {
+    statusLabels: {
+      LIVE: "Live",
+      HT: "Halftime",
+      NS: "Not Started",
+      FT: "Full Time",
+      "1H": "First Half",
+      "2H": "Second Half",
+      ET: "Extra Time",
+      AET: "After Extra Time",
+      PEN: "Penalties",
+      PST: "Postponed",
+      CANC: "Canceled",
+      SUSP: "Suspended",
+      INT: "Interrupted"
+    },
+    stageLabels: {
+      "Group Stage": "Group Stage",
+      "Round of 32": "Round of 32",
+      "Round of 16": "Round of 16",
+      "Quarter-final": "Quarter-final",
+      Quarterfinal: "Quarterfinal",
+      "Semi-final": "Semi-final",
+      Semifinal: "Semifinal",
+      "Match for third place": "Third-place Match",
+      Final: "Final",
+      Finals: "Finals"
+    },
+    fetchErrors: {
+      localMockContinue: "Using local mock data.",
+      keepPrevious: "Data is temporarily unavailable. Keeping the previous frame.",
+      localMockInitial: "Using local mock data."
+    },
+    refreshLabels: {
+      publicScheduleQuiet: "Public schedule check every 6 hours",
+      matchWindow: "Match window refresh every 5 minutes",
+      nearKickoff: "Near kickoff refresh every 5 minutes",
+      waitForPreMatch: "Waiting for pre-match window",
+      hasTodayMatches: "Today's matches check every 30 minutes",
+      quiet: "Quiet period check every 6 hours",
+      policyTemplate: "{label} · next in {delay}",
+      minuteUnitTemplate: "{minutes} min",
+      hourUnitTemplate: "{hours} hr"
+    },
+    states: {
+      noMatchData: "No match data yet.",
+      noUpcomingMatches: "No upcoming matches.",
+      noGroupStageData: "No group-stage data.",
+      defaultVenue: "Venue TBD",
+      latestGoalTemplate: "Latest goal {minute}' · {player}",
+      waitingKickoff: "Waiting for kickoff",
+      mockSource: "Mock data",
+      liveSource: "Live data",
+      noTimelineEvents: "No key events.",
+      defaultGoalPlayer: "Team goal",
+      versus: "vs",
+      noBracketData: "No bracket data.",
+      advanceTemplate: "Advances to {nextMatchId}",
+      groupMatchesTemplate: "{count} matches",
+      groupLabelTemplate: "Group {group}",
+      groupStandingPlayed: "P",
+      groupStandingGoalDifference: "GD",
+      groupStandingPoints: "Pts",
+      bracketRunnerUp: "Runner-up",
+      bracketThirdPlace: "Third place",
+      moreEventsTemplate: "{count} more moments",
+      defaultTeam: "TBD",
+      defaultStage: "World Cup",
+      unknownStatus: "Unknown",
+      apiSource: "Live data",
+      openaiSource: "Public schedule",
+      openfootballSource: "Open schedule",
+      mockSourcePill: "Mock data",
+      unknownSource: "Unknown source",
+      goalEvent: "Goal"
+    }
+  }
+};
+export const worldcupText = readWorldCupText();
 const runtimeText = worldcupText.runtime;
 const STATUS_LABEL = runtimeText.statusLabels;
 const STAGE_LABEL = runtimeText.stageLabels;
 const SECTION_TABS = ["schedule", "overview", "moments"];
 let playerNameIndex = buildPlayerNameIndex(null, null, worldcupText.moments?.playerNames || {});
-let playerNameDataPromise = null;
+let playerNameManifestPromise = null;
+const playerNameTeamPromises = new Map();
+const loadedPlayerNameTeams = new Set();
 
 const root = document.querySelector("[data-worldcup-root]");
 let dismissedChampionKey = "";
 let selectedScheduleDate = "";
 let selectedMomentsDate = "";
+
+function readWorldCupText() {
+  const script = document.querySelector("[data-worldcup-client-text]");
+
+  if (!script?.textContent) {
+    return DEFAULT_WORLDCUP_TEXT;
+  }
+
+  try {
+    const parsed = JSON.parse(script.textContent);
+    return mergeText(DEFAULT_WORLDCUP_TEXT, parsed?.worldcup || parsed);
+  } catch {
+    return DEFAULT_WORLDCUP_TEXT;
+  }
+}
+
+function mergeText(defaultText, overrideText) {
+  if (!isPlainObject(defaultText) || !isPlainObject(overrideText)) {
+    return overrideText ?? defaultText;
+  }
+
+  const merged = { ...defaultText };
+
+  for (const [key, value] of Object.entries(overrideText)) {
+    merged[key] = mergeText(defaultText[key], value);
+  }
+
+  return merged;
+}
+
+function isPlainObject(value) {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
 
 if (root) {
   const elements = {
@@ -191,7 +352,7 @@ if (root) {
           activeMomentsMode: button.dataset.momentsMode || "time"
         };
         writeState(nextState);
-        renderMomentsPanelFromData(readData(), pageElements, nextState);
+        renderMomentsPanelFromData(readData(), pageElements, nextState, { force: true });
       });
     }
 
@@ -202,7 +363,7 @@ if (root) {
         momentsSortDirection: state.momentsSortDirection === "desc" ? "asc" : "desc"
       };
       writeState(nextState);
-      renderMomentsPanelFromData(readData(), pageElements, nextState);
+      renderMomentsPanelFromData(readData(), pageElements, nextState, { force: true });
     });
 
     pageElements.momentsDateToggle?.addEventListener("click", (event) => {
@@ -229,17 +390,30 @@ if (root) {
       };
       writeState(nextState);
       closeMomentsDateMenu(pageElements);
-      renderMomentsPanelFromData(readData(), pageElements, nextState);
+      renderMomentsPanelFromData(readData(), pageElements, nextState, { force: true });
     });
 
     const openMomentMatch = (matchId) => {
+      const currentData = readData();
+      const sourceMatches = filterMatchesByScheduleDate(getMomentSourceMatches(currentData), selectedMomentsDate);
+
       renderMomentsDetail(
         matchId,
-        readData(),
+        currentData,
         pageElements,
-        filterMatchesByScheduleDate(getMomentSourceMatches(readData()), selectedMomentsDate)
+        sourceMatches
       );
       syncTabViewportHeight(pageElements, activeSectionTab);
+
+      const match = findMomentMatchById(matchId, currentData, sourceMatches);
+      loadPlayerNameData(match ? [match] : []).then(() => {
+        if (pageElements.momentsDetail?.dataset.selectedMatchId !== String(matchId)) {
+          return;
+        }
+
+        renderMomentsDetail(matchId, readData(), pageElements, sourceMatches);
+        syncTabViewportHeight(pageElements, activeSectionTab);
+      });
     };
 
     root?.addEventListener("click", (event) => {
@@ -457,7 +631,10 @@ function renderActivePanelData(nextData, elements) {
   const activeTab = root?.dataset.activeWorldcupTab || "schedule";
 
   if (activeTab === "overview") {
-    renderOverviewPanelFromData(nextData, elements);
+    if (shouldRenderDeferredPanel(elements, activeTab)) {
+      renderOverviewPanelFromData(nextData, elements);
+      markDeferredPanelRendered(elements, activeTab);
+    }
   }
 
   if (activeTab === "moments") {
@@ -475,19 +652,52 @@ function renderOverviewPanelFromData(nextData, elements) {
   window.setTimeout(() => drawBracketLines(elements.bracket), 280);
 }
 
-function renderMomentsPanelFromData(nextData, elements, overrideState = null) {
+function renderMomentsPanelFromData(nextData, elements, overrideState = null, options = {}) {
   if (!nextData) {
     return;
   }
 
-  renderMomentsFromData(nextData, elements, overrideState || readMomentsState(elements));
-  loadPlayerNameData().then(() => {
-    if (root?.dataset.activeWorldcupTab !== "moments") {
-      return;
-    }
+  if (!shouldRenderDeferredPanel(elements, "moments", options)) {
+    return;
+  }
 
-    renderMomentsFromData(nextData, elements, readMomentsState(elements));
-  });
+  renderMomentsFromData(nextData, elements, overrideState || readMomentsState(elements));
+  markDeferredPanelRendered(elements, "moments");
+}
+
+function shouldRenderDeferredPanel(elements, panelName, options = {}) {
+  if (options.force) {
+    return true;
+  }
+
+  const panel = findDeferredPanel(elements, panelName);
+
+  return !panel || panel.dataset.panelRendered !== "true" || panel.dataset.panelDirty === "true";
+}
+
+function markDeferredPanelsDirty(elements) {
+  for (const panelName of ["overview", "moments"]) {
+    const panel = findDeferredPanel(elements, panelName);
+
+    if (panel?.dataset.panelRendered === "true") {
+      panel.dataset.panelDirty = "true";
+    }
+  }
+}
+
+function markDeferredPanelRendered(elements, panelName) {
+  const panel = findDeferredPanel(elements, panelName);
+
+  if (!panel) {
+    return;
+  }
+
+  panel.dataset.panelRendered = "true";
+  panel.dataset.panelDirty = "false";
+}
+
+function findDeferredPanel(elements, panelName) {
+  return (elements.tabPanels || []).find((panel) => panel.dataset.worldcupPanel === panelName) || null;
 }
 
 function readMomentsState(elements) {
@@ -1331,6 +1541,11 @@ function renderMomentsDetail(matchId, nextData, elements, sourceMatches = null) 
   }
 }
 
+function findMomentMatchById(matchId, nextData, sourceMatches = null) {
+  return getStructureMomentSourceMatches(nextData, sourceMatches)
+    .find((match) => String(match.id) === String(matchId)) || null;
+}
+
 function getStructureMomentSourceMatches(nextData, sourceMatches = null) {
   const source = sourceMatches || getMomentSourceMatches(nextData);
   const byId = new Map(source.map((match) => [String(match.id), match]));
@@ -1494,6 +1709,7 @@ function renderDashboard(nextData, previousData, elements) {
     }
     updateScheduleWheelState(elements);
   });
+  markDeferredPanelsDirty(elements);
   renderActivePanelData(nextData, elements);
   window.requestAnimationFrame(() => syncTabViewportHeight(elements, root.dataset.activeWorldcupTab || "schedule"));
 
@@ -3002,27 +3218,111 @@ export function sourceLabel(source) {
   return runtimeText.states.unknownSource;
 }
 
-export function loadPlayerNameData() {
-  if (playerNameDataPromise) {
-    return playerNameDataPromise;
+export async function loadPlayerNameData(matches = []) {
+  const targetMatches = Array.isArray(matches) ? matches.filter(Boolean) : [matches].filter(Boolean);
+
+  if (!targetMatches.length) {
+    return playerNameIndex;
   }
 
-  playerNameDataPromise = Promise.all([
-    fetchJsonAsset(playerNameMapUrl),
-    fetchJsonAsset(playerNameOverridesUrl)
-  ])
-    .then(([mapData, overridesData]) => {
-      playerNameIndex = buildPlayerNameIndex(
-        mapData,
-        overridesData,
-        worldcupText.moments?.playerNames || {}
-      );
+  try {
+    const manifest = await loadPlayerNameManifest();
+    const teamCodes = getPlayerNameTeamCodes(targetMatches, manifest);
 
+    await Promise.all(teamCodes.map((teamCode) => loadPlayerNameTeamShard(teamCode, manifest)));
+  } catch {
+    return playerNameIndex;
+  }
+
+  return playerNameIndex;
+}
+
+function loadPlayerNameManifest() {
+  if (playerNameManifestPromise) {
+    return playerNameManifestPromise;
+  }
+
+  playerNameManifestPromise = fetchJsonAsset(PLAYER_NAME_MANIFEST_ENDPOINT)
+    .catch(() => null);
+
+  return playerNameManifestPromise;
+}
+
+function getPlayerNameTeamCodes(matches, manifest) {
+  const codes = new Set();
+
+  for (const match of matches) {
+    addPlayerNameTeamCode(codes, manifest, match?.home?.name || match?.home);
+    addPlayerNameTeamCode(codes, manifest, match?.away?.name || match?.away);
+
+    for (const event of match?.events || []) {
+      addPlayerNameTeamCode(codes, manifest, event.teamName || event.team);
+    }
+  }
+
+  return [...codes];
+}
+
+function addPlayerNameTeamCode(codes, manifest, teamName) {
+  const code = resolvePlayerNameTeamCode(teamName, manifest);
+
+  if (code) {
+    codes.add(code);
+  }
+}
+
+function resolvePlayerNameTeamCode(teamName, manifest) {
+  const normalized = normalizePlayerNameTeam(teamName);
+
+  if (!normalized || !manifest?.aliases) {
+    return "";
+  }
+
+  return manifest.aliases[normalized] || "";
+}
+
+function normalizePlayerNameTeam(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .toLocaleLowerCase("en-US")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function loadPlayerNameTeamShard(teamCode, manifest) {
+  if (loadedPlayerNameTeams.has(teamCode)) {
+    return Promise.resolve(playerNameIndex);
+  }
+
+  if (playerNameTeamPromises.has(teamCode)) {
+    return playerNameTeamPromises.get(teamCode);
+  }
+
+  const file = manifest?.teams?.[teamCode]?.file;
+
+  if (!file) {
+    return Promise.resolve(playerNameIndex);
+  }
+
+  const promise = fetchJsonAsset(withBasePath(`/data/worldcup/player-names/${file}`))
+    .then((teamData) => {
+      mergePlayerNameData(playerNameIndex, teamData);
+      loadedPlayerNameTeams.add(teamCode);
       return playerNameIndex;
     })
     .catch(() => playerNameIndex);
 
-  return playerNameDataPromise;
+  playerNameTeamPromises.set(teamCode, promise);
+  return promise;
+}
+
+function mergePlayerNameData(index, mapData) {
+  for (const [key, entry] of Object.entries(mapData?.players || {})) {
+    addPlayerMapping(index, key, entry);
+  }
+
+  return index;
 }
 
 async function fetchJsonAsset(url) {
