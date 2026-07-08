@@ -423,8 +423,9 @@ if (root) {
 
     root?.addEventListener("click", (event) => {
       const button = event.target.closest("[data-moments-match-id]");
+      const momentsPanel = button?.closest('[data-worldcup-panel="moments"]');
 
-      if (!button || !root.contains(button)) {
+      if (!button || !momentsPanel || !root.contains(button)) {
         return;
       }
 
@@ -436,11 +437,8 @@ if (root) {
 
       event.preventDefault();
       event.stopPropagation();
-      const clickedInMomentsPanel = Boolean(button.closest('[data-worldcup-panel="moments"]'));
       const currentData = readData();
-      const sourceMatches = clickedInMomentsPanel
-        ? filterMatchesByScheduleDate(getMomentSourceMatches(currentData), selectedMomentsDate)
-        : getMomentSourceMatches(currentData);
+      const sourceMatches = filterMatchesByScheduleDate(getMomentSourceMatches(currentData), selectedMomentsDate);
 
       openMomentMatch(button.dataset.momentsMatchId, { sourceMatches });
     }, true);
@@ -451,17 +449,15 @@ if (root) {
       }
 
       const button = event.target.closest("[data-moments-match-id]");
+      const momentsPanel = button?.closest('[data-worldcup-panel="moments"]');
 
-      if (!button || !root.contains(button)) {
+      if (!button || !momentsPanel || !root.contains(button)) {
         return;
       }
 
       event.preventDefault();
-      const clickedInMomentsPanel = Boolean(button.closest('[data-worldcup-panel="moments"]'));
       const currentData = readData();
-      const sourceMatches = clickedInMomentsPanel
-        ? filterMatchesByScheduleDate(getMomentSourceMatches(currentData), selectedMomentsDate)
-        : getMomentSourceMatches(currentData);
+      const sourceMatches = filterMatchesByScheduleDate(getMomentSourceMatches(currentData), selectedMomentsDate);
 
       openMomentMatch(button.dataset.momentsMatchId, { sourceMatches });
     });
@@ -696,18 +692,8 @@ function renderActivePanelData(nextData, elements) {
 }
 
 function renderOverviewPanelFromData(nextData, elements) {
-  const momentMatchIds = getMomentMatchIds(getMomentSourceMatches(nextData));
-  const interactiveMatchIds = buildStructureMatchIds(nextData.groupStage || [], nextData.knockout || []);
-
-  elements.groupStage.innerHTML = renderGroupStage(nextData.groupStage || [], {
-    momentMatchIds,
-    interactiveMatchIds
-  });
-  elements.bracket.innerHTML = renderBracket(nextData.knockout || [], nextData.groupStage || [], {
-    momentMatchIds,
-    interactiveMatchIds,
-    interactiveMoments: true
-  });
+  elements.groupStage.innerHTML = renderGroupStage(nextData.groupStage || []);
+  elements.bracket.innerHTML = renderBracket(nextData.knockout || [], nextData.groupStage || []);
   setupHorizontalMomentumScroller(elements.groupStage);
   window.requestAnimationFrame(() => drawBracketLines(elements.bracket));
   window.setTimeout(() => drawBracketLines(elements.bracket), 280);
@@ -1502,11 +1488,6 @@ function getMomentSourceMatches(nextData) {
   }
 
   return nextData?.timelineMatches || [];
-}
-
-function getMomentMatchIds(matches) {
-  return new Set(buildTimelineGroups(matches, "matchTimeDesc")
-    .map(({ match }) => String(match.id)));
 }
 
 function renderMomentsStructure(matches, groupStage, knockout, selectedMatchId = "", sortDirection = "desc") {
@@ -2750,7 +2731,7 @@ function setupHorizontalMomentumScroller(container) {
   container.addEventListener("pointerdown", (event) => {
     clearSuppressedClick();
 
-    if (isInteractiveTarget(event.target)) {
+    if (event.pointerType !== "touch" && isInteractiveTarget(event.target)) {
       return;
     }
 
