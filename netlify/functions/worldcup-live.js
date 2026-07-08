@@ -18,6 +18,7 @@ const SCHEDULE_LOOKAHEAD_DAYS = 3;
 const OPENFOOTBALL_2026_URL = "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json";
 const OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses";
 const DEFAULT_OPENAI_MODEL = "gpt-5.5";
+const ALLOW_MOCK = process.env.WORLDCUP_ALLOW_MOCK === "true";
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, OPTIONS",
@@ -157,6 +158,18 @@ async function scheduleFallback({ reason, leagueId, season }) {
       lastUpdated: new Date().toISOString()
     }, 200, {
       "Cache-Control": "public, max-age=21600"
+    });
+  }
+
+  if (!ALLOW_MOCK) {
+    return jsonResponse({
+      source: "unavailable",
+      message: `${reason} ${openFootballFallback?.error || "openfootball 未返回可用赛程"}；${openAiFallback?.error || "未配置 OPENAI_API_KEY 或 OpenAI 未返回可用赛程"}，未启用生产模拟数据。`,
+      leagueId,
+      season,
+      lastUpdated: new Date().toISOString()
+    }, 503, {
+      "Cache-Control": "no-store"
     });
   }
 

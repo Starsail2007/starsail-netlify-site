@@ -123,7 +123,7 @@ pnpm build
 
 GitHub Pages 备用部署由 `.github/workflows/github-pages.yml` 负责。它同样构建 `dist/`，但会设置 `BASE_PATH=/starsail-netlify-site`，让静态资源和站内链接适配 GitHub Pages 的项目子路径。GitHub Pages 不能运行 Netlify Functions，因此需要依赖静态 JSON、GitHub Actions 定时数据或前端可直接访问的公开数据源。
 
-世界杯数据主链路是：GitHub `worldcup-data` 分支静态 JSON -> 站内静态 JSON -> Netlify Function 兜底。GitHub Actions 是唯一的数据更新入口；Netlify 只负责构建与发布，不承担数据生成。GitHub Pages 只使用静态/公开入口，不依赖 Netlify Function。
+世界杯数据主链路是：GitHub `worldcup-data` 分支静态 JSON -> 站内同步静态 JSON -> Netlify Function 兜底。GitHub Actions 是唯一的数据更新入口；每次生成新鲜数据后，会先推送 `worldcup-data`，再把同一份 `public/data/worldcup-live.json` 同步到 `main`，让 Netlify 和 GitHub Pages 的构建快照也保持新鲜。生产环境不自动使用 mock 数据，只有本地开发或显式演示模式会启用。
 
 maimai 页面默认使用打包进项目的静态快照。远端刷新和 Supabase 历史是可选能力，需要环境变量显式开启。
 

@@ -126,7 +126,7 @@ worldcup:
   topbar:
     backLink: "Starsail"
     backAriaLabel: "返回星帆首页"
-    sourcePillInitial: "模拟数据"
+    sourcePillInitial: "数据源待确认"
   hero:
     kicker: "世界杯实时赛事大屏"
     title: "FIFA World Cup 2026"
@@ -259,6 +259,8 @@ worldcup:
       localMockContinue: "本地未启用 Netlify Function，继续使用模拟数据演示刷新。"
       keepPrevious: "数据接口暂时不可用，已保留上一帧比赛数据。"
       localMockInitial: "本地未启用 Netlify Function，正在使用模拟数据。"
+      latestUnavailable: "暂时无法取得最新世界杯数据，请稍后刷新。"
+      staleSnapshot: "最新数据源暂时不可用，正在显示静态快照。"
     refreshLabels:
       publicScheduleQuiet: "公开赛程低频校验，每 6 小时检查"
       matchWindow: "比赛窗口内，每 5 分钟刷新"

@@ -5,7 +5,8 @@ import { TEAM_ISO2, TEAM_NAME_ZH } from "../worldcup/lib/teamIsoMap.js";
 import { simplifyChinese } from "../worldcup/lib/simplifyChinese.js";
 import {
   fetchDataPayload,
-  normalizeClientPayload
+  normalizeClientPayload,
+  shouldAllowWorldCupMock
 } from "./worldcup/data-client.js";
 
 const MATCH_WINDOW_INTERVAL = 5 * 60 * 1_000;
@@ -1633,9 +1634,10 @@ function isGroupStageMatch(match) {
 export async function fetchWorldCupData(currentData, tick, elements) {
   try {
     const payload = await fetchDataPayload();
-    clearError(elements);
+    const allowMock = shouldAllowWorldCupMock();
 
-    if (payload.source === "mock" && currentData?.source === "mock") {
+    if (payload.source === "mock" && currentData?.source === "mock" && allowMock) {
+      clearError(elements);
       return {
         ...createMockWorldCupUpdate(currentData, tick),
         message: payload.message || currentData.message,
@@ -1643,17 +1645,22 @@ export async function fetchWorldCupData(currentData, tick, elements) {
       };
     }
 
+    clearError(elements);
     return normalizeClientPayload(payload);
   } catch (error) {
-    const message = currentData?.source === "mock"
+    const allowMock = shouldAllowWorldCupMock();
+    const isCurrentMock = currentData?.source === "mock";
+    const message = isCurrentMock && allowMock
       ? runtimeText.fetchErrors.localMockContinue
       : currentData
         ? runtimeText.fetchErrors.keepPrevious
-        : runtimeText.fetchErrors.localMockInitial;
+        : allowMock
+          ? runtimeText.fetchErrors.localMockInitial
+          : runtimeText.fetchErrors.latestUnavailable;
 
     showError(elements, message);
 
-    if (currentData?.source === "mock") {
+    if (isCurrentMock && allowMock) {
       return {
         ...createMockWorldCupUpdate(currentData, tick),
         message,
@@ -1662,6 +1669,10 @@ export async function fetchWorldCupData(currentData, tick, elements) {
     }
 
     if (currentData) {
+      return null;
+    }
+
+    if (!allowMock) {
       return null;
     }
 
@@ -1720,6 +1731,11 @@ function renderDashboard(nextData, previousData, elements) {
   });
   if (elements.sourcePill) {
     elements.sourcePill.textContent = sourceLabel(nextData.source);
+  }
+  if (nextData.clientDataState?.staleFallback) {
+    showError(elements, runtimeText.fetchErrors.staleSnapshot);
+  } else {
+    clearError(elements);
   }
   renderChampionCelebration(nextData, elements);
 }

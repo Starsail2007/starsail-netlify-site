@@ -6,7 +6,7 @@ const REPOSITORY_DATA_ENDPOINT = "https://raw.githubusercontent.com/Starsail2007
 const STATIC_DATA_ENDPOINT = withBasePath("/data/worldcup-live.json");
 const NETLIFY_FUNCTION_ENDPOINT = withBasePath("/.netlify/functions/worldcup-live");
 const NETLIFY_FUNCTION_ORIGIN_ENDPOINT = "https://starsail.netlify.app/.netlify/functions/worldcup-live";
-const ENABLE_NETLIFY_FUNCTION_FALLBACK = String(import.meta.env.PUBLIC_WORLDCUP_NETLIFY_FUNCTION_FALLBACK || "false") === "true";
+const ENABLE_PRODUCTION_MOCK = String(import.meta.env.PUBLIC_WORLDCUP_ALLOW_MOCK || "false") === "true";
 
 export const DATA_ENDPOINT = REPOSITORY_DATA_ENDPOINT;
 export const DATA_ENDPOINTS = buildDataEndpoints();
@@ -18,12 +18,18 @@ export async function fetchDataPayload() {
   for (const endpoint of DATA_ENDPOINTS) {
     try {
       const payload = await fetchJsonWithTimeout(endpoint);
+      const annotatedPayload = annotatePayload(payload, endpoint);
 
-      if (!isPayloadRefreshOverdue(payload)) {
-        return payload;
+      if (!isUsablePayload(annotatedPayload)) {
+        lastError = new Error(`${endpoint} returned mock World Cup data.`);
+        continue;
       }
 
-      stalePayloads.push(payload);
+      if (!isPayloadRefreshOverdue(annotatedPayload)) {
+        return annotatedPayload;
+      }
+
+      stalePayloads.push(annotatedPayload);
     } catch (error) {
       lastError = error;
     }
@@ -32,7 +38,7 @@ export async function fetchDataPayload() {
   const newestStalePayload = pickNewestPayload(stalePayloads);
 
   if (newestStalePayload) {
-    return newestStalePayload;
+    return markStaleFallback(newestStalePayload);
   }
 
   throw lastError || new Error("No World Cup data endpoint is available.");
@@ -54,8 +60,18 @@ export function normalizeClientPayload(payload) {
     timelineMatches: Array.isArray(payload?.timelineMatches) ? payload.timelineMatches : [],
     groupStage: Array.isArray(payload?.groupStage) ? payload.groupStage : [],
     knockout: Array.isArray(payload?.knockout) ? payload.knockout : [],
-    polling: payload?.polling || null
+    polling: payload?.polling || null,
+    clientDataState: payload?.clientDataState || null
   };
+}
+
+export function shouldAllowWorldCupMock() {
+  const localHosts = new Set(["localhost", "127.0.0.1", "::1"]);
+  const params = new URLSearchParams(window.location.search);
+
+  return ENABLE_PRODUCTION_MOCK
+    || localHosts.has(window.location.hostname)
+    || params.get("worldcupDemo") === "1";
 }
 
 function buildDataEndpoints() {
@@ -69,11 +85,11 @@ function buildDataEndpoints() {
     return uniqueEndpoints([REPOSITORY_DATA_ENDPOINT, STATIC_DATA_ENDPOINT, NETLIFY_FUNCTION_ORIGIN_ENDPOINT]);
   }
 
-  if (ENABLE_NETLIFY_FUNCTION_FALLBACK) {
-    return uniqueEndpoints([STATIC_DATA_ENDPOINT, REPOSITORY_DATA_ENDPOINT, NETLIFY_FUNCTION_ENDPOINT, NETLIFY_FUNCTION_ORIGIN_ENDPOINT]);
+  if (window.location.hostname.endsWith("netlify.app")) {
+    return uniqueEndpoints([REPOSITORY_DATA_ENDPOINT, STATIC_DATA_ENDPOINT, NETLIFY_FUNCTION_ENDPOINT]);
   }
 
-  return uniqueEndpoints([STATIC_DATA_ENDPOINT, REPOSITORY_DATA_ENDPOINT]);
+  return uniqueEndpoints([REPOSITORY_DATA_ENDPOINT, STATIC_DATA_ENDPOINT, NETLIFY_FUNCTION_ORIGIN_ENDPOINT]);
 }
 
 function withBasePath(path) {
@@ -119,6 +135,31 @@ function isPayloadRefreshOverdue(payload) {
   const nextFetchAt = new Date(payload?.polling?.nextFetchAt || "").getTime();
 
   return Number.isFinite(nextFetchAt) && nextFetchAt + DATA_STALE_GRACE_MS < Date.now();
+}
+
+function isUsablePayload(payload) {
+  return payload?.source !== "mock" || shouldAllowWorldCupMock();
+}
+
+function annotatePayload(payload, endpoint) {
+  return {
+    ...payload,
+    clientDataState: {
+      ...(payload?.clientDataState || {}),
+      endpoint,
+      isStaticSnapshot: endpoint === STATIC_DATA_ENDPOINT
+    }
+  };
+}
+
+function markStaleFallback(payload) {
+  return {
+    ...payload,
+    clientDataState: {
+      ...(payload?.clientDataState || {}),
+      staleFallback: true
+    }
+  };
 }
 
 function pickNewestPayload(payloads) {

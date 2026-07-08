@@ -31,9 +31,13 @@ if (root) {
         time: formatTime(payload.lastUpdated)
       });
       elements.sourcePill.textContent = sourceLabel(payload.source);
-      clearError(elements);
+      if (payload.clientDataState?.staleFallback) {
+        showError(elements, runtimeText.fetchErrors.staleSnapshot);
+      } else {
+        clearError(elements);
+      }
     } catch {
-      showError(elements, runtimeText.fetchErrors.keepPrevious);
+      showError(elements, latestPayload ? runtimeText.fetchErrors.keepPrevious : runtimeText.fetchErrors.latestUnavailable);
     }
   };
 

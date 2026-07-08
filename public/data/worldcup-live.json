@@ -26,6 +26,7 @@
         "flagUrl": "https://flagcdn.com/za.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -75,6 +76,7 @@
         "flagUrl": "https://flagcdn.com/cz.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -134,6 +136,7 @@
         "flagUrl": "https://flagcdn.com/ba.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -183,6 +186,7 @@
         "flagUrl": "https://flagcdn.com/py.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -262,6 +266,7 @@
         "flagUrl": "https://flagcdn.com/ch.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -311,6 +316,7 @@
         "flagUrl": "https://flagcdn.com/ma.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -360,6 +366,7 @@
         "flagUrl": "https://flagcdn.com/gb-sct.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -399,6 +406,7 @@
         "flagUrl": "https://flagcdn.com/tr.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -448,6 +456,7 @@
         "flagUrl": "https://flagcdn.com/cw.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -557,6 +566,7 @@
         "flagUrl": "https://flagcdn.com/jp.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -626,6 +636,7 @@
         "flagUrl": "https://flagcdn.com/ec.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -665,6 +676,7 @@
         "flagUrl": "https://flagcdn.com/tn.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -754,6 +766,7 @@
         "flagUrl": "https://flagcdn.com/cv.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -782,6 +795,7 @@
         "flagUrl": "https://flagcdn.com/eg.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -831,6 +845,7 @@
         "flagUrl": "https://flagcdn.com/uy.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -880,6 +895,7 @@
         "flagUrl": "https://flagcdn.com/nz.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -949,6 +965,7 @@
         "flagUrl": "https://flagcdn.com/sn.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -1018,6 +1035,7 @@
         "flagUrl": "https://flagcdn.com/no.svg",
         "score": 4
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -1097,6 +1115,7 @@
         "flagUrl": "https://flagcdn.com/dz.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -1156,6 +1175,7 @@
         "flagUrl": "https://flagcdn.com/jo.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -1225,6 +1245,7 @@
         "flagUrl": "https://flagcdn.com/cd.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -1274,6 +1295,7 @@
         "flagUrl": "https://flagcdn.com/hr.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -1363,6 +1385,7 @@
         "flagUrl": "https://flagcdn.com/pa.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -1402,6 +1425,7 @@
         "flagUrl": "https://flagcdn.com/co.svg",
         "score": 3
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -1471,6 +1495,7 @@
         "flagUrl": "https://flagcdn.com/za.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -1520,6 +1545,7 @@
         "flagUrl": "https://flagcdn.com/ba.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -1599,6 +1625,7 @@
         "flagUrl": "https://flagcdn.com/qa.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -1688,6 +1715,7 @@
         "flagUrl": "https://flagcdn.com/kr.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -1727,6 +1755,7 @@
         "flagUrl": "https://flagcdn.com/au.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -1776,6 +1805,7 @@
         "flagUrl": "https://flagcdn.com/ma.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -1815,6 +1845,7 @@
         "flagUrl": "https://flagcdn.com/ht.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -1874,6 +1905,7 @@
         "flagUrl": "https://flagcdn.com/py.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -1913,6 +1945,7 @@
         "flagUrl": "https://flagcdn.com/se.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -2002,6 +2035,7 @@
         "flagUrl": "https://flagcdn.com/ci.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -2061,6 +2095,7 @@
         "flagUrl": "https://flagcdn.com/cw.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -2089,6 +2124,7 @@
         "flagUrl": "https://flagcdn.com/jp.svg",
         "score": 4
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -2158,6 +2194,7 @@
         "flagUrl": "https://flagcdn.com/sa.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -2227,6 +2264,7 @@
         "flagUrl": "https://flagcdn.com/ir.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -2255,6 +2293,7 @@
         "flagUrl": "https://flagcdn.com/cv.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -2324,6 +2363,7 @@
         "flagUrl": "https://flagcdn.com/eg.svg",
         "score": 3
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -2393,6 +2433,7 @@
         "flagUrl": "https://flagcdn.com/at.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -2442,6 +2483,7 @@
         "flagUrl": "https://flagcdn.com/iq.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -2501,6 +2543,7 @@
         "flagUrl": "https://flagcdn.com/sn.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -2580,6 +2623,7 @@
         "flagUrl": "https://flagcdn.com/dz.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -2639,6 +2683,7 @@
         "flagUrl": "https://flagcdn.com/uz.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -2718,6 +2763,7 @@
         "flagUrl": "https://flagcdn.com/gh.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -2746,6 +2792,7 @@
         "flagUrl": "https://flagcdn.com/hr.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -2785,6 +2832,7 @@
         "flagUrl": "https://flagcdn.com/cd.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -2824,6 +2872,7 @@
         "flagUrl": "https://flagcdn.com/ca.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -2883,6 +2932,7 @@
         "flagUrl": "https://flagcdn.com/qa.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -2952,6 +3002,7 @@
         "flagUrl": "https://flagcdn.com/br.svg",
         "score": 3
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -3011,6 +3062,7 @@
         "flagUrl": "https://flagcdn.com/ht.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -3100,6 +3152,7 @@
         "flagUrl": "https://flagcdn.com/mx.svg",
         "score": 3
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -3159,6 +3212,7 @@
         "flagUrl": "https://flagcdn.com/kr.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -3198,6 +3252,7 @@
         "flagUrl": "https://flagcdn.com/ci.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -3247,6 +3302,7 @@
         "flagUrl": "https://flagcdn.com/de.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -3306,6 +3362,7 @@
         "flagUrl": "https://flagcdn.com/se.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -3355,6 +3412,7 @@
         "flagUrl": "https://flagcdn.com/nl.svg",
         "score": 3
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -3424,6 +3482,7 @@
         "flagUrl": "https://flagcdn.com/us.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -3503,6 +3562,7 @@
         "flagUrl": "https://flagcdn.com/au.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -3531,6 +3591,7 @@
         "flagUrl": "https://flagcdn.com/fr.svg",
         "score": 4
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -3610,6 +3671,7 @@
         "flagUrl": "https://flagcdn.com/iq.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -3689,6 +3751,7 @@
         "flagUrl": "https://flagcdn.com/sa.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -3717,6 +3780,7 @@
         "flagUrl": "https://flagcdn.com/es.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -3756,6 +3820,7 @@
         "flagUrl": "https://flagcdn.com/ir.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -3805,6 +3870,7 @@
         "flagUrl": "https://flagcdn.com/be.svg",
         "score": 5
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -3894,6 +3960,7 @@
         "flagUrl": "https://flagcdn.com/gb-eng.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -3943,6 +4010,7 @@
         "flagUrl": "https://flagcdn.com/gh.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -4002,6 +4070,7 @@
         "flagUrl": "https://flagcdn.com/pt.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -4030,6 +4099,7 @@
         "flagUrl": "https://flagcdn.com/uz.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -4099,6 +4169,7 @@
         "flagUrl": "https://flagcdn.com/at.svg",
         "score": 3
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -4188,6 +4259,7 @@
         "flagUrl": "https://flagcdn.com/ar.svg",
         "score": 3
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -4257,6 +4329,7 @@
         "flagUrl": "https://flagcdn.com/ca.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -4296,6 +4369,7 @@
         "flagUrl": "https://flagcdn.com/jp.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -4331,8 +4405,8 @@
     },
     {
       "id": "74",
-      "status": "FT",
-      "statusText": "完场",
+      "status": "PEN",
+      "statusText": "点球结束",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -4354,6 +4428,10 @@
         "logo": "https://flagcdn.com/py.svg",
         "flagUrl": "https://flagcdn.com/py.svg",
         "score": 1
+      },
+      "penaltyScore": {
+        "home": 3,
+        "away": 4
       },
       "events": [
         {
@@ -4380,8 +4458,8 @@
     },
     {
       "id": "75",
-      "status": "FT",
-      "statusText": "完场",
+      "status": "PEN",
+      "statusText": "点球结束",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -4403,6 +4481,10 @@
         "logo": "https://flagcdn.com/ma.svg",
         "flagUrl": "https://flagcdn.com/ma.svg",
         "score": 1
+      },
+      "penaltyScore": {
+        "home": 2,
+        "away": 3
       },
       "events": [
         {
@@ -4453,6 +4535,7 @@
         "flagUrl": "https://flagcdn.com/no.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -4512,6 +4595,7 @@
         "flagUrl": "https://flagcdn.com/se.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -4571,6 +4655,7 @@
         "flagUrl": "https://flagcdn.com/ec.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -4620,6 +4705,7 @@
         "flagUrl": "https://flagcdn.com/cd.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -4679,6 +4765,7 @@
         "flagUrl": "https://flagcdn.com/sn.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -4758,6 +4845,7 @@
         "flagUrl": "https://flagcdn.com/ba.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -4807,6 +4895,7 @@
         "flagUrl": "https://flagcdn.com/at.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -4866,6 +4955,7 @@
         "flagUrl": "https://flagcdn.com/hr.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -4925,6 +5015,7 @@
         "flagUrl": "https://flagcdn.com/dz.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -4950,8 +5041,8 @@
     },
     {
       "id": "88",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "PEN",
+      "statusText": "点球结束",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -4964,7 +5055,7 @@
         "iso2": "au",
         "logo": "https://flagcdn.com/au.svg",
         "flagUrl": "https://flagcdn.com/au.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Egypt",
@@ -4972,14 +5063,39 @@
         "iso2": "eg",
         "logo": "https://flagcdn.com/eg.svg",
         "flagUrl": "https://flagcdn.com/eg.svg",
-        "score": null
+        "score": 1
       },
-      "events": []
+      "penaltyScore": {
+        "home": 2,
+        "away": 4
+      },
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "13",
+          "minuteSort": 13,
+          "team": "Egypt",
+          "teamName": "Egypt",
+          "player": "Emam Ashour",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "55",
+          "minuteSort": 55,
+          "team": "Australia",
+          "teamName": "Australia",
+          "player": "Mohamed Hany",
+          "penalty": false,
+          "ownGoal": true
+        }
+      ]
     },
     {
       "id": "86",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -4992,7 +5108,7 @@
         "iso2": "ar",
         "logo": "https://flagcdn.com/ar.svg",
         "flagUrl": "https://flagcdn.com/ar.svg",
-        "score": null
+        "score": 3
       },
       "away": {
         "name": "Cape Verde",
@@ -5000,14 +5116,66 @@
         "iso2": "cv",
         "logo": "https://flagcdn.com/cv.svg",
         "flagUrl": "https://flagcdn.com/cv.svg",
-        "score": null
+        "score": 2
       },
-      "events": []
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "29",
+          "minuteSort": 29,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lionel Messi",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "59",
+          "minuteSort": 59,
+          "team": "Cape Verde",
+          "teamName": "Cape Verde",
+          "player": "Deroy Duarte",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "92",
+          "minuteSort": 92,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lisandro Martínez",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "103",
+          "minuteSort": 103,
+          "team": "Cape Verde",
+          "teamName": "Cape Verde",
+          "player": "Sidny Lopes Cabral",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "111",
+          "minuteSort": 111,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Diney Borges",
+          "penalty": false,
+          "ownGoal": true
+        }
+      ]
     },
     {
       "id": "87",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -5020,7 +5188,7 @@
         "iso2": "co",
         "logo": "https://flagcdn.com/co.svg",
         "flagUrl": "https://flagcdn.com/co.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Ghana",
@@ -5028,14 +5196,26 @@
         "iso2": "gh",
         "logo": "https://flagcdn.com/gh.svg",
         "flagUrl": "https://flagcdn.com/gh.svg",
-        "score": null
+        "score": 0
       },
-      "events": []
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "14",
+          "minuteSort": 14,
+          "team": "Colombia",
+          "teamName": "Colombia",
+          "player": "Jhon Arias",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "90",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -5048,7 +5228,7 @@
         "iso2": "ca",
         "logo": "https://flagcdn.com/ca.svg",
         "flagUrl": "https://flagcdn.com/ca.svg",
-        "score": null
+        "score": 0
       },
       "away": {
         "name": "Morocco",
@@ -5056,14 +5236,46 @@
         "iso2": "ma",
         "logo": "https://flagcdn.com/ma.svg",
         "flagUrl": "https://flagcdn.com/ma.svg",
-        "score": null
+        "score": 3
       },
-      "events": []
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "50",
+          "minuteSort": 50,
+          "team": "Morocco",
+          "teamName": "Morocco",
+          "player": "Azzedine Ounahi",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "82",
+          "minuteSort": 82,
+          "team": "Morocco",
+          "teamName": "Morocco",
+          "player": "Azzedine Ounahi",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+8",
+          "minuteSort": 98,
+          "team": "Morocco",
+          "teamName": "Morocco",
+          "player": "Soufiane Rahimi",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "89",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -5076,7 +5288,7 @@
         "iso2": "py",
         "logo": "https://flagcdn.com/py.svg",
         "flagUrl": "https://flagcdn.com/py.svg",
-        "score": null
+        "score": 0
       },
       "away": {
         "name": "France",
@@ -5084,14 +5296,26 @@
         "iso2": "fr",
         "logo": "https://flagcdn.com/fr.svg",
         "flagUrl": "https://flagcdn.com/fr.svg",
-        "score": null
+        "score": 1
       },
-      "events": []
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "70",
+          "minuteSort": 70,
+          "team": "France",
+          "teamName": "France",
+          "player": "Kylian Mbappé",
+          "penalty": true,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "91",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -5104,7 +5328,7 @@
         "iso2": "br",
         "logo": "https://flagcdn.com/br.svg",
         "flagUrl": "https://flagcdn.com/br.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Norway",
@@ -5112,14 +5336,46 @@
         "iso2": "no",
         "logo": "https://flagcdn.com/no.svg",
         "flagUrl": "https://flagcdn.com/no.svg",
-        "score": null
+        "score": 2
       },
-      "events": []
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "79",
+          "minuteSort": 79,
+          "team": "Norway",
+          "teamName": "Norway",
+          "player": "Erling Haaland",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90",
+          "minuteSort": 90,
+          "team": "Norway",
+          "teamName": "Norway",
+          "player": "Erling Haaland",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+10",
+          "minuteSort": 100,
+          "team": "Brazil",
+          "teamName": "Brazil",
+          "player": "Neymar",
+          "penalty": true,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "92",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -5132,7 +5388,7 @@
         "iso2": "mx",
         "logo": "https://flagcdn.com/mx.svg",
         "flagUrl": "https://flagcdn.com/mx.svg",
-        "score": null
+        "score": 2
       },
       "away": {
         "name": "England",
@@ -5140,14 +5396,66 @@
         "iso2": "gb-eng",
         "logo": "https://flagcdn.com/gb-eng.svg",
         "flagUrl": "https://flagcdn.com/gb-eng.svg",
-        "score": null
+        "score": 3
       },
-      "events": []
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "36",
+          "minuteSort": 36,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "38",
+          "minuteSort": 38,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "42",
+          "minuteSort": 42,
+          "team": "Mexico",
+          "teamName": "Mexico",
+          "player": "Julián Quiñones",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "60",
+          "minuteSort": 60,
+          "team": "England",
+          "teamName": "England",
+          "player": "Harry Kane",
+          "penalty": true,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "69",
+          "minuteSort": 69,
+          "team": "Mexico",
+          "teamName": "Mexico",
+          "player": "Raúl Jiménez",
+          "penalty": true,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "93",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -5155,27 +5463,39 @@
       "venue": "Dallas (Arlington)",
       "kickoffTime": "2026-07-06T19:00:00.000Z",
       "home": {
-        "name": "W83",
-        "code": "W83",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
-        "score": null
+        "name": "Portugal",
+        "code": "P",
+        "iso2": "pt",
+        "logo": "https://flagcdn.com/pt.svg",
+        "flagUrl": "https://flagcdn.com/pt.svg",
+        "score": 0
       },
       "away": {
-        "name": "W84",
-        "code": "W84",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
-        "score": null
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
+        "score": 1
       },
-      "events": []
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "90+1",
+          "minuteSort": 91,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Mikel Merino",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "94",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -5188,7 +5508,7 @@
         "iso2": "us",
         "logo": "https://flagcdn.com/us.svg",
         "flagUrl": "https://flagcdn.com/us.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Belgium",
@@ -5196,14 +5516,66 @@
         "iso2": "be",
         "logo": "https://flagcdn.com/be.svg",
         "flagUrl": "https://flagcdn.com/be.svg",
-        "score": null
+        "score": 4
       },
-      "events": []
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "9",
+          "minuteSort": 9,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Charles De Ketelaere",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "31",
+          "minuteSort": 31,
+          "team": "USA",
+          "teamName": "USA",
+          "player": "Malik Tillman",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "33",
+          "minuteSort": 33,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Charles De Ketelaere",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "57",
+          "minuteSort": 57,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Hans Vanaken",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+3",
+          "minuteSort": 93,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Romelu Lukaku",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "95",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -5211,27 +5583,79 @@
       "venue": "Atlanta",
       "kickoffTime": "2026-07-07T16:00:00.000Z",
       "home": {
-        "name": "W86",
-        "code": "W86",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
-        "score": null
+        "name": "Argentina",
+        "code": "A",
+        "iso2": "ar",
+        "logo": "https://flagcdn.com/ar.svg",
+        "flagUrl": "https://flagcdn.com/ar.svg",
+        "score": 3
       },
       "away": {
-        "name": "W88",
-        "code": "W88",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
-        "score": null
+        "name": "Egypt",
+        "code": "E",
+        "iso2": "eg",
+        "logo": "https://flagcdn.com/eg.svg",
+        "flagUrl": "https://flagcdn.com/eg.svg",
+        "score": 2
       },
-      "events": []
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "15",
+          "minuteSort": 15,
+          "team": "Egypt",
+          "teamName": "Egypt",
+          "player": "Yasser Ibrahim",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "67",
+          "minuteSort": 67,
+          "team": "Egypt",
+          "teamName": "Egypt",
+          "player": "Mostafa Zico",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "79",
+          "minuteSort": 79,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Cristian Romero",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "83",
+          "minuteSort": 83,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lionel Messi",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+2",
+          "minuteSort": 92,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Enzo Fernández",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "96",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "PEN",
+      "statusText": "点球结束",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -5239,20 +5663,24 @@
       "venue": "Vancouver",
       "kickoffTime": "2026-07-07T20:00:00.000Z",
       "home": {
-        "name": "W85",
-        "code": "W85",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
-        "score": null
+        "name": "Switzerland",
+        "code": "S",
+        "iso2": "ch",
+        "logo": "https://flagcdn.com/ch.svg",
+        "flagUrl": "https://flagcdn.com/ch.svg",
+        "score": 0
       },
       "away": {
-        "name": "W87",
-        "code": "W87",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
-        "score": null
+        "name": "Colombia",
+        "code": "C",
+        "iso2": "co",
+        "logo": "https://flagcdn.com/co.svg",
+        "flagUrl": "https://flagcdn.com/co.svg",
+        "score": 0
+      },
+      "penaltyScore": {
+        "home": 4,
+        "away": 3
       },
       "events": []
     },
@@ -5267,21 +5695,22 @@
       "venue": "Boston (Foxborough)",
       "kickoffTime": "2026-07-09T20:00:00.000Z",
       "home": {
-        "name": "W89",
-        "code": "W89",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "France",
+        "code": "F",
+        "iso2": "fr",
+        "logo": "https://flagcdn.com/fr.svg",
+        "flagUrl": "https://flagcdn.com/fr.svg",
         "score": null
       },
       "away": {
-        "name": "W90",
-        "code": "W90",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Morocco",
+        "code": "M",
+        "iso2": "ma",
+        "logo": "https://flagcdn.com/ma.svg",
+        "flagUrl": "https://flagcdn.com/ma.svg",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -5295,21 +5724,22 @@
       "venue": "Los Angeles (Inglewood)",
       "kickoffTime": "2026-07-10T19:00:00.000Z",
       "home": {
-        "name": "W93",
-        "code": "W93",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
         "score": null
       },
       "away": {
-        "name": "W94",
-        "code": "W94",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Belgium",
+        "code": "B",
+        "iso2": "be",
+        "logo": "https://flagcdn.com/be.svg",
+        "flagUrl": "https://flagcdn.com/be.svg",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -5323,21 +5753,22 @@
       "venue": "Miami (Miami Gardens)",
       "kickoffTime": "2026-07-11T21:00:00.000Z",
       "home": {
-        "name": "W91",
-        "code": "W91",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Norway",
+        "code": "N",
+        "iso2": "no",
+        "logo": "https://flagcdn.com/no.svg",
+        "flagUrl": "https://flagcdn.com/no.svg",
         "score": null
       },
       "away": {
-        "name": "W92",
-        "code": "W92",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "England",
+        "code": "E",
+        "iso2": "gb-eng",
+        "logo": "https://flagcdn.com/gb-eng.svg",
+        "flagUrl": "https://flagcdn.com/gb-eng.svg",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -5366,6 +5797,7 @@
         "flagUrl": "",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -5394,6 +5826,7 @@
         "flagUrl": "",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -5422,6 +5855,7 @@
         "flagUrl": "",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -5450,6 +5884,7 @@
         "flagUrl": "",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -5478,6 +5913,7 @@
         "flagUrl": "",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     }
   ],
@@ -5508,6 +5944,7 @@
         "flagUrl": "https://flagcdn.com/za.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -5557,6 +5994,7 @@
         "flagUrl": "https://flagcdn.com/cz.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -5616,6 +6054,7 @@
         "flagUrl": "https://flagcdn.com/ba.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -5665,6 +6104,7 @@
         "flagUrl": "https://flagcdn.com/py.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -5744,6 +6184,7 @@
         "flagUrl": "https://flagcdn.com/ch.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -5793,6 +6234,7 @@
         "flagUrl": "https://flagcdn.com/ma.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -5842,6 +6284,7 @@
         "flagUrl": "https://flagcdn.com/gb-sct.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -5881,6 +6324,7 @@
         "flagUrl": "https://flagcdn.com/tr.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -5930,6 +6374,7 @@
         "flagUrl": "https://flagcdn.com/cw.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -6039,6 +6484,7 @@
         "flagUrl": "https://flagcdn.com/jp.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -6108,6 +6554,7 @@
         "flagUrl": "https://flagcdn.com/ec.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -6147,6 +6594,7 @@
         "flagUrl": "https://flagcdn.com/tn.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -6236,6 +6684,7 @@
         "flagUrl": "https://flagcdn.com/cv.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -6264,6 +6713,7 @@
         "flagUrl": "https://flagcdn.com/eg.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -6313,6 +6763,7 @@
         "flagUrl": "https://flagcdn.com/uy.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -6362,6 +6813,7 @@
         "flagUrl": "https://flagcdn.com/nz.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -6431,6 +6883,7 @@
         "flagUrl": "https://flagcdn.com/sn.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -6500,6 +6953,7 @@
         "flagUrl": "https://flagcdn.com/no.svg",
         "score": 4
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -6579,6 +7033,7 @@
         "flagUrl": "https://flagcdn.com/dz.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -6638,6 +7093,7 @@
         "flagUrl": "https://flagcdn.com/jo.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -6707,6 +7163,7 @@
         "flagUrl": "https://flagcdn.com/cd.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -6756,6 +7213,7 @@
         "flagUrl": "https://flagcdn.com/hr.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -6845,6 +7303,7 @@
         "flagUrl": "https://flagcdn.com/pa.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -6884,6 +7343,7 @@
         "flagUrl": "https://flagcdn.com/co.svg",
         "score": 3
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -6953,6 +7413,7 @@
         "flagUrl": "https://flagcdn.com/za.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -7002,6 +7463,7 @@
         "flagUrl": "https://flagcdn.com/ba.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -7081,6 +7543,7 @@
         "flagUrl": "https://flagcdn.com/qa.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -7170,6 +7633,7 @@
         "flagUrl": "https://flagcdn.com/kr.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -7209,6 +7673,7 @@
         "flagUrl": "https://flagcdn.com/au.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -7258,6 +7723,7 @@
         "flagUrl": "https://flagcdn.com/ma.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -7297,6 +7763,7 @@
         "flagUrl": "https://flagcdn.com/ht.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -7356,6 +7823,7 @@
         "flagUrl": "https://flagcdn.com/py.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -7395,6 +7863,7 @@
         "flagUrl": "https://flagcdn.com/se.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -7484,6 +7953,7 @@
         "flagUrl": "https://flagcdn.com/ci.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -7543,6 +8013,7 @@
         "flagUrl": "https://flagcdn.com/cw.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -7571,6 +8042,7 @@
         "flagUrl": "https://flagcdn.com/jp.svg",
         "score": 4
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -7640,6 +8112,7 @@
         "flagUrl": "https://flagcdn.com/sa.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -7709,6 +8182,7 @@
         "flagUrl": "https://flagcdn.com/ir.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -7737,6 +8211,7 @@
         "flagUrl": "https://flagcdn.com/cv.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -7806,6 +8281,7 @@
         "flagUrl": "https://flagcdn.com/eg.svg",
         "score": 3
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -7875,6 +8351,7 @@
         "flagUrl": "https://flagcdn.com/at.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -7924,6 +8401,7 @@
         "flagUrl": "https://flagcdn.com/iq.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -7983,6 +8461,7 @@
         "flagUrl": "https://flagcdn.com/sn.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -8062,6 +8541,7 @@
         "flagUrl": "https://flagcdn.com/dz.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -8121,6 +8601,7 @@
         "flagUrl": "https://flagcdn.com/uz.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -8200,6 +8681,7 @@
         "flagUrl": "https://flagcdn.com/gh.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -8228,6 +8710,7 @@
         "flagUrl": "https://flagcdn.com/hr.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -8267,6 +8750,7 @@
         "flagUrl": "https://flagcdn.com/cd.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -8306,6 +8790,7 @@
         "flagUrl": "https://flagcdn.com/ca.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -8365,6 +8850,7 @@
         "flagUrl": "https://flagcdn.com/qa.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -8434,6 +8920,7 @@
         "flagUrl": "https://flagcdn.com/br.svg",
         "score": 3
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -8493,6 +8980,7 @@
         "flagUrl": "https://flagcdn.com/ht.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -8582,6 +9070,7 @@
         "flagUrl": "https://flagcdn.com/mx.svg",
         "score": 3
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -8641,6 +9130,7 @@
         "flagUrl": "https://flagcdn.com/kr.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -8680,6 +9170,7 @@
         "flagUrl": "https://flagcdn.com/ci.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -8729,6 +9220,7 @@
         "flagUrl": "https://flagcdn.com/de.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -8788,6 +9280,7 @@
         "flagUrl": "https://flagcdn.com/se.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -8837,6 +9330,7 @@
         "flagUrl": "https://flagcdn.com/nl.svg",
         "score": 3
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -8906,6 +9400,7 @@
         "flagUrl": "https://flagcdn.com/us.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -8985,6 +9480,7 @@
         "flagUrl": "https://flagcdn.com/au.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -9013,6 +9509,7 @@
         "flagUrl": "https://flagcdn.com/fr.svg",
         "score": 4
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -9092,6 +9589,7 @@
         "flagUrl": "https://flagcdn.com/iq.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -9171,6 +9669,7 @@
         "flagUrl": "https://flagcdn.com/sa.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -9199,6 +9698,7 @@
         "flagUrl": "https://flagcdn.com/es.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -9238,6 +9738,7 @@
         "flagUrl": "https://flagcdn.com/ir.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -9287,6 +9788,7 @@
         "flagUrl": "https://flagcdn.com/be.svg",
         "score": 5
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -9376,6 +9878,7 @@
         "flagUrl": "https://flagcdn.com/gb-eng.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -9425,6 +9928,7 @@
         "flagUrl": "https://flagcdn.com/gh.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -9484,6 +9988,7 @@
         "flagUrl": "https://flagcdn.com/pt.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -9512,6 +10017,7 @@
         "flagUrl": "https://flagcdn.com/uz.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -9581,6 +10087,7 @@
         "flagUrl": "https://flagcdn.com/at.svg",
         "score": 3
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -9670,6 +10177,7 @@
         "flagUrl": "https://flagcdn.com/ar.svg",
         "score": 3
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -9739,6 +10247,7 @@
         "flagUrl": "https://flagcdn.com/ca.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -9778,6 +10287,7 @@
         "flagUrl": "https://flagcdn.com/jp.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -9813,8 +10323,8 @@
     },
     {
       "id": "74",
-      "status": "FT",
-      "statusText": "完场",
+      "status": "PEN",
+      "statusText": "点球结束",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -9836,6 +10346,10 @@
         "logo": "https://flagcdn.com/py.svg",
         "flagUrl": "https://flagcdn.com/py.svg",
         "score": 1
+      },
+      "penaltyScore": {
+        "home": 3,
+        "away": 4
       },
       "events": [
         {
@@ -9862,8 +10376,8 @@
     },
     {
       "id": "75",
-      "status": "FT",
-      "statusText": "完场",
+      "status": "PEN",
+      "statusText": "点球结束",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -9885,6 +10399,10 @@
         "logo": "https://flagcdn.com/ma.svg",
         "flagUrl": "https://flagcdn.com/ma.svg",
         "score": 1
+      },
+      "penaltyScore": {
+        "home": 2,
+        "away": 3
       },
       "events": [
         {
@@ -9935,6 +10453,7 @@
         "flagUrl": "https://flagcdn.com/no.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -9994,6 +10513,7 @@
         "flagUrl": "https://flagcdn.com/se.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -10053,6 +10573,7 @@
         "flagUrl": "https://flagcdn.com/ec.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -10102,6 +10623,7 @@
         "flagUrl": "https://flagcdn.com/cd.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -10161,6 +10683,7 @@
         "flagUrl": "https://flagcdn.com/sn.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -10240,6 +10763,7 @@
         "flagUrl": "https://flagcdn.com/ba.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -10289,6 +10813,7 @@
         "flagUrl": "https://flagcdn.com/at.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -10348,6 +10873,7 @@
         "flagUrl": "https://flagcdn.com/hr.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -10407,6 +10933,7 @@
         "flagUrl": "https://flagcdn.com/dz.svg",
         "score": 0
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
@@ -10432,8 +10959,8 @@
     },
     {
       "id": "88",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "PEN",
+      "statusText": "点球结束",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -10446,7 +10973,7 @@
         "iso2": "au",
         "logo": "https://flagcdn.com/au.svg",
         "flagUrl": "https://flagcdn.com/au.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Egypt",
@@ -10454,14 +10981,39 @@
         "iso2": "eg",
         "logo": "https://flagcdn.com/eg.svg",
         "flagUrl": "https://flagcdn.com/eg.svg",
-        "score": null
+        "score": 1
       },
-      "events": []
+      "penaltyScore": {
+        "home": 2,
+        "away": 4
+      },
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "13",
+          "minuteSort": 13,
+          "team": "Egypt",
+          "teamName": "Egypt",
+          "player": "Emam Ashour",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "55",
+          "minuteSort": 55,
+          "team": "Australia",
+          "teamName": "Australia",
+          "player": "Mohamed Hany",
+          "penalty": false,
+          "ownGoal": true
+        }
+      ]
     },
     {
       "id": "86",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -10474,7 +11026,7 @@
         "iso2": "ar",
         "logo": "https://flagcdn.com/ar.svg",
         "flagUrl": "https://flagcdn.com/ar.svg",
-        "score": null
+        "score": 3
       },
       "away": {
         "name": "Cape Verde",
@@ -10482,14 +11034,66 @@
         "iso2": "cv",
         "logo": "https://flagcdn.com/cv.svg",
         "flagUrl": "https://flagcdn.com/cv.svg",
-        "score": null
+        "score": 2
       },
-      "events": []
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "29",
+          "minuteSort": 29,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lionel Messi",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "59",
+          "minuteSort": 59,
+          "team": "Cape Verde",
+          "teamName": "Cape Verde",
+          "player": "Deroy Duarte",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "92",
+          "minuteSort": 92,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lisandro Martínez",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "103",
+          "minuteSort": 103,
+          "team": "Cape Verde",
+          "teamName": "Cape Verde",
+          "player": "Sidny Lopes Cabral",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "111",
+          "minuteSort": 111,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Diney Borges",
+          "penalty": false,
+          "ownGoal": true
+        }
+      ]
     },
     {
       "id": "87",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 32",
       "round": "Round of 32",
@@ -10502,7 +11106,7 @@
         "iso2": "co",
         "logo": "https://flagcdn.com/co.svg",
         "flagUrl": "https://flagcdn.com/co.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Ghana",
@@ -10510,14 +11114,26 @@
         "iso2": "gh",
         "logo": "https://flagcdn.com/gh.svg",
         "flagUrl": "https://flagcdn.com/gh.svg",
-        "score": null
+        "score": 0
       },
-      "events": []
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "14",
+          "minuteSort": 14,
+          "team": "Colombia",
+          "teamName": "Colombia",
+          "player": "Jhon Arias",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "90",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -10530,7 +11146,7 @@
         "iso2": "ca",
         "logo": "https://flagcdn.com/ca.svg",
         "flagUrl": "https://flagcdn.com/ca.svg",
-        "score": null
+        "score": 0
       },
       "away": {
         "name": "Morocco",
@@ -10538,14 +11154,46 @@
         "iso2": "ma",
         "logo": "https://flagcdn.com/ma.svg",
         "flagUrl": "https://flagcdn.com/ma.svg",
-        "score": null
+        "score": 3
       },
-      "events": []
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "50",
+          "minuteSort": 50,
+          "team": "Morocco",
+          "teamName": "Morocco",
+          "player": "Azzedine Ounahi",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "82",
+          "minuteSort": 82,
+          "team": "Morocco",
+          "teamName": "Morocco",
+          "player": "Azzedine Ounahi",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+8",
+          "minuteSort": 98,
+          "team": "Morocco",
+          "teamName": "Morocco",
+          "player": "Soufiane Rahimi",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "89",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -10558,7 +11206,7 @@
         "iso2": "py",
         "logo": "https://flagcdn.com/py.svg",
         "flagUrl": "https://flagcdn.com/py.svg",
-        "score": null
+        "score": 0
       },
       "away": {
         "name": "France",
@@ -10566,14 +11214,26 @@
         "iso2": "fr",
         "logo": "https://flagcdn.com/fr.svg",
         "flagUrl": "https://flagcdn.com/fr.svg",
-        "score": null
+        "score": 1
       },
-      "events": []
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "70",
+          "minuteSort": 70,
+          "team": "France",
+          "teamName": "France",
+          "player": "Kylian Mbappé",
+          "penalty": true,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "91",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -10586,7 +11246,7 @@
         "iso2": "br",
         "logo": "https://flagcdn.com/br.svg",
         "flagUrl": "https://flagcdn.com/br.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Norway",
@@ -10594,14 +11254,46 @@
         "iso2": "no",
         "logo": "https://flagcdn.com/no.svg",
         "flagUrl": "https://flagcdn.com/no.svg",
-        "score": null
+        "score": 2
       },
-      "events": []
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "79",
+          "minuteSort": 79,
+          "team": "Norway",
+          "teamName": "Norway",
+          "player": "Erling Haaland",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90",
+          "minuteSort": 90,
+          "team": "Norway",
+          "teamName": "Norway",
+          "player": "Erling Haaland",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+10",
+          "minuteSort": 100,
+          "team": "Brazil",
+          "teamName": "Brazil",
+          "player": "Neymar",
+          "penalty": true,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "92",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -10614,7 +11306,7 @@
         "iso2": "mx",
         "logo": "https://flagcdn.com/mx.svg",
         "flagUrl": "https://flagcdn.com/mx.svg",
-        "score": null
+        "score": 2
       },
       "away": {
         "name": "England",
@@ -10622,14 +11314,66 @@
         "iso2": "gb-eng",
         "logo": "https://flagcdn.com/gb-eng.svg",
         "flagUrl": "https://flagcdn.com/gb-eng.svg",
-        "score": null
+        "score": 3
       },
-      "events": []
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "36",
+          "minuteSort": 36,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "38",
+          "minuteSort": 38,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "42",
+          "minuteSort": 42,
+          "team": "Mexico",
+          "teamName": "Mexico",
+          "player": "Julián Quiñones",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "60",
+          "minuteSort": 60,
+          "team": "England",
+          "teamName": "England",
+          "player": "Harry Kane",
+          "penalty": true,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "69",
+          "minuteSort": 69,
+          "team": "Mexico",
+          "teamName": "Mexico",
+          "player": "Raúl Jiménez",
+          "penalty": true,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "93",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -10637,27 +11381,39 @@
       "venue": "Dallas (Arlington)",
       "kickoffTime": "2026-07-06T19:00:00.000Z",
       "home": {
-        "name": "W83",
-        "code": "W83",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
-        "score": null
+        "name": "Portugal",
+        "code": "P",
+        "iso2": "pt",
+        "logo": "https://flagcdn.com/pt.svg",
+        "flagUrl": "https://flagcdn.com/pt.svg",
+        "score": 0
       },
       "away": {
-        "name": "W84",
-        "code": "W84",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
-        "score": null
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
+        "score": 1
       },
-      "events": []
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "90+1",
+          "minuteSort": 91,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Mikel Merino",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "94",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -10670,7 +11426,7 @@
         "iso2": "us",
         "logo": "https://flagcdn.com/us.svg",
         "flagUrl": "https://flagcdn.com/us.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Belgium",
@@ -10678,14 +11434,66 @@
         "iso2": "be",
         "logo": "https://flagcdn.com/be.svg",
         "flagUrl": "https://flagcdn.com/be.svg",
-        "score": null
+        "score": 4
       },
-      "events": []
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "9",
+          "minuteSort": 9,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Charles De Ketelaere",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "31",
+          "minuteSort": 31,
+          "team": "USA",
+          "teamName": "USA",
+          "player": "Malik Tillman",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "33",
+          "minuteSort": 33,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Charles De Ketelaere",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "57",
+          "minuteSort": 57,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Hans Vanaken",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+3",
+          "minuteSort": 93,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Romelu Lukaku",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "95",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -10693,27 +11501,79 @@
       "venue": "Atlanta",
       "kickoffTime": "2026-07-07T16:00:00.000Z",
       "home": {
-        "name": "W86",
-        "code": "W86",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
-        "score": null
+        "name": "Argentina",
+        "code": "A",
+        "iso2": "ar",
+        "logo": "https://flagcdn.com/ar.svg",
+        "flagUrl": "https://flagcdn.com/ar.svg",
+        "score": 3
       },
       "away": {
-        "name": "W88",
-        "code": "W88",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
-        "score": null
+        "name": "Egypt",
+        "code": "E",
+        "iso2": "eg",
+        "logo": "https://flagcdn.com/eg.svg",
+        "flagUrl": "https://flagcdn.com/eg.svg",
+        "score": 2
       },
-      "events": []
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "15",
+          "minuteSort": 15,
+          "team": "Egypt",
+          "teamName": "Egypt",
+          "player": "Yasser Ibrahim",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "67",
+          "minuteSort": 67,
+          "team": "Egypt",
+          "teamName": "Egypt",
+          "player": "Mostafa Zico",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "79",
+          "minuteSort": 79,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Cristian Romero",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "83",
+          "minuteSort": 83,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lionel Messi",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+2",
+          "minuteSort": 92,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Enzo Fernández",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "96",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "PEN",
+      "statusText": "点球结束",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -10721,20 +11581,24 @@
       "venue": "Vancouver",
       "kickoffTime": "2026-07-07T20:00:00.000Z",
       "home": {
-        "name": "W85",
-        "code": "W85",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
-        "score": null
+        "name": "Switzerland",
+        "code": "S",
+        "iso2": "ch",
+        "logo": "https://flagcdn.com/ch.svg",
+        "flagUrl": "https://flagcdn.com/ch.svg",
+        "score": 0
       },
       "away": {
-        "name": "W87",
-        "code": "W87",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
-        "score": null
+        "name": "Colombia",
+        "code": "C",
+        "iso2": "co",
+        "logo": "https://flagcdn.com/co.svg",
+        "flagUrl": "https://flagcdn.com/co.svg",
+        "score": 0
+      },
+      "penaltyScore": {
+        "home": 4,
+        "away": 3
       },
       "events": []
     },
@@ -10749,21 +11613,22 @@
       "venue": "Boston (Foxborough)",
       "kickoffTime": "2026-07-09T20:00:00.000Z",
       "home": {
-        "name": "W89",
-        "code": "W89",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "France",
+        "code": "F",
+        "iso2": "fr",
+        "logo": "https://flagcdn.com/fr.svg",
+        "flagUrl": "https://flagcdn.com/fr.svg",
         "score": null
       },
       "away": {
-        "name": "W90",
-        "code": "W90",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Morocco",
+        "code": "M",
+        "iso2": "ma",
+        "logo": "https://flagcdn.com/ma.svg",
+        "flagUrl": "https://flagcdn.com/ma.svg",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -10777,21 +11642,22 @@
       "venue": "Los Angeles (Inglewood)",
       "kickoffTime": "2026-07-10T19:00:00.000Z",
       "home": {
-        "name": "W93",
-        "code": "W93",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
         "score": null
       },
       "away": {
-        "name": "W94",
-        "code": "W94",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Belgium",
+        "code": "B",
+        "iso2": "be",
+        "logo": "https://flagcdn.com/be.svg",
+        "flagUrl": "https://flagcdn.com/be.svg",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -10805,21 +11671,22 @@
       "venue": "Miami (Miami Gardens)",
       "kickoffTime": "2026-07-11T21:00:00.000Z",
       "home": {
-        "name": "W91",
-        "code": "W91",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Norway",
+        "code": "N",
+        "iso2": "no",
+        "logo": "https://flagcdn.com/no.svg",
+        "flagUrl": "https://flagcdn.com/no.svg",
         "score": null
       },
       "away": {
-        "name": "W92",
-        "code": "W92",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "England",
+        "code": "E",
+        "iso2": "gb-eng",
+        "logo": "https://flagcdn.com/gb-eng.svg",
+        "flagUrl": "https://flagcdn.com/gb-eng.svg",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -10848,6 +11715,7 @@
         "flagUrl": "",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -10876,6 +11744,7 @@
         "flagUrl": "",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -10904,6 +11773,7 @@
         "flagUrl": "",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -10932,6 +11802,7 @@
         "flagUrl": "",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -10960,318 +11831,11 @@
         "flagUrl": "",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     }
   ],
   "upcomingMatches": [
-    {
-      "id": "88",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Dallas (Arlington)",
-      "kickoffTime": "2026-07-03T18:00:00.000Z",
-      "home": {
-        "name": "Australia",
-        "code": "A",
-        "iso2": "au",
-        "logo": "https://flagcdn.com/au.svg",
-        "flagUrl": "https://flagcdn.com/au.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Egypt",
-        "code": "E",
-        "iso2": "eg",
-        "logo": "https://flagcdn.com/eg.svg",
-        "flagUrl": "https://flagcdn.com/eg.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
-      "id": "86",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Miami (Miami Gardens)",
-      "kickoffTime": "2026-07-03T22:00:00.000Z",
-      "home": {
-        "name": "Argentina",
-        "code": "A",
-        "iso2": "ar",
-        "logo": "https://flagcdn.com/ar.svg",
-        "flagUrl": "https://flagcdn.com/ar.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Cape Verde",
-        "code": "CV",
-        "iso2": "cv",
-        "logo": "https://flagcdn.com/cv.svg",
-        "flagUrl": "https://flagcdn.com/cv.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
-      "id": "87",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Kansas City",
-      "kickoffTime": "2026-07-04T01:30:00.000Z",
-      "home": {
-        "name": "Colombia",
-        "code": "C",
-        "iso2": "co",
-        "logo": "https://flagcdn.com/co.svg",
-        "flagUrl": "https://flagcdn.com/co.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Ghana",
-        "code": "G",
-        "iso2": "gh",
-        "logo": "https://flagcdn.com/gh.svg",
-        "flagUrl": "https://flagcdn.com/gh.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
-      "id": "90",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 16",
-      "round": "Round of 16",
-      "group": "",
-      "venue": "Houston",
-      "kickoffTime": "2026-07-04T17:00:00.000Z",
-      "home": {
-        "name": "Canada",
-        "code": "C",
-        "iso2": "ca",
-        "logo": "https://flagcdn.com/ca.svg",
-        "flagUrl": "https://flagcdn.com/ca.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Morocco",
-        "code": "M",
-        "iso2": "ma",
-        "logo": "https://flagcdn.com/ma.svg",
-        "flagUrl": "https://flagcdn.com/ma.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
-      "id": "89",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 16",
-      "round": "Round of 16",
-      "group": "",
-      "venue": "Philadelphia",
-      "kickoffTime": "2026-07-04T21:00:00.000Z",
-      "home": {
-        "name": "Paraguay",
-        "code": "P",
-        "iso2": "py",
-        "logo": "https://flagcdn.com/py.svg",
-        "flagUrl": "https://flagcdn.com/py.svg",
-        "score": null
-      },
-      "away": {
-        "name": "France",
-        "code": "F",
-        "iso2": "fr",
-        "logo": "https://flagcdn.com/fr.svg",
-        "flagUrl": "https://flagcdn.com/fr.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
-      "id": "91",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 16",
-      "round": "Round of 16",
-      "group": "",
-      "venue": "New York/New Jersey (East Rutherford)",
-      "kickoffTime": "2026-07-05T20:00:00.000Z",
-      "home": {
-        "name": "Brazil",
-        "code": "B",
-        "iso2": "br",
-        "logo": "https://flagcdn.com/br.svg",
-        "flagUrl": "https://flagcdn.com/br.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Norway",
-        "code": "N",
-        "iso2": "no",
-        "logo": "https://flagcdn.com/no.svg",
-        "flagUrl": "https://flagcdn.com/no.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
-      "id": "92",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 16",
-      "round": "Round of 16",
-      "group": "",
-      "venue": "Mexico City",
-      "kickoffTime": "2026-07-06T00:00:00.000Z",
-      "home": {
-        "name": "Mexico",
-        "code": "M",
-        "iso2": "mx",
-        "logo": "https://flagcdn.com/mx.svg",
-        "flagUrl": "https://flagcdn.com/mx.svg",
-        "score": null
-      },
-      "away": {
-        "name": "England",
-        "code": "E",
-        "iso2": "gb-eng",
-        "logo": "https://flagcdn.com/gb-eng.svg",
-        "flagUrl": "https://flagcdn.com/gb-eng.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
-      "id": "93",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 16",
-      "round": "Round of 16",
-      "group": "",
-      "venue": "Dallas (Arlington)",
-      "kickoffTime": "2026-07-06T19:00:00.000Z",
-      "home": {
-        "name": "W83",
-        "code": "W83",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
-        "score": null
-      },
-      "away": {
-        "name": "W84",
-        "code": "W84",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
-        "score": null
-      },
-      "events": []
-    },
-    {
-      "id": "94",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 16",
-      "round": "Round of 16",
-      "group": "",
-      "venue": "Seattle",
-      "kickoffTime": "2026-07-07T00:00:00.000Z",
-      "home": {
-        "name": "USA",
-        "code": "U",
-        "iso2": "us",
-        "logo": "https://flagcdn.com/us.svg",
-        "flagUrl": "https://flagcdn.com/us.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Belgium",
-        "code": "B",
-        "iso2": "be",
-        "logo": "https://flagcdn.com/be.svg",
-        "flagUrl": "https://flagcdn.com/be.svg",
-        "score": null
-      },
-      "events": []
-    },
-    {
-      "id": "95",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 16",
-      "round": "Round of 16",
-      "group": "",
-      "venue": "Atlanta",
-      "kickoffTime": "2026-07-07T16:00:00.000Z",
-      "home": {
-        "name": "W86",
-        "code": "W86",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
-        "score": null
-      },
-      "away": {
-        "name": "W88",
-        "code": "W88",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
-        "score": null
-      },
-      "events": []
-    },
-    {
-      "id": "96",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 16",
-      "round": "Round of 16",
-      "group": "",
-      "venue": "Vancouver",
-      "kickoffTime": "2026-07-07T20:00:00.000Z",
-      "home": {
-        "name": "W85",
-        "code": "W85",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
-        "score": null
-      },
-      "away": {
-        "name": "W87",
-        "code": "W87",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
-        "score": null
-      },
-      "events": []
-    },
     {
       "id": "97",
       "status": "NS",
@@ -11283,21 +11847,22 @@
       "venue": "Boston (Foxborough)",
       "kickoffTime": "2026-07-09T20:00:00.000Z",
       "home": {
-        "name": "W89",
-        "code": "W89",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "France",
+        "code": "F",
+        "iso2": "fr",
+        "logo": "https://flagcdn.com/fr.svg",
+        "flagUrl": "https://flagcdn.com/fr.svg",
         "score": null
       },
       "away": {
-        "name": "W90",
-        "code": "W90",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Morocco",
+        "code": "M",
+        "iso2": "ma",
+        "logo": "https://flagcdn.com/ma.svg",
+        "flagUrl": "https://flagcdn.com/ma.svg",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -11311,21 +11876,22 @@
       "venue": "Los Angeles (Inglewood)",
       "kickoffTime": "2026-07-10T19:00:00.000Z",
       "home": {
-        "name": "W93",
-        "code": "W93",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
         "score": null
       },
       "away": {
-        "name": "W94",
-        "code": "W94",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Belgium",
+        "code": "B",
+        "iso2": "be",
+        "logo": "https://flagcdn.com/be.svg",
+        "flagUrl": "https://flagcdn.com/be.svg",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -11339,21 +11905,22 @@
       "venue": "Miami (Miami Gardens)",
       "kickoffTime": "2026-07-11T21:00:00.000Z",
       "home": {
-        "name": "W91",
-        "code": "W91",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Norway",
+        "code": "N",
+        "iso2": "no",
+        "logo": "https://flagcdn.com/no.svg",
+        "flagUrl": "https://flagcdn.com/no.svg",
         "score": null
       },
       "away": {
-        "name": "W92",
-        "code": "W92",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "England",
+        "code": "E",
+        "iso2": "gb-eng",
+        "logo": "https://flagcdn.com/gb-eng.svg",
+        "flagUrl": "https://flagcdn.com/gb-eng.svg",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -11382,6 +11949,7 @@
         "flagUrl": "",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -11410,6 +11978,7 @@
         "flagUrl": "",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -11438,6 +12007,7 @@
         "flagUrl": "",
         "score": null
       },
+      "penaltyScore": null,
       "events": []
     },
     {
@@ -11466,374 +12036,250 @@
         "flagUrl": "",
         "score": null
       },
+      "penaltyScore": null,
+      "events": []
+    },
+    {
+      "id": "104",
+      "status": "NS",
+      "statusText": "未开始",
+      "minute": null,
+      "stage": "Final",
+      "round": "Final",
+      "group": "",
+      "venue": "New York/New Jersey (East Rutherford)",
+      "kickoffTime": "2026-07-19T19:00:00.000Z",
+      "home": {
+        "name": "W101",
+        "code": "W101",
+        "iso2": "",
+        "logo": "",
+        "flagUrl": "",
+        "score": null
+      },
+      "away": {
+        "name": "W102",
+        "code": "W102",
+        "iso2": "",
+        "logo": "",
+        "flagUrl": "",
+        "score": null
+      },
+      "penaltyScore": null,
       "events": []
     }
   ],
   "timelineMatches": [
     {
-      "id": "85",
+      "id": "95",
       "status": "FT",
       "statusText": "完场",
       "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
+      "stage": "Round of 16",
+      "round": "Round of 16",
       "group": "",
-      "venue": "Vancouver",
-      "kickoffTime": "2026-07-03T03:00:00.000Z",
+      "venue": "Atlanta",
+      "kickoffTime": "2026-07-07T16:00:00.000Z",
       "home": {
-        "name": "Switzerland",
-        "code": "S",
-        "iso2": "ch",
-        "logo": "https://flagcdn.com/ch.svg",
-        "flagUrl": "https://flagcdn.com/ch.svg",
-        "score": 2
-      },
-      "away": {
-        "name": "Algeria",
+        "name": "Argentina",
         "code": "A",
-        "iso2": "dz",
-        "logo": "https://flagcdn.com/dz.svg",
-        "flagUrl": "https://flagcdn.com/dz.svg",
-        "score": 0
-      },
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "10",
-          "minuteSort": 10,
-          "team": "Switzerland",
-          "teamName": "Switzerland",
-          "player": "Breel Embolo",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "46",
-          "minuteSort": 46,
-          "team": "Switzerland",
-          "teamName": "Switzerland",
-          "player": "Dan Ndoye",
-          "penalty": false,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "83",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Toronto",
-      "kickoffTime": "2026-07-02T23:00:00.000Z",
-      "home": {
-        "name": "Portugal",
-        "code": "P",
-        "iso2": "pt",
-        "logo": "https://flagcdn.com/pt.svg",
-        "flagUrl": "https://flagcdn.com/pt.svg",
-        "score": 2
-      },
-      "away": {
-        "name": "Croatia",
-        "code": "C",
-        "iso2": "hr",
-        "logo": "https://flagcdn.com/hr.svg",
-        "flagUrl": "https://flagcdn.com/hr.svg",
-        "score": 1
-      },
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "53",
-          "minuteSort": 53,
-          "team": "Croatia",
-          "teamName": "Croatia",
-          "player": "Ivan Perisic",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "68",
-          "minuteSort": 68,
-          "team": "Portugal",
-          "teamName": "Portugal",
-          "player": "Cristiano Ronaldo",
-          "penalty": true,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "90+4",
-          "minuteSort": 94,
-          "team": "Portugal",
-          "teamName": "Portugal",
-          "player": "Gonçalo Ramos",
-          "penalty": false,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "84",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Los Angeles (Inglewood)",
-      "kickoffTime": "2026-07-02T19:00:00.000Z",
-      "home": {
-        "name": "Spain",
-        "code": "S",
-        "iso2": "es",
-        "logo": "https://flagcdn.com/es.svg",
-        "flagUrl": "https://flagcdn.com/es.svg",
+        "iso2": "ar",
+        "logo": "https://flagcdn.com/ar.svg",
+        "flagUrl": "https://flagcdn.com/ar.svg",
         "score": 3
       },
       "away": {
-        "name": "Austria",
-        "code": "A",
-        "iso2": "at",
-        "logo": "https://flagcdn.com/at.svg",
-        "flagUrl": "https://flagcdn.com/at.svg",
-        "score": 0
+        "name": "Egypt",
+        "code": "E",
+        "iso2": "eg",
+        "logo": "https://flagcdn.com/eg.svg",
+        "flagUrl": "https://flagcdn.com/eg.svg",
+        "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
-          "minute": "36",
-          "minuteSort": 36,
-          "team": "Spain",
-          "teamName": "Spain",
-          "player": "Mikel Oyarzabal",
+          "minute": "15",
+          "minuteSort": 15,
+          "team": "Egypt",
+          "teamName": "Egypt",
+          "player": "Yasser Ibrahim",
           "penalty": false,
           "ownGoal": false
         },
         {
           "type": "Goal",
-          "minute": "66",
-          "minuteSort": 66,
-          "team": "Spain",
-          "teamName": "Spain",
-          "player": "Pedro Porro",
+          "minute": "67",
+          "minuteSort": 67,
+          "team": "Egypt",
+          "teamName": "Egypt",
+          "player": "Mostafa Zico",
           "penalty": false,
           "ownGoal": false
         },
         {
           "type": "Goal",
-          "minute": "89",
-          "minuteSort": 89,
-          "team": "Spain",
-          "teamName": "Spain",
-          "player": "Mikel Oyarzabal",
+          "minute": "79",
+          "minuteSort": 79,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Cristian Romero",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "83",
+          "minuteSort": 83,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lionel Messi",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+2",
+          "minuteSort": 92,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Enzo Fernández",
           "penalty": false,
           "ownGoal": false
         }
       ]
     },
     {
-      "id": "81",
+      "id": "94",
       "status": "FT",
       "statusText": "完场",
       "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
+      "stage": "Round of 16",
+      "round": "Round of 16",
       "group": "",
-      "venue": "San Francisco Bay Area (Santa Clara)",
-      "kickoffTime": "2026-07-02T00:00:00.000Z",
+      "venue": "Seattle",
+      "kickoffTime": "2026-07-07T00:00:00.000Z",
       "home": {
         "name": "USA",
         "code": "U",
         "iso2": "us",
         "logo": "https://flagcdn.com/us.svg",
         "flagUrl": "https://flagcdn.com/us.svg",
-        "score": 2
+        "score": 1
       },
       "away": {
-        "name": "Bosnia & Herzegovina",
-        "code": "B&H",
-        "iso2": "ba",
-        "logo": "https://flagcdn.com/ba.svg",
-        "flagUrl": "https://flagcdn.com/ba.svg",
-        "score": 0
-      },
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "45",
-          "minuteSort": 45,
-          "team": "USA",
-          "teamName": "USA",
-          "player": "Folarin Balogun",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "82",
-          "minuteSort": 82,
-          "team": "USA",
-          "teamName": "USA",
-          "player": "Malik Tillman",
-          "penalty": false,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "82",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Seattle",
-      "kickoffTime": "2026-07-01T20:00:00.000Z",
-      "home": {
         "name": "Belgium",
         "code": "B",
         "iso2": "be",
         "logo": "https://flagcdn.com/be.svg",
         "flagUrl": "https://flagcdn.com/be.svg",
-        "score": 3
+        "score": 4
       },
-      "away": {
-        "name": "Senegal",
-        "code": "S",
-        "iso2": "sn",
-        "logo": "https://flagcdn.com/sn.svg",
-        "flagUrl": "https://flagcdn.com/sn.svg",
-        "score": 2
-      },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
-          "minute": "25",
-          "minuteSort": 25,
-          "team": "Senegal",
-          "teamName": "Senegal",
-          "player": "Habib Diarra",
+          "minute": "9",
+          "minuteSort": 9,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Charles De Ketelaere",
           "penalty": false,
           "ownGoal": false
         },
         {
           "type": "Goal",
-          "minute": "51",
-          "minuteSort": 51,
-          "team": "Senegal",
-          "teamName": "Senegal",
-          "player": "Ismaïla Sarr",
+          "minute": "31",
+          "minuteSort": 31,
+          "team": "USA",
+          "teamName": "USA",
+          "player": "Malik Tillman",
           "penalty": false,
           "ownGoal": false
         },
         {
           "type": "Goal",
-          "minute": "86",
-          "minuteSort": 86,
+          "minute": "33",
+          "minuteSort": 33,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Charles De Ketelaere",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "57",
+          "minuteSort": 57,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Hans Vanaken",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+3",
+          "minuteSort": 93,
           "team": "Belgium",
           "teamName": "Belgium",
           "player": "Romelu Lukaku",
           "penalty": false,
           "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "89",
-          "minuteSort": 89,
-          "team": "Belgium",
-          "teamName": "Belgium",
-          "player": "Youri Tielemans",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "120+5",
-          "minuteSort": 125,
-          "team": "Belgium",
-          "teamName": "Belgium",
-          "player": "Youri Tielemans",
-          "penalty": true,
-          "ownGoal": false
         }
       ]
     },
     {
-      "id": "80",
+      "id": "93",
       "status": "FT",
       "statusText": "完场",
       "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
+      "stage": "Round of 16",
+      "round": "Round of 16",
       "group": "",
-      "venue": "Atlanta",
-      "kickoffTime": "2026-07-01T16:00:00.000Z",
+      "venue": "Dallas (Arlington)",
+      "kickoffTime": "2026-07-06T19:00:00.000Z",
       "home": {
-        "name": "England",
-        "code": "E",
-        "iso2": "gb-eng",
-        "logo": "https://flagcdn.com/gb-eng.svg",
-        "flagUrl": "https://flagcdn.com/gb-eng.svg",
-        "score": 2
+        "name": "Portugal",
+        "code": "P",
+        "iso2": "pt",
+        "logo": "https://flagcdn.com/pt.svg",
+        "flagUrl": "https://flagcdn.com/pt.svg",
+        "score": 0
       },
       "away": {
-        "name": "DR Congo",
-        "code": "DC",
-        "iso2": "cd",
-        "logo": "https://flagcdn.com/cd.svg",
-        "flagUrl": "https://flagcdn.com/cd.svg",
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
         "score": 1
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
-          "minute": "7",
-          "minuteSort": 7,
-          "team": "DR Congo",
-          "teamName": "DR Congo",
-          "player": "Brian Cipenga",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "75",
-          "minuteSort": 75,
-          "team": "England",
-          "teamName": "England",
-          "player": "Harry Kane",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "86",
-          "minuteSort": 86,
-          "team": "England",
-          "teamName": "England",
-          "player": "Harry Kane",
+          "minute": "90+1",
+          "minuteSort": 91,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Mikel Merino",
           "penalty": false,
           "ownGoal": false
         }
       ]
     },
     {
-      "id": "79",
+      "id": "92",
       "status": "FT",
       "statusText": "完场",
       "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
+      "stage": "Round of 16",
+      "round": "Round of 16",
       "group": "",
       "venue": "Mexico City",
-      "kickoffTime": "2026-07-01T01:00:00.000Z",
+      "kickoffTime": "2026-07-06T00:00:00.000Z",
       "home": {
         "name": "Mexico",
         "code": "M",
@@ -11843,18 +12289,39 @@
         "score": 2
       },
       "away": {
-        "name": "Ecuador",
+        "name": "England",
         "code": "E",
-        "iso2": "ec",
-        "logo": "https://flagcdn.com/ec.svg",
-        "flagUrl": "https://flagcdn.com/ec.svg",
-        "score": 0
+        "iso2": "gb-eng",
+        "logo": "https://flagcdn.com/gb-eng.svg",
+        "flagUrl": "https://flagcdn.com/gb-eng.svg",
+        "score": 3
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
-          "minute": "31",
-          "minuteSort": 31,
+          "minute": "36",
+          "minuteSort": 36,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "38",
+          "minuteSort": 38,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "42",
+          "minuteSort": 42,
           "team": "Mexico",
           "teamName": "Mexico",
           "player": "Julián Quiñones",
@@ -11863,91 +12330,42 @@
         },
         {
           "type": "Goal",
-          "minute": "45+1",
-          "minuteSort": 46,
+          "minute": "60",
+          "minuteSort": 60,
+          "team": "England",
+          "teamName": "England",
+          "player": "Harry Kane",
+          "penalty": true,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "69",
+          "minuteSort": 69,
           "team": "Mexico",
           "teamName": "Mexico",
           "player": "Raúl Jiménez",
-          "penalty": false,
+          "penalty": true,
           "ownGoal": false
         }
       ]
     },
     {
-      "id": "77",
+      "id": "91",
       "status": "FT",
       "statusText": "完场",
       "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
+      "stage": "Round of 16",
+      "round": "Round of 16",
       "group": "",
       "venue": "New York/New Jersey (East Rutherford)",
-      "kickoffTime": "2026-06-30T21:00:00.000Z",
+      "kickoffTime": "2026-07-05T20:00:00.000Z",
       "home": {
-        "name": "France",
-        "code": "F",
-        "iso2": "fr",
-        "logo": "https://flagcdn.com/fr.svg",
-        "flagUrl": "https://flagcdn.com/fr.svg",
-        "score": 3
-      },
-      "away": {
-        "name": "Sweden",
-        "code": "S",
-        "iso2": "se",
-        "logo": "https://flagcdn.com/se.svg",
-        "flagUrl": "https://flagcdn.com/se.svg",
-        "score": 0
-      },
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "45",
-          "minuteSort": 45,
-          "team": "France",
-          "teamName": "France",
-          "player": "Kylian Mbappé",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "53",
-          "minuteSort": 53,
-          "team": "France",
-          "teamName": "France",
-          "player": "Bradley Barcola",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "74",
-          "minuteSort": 74,
-          "team": "France",
-          "teamName": "France",
-          "player": "Kylian Mbappé",
-          "penalty": false,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "78",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Dallas (Arlington)",
-      "kickoffTime": "2026-06-30T17:00:00.000Z",
-      "home": {
-        "name": "Ivory Coast",
-        "code": "IC",
-        "iso2": "ci",
-        "logo": "https://flagcdn.com/ci.svg",
-        "flagUrl": "https://flagcdn.com/ci.svg",
+        "name": "Brazil",
+        "code": "B",
+        "iso2": "br",
+        "logo": "https://flagcdn.com/br.svg",
+        "flagUrl": "https://flagcdn.com/br.svg",
         "score": 1
       },
       "away": {
@@ -11958,56 +12376,97 @@
         "flagUrl": "https://flagcdn.com/no.svg",
         "score": 2
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
-          "minute": "39",
-          "minuteSort": 39,
-          "team": "Norway",
-          "teamName": "Norway",
-          "player": "Antonio Nusa",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "74",
-          "minuteSort": 74,
-          "team": "Ivory Coast",
-          "teamName": "Ivory Coast",
-          "player": "Amad Diallo",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "86",
-          "minuteSort": 86,
+          "minute": "79",
+          "minuteSort": 79,
           "team": "Norway",
           "teamName": "Norway",
           "player": "Erling Haaland",
           "penalty": false,
           "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90",
+          "minuteSort": 90,
+          "team": "Norway",
+          "teamName": "Norway",
+          "player": "Erling Haaland",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+10",
+          "minuteSort": 100,
+          "team": "Brazil",
+          "teamName": "Brazil",
+          "player": "Neymar",
+          "penalty": true,
+          "ownGoal": false
         }
       ]
     },
     {
-      "id": "75",
+      "id": "89",
       "status": "FT",
       "statusText": "完场",
       "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
+      "stage": "Round of 16",
+      "round": "Round of 16",
       "group": "",
-      "venue": "Monterrey (Guadalupe)",
-      "kickoffTime": "2026-06-30T01:00:00.000Z",
+      "venue": "Philadelphia",
+      "kickoffTime": "2026-07-04T21:00:00.000Z",
       "home": {
-        "name": "Netherlands",
-        "code": "N",
-        "iso2": "nl",
-        "logo": "https://flagcdn.com/nl.svg",
-        "flagUrl": "https://flagcdn.com/nl.svg",
+        "name": "Paraguay",
+        "code": "P",
+        "iso2": "py",
+        "logo": "https://flagcdn.com/py.svg",
+        "flagUrl": "https://flagcdn.com/py.svg",
+        "score": 0
+      },
+      "away": {
+        "name": "France",
+        "code": "F",
+        "iso2": "fr",
+        "logo": "https://flagcdn.com/fr.svg",
+        "flagUrl": "https://flagcdn.com/fr.svg",
         "score": 1
+      },
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "70",
+          "minuteSort": 70,
+          "team": "France",
+          "teamName": "France",
+          "player": "Kylian Mbappé",
+          "penalty": true,
+          "ownGoal": false
+        }
+      ]
+    },
+    {
+      "id": "90",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Round of 16",
+      "round": "Round of 16",
+      "group": "",
+      "venue": "Houston",
+      "kickoffTime": "2026-07-04T17:00:00.000Z",
+      "home": {
+        "name": "Canada",
+        "code": "C",
+        "iso2": "ca",
+        "logo": "https://flagcdn.com/ca.svg",
+        "flagUrl": "https://flagcdn.com/ca.svg",
+        "score": 0
       },
       "away": {
         "name": "Morocco",
@@ -12015,28 +12474,212 @@
         "iso2": "ma",
         "logo": "https://flagcdn.com/ma.svg",
         "flagUrl": "https://flagcdn.com/ma.svg",
-        "score": 1
+        "score": 3
       },
+      "penaltyScore": null,
       "events": [
         {
           "type": "Goal",
-          "minute": "72",
-          "minuteSort": 72,
-          "team": "Netherlands",
-          "teamName": "Netherlands",
-          "player": "Cody Gakpo",
+          "minute": "50",
+          "minuteSort": 50,
+          "team": "Morocco",
+          "teamName": "Morocco",
+          "player": "Azzedine Ounahi",
           "penalty": false,
           "ownGoal": false
         },
         {
           "type": "Goal",
-          "minute": "90+1",
-          "minuteSort": 91,
+          "minute": "82",
+          "minuteSort": 82,
           "team": "Morocco",
           "teamName": "Morocco",
-          "player": "Issa Diop",
+          "player": "Azzedine Ounahi",
           "penalty": false,
           "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+8",
+          "minuteSort": 98,
+          "team": "Morocco",
+          "teamName": "Morocco",
+          "player": "Soufiane Rahimi",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
+    },
+    {
+      "id": "87",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Round of 32",
+      "round": "Round of 32",
+      "group": "",
+      "venue": "Kansas City",
+      "kickoffTime": "2026-07-04T01:30:00.000Z",
+      "home": {
+        "name": "Colombia",
+        "code": "C",
+        "iso2": "co",
+        "logo": "https://flagcdn.com/co.svg",
+        "flagUrl": "https://flagcdn.com/co.svg",
+        "score": 1
+      },
+      "away": {
+        "name": "Ghana",
+        "code": "G",
+        "iso2": "gh",
+        "logo": "https://flagcdn.com/gh.svg",
+        "flagUrl": "https://flagcdn.com/gh.svg",
+        "score": 0
+      },
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "14",
+          "minuteSort": 14,
+          "team": "Colombia",
+          "teamName": "Colombia",
+          "player": "Jhon Arias",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
+    },
+    {
+      "id": "86",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Round of 32",
+      "round": "Round of 32",
+      "group": "",
+      "venue": "Miami (Miami Gardens)",
+      "kickoffTime": "2026-07-03T22:00:00.000Z",
+      "home": {
+        "name": "Argentina",
+        "code": "A",
+        "iso2": "ar",
+        "logo": "https://flagcdn.com/ar.svg",
+        "flagUrl": "https://flagcdn.com/ar.svg",
+        "score": 3
+      },
+      "away": {
+        "name": "Cape Verde",
+        "code": "CV",
+        "iso2": "cv",
+        "logo": "https://flagcdn.com/cv.svg",
+        "flagUrl": "https://flagcdn.com/cv.svg",
+        "score": 2
+      },
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "29",
+          "minuteSort": 29,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lionel Messi",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "59",
+          "minuteSort": 59,
+          "team": "Cape Verde",
+          "teamName": "Cape Verde",
+          "player": "Deroy Duarte",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "92",
+          "minuteSort": 92,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lisandro Martínez",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "103",
+          "minuteSort": 103,
+          "team": "Cape Verde",
+          "teamName": "Cape Verde",
+          "player": "Sidny Lopes Cabral",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "111",
+          "minuteSort": 111,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Diney Borges",
+          "penalty": false,
+          "ownGoal": true
+        }
+      ]
+    },
+    {
+      "id": "88",
+      "status": "PEN",
+      "statusText": "点球结束",
+      "minute": null,
+      "stage": "Round of 32",
+      "round": "Round of 32",
+      "group": "",
+      "venue": "Dallas (Arlington)",
+      "kickoffTime": "2026-07-03T18:00:00.000Z",
+      "home": {
+        "name": "Australia",
+        "code": "A",
+        "iso2": "au",
+        "logo": "https://flagcdn.com/au.svg",
+        "flagUrl": "https://flagcdn.com/au.svg",
+        "score": 1
+      },
+      "away": {
+        "name": "Egypt",
+        "code": "E",
+        "iso2": "eg",
+        "logo": "https://flagcdn.com/eg.svg",
+        "flagUrl": "https://flagcdn.com/eg.svg",
+        "score": 1
+      },
+      "penaltyScore": {
+        "home": 2,
+        "away": 4
+      },
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "13",
+          "minuteSort": 13,
+          "team": "Egypt",
+          "teamName": "Egypt",
+          "player": "Emam Ashour",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "55",
+          "minuteSort": 55,
+          "team": "Australia",
+          "teamName": "Australia",
+          "player": "Mohamed Hany",
+          "penalty": false,
+          "ownGoal": true
         }
       ]
     }
@@ -12071,6 +12714,7 @@
             "flagUrl": "https://flagcdn.com/za.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -12120,6 +12764,7 @@
             "flagUrl": "https://flagcdn.com/cz.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -12179,6 +12824,7 @@
             "flagUrl": "https://flagcdn.com/za.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -12228,6 +12874,7 @@
             "flagUrl": "https://flagcdn.com/kr.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -12267,6 +12914,7 @@
             "flagUrl": "https://flagcdn.com/mx.svg",
             "score": 3
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -12326,6 +12974,7 @@
             "flagUrl": "https://flagcdn.com/kr.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -12429,6 +13078,7 @@
             "flagUrl": "https://flagcdn.com/ba.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -12478,6 +13128,7 @@
             "flagUrl": "https://flagcdn.com/ch.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -12527,6 +13178,7 @@
             "flagUrl": "https://flagcdn.com/ba.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -12606,6 +13258,7 @@
             "flagUrl": "https://flagcdn.com/qa.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -12695,6 +13348,7 @@
             "flagUrl": "https://flagcdn.com/ca.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -12754,6 +13408,7 @@
             "flagUrl": "https://flagcdn.com/qa.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -12887,6 +13542,7 @@
             "flagUrl": "https://flagcdn.com/ma.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -12936,6 +13592,7 @@
             "flagUrl": "https://flagcdn.com/gb-sct.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -12975,6 +13632,7 @@
             "flagUrl": "https://flagcdn.com/ma.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -13014,6 +13672,7 @@
             "flagUrl": "https://flagcdn.com/ht.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -13073,6 +13732,7 @@
             "flagUrl": "https://flagcdn.com/br.svg",
             "score": 3
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -13132,6 +13792,7 @@
             "flagUrl": "https://flagcdn.com/ht.svg",
             "score": 2
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -13285,6 +13946,7 @@
             "flagUrl": "https://flagcdn.com/py.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -13364,6 +14026,7 @@
             "flagUrl": "https://flagcdn.com/tr.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -13413,6 +14076,7 @@
             "flagUrl": "https://flagcdn.com/au.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -13462,6 +14126,7 @@
             "flagUrl": "https://flagcdn.com/py.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -13501,6 +14166,7 @@
             "flagUrl": "https://flagcdn.com/us.svg",
             "score": 2
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -13580,6 +14246,7 @@
             "flagUrl": "https://flagcdn.com/au.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": []
         }
       ],
@@ -13672,6 +14339,7 @@
             "flagUrl": "https://flagcdn.com/cw.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -13781,6 +14449,7 @@
             "flagUrl": "https://flagcdn.com/ec.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -13820,6 +14489,7 @@
             "flagUrl": "https://flagcdn.com/ci.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -13879,6 +14549,7 @@
             "flagUrl": "https://flagcdn.com/cw.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": []
         },
         {
@@ -13907,6 +14578,7 @@
             "flagUrl": "https://flagcdn.com/ci.svg",
             "score": 2
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -13956,6 +14628,7 @@
             "flagUrl": "https://flagcdn.com/de.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -14079,6 +14752,7 @@
             "flagUrl": "https://flagcdn.com/jp.svg",
             "score": 2
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -14148,6 +14822,7 @@
             "flagUrl": "https://flagcdn.com/tn.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -14237,6 +14912,7 @@
             "flagUrl": "https://flagcdn.com/se.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -14326,6 +15002,7 @@
             "flagUrl": "https://flagcdn.com/jp.svg",
             "score": 4
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -14395,6 +15072,7 @@
             "flagUrl": "https://flagcdn.com/se.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -14444,6 +15122,7 @@
             "flagUrl": "https://flagcdn.com/nl.svg",
             "score": 3
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -14577,6 +15256,7 @@
             "flagUrl": "https://flagcdn.com/eg.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -14626,6 +15306,7 @@
             "flagUrl": "https://flagcdn.com/nz.svg",
             "score": 2
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -14695,6 +15376,7 @@
             "flagUrl": "https://flagcdn.com/ir.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": []
         },
         {
@@ -14723,6 +15405,7 @@
             "flagUrl": "https://flagcdn.com/eg.svg",
             "score": 3
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -14792,6 +15475,7 @@
             "flagUrl": "https://flagcdn.com/ir.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -14841,6 +15525,7 @@
             "flagUrl": "https://flagcdn.com/be.svg",
             "score": 5
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -14994,6 +15679,7 @@
             "flagUrl": "https://flagcdn.com/cv.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": []
         },
         {
@@ -15022,6 +15708,7 @@
             "flagUrl": "https://flagcdn.com/uy.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -15071,6 +15758,7 @@
             "flagUrl": "https://flagcdn.com/sa.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -15140,6 +15828,7 @@
             "flagUrl": "https://flagcdn.com/cv.svg",
             "score": 2
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -15209,6 +15898,7 @@
             "flagUrl": "https://flagcdn.com/sa.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": []
         },
         {
@@ -15237,6 +15927,7 @@
             "flagUrl": "https://flagcdn.com/es.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -15340,6 +16031,7 @@
             "flagUrl": "https://flagcdn.com/sn.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -15409,6 +16101,7 @@
             "flagUrl": "https://flagcdn.com/no.svg",
             "score": 4
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -15488,6 +16181,7 @@
             "flagUrl": "https://flagcdn.com/iq.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -15547,6 +16241,7 @@
             "flagUrl": "https://flagcdn.com/sn.svg",
             "score": 2
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -15626,6 +16321,7 @@
             "flagUrl": "https://flagcdn.com/fr.svg",
             "score": 4
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -15705,6 +16401,7 @@
             "flagUrl": "https://flagcdn.com/iq.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -15848,6 +16545,7 @@
             "flagUrl": "https://flagcdn.com/dz.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -15907,6 +16605,7 @@
             "flagUrl": "https://flagcdn.com/jo.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -15976,6 +16675,7 @@
             "flagUrl": "https://flagcdn.com/at.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -16025,6 +16725,7 @@
             "flagUrl": "https://flagcdn.com/dz.svg",
             "score": 2
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -16084,6 +16785,7 @@
             "flagUrl": "https://flagcdn.com/at.svg",
             "score": 3
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -16173,6 +16875,7 @@
             "flagUrl": "https://flagcdn.com/ar.svg",
             "score": 3
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -16306,6 +17009,7 @@
             "flagUrl": "https://flagcdn.com/cd.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -16355,6 +17059,7 @@
             "flagUrl": "https://flagcdn.com/co.svg",
             "score": 3
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -16424,6 +17129,7 @@
             "flagUrl": "https://flagcdn.com/uz.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -16503,6 +17209,7 @@
             "flagUrl": "https://flagcdn.com/cd.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -16542,6 +17249,7 @@
             "flagUrl": "https://flagcdn.com/pt.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": []
         },
         {
@@ -16570,6 +17278,7 @@
             "flagUrl": "https://flagcdn.com/uz.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -16703,6 +17412,7 @@
             "flagUrl": "https://flagcdn.com/hr.svg",
             "score": 2
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -16792,6 +17502,7 @@
             "flagUrl": "https://flagcdn.com/pa.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -16831,6 +17542,7 @@
             "flagUrl": "https://flagcdn.com/gh.svg",
             "score": 0
           },
+          "penaltyScore": null,
           "events": []
         },
         {
@@ -16859,6 +17571,7 @@
             "flagUrl": "https://flagcdn.com/hr.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -16898,6 +17611,7 @@
             "flagUrl": "https://flagcdn.com/gb-eng.svg",
             "score": 2
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -16947,6 +17661,7 @@
             "flagUrl": "https://flagcdn.com/gh.svg",
             "score": 1
           },
+          "penaltyScore": null,
           "events": [
             {
               "type": "Goal",
@@ -17050,6 +17765,9 @@
       "away": "Canada",
       "homeScore": 0,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
       "winner": "Canada",
       "status": "FT",
       "nextMatchId": "90",
@@ -17064,8 +17782,14 @@
       "away": "Paraguay",
       "homeScore": 1,
       "awayScore": 1,
+      "homePenaltyScore": 3,
+      "awayPenaltyScore": 4,
+      "penaltyScore": {
+        "home": 3,
+        "away": 4
+      },
       "winner": "Paraguay",
-      "status": "FT",
+      "status": "PEN",
       "nextMatchId": "89",
       "nextMatchIds": [
         "89"
@@ -17078,11 +17802,18 @@
       "away": "Morocco",
       "homeScore": 1,
       "awayScore": 1,
+      "homePenaltyScore": 2,
+      "awayPenaltyScore": 3,
+      "penaltyScore": {
+        "home": 2,
+        "away": 3
+      },
       "winner": "Morocco",
-      "status": "FT",
+      "status": "PEN",
       "nextMatchId": "90",
       "nextMatchIds": [
-        "90"
+        "90",
+        "97"
       ]
     },
     {
@@ -17092,6 +17823,9 @@
       "away": "Japan",
       "homeScore": 2,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
       "winner": "Brazil",
       "status": "FT",
       "nextMatchId": "91",
@@ -17106,11 +17840,15 @@
       "away": "Sweden",
       "homeScore": 3,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
       "winner": "France",
       "status": "FT",
       "nextMatchId": "89",
       "nextMatchIds": [
-        "89"
+        "89",
+        "97"
       ]
     },
     {
@@ -17120,11 +17858,15 @@
       "away": "Norway",
       "homeScore": 1,
       "awayScore": 2,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
       "winner": "Norway",
       "status": "FT",
       "nextMatchId": "91",
       "nextMatchIds": [
-        "91"
+        "91",
+        "99"
       ]
     },
     {
@@ -17134,6 +17876,9 @@
       "away": "Ecuador",
       "homeScore": 2,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
       "winner": "Mexico",
       "status": "FT",
       "nextMatchId": "92",
@@ -17148,11 +17893,15 @@
       "away": "DR Congo",
       "homeScore": 2,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
       "winner": "England",
       "status": "FT",
       "nextMatchId": "92",
       "nextMatchIds": [
-        "92"
+        "92",
+        "99"
       ]
     },
     {
@@ -17162,6 +17911,9 @@
       "away": "Bosnia & Herzegovina",
       "homeScore": 2,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
       "winner": "USA",
       "status": "FT",
       "nextMatchId": "94",
@@ -17176,11 +17928,15 @@
       "away": "Senegal",
       "homeScore": 3,
       "awayScore": 2,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
       "winner": "Belgium",
       "status": "FT",
       "nextMatchId": "94",
       "nextMatchIds": [
-        "94"
+        "94",
+        "98"
       ]
     },
     {
@@ -17190,6 +17946,9 @@
       "away": "Croatia",
       "homeScore": 2,
       "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
       "winner": "Portugal",
       "status": "FT",
       "nextMatchId": "93",
@@ -17204,11 +17963,15 @@
       "away": "Austria",
       "homeScore": 3,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
       "winner": "Spain",
       "status": "FT",
       "nextMatchId": "93",
       "nextMatchIds": [
-        "93"
+        "93",
+        "98"
       ]
     },
     {
@@ -17218,6 +17981,9 @@
       "away": "Algeria",
       "homeScore": 2,
       "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
       "winner": "Switzerland",
       "status": "FT",
       "nextMatchId": "96",
@@ -17230,10 +17996,13 @@
       "round": "Round of 32",
       "home": "Argentina",
       "away": "Cape Verde",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 3,
+      "awayScore": 2,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
+      "winner": "Argentina",
+      "status": "FT",
       "nextMatchId": "95",
       "nextMatchIds": [
         "95"
@@ -17244,10 +18013,13 @@
       "round": "Round of 32",
       "home": "Colombia",
       "away": "Ghana",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 1,
+      "awayScore": 0,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
+      "winner": "Colombia",
+      "status": "FT",
       "nextMatchId": "96",
       "nextMatchIds": [
         "96"
@@ -17258,10 +18030,16 @@
       "round": "Round of 32",
       "home": "Australia",
       "away": "Egypt",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 1,
+      "awayScore": 1,
+      "homePenaltyScore": 2,
+      "awayPenaltyScore": 4,
+      "penaltyScore": {
+        "home": 2,
+        "away": 4
+      },
+      "winner": "Egypt",
+      "status": "PEN",
       "nextMatchId": "95",
       "nextMatchIds": [
         "95"
@@ -17272,10 +18050,13 @@
       "round": "Round of 16",
       "home": "Paraguay",
       "away": "France",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 0,
+      "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
+      "winner": "France",
+      "status": "FT",
       "nextMatchId": "97",
       "nextMatchIds": [
         "97"
@@ -17286,10 +18067,13 @@
       "round": "Round of 16",
       "home": "Canada",
       "away": "Morocco",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 0,
+      "awayScore": 3,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
+      "winner": "Morocco",
+      "status": "FT",
       "nextMatchId": "97",
       "nextMatchIds": [
         "97"
@@ -17300,10 +18084,13 @@
       "round": "Round of 16",
       "home": "Brazil",
       "away": "Norway",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 1,
+      "awayScore": 2,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
+      "winner": "Norway",
+      "status": "FT",
       "nextMatchId": "99",
       "nextMatchIds": [
         "99"
@@ -17314,10 +18101,13 @@
       "round": "Round of 16",
       "home": "Mexico",
       "away": "England",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 2,
+      "awayScore": 3,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
+      "winner": "England",
+      "status": "FT",
       "nextMatchId": "99",
       "nextMatchIds": [
         "99"
@@ -17326,12 +18116,15 @@
     {
       "id": "93",
       "round": "Round of 16",
-      "home": "W83",
-      "away": "W84",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "home": "Portugal",
+      "away": "Spain",
+      "homeScore": 0,
+      "awayScore": 1,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
+      "winner": "Spain",
+      "status": "FT",
       "nextMatchId": "98",
       "nextMatchIds": [
         "98"
@@ -17342,10 +18135,13 @@
       "round": "Round of 16",
       "home": "USA",
       "away": "Belgium",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 1,
+      "awayScore": 4,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
+      "winner": "Belgium",
+      "status": "FT",
       "nextMatchId": "98",
       "nextMatchIds": [
         "98"
@@ -17354,12 +18150,15 @@
     {
       "id": "95",
       "round": "Round of 16",
-      "home": "W86",
-      "away": "W88",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "home": "Argentina",
+      "away": "Egypt",
+      "homeScore": 3,
+      "awayScore": 2,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
+      "winner": "Argentina",
+      "status": "FT",
       "nextMatchId": "100",
       "nextMatchIds": [
         "100"
@@ -17368,12 +18167,18 @@
     {
       "id": "96",
       "round": "Round of 16",
-      "home": "W85",
-      "away": "W87",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "home": "Switzerland",
+      "away": "Colombia",
+      "homeScore": 0,
+      "awayScore": 0,
+      "homePenaltyScore": 4,
+      "awayPenaltyScore": 3,
+      "penaltyScore": {
+        "home": 4,
+        "away": 3
+      },
+      "winner": "Switzerland",
+      "status": "PEN",
       "nextMatchId": "100",
       "nextMatchIds": [
         "100"
@@ -17382,10 +18187,13 @@
     {
       "id": "97",
       "round": "Quarter-final",
-      "home": "W89",
-      "away": "W90",
+      "home": "France",
+      "away": "Morocco",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
       "winner": "",
       "status": "NS",
       "nextMatchId": "101",
@@ -17396,10 +18204,13 @@
     {
       "id": "98",
       "round": "Quarter-final",
-      "home": "W93",
-      "away": "W94",
+      "home": "Spain",
+      "away": "Belgium",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
       "winner": "",
       "status": "NS",
       "nextMatchId": "101",
@@ -17410,10 +18221,13 @@
     {
       "id": "99",
       "round": "Quarter-final",
-      "home": "W91",
-      "away": "W92",
+      "home": "Norway",
+      "away": "England",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
       "winner": "",
       "status": "NS",
       "nextMatchId": "102",
@@ -17428,6 +18242,9 @@
       "away": "W96",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
       "winner": "",
       "status": "NS",
       "nextMatchId": "102",
@@ -17442,6 +18259,9 @@
       "away": "W98",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
       "winner": "",
       "status": "NS",
       "nextMatchId": "103",
@@ -17457,6 +18277,9 @@
       "away": "W100",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
       "winner": "",
       "status": "NS",
       "nextMatchId": "103",
@@ -17472,6 +18295,9 @@
       "away": "L102",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
       "winner": "",
       "status": "NS",
       "nextMatchId": "",
@@ -17484,6 +18310,9 @@
       "away": "W102",
       "homeScore": null,
       "awayScore": null,
+      "homePenaltyScore": null,
+      "awayPenaltyScore": null,
+      "penaltyScore": null,
       "winner": "",
       "status": "NS",
       "nextMatchId": "",
@@ -17491,7 +18320,7 @@
     }
   ],
   "source": "openfootball",
-  "message": "API-Football plan cannot access this season: Free plans do not have access to this season, try from 2022 to 2024. 已改用 openfootball 免费公开赛程。 Patched 1 recent result(s).",
+  "message": "FOOTBALL_API_KEY is not configured. 已改用 openfootball 免费公开赛程。 Patched 1 recent result(s).",
   "meta": {
     "scorePatches": [
       {
@@ -17511,26 +18340,26 @@
         "sourceUrl": "https://www.thescore.com/worldcup/event/93026"
       }
     ],
-    "scorePatchError": ""
+    "scorePatchError": "OPENAI_API_KEY is not configured."
   },
   "leagueId": "1",
   "season": "2026",
   "polling": {
-    "mode": "match-window",
-    "label": "match-window",
+    "mode": "quiet",
+    "label": "quiet",
     "due": false,
-    "intervalSeconds": 300,
-    "nextFetchAt": "2026-07-03T04:41:43.588Z",
-    "generatedAt": "2026-07-03T04:36:43.588Z",
+    "intervalSeconds": 21600,
+    "nextFetchAt": "2026-07-08T15:37:11.043Z",
+    "generatedAt": "2026-07-08T09:37:11.043Z",
     "nextMatch": {
-      "id": "85",
-      "stage": "Round of 32",
-      "kickoffTime": "2026-07-03T03:00:00.000Z",
-      "home": "Switzerland",
-      "away": "Algeria",
-      "status": "FT"
+      "id": "97",
+      "stage": "Quarter-final",
+      "kickoffTime": "2026-07-09T20:00:00.000Z",
+      "home": "France",
+      "away": "Morocco",
+      "status": "NS"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-03T04:36:43.588Z"
+  "lastUpdated": "2026-07-08T09:37:11.043Z"
 }

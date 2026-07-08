@@ -116,7 +116,7 @@ OPENAI_SCHEDULE_MODEL=gpt-5.5
 API-Football
   -> openfootball/worldcup.json 免费公开赛程
   -> OpenAI Web Search 可选兜底
-  -> mock 展示数据
+  -> 不可用错误；mock 仅限本地开发或显式演示模式
 ```
 
 以后常规上线路径是：
@@ -180,7 +180,7 @@ public/data/worldcup-live.json
 - 距离下一场 24 小时内：约 1 小时更新一次
 - 赛前 30 分钟到开球后 150 分钟：约 5 分钟更新一次
 
-数据更新写入 `worldcup-data` 分支，不推送 `main`，因此不会反复触发 Netlify 自动构建。前端读取顺序是 GitHub 静态 JSON、本地静态 JSON、Netlify Function 兜底。
+数据更新先写入 `worldcup-data` 分支，再把同一份 `public/data/worldcup-live.json` 同步回 `main`，让 Netlify 和 GitHub Pages 随构建携带的静态快照也保持新鲜。前端读取顺序是 GitHub `worldcup-data`、当前部署的静态快照、Netlify Function 兜底；如果只能读到过期静态快照，页面会显示提示。生产环境不自动使用模拟数据，只有本地开发或显式 `?worldcupDemo=1` 演示模式会启用。
 
 本地手动刷新：
 

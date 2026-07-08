@@ -46,7 +46,12 @@ const clientTextJson = serializeJsonForHtml({
     <section class="worldcup-status-row" aria-label={text.statusRow.ariaLabel}>
       <div class="worldcup-chip" data-live-count>{text.statusRow.liveCountInitial}</div>
       <div class="worldcup-chip" data-updated-at>{text.statusRow.updatedAtInitial}</div>
+      <div class="worldcup-chip" data-source-pill>{text.topbar.sourcePillInitial}</div>
       <div class="worldcup-chip" data-refresh-policy>{text.statusRow.refreshPolicyInitial}</div>
+      <div class="worldcup-chip worldcup-error" data-error hidden></div>
+      <button class="worldcup-icon-button" type="button" data-refresh aria-label={text.statusRow.refreshButtonAriaLabel}>
+        ↻
+      </button>
     </section>
 
     <nav class="worldcup-section-tabs" aria-label={text.tabs.ariaLabel} role="tablist">

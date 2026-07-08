@@ -76,3 +76,24 @@ jobs:
 
           git commit -m "Update World Cup live data"
           git push origin worldcup-data
+
+      - name: Sync static data snapshot to main
+        if: steps.update.outputs.updated == 'true'
+        run: |
+          set -euo pipefail
+          data_file="$RUNNER_TEMP/worldcup-live.json"
+
+          git fetch origin main
+          git switch --force-create main origin/main
+
+          mkdir -p public/data
+          cp "$data_file" public/data/worldcup-live.json
+          git add public/data/worldcup-live.json
+
+          if git diff --cached --quiet; then
+            echo "Main static World Cup data is already up to date."
+            exit 0
+          fi
+
+          git commit -m "Sync World Cup static data"
+          git push origin main
