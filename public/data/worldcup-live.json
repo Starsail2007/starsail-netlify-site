@@ -18349,8 +18349,8 @@
     "label": "quiet",
     "due": false,
     "intervalSeconds": 21600,
-    "nextFetchAt": "2026-07-08T15:22:17.466Z",
-    "generatedAt": "2026-07-08T09:22:17.466Z",
+    "nextFetchAt": "2026-07-08T15:37:11.043Z",
+    "generatedAt": "2026-07-08T09:37:11.043Z",
     "nextMatch": {
       "id": "97",
       "stage": "Quarter-final",
@@ -18361,5 +18361,5 @@
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-08T09:22:17.466Z"
+  "lastUpdated": "2026-07-08T09:37:11.043Z"
 }
