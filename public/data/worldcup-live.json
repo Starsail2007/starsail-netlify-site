@@ -5550,8 +5550,8 @@
     },
     {
       "id": "96",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -5564,7 +5564,7 @@
         "iso2": "ch",
         "logo": "https://flagcdn.com/ch.svg",
         "flagUrl": "https://flagcdn.com/ch.svg",
-        "score": null
+        "score": 0
       },
       "away": {
         "name": "Colombia",
@@ -5572,7 +5572,7 @@
         "iso2": "co",
         "logo": "https://flagcdn.com/co.svg",
         "flagUrl": "https://flagcdn.com/co.svg",
-        "score": null
+        "score": 0
       },
       "events": []
     },
@@ -11352,8 +11352,8 @@
     },
     {
       "id": "96",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Round of 16",
       "round": "Round of 16",
@@ -11366,7 +11366,7 @@
         "iso2": "ch",
         "logo": "https://flagcdn.com/ch.svg",
         "flagUrl": "https://flagcdn.com/ch.svg",
-        "score": null
+        "score": 0
       },
       "away": {
         "name": "Colombia",
@@ -11374,7 +11374,7 @@
         "iso2": "co",
         "logo": "https://flagcdn.com/co.svg",
         "flagUrl": "https://flagcdn.com/co.svg",
-        "score": null
+        "score": 0
       },
       "events": []
     },
@@ -11604,34 +11604,6 @@
     }
   ],
   "upcomingMatches": [
-    {
-      "id": "96",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Round of 16",
-      "round": "Round of 16",
-      "group": "",
-      "venue": "Vancouver",
-      "kickoffTime": "2026-07-07T20:00:00.000Z",
-      "home": {
-        "name": "Switzerland",
-        "code": "S",
-        "iso2": "ch",
-        "logo": "https://flagcdn.com/ch.svg",
-        "flagUrl": "https://flagcdn.com/ch.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Colombia",
-        "code": "C",
-        "iso2": "co",
-        "logo": "https://flagcdn.com/co.svg",
-        "flagUrl": "https://flagcdn.com/co.svg",
-        "score": null
-      },
-      "events": []
-    },
     {
       "id": "97",
       "status": "NS",
@@ -17794,10 +17766,10 @@
       "round": "Round of 16",
       "home": "Switzerland",
       "away": "Colombia",
-      "homeScore": null,
-      "awayScore": null,
-      "winner": "",
-      "status": "NS",
+      "homeScore": 0,
+      "awayScore": 0,
+      "winner": "Switzerland",
+      "status": "FT",
       "nextMatchId": "100",
       "nextMatchIds": [
         "100"
@@ -17940,21 +17912,21 @@
   "leagueId": "1",
   "season": "2026",
   "polling": {
-    "mode": "match-window",
-    "label": "match-window",
+    "mode": "quiet",
+    "label": "quiet",
     "due": false,
-    "intervalSeconds": 300,
-    "nextFetchAt": "2026-07-07T18:30:06.180Z",
-    "generatedAt": "2026-07-07T18:25:06.180Z",
+    "intervalSeconds": 21600,
+    "nextFetchAt": "2026-07-08T11:32:57.297Z",
+    "generatedAt": "2026-07-08T05:32:57.297Z",
     "nextMatch": {
-      "id": "95",
-      "stage": "Round of 16",
-      "kickoffTime": "2026-07-07T16:00:00.000Z",
-      "home": "Argentina",
-      "away": "Egypt",
-      "status": "FT"
+      "id": "97",
+      "stage": "Quarter-final",
+      "kickoffTime": "2026-07-09T20:00:00.000Z",
+      "home": "France",
+      "away": "Morocco",
+      "status": "NS"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-07T18:25:06.180Z"
+  "lastUpdated": "2026-07-08T05:32:57.297Z"
 }
