@@ -652,7 +652,7 @@ html[data-theme="light"] .b50-card {
 
 @media (max-width: 640px) {
   .maimai-page {
-    width: min(100% - 20px, 1440px);
+    width: min(100% - 16px, 1440px);
     padding-bottom: 36px;
   }
 
@@ -673,17 +673,81 @@ html[data-theme="light"] .b50-card {
   }
 
   .b50-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
   }
 
   .b50-card {
-    min-height: 176px;
-    grid-template-columns: 82px minmax(0, 1fr);
+    min-height: 0;
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    gap: 5px;
+    padding: 5px;
+    border-radius: 7px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .2);
+  }
+
+  .b50-card::before {
+    width: 3px;
+  }
+
+  .b50-rank {
+    top: 5px;
+    left: 5px;
+    padding: 2px 5px;
+    font-size: 9px;
   }
 
   .maimai-cover {
-    width: 82px;
-    max-width: 82px;
+    width: min(100%, 72px);
+    max-width: 72px;
+    justify-self: center;
+    border-radius: 6px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, .22);
+  }
+
+  .b50-card-body {
+    gap: 4px;
+  }
+
+  .b50-card-topline {
+    gap: 4px;
+    font-size: 8.5px;
+    line-height: 1.1;
+  }
+
+  .b50-card h3 {
+    font-size: 9.8px;
+    line-height: 1.18;
+    -webkit-line-clamp: 2;
+  }
+
+  .b50-card p {
+    display: none;
+  }
+
+  .b50-score-row {
+    gap: 2px 4px;
+  }
+
+  .b50-score-row strong {
+    font-size: 11.4px;
+    line-height: 1;
+  }
+
+  .b50-score-row span {
+    font-size: 7.8px;
+    line-height: 1.1;
+  }
+
+  .b50-badges {
+    gap: 3px;
+  }
+
+  .b50-badges span {
+    padding: 2px 4px;
+    font-size: 7.5px;
+    line-height: 1.1;
   }
 
   .trend-panel,
