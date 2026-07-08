@@ -1,9 +1,10 @@
 .worldcup-body {
   display: block;
   min-height: 100svh;
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: auto;
   color: #f8fafc;
   background:
-    radial-gradient(circle at var(--x, 76%) var(--y, 30%), rgba(134, 231, 255, .18), transparent 26rem),
     radial-gradient(circle at 12% 0%, rgba(49, 130, 255, .28), transparent 28rem),
     radial-gradient(circle at 90% 10%, rgba(255, 47, 95, .2), transparent 26rem),
     radial-gradient(circle at 50% 100%, rgba(40, 190, 140, .12), transparent 30rem),
@@ -13,7 +14,6 @@
 html[data-theme="light"] .worldcup-body {
   color: #0f172a;
   background:
-    radial-gradient(circle at var(--x, 76%) var(--y, 30%), rgba(14, 116, 239, .12), transparent 26rem),
     radial-gradient(circle at 12% 0%, rgba(14, 116, 239, .14), transparent 28rem),
     radial-gradient(circle at 90% 10%, rgba(225, 29, 72, .1), transparent 26rem),
     radial-gradient(circle at 50% 100%, rgba(20, 184, 166, .1), transparent 30rem),
@@ -25,7 +25,12 @@ html[data-theme="light"] .worldcup-body {
   padding: clamp(18px, 3vw, 36px);
   position: relative;
   isolation: isolate;
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+.worldcup-page [hidden] {
+  display: none !important;
 }
 
 .worldcup-page::before {
@@ -42,14 +47,24 @@ html[data-theme="light"] .worldcup-body {
 }
 
 .worldcup-page::after {
-  content: "";
+  content: none;
+}
+
+.worldcup-pointer-glow {
   position: fixed;
-  inset: 0;
+  left: 0;
+  top: 0;
   z-index: -1;
+  width: clamp(520px, 62vmax, 940px);
+  aspect-ratio: 1;
+  border-radius: 50%;
   pointer-events: none;
   background:
-    radial-gradient(circle at var(--x, 76%) var(--y, 30%), rgba(134, 231, 255, .12), transparent 22rem);
-  opacity: .86;
+    radial-gradient(circle at center, rgba(126, 220, 255, .06), rgba(80, 150, 255, .028) 34%, rgba(30, 82, 190, .012) 58%, transparent 78%);
+  opacity: 0;
+  transform: translate3d(76vw, 30vh, 0) translate3d(-50%, -50%, 0);
+  will-change: transform, opacity;
+  contain: paint;
 }
 
 html[data-theme="light"] .worldcup-page::before {
@@ -59,10 +74,9 @@ html[data-theme="light"] .worldcup-page::before {
   opacity: .72;
 }
 
-html[data-theme="light"] .worldcup-page::after {
+html[data-theme="light"] .worldcup-pointer-glow {
   background:
-    radial-gradient(circle at var(--x, 76%) var(--y, 30%), rgba(14, 116, 239, .1), transparent 22rem);
-  opacity: .76;
+    radial-gradient(circle at center, rgba(14, 116, 239, .036), rgba(20, 126, 209, .018) 34%, rgba(20, 184, 166, .01) 58%, transparent 80%);
 }
 
 .worldcup-topbar,
@@ -342,6 +356,10 @@ html[data-theme="light"] .worldcup-trophy-mark {
 
 .worldcup-section-tabs {
   width: min(760px, 100%);
+  position: sticky;
+  top: max(10px, env(safe-area-inset-top));
+  z-index: 70;
+  align-self: start;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
@@ -393,9 +411,7 @@ html[data-theme="light"] .worldcup-section-tab {
 .worldcup-section-tab:hover,
 .worldcup-section-tab.is-active {
   color: #fff;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(134, 231, 255, .18), transparent 58%),
-    rgba(255, 255, 255, .1);
+  background: rgba(255, 255, 255, .095);
   box-shadow:
     0 12px 28px rgba(0, 0, 0, .22),
     inset 0 1px 0 rgba(255, 255, 255, .16);
@@ -404,9 +420,7 @@ html[data-theme="light"] .worldcup-section-tab {
 html[data-theme="light"] .worldcup-section-tab:hover,
 html[data-theme="light"] .worldcup-section-tab.is-active {
   color: #0f172a;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(14, 116, 239, .11), transparent 58%),
-    rgba(255, 255, 255, .72);
+  background: rgba(255, 255, 255, .72);
   box-shadow:
     0 12px 28px rgba(15, 23, 42, .1),
     inset 0 1px 0 rgba(255, 255, 255, .88);
@@ -418,8 +432,8 @@ html[data-theme="light"] .worldcup-section-tab.is-active {
 
 .worldcup-tab-viewport {
   min-width: 0;
-  overflow-x: hidden;
-  overflow-y: visible;
+  overflow: hidden;
+  overscroll-behavior: auto;
   transition: height .42s cubic-bezier(.2, .85, .2, 1);
 }
 
@@ -509,6 +523,162 @@ html[data-theme="light"] .bracket-match {
   box-shadow:
     0 22px 70px rgba(15, 23, 42, .12),
     inset 0 1px 0 rgba(255, 255, 255, .82);
+}
+
+.worldcup-home-button,
+.worldcup-page .theme-toggle,
+.worldcup-section-tab,
+.schedule-date-button,
+.schedule-center-button,
+.schedule-date-option,
+.schedule-wheel-card,
+.schedule-card,
+.group-card,
+button.group-fixture,
+a.timeline-match,
+.moments-time-list .timeline-match,
+.bracket-match,
+.moments-mode-button,
+.moments-sort-button,
+.moments-match-button,
+.moments-detail-header button,
+.moments-modal-titlebar button {
+  --spotlight-x: 50%;
+  --spotlight-y: 50%;
+  --spotlight-opacity: 0;
+  --spotlight-size: 220px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.group-card,
+.schedule-wheel-card,
+.schedule-card,
+.moments-time-list .timeline-match {
+  --spotlight-size: 300px;
+}
+
+.bracket-match,
+.moments-match-button,
+button.group-fixture {
+  --spotlight-size: 180px;
+}
+
+.worldcup-home-button::before,
+.worldcup-page .theme-toggle::before,
+.worldcup-section-tab::before,
+.schedule-date-button::before,
+.schedule-center-button::before,
+.schedule-date-option::before,
+.schedule-wheel-card::before,
+.schedule-card::before,
+.group-card::before,
+button.group-fixture::before,
+a.timeline-match::before,
+.moments-time-list .timeline-match::before,
+.bracket-match::before,
+.moments-mode-button::before,
+.moments-sort-button::before,
+.moments-match-button::before,
+.moments-detail-header button::before,
+.moments-modal-titlebar button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle var(--spotlight-size) at var(--spotlight-x) var(--spotlight-y), rgba(134, 231, 255, .18), rgba(134, 231, 255, .07) 34%, rgba(255, 232, 149, .035) 55%, transparent 72%);
+  opacity: var(--spotlight-opacity);
+  transition: opacity .18s ease;
+}
+
+html[data-theme="light"] .worldcup-home-button::before,
+html[data-theme="light"] .worldcup-page .theme-toggle::before,
+html[data-theme="light"] .worldcup-section-tab::before,
+html[data-theme="light"] .schedule-date-button::before,
+html[data-theme="light"] .schedule-center-button::before,
+html[data-theme="light"] .schedule-date-option::before,
+html[data-theme="light"] .schedule-wheel-card::before,
+html[data-theme="light"] .schedule-card::before,
+html[data-theme="light"] .group-card::before,
+html[data-theme="light"] button.group-fixture::before,
+html[data-theme="light"] a.timeline-match::before,
+html[data-theme="light"] .moments-time-list .timeline-match::before,
+html[data-theme="light"] .bracket-match::before,
+html[data-theme="light"] .moments-mode-button::before,
+html[data-theme="light"] .moments-sort-button::before,
+html[data-theme="light"] .moments-match-button::before,
+html[data-theme="light"] .moments-detail-header button::before,
+html[data-theme="light"] .moments-modal-titlebar button::before {
+  background:
+    radial-gradient(circle var(--spotlight-size) at var(--spotlight-x) var(--spotlight-y), rgba(14, 116, 239, .12), rgba(14, 116, 239, .052) 36%, rgba(250, 204, 21, .035) 56%, transparent 74%);
+}
+
+.worldcup-home-button:hover,
+.worldcup-home-button:focus-visible,
+.worldcup-page .theme-toggle:hover,
+.worldcup-page .theme-toggle:focus-visible,
+.worldcup-section-tab:hover,
+.worldcup-section-tab:focus-visible,
+.schedule-date-button:hover,
+.schedule-date-button:focus-visible,
+.schedule-date-button.is-filtered,
+.schedule-date-button[aria-expanded="true"],
+.schedule-center-button:hover,
+.schedule-center-button:focus-visible,
+.schedule-date-option:hover,
+.schedule-date-option:focus-visible,
+.schedule-date-option.is-active,
+.schedule-card:hover,
+.group-card:hover,
+button.group-fixture:hover,
+button.group-fixture:focus-visible,
+a.timeline-match:hover,
+a.timeline-match:focus-visible,
+.moments-time-list .timeline-match:hover,
+.bracket-match.has-moments:hover,
+.bracket-match.is-interactive:hover,
+.bracket-match.is-selected,
+.moments-mode-button:hover,
+.moments-mode-button:focus-visible,
+.moments-mode-button.is-active,
+.moments-sort-button:hover,
+.moments-sort-button:focus-visible,
+.moments-match-button:hover,
+.moments-match-button:focus-visible,
+.moments-match-button.is-selected,
+.moments-detail-header button:hover,
+.moments-detail-header button:focus-visible,
+.moments-modal-titlebar button:hover,
+.moments-modal-titlebar button:focus-visible {
+  --spotlight-opacity: .78;
+}
+
+.worldcup-section-tab.is-active,
+.moments-mode-button.is-active {
+  --spotlight-opacity: .42;
+}
+
+.worldcup-section-tab.is-active:hover,
+.moments-mode-button.is-active:hover {
+  --spotlight-opacity: .72;
+}
+
+.group-card:hover,
+.schedule-card:hover,
+.moments-time-list .timeline-match:hover {
+  --spotlight-opacity: .5;
+}
+
+.schedule-wheel-card.is-active {
+  --spotlight-opacity: .42;
+}
+
+.schedule-wheel-card.is-active:hover {
+  --spotlight-opacity: .68;
 }
 
 .match-hero {
@@ -616,20 +786,25 @@ html[data-theme="light"] .bracket-match {
 }
 
 .hero-score {
+  min-width: 0;
+  max-width: 100%;
   display: inline-grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: minmax(0, auto) auto minmax(0, auto);
   align-items: center;
   gap: clamp(8px, 1.5vw, 18px);
   font-weight: 900;
   line-height: .85;
+  font-variant-numeric: tabular-nums;
 }
 
 .score-number {
-  min-width: clamp(52px, 8vw, 112px);
+  min-width: clamp(52px, 7vw, 104px);
+  max-width: 5.4ch;
   display: inline-block;
   color: #ffffff;
-  font-size: clamp(58px, 10vw, 142px);
+  font-size: clamp(44px, 7.8vw, 112px);
   text-align: center;
+  white-space: nowrap;
   text-shadow: 0 20px 70px rgba(0, 0, 0, .5);
 }
 
@@ -1011,11 +1186,12 @@ html[data-theme="light"] .schedule-date-empty {
   --schedule-wheel-height: clamp(520px, 58vh, 620px);
   position: relative;
   isolation: isolate;
-  width: min(880px, 100%);
+  width: min(820px, calc(100% - clamp(18px, 5vw, 64px)));
   height: var(--schedule-wheel-height);
   min-height: 0;
   margin-inline: auto;
   overflow: hidden;
+  overscroll-behavior: auto;
   border: 1px solid rgba(255, 255, 255, .055);
   border-radius: 8px;
   background:
@@ -1136,7 +1312,7 @@ html[data-theme="light"] .schedule-wheel-focus {
   height: 100%;
   min-height: 0;
   overflow-y: auto;
-  overscroll-behavior-y: contain;
+  overscroll-behavior-y: auto;
   scroll-behavior: auto;
   scroll-padding-block: calc(var(--schedule-wheel-height) / 2 - 42px);
   scroll-snap-type: none;
@@ -1146,6 +1322,8 @@ html[data-theme="light"] .schedule-wheel-focus {
   scrollbar-width: thin;
   cursor: grab;
   user-select: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 html[data-theme="light"] .schedule-wheel {
@@ -1193,7 +1371,7 @@ html[data-theme="light"] .schedule-wheel::-webkit-scrollbar-thumb {
   scroll-snap-stop: always;
   position: relative;
   display: grid;
-  grid-template-columns: minmax(96px, 1fr) minmax(110px, 146px) minmax(96px, 1fr);
+  grid-template-columns: minmax(92px, 1fr) minmax(78px, 112px) minmax(92px, 1fr);
   grid-template-areas:
     "home score away"
     "venue venue venue";
@@ -1224,6 +1402,10 @@ html[data-theme="light"] .schedule-wheel::-webkit-scrollbar-thumb {
     background .16s linear,
     box-shadow .16s linear;
   will-change: transform, opacity;
+}
+
+.schedule-wheel-card.has-penalty-score {
+  grid-template-columns: minmax(86px, 1fr) minmax(124px, 150px) minmax(86px, 1fr);
 }
 
 html[data-theme="light"] .schedule-wheel-card {
@@ -1313,6 +1495,7 @@ html[data-theme="light"] .schedule-wheel-team img {
 
 .schedule-wheel-score {
   grid-area: score;
+  min-width: 0;
   display: grid;
   justify-items: center;
   gap: 3px;
@@ -1355,14 +1538,23 @@ html[data-theme="light"] .schedule-wheel-score small {
 
 .schedule-wheel-score strong {
   display: inline-grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: auto auto auto;
   align-items: center;
-  gap: 6px;
-  min-width: 76px;
+  gap: 8px;
+  width: max-content;
+  max-width: 100%;
+  min-width: 0;
   color: #fff;
-  font-size: clamp(19px, 2.1vw, 26px);
+  font-size: clamp(18px, 2vw, 25px);
   line-height: .9;
   font-weight: 950;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.schedule-wheel-card.has-penalty-score .schedule-wheel-score strong {
+  gap: 4px;
+  font-size: clamp(16px, 1.75vw, 23px);
 }
 
 html[data-theme="light"] .schedule-wheel-score strong {
@@ -1370,7 +1562,7 @@ html[data-theme="light"] .schedule-wheel-score strong {
 }
 
 .schedule-wheel-score b {
-  min-width: 20px;
+  min-width: 22px;
   font: inherit;
   text-align: center;
 }
@@ -1450,15 +1642,18 @@ html[data-theme="light"] .schedule-wheel-score em {
 
 .card-score-row {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: minmax(58px, 1fr) auto minmax(58px, 1fr);
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  font-variant-numeric: tabular-nums;
 }
 
 .card-score-row span {
-  font-size: 32px;
+  min-width: 0;
+  font-size: clamp(24px, 2.5vw, 32px);
   font-weight: 900;
   text-align: center;
+  white-space: nowrap;
 }
 
 .card-score-row small {
@@ -1477,8 +1672,22 @@ html[data-theme="light"] .schedule-wheel-score em {
   gap: 14px;
   overflow-x: auto;
   overscroll-behavior-x: contain;
-  scroll-snap-type: x proximity;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  cursor: grab;
   padding: 2px 2px 10px;
+}
+
+.group-stage-scroll.is-dragging,
+.group-stage-scroll.is-gliding {
+  scroll-behavior: auto;
+}
+
+.group-stage-scroll.is-dragging {
+  cursor: grabbing;
+  user-select: none;
 }
 
 .group-card {
@@ -1625,7 +1834,7 @@ button.group-fixture {
 .moments-group-fixture.is-selected {
   border-color: rgba(134, 231, 255, .48);
   background:
-    radial-gradient(circle at 12% 0%, rgba(134, 231, 255, .16), transparent 46%),
+    linear-gradient(135deg, rgba(134, 231, 255, .08), rgba(255, 232, 149, .035)),
     rgba(255, 255, 255, .055);
   box-shadow: 0 14px 30px rgba(0, 0, 0, .18);
   transform: translateY(-1px);
@@ -1716,7 +1925,7 @@ html[data-theme="light"] .moments-group-fixture.has-moments:hover,
 html[data-theme="light"] .moments-group-fixture.is-selected {
   border-color: rgba(14, 116, 239, .34);
   background:
-    radial-gradient(circle at 12% 0%, rgba(14, 116, 239, .12), transparent 46%),
+    linear-gradient(135deg, rgba(219, 234, 254, .56), rgba(254, 249, 195, .22)),
     rgba(255, 255, 255, .66);
   box-shadow: 0 14px 30px rgba(15, 23, 42, .1);
 }
@@ -2289,7 +2498,7 @@ html[data-theme="light"] .moments-match-teams span {
   min-width: 0;
   min-height: 21px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(34px, auto);
   gap: 6px;
   align-items: center;
   color: rgba(248, 250, 252, .68);
@@ -2345,10 +2554,13 @@ html[data-theme="light"] .moments-match-teams span {
 }
 
 .bracket-row strong {
-  min-width: 26px;
-  font-size: 12.5px;
+  min-width: 34px;
+  max-width: 6ch;
+  font-size: 11.5px;
   font-weight: 880;
+  font-variant-numeric: tabular-nums;
   text-align: right;
+  white-space: nowrap;
 }
 
 .bracket-match.is-interactive {
@@ -2364,7 +2576,7 @@ html[data-theme="light"] .moments-match-teams span {
 .bracket-match.is-interactive.is-muted:hover,
 .bracket-match.is-interactive.is-selected {
   background:
-    radial-gradient(circle at 12% 0%, rgba(134, 231, 255, .16), transparent 46%),
+    linear-gradient(135deg, rgba(134, 231, 255, .075), rgba(255, 232, 149, .026)),
     linear-gradient(135deg, rgba(255, 255, 255, .11), rgba(255, 255, 255, .035)),
     rgba(6, 10, 24, .82);
   box-shadow:
@@ -2512,7 +2724,7 @@ html[data-theme="light"] .bracket-match.has-moments.is-selected,
 html[data-theme="light"] .bracket-match.is-interactive.is-muted:hover,
 html[data-theme="light"] .bracket-match.is-interactive.is-selected {
   background:
-    radial-gradient(circle at 12% 0%, rgba(14, 116, 239, .12), transparent 46%),
+    linear-gradient(135deg, rgba(219, 234, 254, .54), rgba(254, 249, 195, .2)),
     linear-gradient(135deg, rgba(255, 255, 255, .86), rgba(255, 255, 255, .46)),
     rgba(255, 255, 255, .72);
   box-shadow:
@@ -2944,7 +3156,7 @@ html[data-theme="light"] .champion-content > strong {
 .moments-match-button.is-selected {
   border-color: rgba(134, 231, 255, .34);
   background:
-    radial-gradient(circle at 14% 0%, rgba(134, 231, 255, .14), transparent 48%),
+    linear-gradient(135deg, rgba(134, 231, 255, .075), rgba(255, 232, 149, .028)),
     rgba(255, 255, 255, .07);
   box-shadow: 0 14px 38px rgba(0, 0, 0, .22);
   transform: translateY(-1px);
@@ -3095,7 +3307,7 @@ html[data-theme="light"] .moments-match-button:hover,
 html[data-theme="light"] .moments-match-button.is-selected {
   border-color: rgba(14, 116, 239, .24);
   background:
-    radial-gradient(circle at 14% 0%, rgba(14, 116, 239, .1), transparent 48%),
+    linear-gradient(135deg, rgba(219, 234, 254, .52), rgba(254, 249, 195, .2)),
     rgba(255, 255, 255, .72);
   box-shadow: 0 14px 34px rgba(15, 23, 42, .1);
 }
@@ -3625,12 +3837,16 @@ html[data-theme="light"] .loading-line {
   }
 
   .schedule-wheel-card {
-    grid-template-columns: minmax(86px, 1fr) minmax(102px, 132px) minmax(86px, 1fr);
+    grid-template-columns: minmax(74px, 1fr) minmax(76px, 104px) minmax(74px, 1fr);
     grid-template-areas:
       "home score away"
       "venue venue venue";
     gap: 6px 10px;
-    min-height: 80px;
+    min-height: 82px;
+  }
+
+  .schedule-wheel-card.has-penalty-score {
+    grid-template-columns: minmax(68px, 1fr) minmax(118px, 140px) minmax(68px, 1fr);
   }
 
   .schedule-wheel-team {
@@ -3727,15 +3943,20 @@ html[data-theme="light"] .loading-line {
 
   .schedule-wheel-stage {
     --schedule-wheel-height: 500px;
+    width: min(100%, calc(100% - 20px));
     height: var(--schedule-wheel-height);
+    overflow: hidden;
   }
 
   .schedule-wheel {
     height: 100%;
     min-height: 0;
+    overflow-y: auto;
     padding-inline: 10px;
     padding-block: calc(var(--schedule-wheel-height) / 2 - 40px);
     scroll-padding-block: calc(var(--schedule-wheel-height) / 2 - 40px);
+    cursor: grab;
+    touch-action: pan-y;
   }
 
   .schedule-flag-pane {
@@ -3743,16 +3964,25 @@ html[data-theme="light"] .loading-line {
     opacity: .2;
   }
 
+  .schedule-wheel-focus {
+    display: block;
+  }
+
   .schedule-wheel-card {
-    grid-template-columns: minmax(66px, 1fr) minmax(74px, 92px) minmax(66px, 1fr);
-    gap: 5px 4px;
+    grid-template-columns: minmax(0, 1fr) minmax(72px, 92px) minmax(0, 1fr);
+    gap: 5px 8px;
     min-height: 80px;
     margin-block: 5px;
-    padding: 7px 6px;
+    padding: 7px 5px;
+  }
+
+  .schedule-wheel-card.has-penalty-score {
+    grid-template-columns: minmax(0, 1fr) minmax(112px, 126px) minmax(0, 1fr);
+    gap: 5px 4px;
   }
 
   .schedule-wheel-team {
-    width: clamp(62px, 22vw, 84px);
+    width: min(100%, 70px);
     gap: 4px;
   }
 
@@ -3767,9 +3997,16 @@ html[data-theme="light"] .loading-line {
   }
 
   .schedule-wheel-score strong {
-    min-width: 64px;
+    width: max-content;
+    max-width: 100%;
+    min-width: 0;
+    gap: 8px;
+    font-size: clamp(20px, 6vw, 25px);
+  }
+
+  .schedule-wheel-card.has-penalty-score .schedule-wheel-score strong {
     gap: 4px;
-    font-size: clamp(20px, 6.4vw, 27px);
+    font-size: clamp(18px, 5.2vw, 20px);
   }
 
   .schedule-wheel-score small {
@@ -3791,6 +4028,7 @@ html[data-theme="light"] .loading-line {
 
   .score-number {
     min-width: 54px;
+    font-size: clamp(40px, 12vw, 58px);
   }
 
   .schedule-strip {

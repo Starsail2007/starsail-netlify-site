@@ -8,7 +8,8 @@
   --surface: rgba(28, 28, 30, .72);
   --page-top: #161619;
   --page-bottom: #030304;
-  --spot: rgba(41, 151, 255, .16);
+  --pointer-glow-opacity: 0;
+  --spot: rgba(41, 151, 255, calc(.16 * var(--pointer-glow-opacity)));
   --spot-muted: rgba(116, 116, 128, .14);
   --orb-a: rgba(41, 151, 255, .1);
   --orb-b: rgba(142, 142, 147, .08);
@@ -24,6 +25,8 @@
   --shine-highlight: #8fd0ff;
   --x: 72%;
   --y: 24%;
+  --pointer-x-px: 72vw;
+  --pointer-y-px: 24vh;
 }
 
 html[data-theme="light"] {
@@ -36,7 +39,7 @@ html[data-theme="light"] {
   --surface: rgba(255, 255, 255, .72);
   --page-top: #ffffff;
   --page-bottom: #eeeeef;
-  --spot: rgba(0, 113, 227, .11);
+  --spot: rgba(0, 113, 227, calc(.11 * var(--pointer-glow-opacity)));
   --spot-muted: rgba(130, 130, 138, .1);
   --orb-a: rgba(0, 113, 227, .08);
   --orb-b: rgba(130, 130, 138, .06);

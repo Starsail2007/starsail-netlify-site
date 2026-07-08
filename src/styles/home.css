@@ -21,8 +21,9 @@
   background: linear-gradient(135deg, var(--orb-a), var(--orb-b));
   filter: blur(16px);
   z-index: -1;
+  opacity: calc(.9 * var(--pointer-glow-opacity, 0));
   transform: translate3d(calc((var(--x) - 50%) / 16), calc((var(--y) - 50%) / 16), 0);
-  transition: transform .35s ease;
+  transition: transform .16s ease-out, opacity .42s ease;
 }
 
 .stage.is-touching::before {

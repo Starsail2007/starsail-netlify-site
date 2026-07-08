@@ -6,6 +6,8 @@ const { text } = Astro.props;
 const headlineChars = [...text.hero.headline];
 const modalId = "entry-original-avatar-modal";
 const avatarSrc = withBasePath("/assets/avatar.jpeg");
+const derakkumaHeadSrc = withBasePath("/assets/maimai/derakkuma-head-closeup.png");
+const footballSrc = withBasePath("/assets/worldcup/soccerball-shade.svg");
 const contactText = text.avatarModal.contact;
 const qqQrSrc = withBasePath(contactText.qq.qrSrc);
 const gmailHref = `mailto:${contactText.gmail.address}`;
@@ -41,23 +43,56 @@ const gmailHref = `mailto:${contactText.gmail.address}`;
         ))}
       </h1>
       <p class="original-subcopy">
-        {text.hero.subcopy.beforeStrong}<strong>{text.hero.subcopy.strong}</strong>{text.hero.subcopy.afterStrong}
+        {text.hero.subcopy.beforeStrong}{text.hero.subcopy.strong}{text.hero.subcopy.afterStrong}
       </p>
     </div>
 
     <nav class="original-option-rail" aria-label={text.options.ariaLabel}>
-      {text.options.items.map((item, index) => (
-        <a
-          class="original-option"
-          href={withBasePath(item.href)}
-          style={`--option-index: ${index};`}
-          aria-disabled={item.href === "#" ? "true" : undefined}
-          data-entry-disabled={item.href === "#" ? "true" : undefined}
-          data-option-prompt={item.prompt || undefined}
-        >
-          <strong>{item.label || item.name}</strong>
-        </a>
-      ))}
+      {text.options.items.map((item, index) => {
+        const isMaimaiOption = item.href === "/maimai/";
+        const optionClass = [
+          "original-option",
+          isMaimaiOption ? "original-option-maimai" : "",
+          item.featured ? "original-option-featured" : ""
+        ].filter(Boolean).join(" ");
+
+        return (
+          <a
+            class={optionClass}
+            href={withBasePath(item.href)}
+            style={`--option-index: ${index};`}
+            aria-disabled={item.href === "#" ? "true" : undefined}
+            data-entry-disabled={item.href === "#" ? "true" : undefined}
+            data-option-prompt={item.prompt || undefined}
+          >
+            {isMaimaiOption && (
+              <>
+                <span class="original-option-maimai-light" aria-hidden="true"></span>
+                <img
+                  class="original-option-derakkuma"
+                  src={derakkumaHeadSrc}
+                  alt=""
+                  loading="eager"
+                  decoding="async"
+                  aria-hidden="true"
+                />
+                <span class="original-option-maimai-glass" aria-hidden="true"></span>
+              </>
+            )}
+            {item.featured && (
+              <img
+                class="original-option-football"
+                src={footballSrc}
+                alt=""
+                loading="eager"
+                decoding="async"
+                aria-hidden="true"
+              />
+            )}
+            <strong>{item.label || item.name}</strong>
+          </a>
+        );
+      })}
     </nav>
   </main>
 
@@ -214,10 +249,13 @@ const gmailHref = `mailto:${contactText.gmail.address}`;
       <ol class="original-changelog-timeline">
         {text.changelog.items.map((item) => (
           <li>
-            <time>{item.date}</time>
+            <time>
+              <span>{item.date}</span>
+              {item.version ? <> <span class="original-changelog-version">{item.version}</span></> : null}
+            </time>
             <p>
               {item.parts.map((part) => (
-                part.emphasis ? <strong>{part.text}</strong> : <span>{part.text}</span>
+                <span>{part.text}</span>
               ))}
             </p>
           </li>

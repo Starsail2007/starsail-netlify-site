@@ -292,6 +292,7 @@ worldcup:
       groupStandingPoints: "分"
       bracketRunnerUp: "亚军"
       bracketThirdPlace: "季军"
+      penaltyScoreTemplate: "点球 {home}:{away}"
       groupFixtureCountTemplate: "{played}/{total} 场已完赛"
       moreEventsTemplate: "还有 {count} 个瞬间"
       openMomentDetail: "打开完整关键瞬间"
@@ -377,7 +378,7 @@ entryRedesign:
       avatarAlt: "星帆Starsail 的头像"
       creditLabel: "Designed by"
       creditName: "星帆Starsail"
-      versionLabel: "v1.0"
+      versionLabel: "v1.1"
     hero:
       headline: "待探索的空间"
       subcopy:
@@ -405,6 +406,7 @@ entryRedesign:
           href: "/worldcup/"
           icon: "4"
           prompt: ""
+          featured: true
     footer:
       hint: "金鞍玉勒寻芳客，未信我庐别有春。"
       techNote: "Astro + CSS + JavaScript"
@@ -415,26 +417,30 @@ entryRedesign:
       title: "更新日志"
       items:
         - date: "2026.6.27"
+          version: "demo版"
           parts:
             - text: "于紫金港。这个构想始于在期末周劳累复习之余的灵光一闪。那天做了一个"
             - text: "临时demo"
-              emphasis: true
             - text: "。"
         - date: "2026.6.30"
+          version: "测试版"
           parts:
             - text: "同样是在期末周摸鱼。鼓捣一番，于是上线了"
             - text: "测试版网站"
-              emphasis: true
             - text: "。"
         - date: "2026.7.8"
+          version: "v1.0"
           parts:
             - text: "于北京海淀。在北京之旅抽空完善了这个项目，"
             - text: "正式版1.0"
-              emphasis: true
             - text: "上线——优化了首页展示，更新了世界杯展示页，和某个神秘面板。"
+        - date: "2026.7.8"
+          version: "v1.1"
+          parts:
+            - text: "优化了一些视觉效果，修复了一些已知问题。"
     announcement:
       ariaLabel: "站点公告"
-      message: "正式版v1.0已上线"
+      message: "正式版v1.1已上线"
     avatarModal:
       closeAriaLabel: "关闭头像展示"
       closeButton: "x"

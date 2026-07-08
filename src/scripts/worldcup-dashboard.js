@@ -133,6 +133,7 @@ const DEFAULT_WORLDCUP_TEXT = {
       groupStandingPoints: "Pts",
       bracketRunnerUp: "Runner-up",
       bracketThirdPlace: "Third place",
+      penaltyScoreTemplate: "Penalties {home}:{away}",
       moreEventsTemplate: "{count} more moments",
       defaultTeam: "TBD",
       defaultStage: "World Cup",
@@ -201,6 +202,7 @@ if (root) {
     tabTrack: root.querySelector("[data-worldcup-tab-track]"),
     tabPanels: [...root.querySelectorAll("[data-worldcup-panel]")],
     schedulePanel: root.querySelector("[data-schedule-wheel-panel]"),
+    scheduleStage: root.querySelector("[data-schedule-wheel-stage]"),
     schedule: root.querySelector("[data-schedule-wheel]"),
     scheduleCenter: root.querySelector("[data-schedule-center]"),
     scheduleDateFilter: root.querySelector("[data-schedule-date-filter]"),
@@ -296,6 +298,7 @@ if (root) {
     selectedMomentsDate = nextState.momentsDate ?? selectedMomentsDate;
   });
   setupDraggableBracket(elements.bracket);
+  setupHorizontalMomentumScroller(elements.groupStage);
   elements.championCelebration?.addEventListener("click", (event) => {
     if (event.target.closest(".champion-content")) {
       return;
@@ -340,6 +343,7 @@ if (root) {
         activeSectionTab = button.dataset.worldcupTab || "schedule";
         setActiveSectionTab(pageElements, activeSectionTab);
         renderActivePanelData(readData(), pageElements);
+        scrollActiveTabContentIntoView(pageElements);
       });
     }
   }
@@ -394,9 +398,9 @@ if (root) {
       renderMomentsPanelFromData(readData(), pageElements, nextState, { force: true });
     });
 
-    const openMomentMatch = (matchId) => {
+    const openMomentMatch = (matchId, options = {}) => {
       const currentData = readData();
-      const sourceMatches = filterMatchesByScheduleDate(getMomentSourceMatches(currentData), selectedMomentsDate);
+      const sourceMatches = options.sourceMatches || filterMatchesByScheduleDate(getMomentSourceMatches(currentData), selectedMomentsDate);
 
       renderMomentsDetail(
         matchId,
@@ -420,11 +424,11 @@ if (root) {
     root?.addEventListener("click", (event) => {
       const button = event.target.closest("[data-moments-match-id]");
 
-      if (!button || !pageElements.momentsStructure?.contains(button)) {
+      if (!button || !root.contains(button)) {
         return;
       }
 
-      const dragHost = button.closest(".bracket-scroll");
+      const dragHost = button.closest(".bracket-scroll, .group-stage-scroll");
 
       if (dragHost?.dataset.suppressClick === "true") {
         return;
@@ -432,22 +436,34 @@ if (root) {
 
       event.preventDefault();
       event.stopPropagation();
-      openMomentMatch(button.dataset.momentsMatchId);
+      const clickedInMomentsPanel = Boolean(button.closest('[data-worldcup-panel="moments"]'));
+      const currentData = readData();
+      const sourceMatches = clickedInMomentsPanel
+        ? filterMatchesByScheduleDate(getMomentSourceMatches(currentData), selectedMomentsDate)
+        : getMomentSourceMatches(currentData);
+
+      openMomentMatch(button.dataset.momentsMatchId, { sourceMatches });
     }, true);
 
-    pageElements.momentsStructure?.addEventListener("keydown", (event) => {
+    root?.addEventListener("keydown", (event) => {
       if (event.key !== "Enter" && event.key !== " ") {
         return;
       }
 
       const button = event.target.closest("[data-moments-match-id]");
 
-      if (!button) {
+      if (!button || !root.contains(button)) {
         return;
       }
 
       event.preventDefault();
-      openMomentMatch(button.dataset.momentsMatchId);
+      const clickedInMomentsPanel = Boolean(button.closest('[data-worldcup-panel="moments"]'));
+      const currentData = readData();
+      const sourceMatches = clickedInMomentsPanel
+        ? filterMatchesByScheduleDate(getMomentSourceMatches(currentData), selectedMomentsDate)
+        : getMomentSourceMatches(currentData);
+
+      openMomentMatch(button.dataset.momentsMatchId, { sourceMatches });
     });
 
     pageElements.momentsModal?.addEventListener("click", (event) => {
@@ -494,6 +510,7 @@ if (root) {
     pageElements.schedule?.addEventListener("scroll", () => {
       window.cancelAnimationFrame(scheduleScrollFrame);
       scheduleScrollFrame = window.requestAnimationFrame(() => {
+        constrainScheduleWheelScroll(pageElements);
         updateScheduleWheelState(pageElements);
         queueScheduleWheelSnap(pageElements, scheduleDragState);
       });
@@ -590,6 +607,10 @@ function setActiveSectionTab(elements, tab) {
     elements.tabTrack.style.transform = `translate3d(-${index * 100}%, 0, 0)`;
   }
 
+  if (elements.tabViewport) {
+    elements.tabViewport.scrollTop = 0;
+  }
+
   for (const button of elements.sectionTabs || []) {
     const isActive = button.dataset.worldcupTab === nextTab;
     button.classList.toggle("is-active", isActive);
@@ -604,6 +625,33 @@ function setActiveSectionTab(elements, tab) {
 
   syncTabViewportHeight(elements, nextTab);
   window.setTimeout(() => syncTabViewportHeight(elements, nextTab), 460);
+}
+
+function scrollActiveTabContentIntoView(elements) {
+  const tabBar = elements.sectionTabs?.[0]?.closest(".worldcup-section-tabs");
+  const viewport = elements.tabViewport;
+
+  if (!tabBar || !viewport) {
+    return;
+  }
+
+  const tabBarRect = tabBar.getBoundingClientRect();
+  const viewportRect = viewport.getBoundingClientRect();
+  const stickyTop = Number.parseFloat(window.getComputedStyle(tabBar).top) || 0;
+  const targetTop = window.scrollY + viewportRect.top - tabBarRect.height - stickyTop - 10;
+  const contentIsCovered = viewportRect.top < stickyTop + tabBarRect.height + 8;
+  const contentIsTooLow = viewportRect.top > window.innerHeight * .72;
+
+  if (!contentIsCovered && !contentIsTooLow) {
+    return;
+  }
+
+  window.requestAnimationFrame(() => {
+    window.scrollTo({
+      top: Math.max(0, targetTop),
+      behavior: "smooth"
+    });
+  });
 }
 
 function syncTabViewportHeight(elements, tab) {
@@ -621,6 +669,7 @@ function syncTabViewportHeight(elements, tab) {
 
   const measuredHeight = activePanel.getBoundingClientRect().height || activePanel.scrollHeight;
   elements.tabViewport.style.height = `${Math.ceil(measuredHeight)}px`;
+  elements.tabViewport.scrollTop = 0;
 }
 
 function renderActivePanelData(nextData, elements) {
@@ -647,8 +696,19 @@ function renderActivePanelData(nextData, elements) {
 }
 
 function renderOverviewPanelFromData(nextData, elements) {
-  elements.groupStage.innerHTML = renderGroupStage(nextData.groupStage || []);
-  elements.bracket.innerHTML = renderBracket(nextData.knockout || [], nextData.groupStage || []);
+  const momentMatchIds = getMomentMatchIds(getMomentSourceMatches(nextData));
+  const interactiveMatchIds = buildStructureMatchIds(nextData.groupStage || [], nextData.knockout || []);
+
+  elements.groupStage.innerHTML = renderGroupStage(nextData.groupStage || [], {
+    momentMatchIds,
+    interactiveMatchIds
+  });
+  elements.bracket.innerHTML = renderBracket(nextData.knockout || [], nextData.groupStage || [], {
+    momentMatchIds,
+    interactiveMatchIds,
+    interactiveMoments: true
+  });
+  setupHorizontalMomentumScroller(elements.groupStage);
   window.requestAnimationFrame(() => drawBracketLines(elements.bracket));
   window.setTimeout(() => drawBracketLines(elements.bracket), 280);
 }
@@ -939,9 +999,9 @@ function renderScheduleWheelCard(match, previousData, focusMatchId) {
   const awayFlag = teamFlagUrl(match.away);
   const homeName = teamDisplayName(match.home?.name);
   const awayName = teamDisplayName(match.away?.name);
-
+  const hasPenaltyScore = Boolean(readPenaltyScorePair(match));
   return `
-    <article class="schedule-wheel-card status-${escapeAttribute(String(match.status || "").toLowerCase())}" data-schedule-card data-match-id="${escapeAttribute(match.id)}" data-focus-match="${String(match.id) === String(focusMatchId) ? "true" : "false"}" data-home-flag="${escapeAttribute(homeFlag)}" data-away-flag="${escapeAttribute(awayFlag)}">
+    <article class="schedule-wheel-card status-${escapeAttribute(String(match.status || "").toLowerCase())}${hasPenaltyScore ? " has-penalty-score" : ""}" data-schedule-card data-match-id="${escapeAttribute(match.id)}" data-focus-match="${String(match.id) === String(focusMatchId) ? "true" : "false"}" data-home-flag="${escapeAttribute(homeFlag)}" data-away-flag="${escapeAttribute(awayFlag)}">
       <div class="schedule-wheel-team schedule-wheel-team-home">
         ${renderTeamImage(match.home)}
         <strong>${escapeHtml(homeName)}</strong>
@@ -1008,8 +1068,7 @@ function centerScheduleWheel(elements, options = {}) {
   }
 
   const targetTop = focusCard.offsetTop + focusCard.offsetHeight / 2 - wheel.clientHeight / 2;
-  const maxTop = Math.max(0, wheel.scrollHeight - wheel.clientHeight);
-  const clampedTop = Math.max(0, Math.min(maxTop, targetTop));
+  const clampedTop = clampScheduleScrollTop(wheel, targetTop);
   const behavior = options.behavior || "auto";
 
   if (behavior === "smooth") {
@@ -1089,6 +1148,7 @@ function moveScheduleDrag(event, elements, state) {
   const nextVelocity = deltaScroll / deltaTime;
 
   wheel.scrollTop += deltaScroll;
+  constrainScheduleWheelScroll(elements);
   state.totalDelta += deltaScroll;
   state.velocity = state.velocity * .58 + nextVelocity * .42;
   state.lastY = event.clientY;
@@ -1145,9 +1205,17 @@ function startScheduleInertia(elements, state) {
     wheel.clientHeight * 6.2
   );
   const duration = Math.min(1800, Math.max(620, 520 + speed * 420));
-  const startTop = wheel.scrollTop;
+  const startTop = clampScheduleScrollTop(wheel, wheel.scrollTop);
+  const targetTop = clampScheduleScrollTop(wheel, startTop + distance);
+  const clampedDistance = targetTop - startTop;
   const startedAt = performance.now();
 
+  if (Math.abs(clampedDistance) < 1) {
+    snapScheduleWheelToNearest(elements);
+    return;
+  }
+
+  wheel.scrollTop = startTop;
   wheel.classList.add("is-gliding");
 
   const step = (time) => {
@@ -1155,7 +1223,7 @@ function startScheduleInertia(elements, state) {
     const easedProgress = 1 - Math.pow(1 - progress, 3);
     const previousTop = wheel.scrollTop;
 
-    wheel.scrollTop = startTop + distance * easedProgress;
+    wheel.scrollTop = clampScheduleScrollTop(wheel, startTop + clampedDistance * easedProgress);
     updateScheduleWheelState(elements);
 
     const atScrollBoundary = progress > .08 && Math.abs(wheel.scrollTop - previousTop) < .05;
@@ -1210,8 +1278,7 @@ function snapScheduleWheelToNearest(elements) {
   }
 
   const targetTop = card.offsetTop + card.offsetHeight / 2 - wheel.clientHeight / 2;
-  const maxTop = Math.max(0, wheel.scrollHeight - wheel.clientHeight);
-  const clampedTop = Math.max(0, Math.min(maxTop, targetTop));
+  const clampedTop = clampScheduleScrollTop(wheel, targetTop);
 
   if (Math.abs(wheel.scrollTop - clampedTop) < 1) {
     updateScheduleWheelState(elements);
@@ -1253,6 +1320,8 @@ function updateScheduleWheelState(elements) {
   if (!wheel) {
     return;
   }
+
+  constrainScheduleWheelScroll(elements);
 
   const cards = [...wheel.querySelectorAll("[data-schedule-card]")];
 
@@ -1303,6 +1372,48 @@ function updateScheduleFlagWash(elements, card) {
   elements.schedulePanel.style.setProperty("--wheel-home-flag", homeFlag ? `url('${homeFlag}')` : "none");
   elements.schedulePanel.style.setProperty("--wheel-away-flag", awayFlag ? `url('${awayFlag}')` : "none");
   elements.schedulePanel.style.setProperty("--wheel-distance", distance);
+}
+
+function constrainScheduleWheelScroll(elements) {
+  const wheel = elements.schedule;
+
+  if (!wheel) {
+    return 0;
+  }
+
+  const clampedTop = clampScheduleScrollTop(wheel, wheel.scrollTop);
+
+  if (Math.abs(wheel.scrollTop - clampedTop) > .5) {
+    wheel.scrollTop = clampedTop;
+  }
+
+  return clampedTop;
+}
+
+function clampScheduleScrollTop(wheel, scrollTop) {
+  const bounds = getScheduleScrollBounds(wheel);
+
+  return Math.max(bounds.minTop, Math.min(bounds.maxTop, scrollTop));
+}
+
+function getScheduleScrollBounds(wheel) {
+  const nativeMaxTop = Math.max(0, (wheel?.scrollHeight || 0) - (wheel?.clientHeight || 0));
+  const cards = [...(wheel?.querySelectorAll?.("[data-schedule-card]") || [])];
+
+  if (!wheel || !cards.length) {
+    return { minTop: 0, maxTop: nativeMaxTop };
+  }
+
+  const lastCard = cards[cards.length - 1];
+  const lastCardStyle = window.getComputedStyle(lastCard);
+  const lastMargin = Number.parseFloat(lastCardStyle.marginBottom) || 0;
+  const visibleBottomGap = Math.max(10, lastMargin + 8);
+  const maxTop = Math.max(0, lastCard.offsetTop + lastCard.offsetHeight + visibleBottomGap - wheel.clientHeight);
+
+  return {
+    minTop: 0,
+    maxTop: Math.min(nativeMaxTop, maxTop)
+  };
 }
 
 function renderMomentsFromData(nextData, elements, state = {}) {
@@ -1364,6 +1475,10 @@ function renderMomentsFromData(nextData, elements, state = {}) {
       window.requestAnimationFrame(() => drawBracketLines(momentsBracket));
       window.setTimeout(() => drawBracketLines(momentsBracket), 280);
     }
+
+    for (const scroller of elements.momentsStructure.querySelectorAll(".group-stage-scroll")) {
+      setupHorizontalMomentumScroller(scroller);
+    }
   }
 
   const selectedMatchId = elements.momentsDetail?.dataset.selectedMatchId || "";
@@ -1387,6 +1502,11 @@ function getMomentSourceMatches(nextData) {
   }
 
   return nextData?.timelineMatches || [];
+}
+
+function getMomentMatchIds(matches) {
+  return new Set(buildTimelineGroups(matches, "matchTimeDesc")
+    .map(({ match }) => String(match.id)));
 }
 
 function renderMomentsStructure(matches, groupStage, knockout, selectedMatchId = "", sortDirection = "desc") {
@@ -2592,6 +2712,208 @@ function setupDraggableBracket(container) {
   }, true);
 }
 
+function setupHorizontalMomentumScroller(container) {
+  if (!container || container.dataset.momentumReady === "true") {
+    return;
+  }
+
+  container.dataset.momentumReady = "true";
+
+  let state = null;
+  let frame = 0;
+  let suppressClickTimer = 0;
+
+  const maxScrollLeft = () => Math.max(0, container.scrollWidth - container.clientWidth);
+  const clampLeft = (value) => Math.max(0, Math.min(maxScrollLeft(), value));
+  const isInteractiveTarget = (target) => Boolean(target?.closest?.("[data-moments-match-id]"));
+  const clearSuppressedClick = () => {
+    container.dataset.suppressClick = "";
+    window.clearTimeout(suppressClickTimer);
+  };
+  const stopInertia = () => {
+    window.cancelAnimationFrame(frame);
+    frame = 0;
+    container.classList.remove("is-gliding");
+  };
+  const resetState = () => {
+    state = null;
+    container.classList.remove("is-dragging");
+  };
+  const releasePointer = (event) => {
+    try {
+      container.releasePointerCapture?.(event.pointerId);
+    } catch {
+      // Pointer capture may already be gone after a browser-canceled gesture.
+    }
+  };
+
+  container.addEventListener("pointerdown", (event) => {
+    clearSuppressedClick();
+
+    if (isInteractiveTarget(event.target)) {
+      return;
+    }
+
+    if (event.button > 0 || maxScrollLeft() <= 0) {
+      return;
+    }
+
+    stopInertia();
+    state = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      startLeft: container.scrollLeft,
+      lastX: event.clientX,
+      lastTime: performance.now(),
+      locked: event.pointerType !== "touch",
+      moved: false,
+      velocity: 0,
+      samples: [{ time: performance.now(), x: event.clientX }]
+    };
+
+    if (state.locked) {
+      container.classList.add("is-dragging");
+      container.setPointerCapture?.(event.pointerId);
+      event.preventDefault();
+    }
+  });
+
+  container.addEventListener("pointermove", (event) => {
+    if (!state || state.pointerId !== event.pointerId) {
+      return;
+    }
+
+    const deltaX = event.clientX - state.startX;
+    const deltaY = event.clientY - state.startY;
+
+    if (!state.locked) {
+      if (Math.abs(deltaX) < 7 && Math.abs(deltaY) < 7) {
+        return;
+      }
+
+      if (Math.abs(deltaY) >= Math.abs(deltaX)) {
+        resetState();
+        return;
+      }
+
+      state.locked = true;
+      container.classList.add("is-dragging");
+      container.setPointerCapture?.(event.pointerId);
+    }
+
+    const now = performance.now();
+    const deltaTime = Math.max(1, now - state.lastTime);
+    const nextVelocity = (state.lastX - event.clientX) / deltaTime;
+
+    container.scrollLeft = clampLeft(state.startLeft - deltaX);
+    state.moved = state.moved || Math.abs(deltaX) > 4;
+    state.velocity = state.velocity * .58 + nextVelocity * .42;
+    state.lastX = event.clientX;
+    state.lastTime = now;
+    state.samples.push({ time: now, x: event.clientX });
+    state.samples = state.samples.filter((sample) => now - sample.time <= 140);
+    event.preventDefault();
+  });
+
+  const endDrag = (event) => {
+    if (!state || state.pointerId !== event.pointerId) {
+      return;
+    }
+
+    const endedState = state;
+    releasePointer(event);
+    resetState();
+
+    if (!endedState.locked) {
+      return;
+    }
+
+    if (endedState.moved) {
+      container.dataset.suppressClick = "true";
+      window.clearTimeout(suppressClickTimer);
+      suppressClickTimer = window.setTimeout(clearSuppressedClick, 140);
+    }
+
+    const releaseVelocity = calculateHorizontalReleaseVelocity(endedState);
+
+    if (Math.abs(releaseVelocity) > .018) {
+      startHorizontalInertia(container, releaseVelocity, clampLeft, () => {
+        frame = 0;
+      }, (nextFrame) => {
+        frame = nextFrame;
+      });
+    }
+  };
+
+  container.addEventListener("pointerup", endDrag);
+  container.addEventListener("pointercancel", endDrag);
+  container.addEventListener("lostpointercapture", endDrag);
+  container.addEventListener("click", (event) => {
+    if (container.dataset.suppressClick !== "true") {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+    clearSuppressedClick();
+  }, true);
+}
+
+function calculateHorizontalReleaseVelocity(state) {
+  const samples = state.samples || [];
+
+  if (samples.length < 2) {
+    return state.velocity;
+  }
+
+  const newestSample = samples[samples.length - 1];
+  const oldestSample = samples[0];
+  const deltaTime = Math.max(1, newestSample.time - oldestSample.time);
+  const sampledVelocity = (oldestSample.x - newestSample.x) / deltaTime;
+
+  return sampledVelocity * .74 + state.velocity * .26;
+}
+
+function startHorizontalInertia(container, velocity, clampLeft, clearFrame, writeFrame) {
+  const speed = Math.min(Math.abs(velocity), 3);
+  const direction = Math.sign(velocity);
+  const distance = direction * Math.min(
+    Math.max(speed * 1500, 180),
+    container.clientWidth * 2.4
+  );
+  const duration = Math.min(1350, Math.max(520, 460 + speed * 360));
+  const startLeft = clampLeft(container.scrollLeft);
+  const targetLeft = clampLeft(startLeft + distance);
+  const clampedDistance = targetLeft - startLeft;
+  const startedAt = performance.now();
+
+  if (Math.abs(clampedDistance) < 1) {
+    clearFrame();
+    return;
+  }
+
+  container.scrollLeft = startLeft;
+  container.classList.add("is-gliding");
+
+  const step = (time) => {
+    const progress = Math.min(1, (time - startedAt) / duration);
+    const easedProgress = 1 - Math.pow(1 - progress, 3);
+
+    container.scrollLeft = clampLeft(startLeft + clampedDistance * easedProgress);
+
+    if (progress >= 1) {
+      container.classList.remove("is-gliding");
+      clearFrame();
+      return;
+    }
+
+    writeFrame(window.requestAnimationFrame(step));
+  };
+
+  writeFrame(window.requestAnimationFrame(step));
+}
+
 function cssEscape(value) {
   if (typeof CSS !== "undefined" && CSS.escape) {
     return CSS.escape(String(value));
@@ -2841,6 +3163,10 @@ function formatBaseScoreValue(score, status, options = {}) {
 function formatSideScore(match, side, options = {}) {
   const score = options.score !== undefined ? options.score : readSideScore(match, side);
   const baseScore = formatBaseScoreValue(score, match?.status, options);
+  if (options.includePenalty === false) {
+    return baseScore;
+  }
+
   const penaltyScore = readPenaltyScore(match, side);
 
   return penaltyScore === null ? baseScore : `${baseScore}(${penaltyScore})`;
@@ -2863,14 +3189,42 @@ function readSideScore(match, side) {
 }
 
 function readPenaltyScore(match, side) {
-  if (!isPenaltyShootoutScoreVisible(match) || side !== "home" && side !== "away") {
+  const pair = readPenaltyScorePair(match);
+
+  if (!pair || side !== "home" && side !== "away") {
     return null;
   }
 
+  return pair[side];
+}
+
+function formatPenaltyScoreText(pair) {
+  return formatTemplate(runtimeText.states.penaltyScoreTemplate, pair);
+}
+
+function readPenaltyScorePair(match) {
+  if (!isPenaltyShootoutScoreVisible(match)) {
+    return null;
+  }
+
+  const home = readPenaltyScoreValue(match, "home");
+  const away = readPenaltyScoreValue(match, "away");
+
+  if (!isExplicitScoreValue(home) || !isExplicitScoreValue(away)) {
+    return null;
+  }
+
+  return {
+    home: String(Number(home)),
+    away: String(Number(away))
+  };
+}
+
+function readPenaltyScoreValue(match, side) {
   const direct = side === "home" ? match.homePenaltyScore : match.awayPenaltyScore;
 
   if (isExplicitScoreValue(direct)) {
-    return String(Number(direct));
+    return direct;
   }
 
   const source = match.penaltyScore || match.penalties || match.penalty || match.score?.penalty || match.score?.p;
@@ -2884,7 +3238,7 @@ function readPenaltyScore(match, side) {
       : source.away ?? source.awayScore ?? source.team2;
   }
 
-  return isExplicitScoreValue(value) ? String(Number(value)) : null;
+  return value;
 }
 
 function isPenaltyShootoutScoreVisible(match) {
@@ -2938,7 +3292,10 @@ function isExplicitScoreValue(value) {
 }
 
 function scoreLabel(match) {
-  return `${teamDisplayName(match.home.name)} ${formatSideScore(match, "home", { unknownWhenNotStarted: true })}, ${teamDisplayName(match.away.name)} ${formatSideScore(match, "away", { unknownWhenNotStarted: true })}`;
+  const baseLabel = `${teamDisplayName(match.home.name)} ${formatSideScore(match, "home", { includePenalty: false, unknownWhenNotStarted: true })}, ${teamDisplayName(match.away.name)} ${formatSideScore(match, "away", { includePenalty: false, unknownWhenNotStarted: true })}`;
+  const penalties = readPenaltyScorePair(match);
+
+  return penalties ? `${baseLabel}, ${formatPenaltyScoreText(penalties)}` : baseLabel;
 }
 
 export function formatTime(value) {

@@ -16,6 +16,7 @@ let activeModal = null;
 let activeQrZoom = null;
 let closeTimer = null;
 let qrCloseTimer = null;
+let changelogCloseTimer = null;
 let promptTimer = null;
 
 const showVariant = (variantId) => {
@@ -96,6 +97,14 @@ copyButtons.forEach((button) => {
 
 const getModal = (modalId) => document.getElementById(modalId);
 
+const enterNextFrame = (element, callback) => {
+  element.getBoundingClientRect();
+
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(callback);
+  });
+};
+
 const openQrZoom = (panel, trigger) => {
   if (!panel) {
     return;
@@ -104,9 +113,10 @@ const openQrZoom = (panel, trigger) => {
   window.clearTimeout(qrCloseTimer);
   lastQrFocusedElement = trigger || document.activeElement;
   activeQrZoom = panel;
+  panel.classList.remove("is-open", "is-closing");
   panel.hidden = false;
 
-  window.requestAnimationFrame(() => {
+  enterNextFrame(panel, () => {
     panel.classList.add("is-open");
     panel.querySelector("[data-entry-qr-close]")?.focus({ preventScroll: true });
   });
@@ -117,10 +127,12 @@ const closeQrZoom = (panel = activeQrZoom, restoreFocus = true) => {
     return false;
   }
 
+  panel.classList.add("is-closing");
   panel.classList.remove("is-open");
 
   qrCloseTimer = window.setTimeout(() => {
     panel.hidden = true;
+    panel.classList.remove("is-closing");
 
     if (activeQrZoom === panel) {
       activeQrZoom = null;
@@ -156,10 +168,12 @@ const openModal = (modal, trigger) => {
   lastFocusedElement = document.activeElement;
   activeModal = modal;
   setModalOrigin(modal, trigger);
+  modal.classList.remove("is-open", "is-closing");
   modal.hidden = false;
   document.body.classList.add("entry-modal-open");
+  document.body.classList.remove("entry-modal-closing");
 
-  window.requestAnimationFrame(() => {
+  enterNextFrame(modal, () => {
     modal.classList.add("is-open");
     modal.querySelector(".entry-modal-close")?.focus({ preventScroll: true });
   });
@@ -176,20 +190,23 @@ function closeModal(modal = activeModal, restoreFocus = true) {
     closeQrZoom(openQrPanel, false);
   }
 
+  document.body.classList.add("entry-modal-closing");
+  modal.classList.add("is-closing");
   modal.classList.remove("is-open");
 
   closeTimer = window.setTimeout(() => {
     modal.hidden = true;
+    modal.classList.remove("is-closing");
 
     if (activeModal === modal) {
       activeModal = null;
-      document.body.classList.remove("entry-modal-open");
+      document.body.classList.remove("entry-modal-open", "entry-modal-closing");
     }
 
     if (restoreFocus) {
       lastFocusedElement?.focus({ preventScroll: true });
     }
-  }, 430);
+  }, 340);
 }
 
 avatarOpenButtons.forEach((button) => {
@@ -250,11 +267,14 @@ const openChangelog = () => {
     return;
   }
 
+  window.clearTimeout(changelogCloseTimer);
   lastFocusedElement = document.activeElement;
+  changelogModal.classList.remove("is-open", "is-closing");
   changelogModal.hidden = false;
   document.body.classList.add("entry-modal-open");
+  document.body.classList.remove("entry-modal-closing");
 
-  window.requestAnimationFrame(() => {
+  enterNextFrame(changelogModal, () => {
     changelogModal.classList.add("is-open");
     changelogModal.querySelector(".original-modal-close")?.focus({ preventScroll: true });
   });
@@ -265,13 +285,17 @@ function closeChangelog() {
     return;
   }
 
+  document.body.classList.add("entry-modal-closing");
+  changelogModal.classList.add("is-closing");
   changelogModal.classList.remove("is-open");
 
-  window.setTimeout(() => {
+  window.clearTimeout(changelogCloseTimer);
+  changelogCloseTimer = window.setTimeout(() => {
     changelogModal.hidden = true;
-    document.body.classList.remove("entry-modal-open");
+    changelogModal.classList.remove("is-closing");
+    document.body.classList.remove("entry-modal-open", "entry-modal-closing");
     lastFocusedElement?.focus({ preventScroll: true });
-  }, 260);
+  }, 340);
 }
 
 changelogOpenButton?.addEventListener("click", openChangelog);

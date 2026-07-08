@@ -26,6 +26,8 @@ const clientTextJson = serializeJsonForHtml({
   bodyClass="worldcup-body"
 >
   <section class="worldcup-page worldcup-moments-page" data-worldcup-moments-root aria-label={pageText.pageAriaLabel}>
+    <div class="worldcup-pointer-glow" data-direct-pointer-glow aria-hidden="true"></div>
+
     <header class="worldcup-topbar">
       <a class="worldcup-back" href={worldcupHref}>{pageText.backLink}</a>
       <div class="worldcup-topbar-actions">
