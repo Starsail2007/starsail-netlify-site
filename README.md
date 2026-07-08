@@ -138,6 +138,14 @@ https://starsail.netlify.app/
 
 用户确认发布后，应把同一份源码/构建结果同步到 GitHub Pages 和 Netlify，并检查两个公网地址是否都已更新到同一版本。若 Netlify 自动部署因为 credits、权限或其他平台状态被跳过，可以使用本地构建产物发布 draft deploy，确认后再将该 deploy 发布或恢复为 production。
 
+发布后不要只看 `git push` 或构建成功。必须分别检查 GitHub Pages 和 Netlify 主站的关键页面与关键静态数据，例如：
+
+- `/`
+- `/worldcup/`
+- `/data/worldcup-live.json`
+
+世界杯数据尤其要核对 `/data/worldcup-live.json` 的 `lastUpdated`。如果 GitHub Pages 已更新但 Netlify 主站仍返回旧静态数据，先等待自动部署；若仍未切换，可在本地 `pnpm deploy:check` 通过后，用 `dist/` 创建 Netlify draft deploy，验证 draft URL 正常后再恢复/发布为 production。详细流程见 `docs/WORLDCUP_DEPLOYMENT.md`。
+
 ### Netlify 额度与省额度部署
 
 本项目不依赖 Netlify AI 开发。常规开发流程是本地改代码、运行 `pnpm build` 验证、推送 GitHub，再由 Netlify 普通自动部署。不要在 Netlify Dashboard 中使用 `Build with an AI agent` / `Run AI agent`，这些属于 Netlify Agent Runners，会消耗 AI inference credits。
