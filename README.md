@@ -122,8 +122,10 @@ API-Football
 以后常规上线路径是：
 
 ```text
-本地/Codex 修改 -> GitHub -> Netlify 自动构建 -> 公网更新
+本地/Codex 修改 -> GitHub -> Netlify draft deploy -> 验证 draft -> 提升 Netlify production
 ```
+
+GitHub 仍然是源码主线，先提交并推送 `main`；Netlify 公网站点优先用本地构建产物发布 draft deploy，验证后再提升为 production，不把等待 Netlify 自动部署作为首选路径。
 
 ### 公网发布一致性约定
 
@@ -136,7 +138,7 @@ https://starsail.netlify.app/
 
 每次 Codex 完成一个明确改动、阶段任务或工程整理后，即使用户没有主动提到发布，也需要先向用户确认是否同步到公网。
 
-用户确认发布后，应把同一份源码/构建结果同步到 GitHub Pages 和 Netlify，并检查两个公网地址是否都已更新到同一版本。若 Netlify 自动部署因为 credits、权限或其他平台状态被跳过，可以使用本地构建产物发布 draft deploy，确认后再将该 deploy 发布或恢复为 production。
+用户确认发布后，应把同一份源码/构建结果同步到 GitHub Pages 和 Netlify，并检查两个公网地址是否都已更新到同一版本。Netlify 侧首选使用本地构建产物发布 draft deploy，确认后再将该 deploy 发布或恢复为 production；Netlify 自动部署只作为附带状态观察，不作为主要等待路径。
 
 发布后不要只看 `git push` 或构建成功。必须分别检查 GitHub Pages 和 Netlify 主站的关键页面与关键静态数据，例如：
 
@@ -144,7 +146,7 @@ https://starsail.netlify.app/
 - `/worldcup/`
 - `/data/worldcup-live.json`
 
-世界杯数据尤其要核对 `/data/worldcup-live.json` 的 `lastUpdated`。如果 GitHub Pages 已更新但 Netlify 主站仍返回旧静态数据，先等待自动部署；若仍未切换，可在本地 `pnpm deploy:check` 通过后，用 `dist/` 创建 Netlify draft deploy，验证 draft URL 正常后再恢复/发布为 production。详细流程见 `docs/WORLDCUP_DEPLOYMENT.md`。
+世界杯数据尤其要核对 `/data/worldcup-live.json` 的 `lastUpdated`。本地 `pnpm deploy:check` 通过后，用 `dist/` 创建 Netlify draft deploy，验证 draft URL 正常后再恢复/发布为 production。详细流程见 `docs/WORLDCUP_DEPLOYMENT.md`。
 
 ### Netlify 额度与省额度部署
 
@@ -165,14 +167,14 @@ Skipped due to account credit usage exceeded
 - 注意 Netlify Functions / Scheduled Functions 也会消耗普通 credits
 - GitHub 仓库是源码主线，Netlify 只是公网部署出口
 
-应急时可以先发布 draft deploy：
+Netlify 发布优先使用 draft deploy：
 
 ```bash
-pnpm build
+pnpm deploy:check
 pnpm --package=netlify-cli dlx netlify deploy --dir=dist
 ```
 
-确认 draft URL 正常后，再将该 deploy 发布为 production。这个应急流程不应替代长期额度治理。
+确认 draft URL 正常后，再将该 deploy 发布为 production。这个流程不替代长期额度治理，但作为本项目的 Netlify 首选发布方式，可以避免自动部署被 skipped 或队列延迟时两个公网入口不一致。
 
 ### 世界杯数据刷新
 

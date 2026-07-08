@@ -67,9 +67,9 @@ pnpm worldcup:health
 
 The expected healthy state is that GitHub `worldcup-data`, Netlify static JSON, GitHub Pages static JSON, Netlify Function, and local static data are all `OK`.
 
-## Netlify manual production recovery
+## Preferred Netlify production publish
 
-Use this only when GitHub Pages has updated but Netlify production is still serving an older static snapshot or older page bundle after waiting for the normal automatic deploy path.
+Use this as the preferred Netlify publish path after source has been committed and pushed to GitHub. GitHub remains the source of truth; the manual Netlify draft step makes production serve the same verified build without waiting on Netlify automatic deploys that may be skipped, delayed, or blocked by platform state.
 
 1. Verify the local build is good:
 
@@ -97,4 +97,4 @@ pnpm --package=netlify-cli dlx netlify api restoreSiteDeploy --data '{"site_id":
 pnpm worldcup:health
 ```
 
-This recovery path does not replace the source-of-truth flow. The source must still be committed and pushed to GitHub first; the manual Netlify step only makes production serve the same verified build when automatic deploy propagation is delayed.
+This path does not replace the source-of-truth flow. The source must still be committed and pushed to GitHub first; the manual Netlify step only makes production serve the same verified build immediately and predictably.
