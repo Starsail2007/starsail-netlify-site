@@ -377,7 +377,7 @@ entryRedesign:
       avatarAlt: "星帆Starsail 的头像"
       creditLabel: "Designed by"
       creditName: "星帆Starsail"
-      versionLabel: "正式版v1.0"
+      versionLabel: "v1.0"
     hero:
       headline: "待探索的空间"
       subcopy:
@@ -432,6 +432,9 @@ entryRedesign:
             - text: "正式版1.0"
               emphasis: true
             - text: "上线——优化了首页展示，更新了世界杯展示页，和某个神秘面板。"
+    announcement:
+      ariaLabel: "站点公告"
+      message: "正式版v1.0已上线"
     avatarModal:
       closeAriaLabel: "关闭头像展示"
       closeButton: "x"

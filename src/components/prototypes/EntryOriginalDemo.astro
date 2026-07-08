@@ -63,14 +63,20 @@ const gmailHref = `mailto:${contactText.gmail.address}`;
 
   <footer class="original-footer">
     <div>{text.footer.hint}</div>
-    <button
-      class="original-changelog-button"
-      type="button"
-      aria-label={text.changelog.ariaLabel}
-      data-original-changelog-open
-    >
-      {text.changelog.label}
-    </button>
+    <div class="original-corner-actions" aria-label={text.announcement.ariaLabel}>
+      <div class="original-announcement" role="status">
+        <span class="original-announcement-dot" aria-hidden="true"></span>
+        <span>{text.announcement.message}</span>
+      </div>
+      <button
+        class="original-changelog-button"
+        type="button"
+        aria-label={text.changelog.ariaLabel}
+        data-original-changelog-open
+      >
+        {text.changelog.label}
+      </button>
+    </div>
   </footer>
 </section>
 
