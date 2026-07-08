@@ -14,6 +14,7 @@
     "typecheck": "tsc --noEmit",
     "worldcup:update": "node scripts/worldcup/update-live-data.mjs",
     "worldcup:update:force": "node scripts/worldcup/update-live-data.mjs --force",
+    "worldcup:health": "node scripts/worldcup/check-health.mjs",
     "worldcup:squads": "node scripts/worldcup/update-squad-roster.mjs",
     "worldcup:player-map": "node scripts/worldcup/update-player-name-map.mjs",
     "maimai:update": "tsx scripts/maimai/cli.ts update",

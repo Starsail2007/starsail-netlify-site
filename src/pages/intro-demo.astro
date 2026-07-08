@@ -4,10 +4,7 @@ import siteText from "../content/siteText";
 import "../styles/intro-loader.css";
 
 const text = siteText.introDemo;
-const variantEntries = Object.entries(text.variants);
-const defaultVariant = variantEntries[0]?.[0] ?? "moonlit";
-const defaultVariantText = text.variants[defaultVariant];
-const introVariantsJson = JSON.stringify(text.variants).replaceAll("<", "\\u003c");
+const variant = text.variants.b1SailPaw;
 ---
 
 <BaseLayout
@@ -15,20 +12,20 @@ const introVariantsJson = JSON.stringify(text.variants).replaceAll("<", "\\u003c
   description={text.meta.description}
   bodyClass="intro-demo-page"
 >
-  <section class="intro-demo" aria-label={text.pageAriaLabel} data-intro-demo data-variant={defaultVariant}>
+  <section class="intro-demo" aria-label={text.pageAriaLabel} data-intro-demo>
     <div class="intro-demo-shell">
       <header class="intro-demo-header">
         <div class="intro-demo-brand">
           <span class="intro-demo-mark">{text.brandLabel}</span>
-          <span data-variant-title>{defaultVariantText.title}</span>
+          <span>{variant.title}</span>
         </div>
         <svg class="intro-mini-mark" viewBox="0 0 44 44" aria-hidden="true">
           <circle cx="22" cy="22" r="18" />
-          <path d="M13 25 C17 14 27 14 31 25 C27 30 17 30 13 25 Z" />
-          <circle cx="14" cy="16" r="3.2" />
-          <circle cx="20" cy="12" r="3.2" />
-          <circle cx="26" cy="12" r="3.2" />
-          <circle cx="32" cy="16" r="3.2" />
+          <path d="M12.5 25.5 C16.7 14.8 27.3 14.8 31.5 25.5 C27.5 30.3 16.5 30.3 12.5 25.5 Z" />
+          <circle cx="14" cy="16" r="3" />
+          <circle cx="20" cy="12" r="3.1" />
+          <circle cx="26" cy="12" r="3.1" />
+          <circle cx="32" cy="16" r="3" />
         </svg>
       </header>
 
@@ -36,18 +33,14 @@ const introVariantsJson = JSON.stringify(text.variants).replaceAll("<", "\\u003c
         <p class="intro-demo-eyebrow">{text.eyebrow}</p>
         <h1>{text.title}</h1>
         <p class="intro-demo-subtitle">{text.subtitle}</p>
-        <nav class="intro-variant-picker" aria-label={text.variantPickerAriaLabel}>
-          {variantEntries.map(([key, variant], index) => (
-            <button type="button" data-variant-choice={key} aria-pressed={String(index === 0)}>
-              <span>{variant.shortcut}</span>
-              <span>{variant.buttonLabel}</span>
-            </button>
-          ))}
-        </nav>
+        <div class="intro-demo-focus" aria-label={variant.title}>
+          <span>{variant.shortcut}</span>
+          <span>{variant.buttonLabel}</span>
+        </div>
       </main>
 
       <footer class="intro-demo-footer">
-        <span data-variant-note>{defaultVariantText.note}</span>
+        <span>{variant.note}</span>
         <button class="intro-replay" type="button" data-replay-intro>{text.replayButton}</button>
       </footer>
     </div>
@@ -60,386 +53,93 @@ const introVariantsJson = JSON.stringify(text.variants).replaceAll("<", "\\u003c
         <span></span>
       </div>
 
-      <div class="intro-variant intro-sigil intro-sigil-moonlit" data-variant-panel="moonlit">
-        <svg class="intro-art sigil-art" viewBox="0 0 260 260" role="img" aria-label={text.variants.moonlit.artAriaLabel}>
-          <path class="sigil-draw stroke-blue" style="--d: 90ms; --dash: 520;" d="M47 130 C47 84 83 48 130 48 C176 48 213 84 213 130 C213 176 176 213 130 213 C84 213 47 176 47 130 Z" />
-          <path class="sigil-draw stroke-gold" style="--d: 220ms; --dash: 360;" d="M73 104 C96 78 132 68 166 82 C180 88 191 98 199 111" />
-          <path class="sigil-draw stroke-ink" style="--d: 360ms; --dash: 420;" d="M59 168 C82 193 131 202 174 188 C187 184 198 178 207 169" />
-          <path class="sigil-draw stroke-blue soft-line" style="--d: 470ms; --dash: 210;" d="M70 178 C98 187 153 188 190 174" />
-          <path class="sigil-star fill-gold" style="--d: 560ms;" d="M130 37 L136 57 L156 65 L136 72 L130 92 L124 72 L104 65 L124 57 Z" />
-          <g class="sigil-paw">
-            <ellipse class="sigil-pop fill-gold" style="--d: 690ms;" cx="88" cy="108" rx="10" ry="17" />
-            <ellipse class="sigil-pop fill-gold" style="--d: 730ms;" cx="113" cy="95" rx="11" ry="18" />
-            <ellipse class="sigil-pop fill-gold" style="--d: 770ms;" cx="140" cy="95" rx="11" ry="18" />
-            <ellipse class="sigil-pop fill-gold" style="--d: 810ms;" cx="165" cy="108" rx="10" ry="17" />
-            <path class="sigil-pop fill-gold" style="--d: 880ms;" d="M126 130 C151 130 171 149 171 172 C171 191 153 198 130 198 C106 198 88 191 88 172 C88 149 101 130 126 130 Z" />
+      <div class="intro-sigil" aria-hidden="true">
+        <svg class="intro-art b1-art" viewBox="0 0 280 260" role="img" aria-label={variant.artAriaLabel}>
+          <path class="b1-orbit b1-draw" d="M48 158 C88 101 162 58 230 82" />
+          <path class="b1-orbit-echo b1-draw" d="M61 173 C104 128 171 98 224 112" />
+          <line class="b1-mast b1-draw" x1="132" y1="44" x2="132" y2="205" />
+          <path class="b1-sail b1-sail-main" d="M143 52 L216 168 L143 146 Z" />
+          <path class="b1-sail b1-sail-soft" d="M121 73 L75 176 L121 153 Z" />
+          <path class="b1-hull b1-draw" d="M77 189 C111 207 168 210 211 189" />
+          <path class="b1-hull-glow b1-draw" d="M97 199 C126 209 166 209 195 198" />
+          <g class="b1-paw">
+            <ellipse class="b1-pad" cx="119" cy="159" rx="5" ry="8" />
+            <ellipse class="b1-pad" cx="132" cy="151" rx="5" ry="9" />
+            <ellipse class="b1-pad" cx="146" cy="151" rx="5" ry="9" />
+            <ellipse class="b1-pad" cx="159" cy="159" rx="5" ry="8" />
+            <path class="b1-pad b1-pad-main" d="M139 166 C150 166 159 175 160 186 C161 196 151 202 141 198 C139 197 138 197 136 198 C126 202 116 196 117 186 C118 175 128 166 139 166 Z" />
           </g>
-          <path class="sigil-star fill-gold" style="--d: 1010ms;" d="M209 143 L213 153 L224 157 L214 161 L209 172 L205 161 L194 157 L205 153 Z" />
-        </svg>
-      </div>
-
-      <div class="intro-variant intro-sigil" data-variant-panel="compassStamp" hidden>
-        <svg class="intro-art sigil-art" viewBox="0 0 260 260" role="img" aria-label={text.variants.compassStamp.artAriaLabel}>
-          <circle class="sigil-draw stroke-ink" style="--d: 100ms; --dash: 560;" cx="130" cy="130" r="82" />
-          <circle class="sigil-draw stroke-gold" style="--d: 230ms; --dash: 430;" cx="130" cy="130" r="62" />
-          <circle class="sigil-draw stroke-blue soft-line" style="--d: 350ms; --dash: 330;" cx="130" cy="130" r="48" />
-          <g class="sigil-compass">
-            <line class="sigil-draw stroke-gold" style="--d: 440ms; --dash: 28;" x1="130" y1="31" x2="130" y2="57" />
-            <line class="sigil-draw stroke-gold" style="--d: 480ms; --dash: 28;" x1="130" y1="203" x2="130" y2="229" />
-            <line class="sigil-draw stroke-gold" style="--d: 520ms; --dash: 28;" x1="31" y1="130" x2="57" y2="130" />
-            <line class="sigil-draw stroke-gold" style="--d: 560ms; --dash: 28;" x1="203" y1="130" x2="229" y2="130" />
-          </g>
-          <path class="sigil-star fill-gold" style="--d: 600ms;" d="M64 84 L69 96 L82 101 L70 106 L64 119 L59 106 L46 101 L59 96 Z" />
-          <g class="sigil-paw">
-            <ellipse class="sigil-pop fill-ink" style="--d: 710ms;" cx="91" cy="105" rx="9" ry="16" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 750ms;" cx="116" cy="91" rx="10" ry="17" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 790ms;" cx="143" cy="91" rx="10" ry="17" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 830ms;" cx="168" cy="105" rx="9" ry="16" />
-            <path class="sigil-pop fill-ink" style="--d: 900ms;" d="M130 126 C153 126 171 146 171 169 C171 188 154 198 130 198 C106 198 89 188 89 169 C89 146 107 126 130 126 Z" />
-          </g>
-        </svg>
-      </div>
-
-      <div class="intro-variant intro-sigil" data-variant-panel="softCrest" hidden>
-        <svg class="intro-art sigil-art" viewBox="0 0 260 260" role="img" aria-label={text.variants.softCrest.artAriaLabel}>
-          <path class="sigil-draw stroke-ink" style="--d: 100ms; --dash: 600;" d="M130 38 C165 58 194 84 196 128 C198 174 160 207 130 222 C100 207 62 174 64 128 C66 84 95 58 130 38 Z" />
-          <path class="sigil-draw stroke-gold" style="--d: 280ms; --dash: 180;" d="M85 175 C111 192 149 192 175 175" />
-          <path class="sigil-star fill-gold" style="--d: 390ms;" d="M130 25 L138 56 L169 68 L138 80 L130 111 L122 80 L91 68 L122 56 Z" />
-          <g class="sigil-paw">
-            <ellipse class="sigil-pop fill-blue" style="--d: 570ms;" cx="89" cy="109" rx="10" ry="17" />
-            <ellipse class="sigil-pop fill-blue" style="--d: 610ms;" cx="114" cy="96" rx="11" ry="18" />
-            <ellipse class="sigil-pop fill-blue" style="--d: 650ms;" cx="141" cy="96" rx="11" ry="18" />
-            <ellipse class="sigil-pop fill-blue" style="--d: 690ms;" cx="166" cy="109" rx="10" ry="17" />
-            <path class="sigil-pop fill-blue" style="--d: 760ms;" d="M128 134 C152 134 172 153 172 176 C172 194 153 202 130 202 C106 202 88 194 88 176 C88 153 103 134 128 134 Z" />
-          </g>
-          <path class="sigil-draw stroke-blue soft-line" style="--d: 930ms; --dash: 120;" d="M78 157 C93 166 108 169 123 166" />
-        </svg>
-      </div>
-
-      <div class="intro-variant intro-sigil" data-variant-panel="minimalRing" hidden>
-        <svg class="intro-art sigil-art" viewBox="0 0 260 260" role="img" aria-label={text.variants.minimalRing.artAriaLabel}>
-          <circle class="sigil-draw stroke-ink" style="--d: 110ms; --dash: 520;" cx="130" cy="132" r="76" />
-          <path class="sigil-draw stroke-gold" style="--d: 250ms; --dash: 260;" d="M79 78 C104 57 145 53 178 73" />
-          <path class="sigil-draw stroke-gold" style="--d: 370ms; --dash: 190;" d="M83 180 C113 199 151 198 177 180" />
-          <path class="sigil-star fill-gold" style="--d: 510ms;" d="M130 43 L135 59 L151 65 L135 71 L130 88 L125 71 L109 65 L125 59 Z" />
-          <g class="sigil-paw">
-            <ellipse class="sigil-pop fill-ink" style="--d: 680ms;" cx="92" cy="108" rx="9" ry="15" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 720ms;" cx="117" cy="95" rx="10" ry="16" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 760ms;" cx="143" cy="95" rx="10" ry="16" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 800ms;" cx="168" cy="108" rx="9" ry="15" />
-            <path class="sigil-pop fill-ink" style="--d: 870ms;" d="M130 130 C152 130 169 149 169 170 C169 188 153 197 130 197 C107 197 91 188 91 170 C91 149 108 130 130 130 Z" />
-          </g>
-        </svg>
-      </div>
-
-      <div class="intro-variant intro-sigil" data-variant-panel="b1SailPaw" hidden>
-        <svg class="intro-art sigil-art" viewBox="0 0 280 260" role="img" aria-label={text.variants.b1SailPaw.artAriaLabel}>
-          <path class="sigil-draw stroke-gold" style="--d: 90ms; --dash: 300;" d="M48 159 C93 98 174 59 232 82" />
-          <line class="sigil-draw stroke-ink" style="--d: 260ms; --dash: 160; --sw: 4;" x1="132" y1="44" x2="132" y2="204" />
-          <path class="sigil-pop fill-blue" style="--d: 430ms; --from-x: -10px;" d="M143 52 L216 168 L143 146 Z" />
-          <path class="sigil-pop fill-green" style="--d: 520ms; --from-x: -10px;" d="M121 73 L75 175 L121 153 Z" />
-          <path class="sigil-draw stroke-ink" style="--d: 690ms; --dash: 160; --sw: 4;" d="M77 189 C111 207 168 210 211 189" />
-          <g class="sigil-paw small-paw">
-            <ellipse class="sigil-pop fill-gold" style="--d: 790ms;" cx="119" cy="159" rx="5" ry="8" />
-            <ellipse class="sigil-pop fill-gold" style="--d: 820ms;" cx="132" cy="151" rx="5" ry="9" />
-            <ellipse class="sigil-pop fill-gold" style="--d: 850ms;" cx="146" cy="151" rx="5" ry="9" />
-            <ellipse class="sigil-pop fill-gold" style="--d: 880ms;" cx="159" cy="159" rx="5" ry="8" />
-            <path class="sigil-pop fill-gold" style="--d: 930ms;" d="M139 166 C150 166 159 175 160 186 C161 196 151 202 141 198 C139 197 138 197 136 198 C126 202 116 196 117 186 C118 175 128 166 139 166 Z" />
-          </g>
-          <path class="sigil-star fill-gold" style="--d: 1050ms;" d="M221 56 L226 68 L239 72 L227 78 L221 91 L216 78 L203 72 L216 68 Z" />
-        </svg>
-      </div>
-
-      <div class="intro-variant intro-sigil" data-variant-panel="b2Constellation" hidden>
-        <svg class="intro-art sigil-art" viewBox="0 0 280 260" role="img" aria-label={text.variants.b2Constellation.artAriaLabel}>
-          <path class="sigil-draw stroke-blue soft-line" style="--d: 90ms; --dash: 420;" d="M52 160 C78 95 141 54 209 72 C243 81 259 112 250 145" />
-          <path class="sigil-draw stroke-gold" style="--d: 240ms; --dash: 220;" d="M88 96 L120 72 L153 76 L186 102 L202 139" />
-          <g class="sigil-paw">
-            <circle class="sigil-pop fill-gold" style="--d: 380ms;" cx="88" cy="96" r="7" />
-            <circle class="sigil-pop fill-ink" style="--d: 440ms;" cx="120" cy="72" r="9" />
-            <circle class="sigil-pop fill-ink" style="--d: 500ms;" cx="153" cy="76" r="9" />
-            <circle class="sigil-pop fill-gold" style="--d: 560ms;" cx="186" cy="102" r="8" />
-            <path class="sigil-pop fill-blue" style="--d: 690ms;" d="M142 119 C168 119 189 138 190 161 C191 181 173 191 145 191 C116 191 98 181 99 161 C100 138 117 119 142 119 Z" />
-          </g>
-          <path class="sigil-draw stroke-ink" style="--d: 820ms; --dash: 180; --sw: 4;" d="M82 199 C116 215 172 215 210 196" />
-          <path class="sigil-star fill-gold" style="--d: 950ms;" d="M213 132 L217 142 L228 146 L218 150 L213 161 L209 150 L198 146 L209 142 Z" />
-        </svg>
-      </div>
-
-      <div class="intro-variant intro-sigil" data-variant-panel="b3CrestSail" hidden>
-        <svg class="intro-art sigil-art" viewBox="0 0 280 260" role="img" aria-label={text.variants.b3CrestSail.artAriaLabel}>
-          <path class="sigil-draw stroke-ink" style="--d: 90ms; --dash: 540;" d="M140 39 L214 78 L214 152 C214 192 174 216 140 229 C106 216 66 192 66 152 L66 78 Z" />
-          <line class="sigil-draw stroke-gold" style="--d: 300ms; --dash: 142; --sw: 3;" x1="140" y1="62" x2="140" y2="204" />
-          <path class="sigil-pop fill-blue" style="--d: 430ms;" d="M151 66 L195 146 L151 133 Z" />
-          <path class="sigil-pop fill-green" style="--d: 520ms;" d="M128 83 L91 155 L128 141 Z" />
-          <path class="sigil-draw stroke-gold" style="--d: 660ms; --dash: 136;" d="M92 169 C117 185 161 187 190 169" />
-          <g class="sigil-paw small-paw">
-            <ellipse class="sigil-pop fill-ink" style="--d: 760ms;" cx="122" cy="148" rx="5" ry="8" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 790ms;" cx="135" cy="140" rx="5" ry="9" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 820ms;" cx="149" cy="140" rx="5" ry="9" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 850ms;" cx="162" cy="148" rx="5" ry="8" />
-            <path class="sigil-pop fill-ink" style="--d: 900ms;" d="M142 155 C153 155 162 164 163 175 C164 185 154 191 144 187 C142 186 141 186 139 187 C129 191 119 185 120 175 C121 164 131 155 142 155 Z" />
-          </g>
-          <path class="sigil-star fill-gold" style="--d: 1010ms;" d="M140 31 L144 43 L157 47 L145 52 L140 65 L135 52 L123 47 L136 43 Z" />
-        </svg>
-      </div>
-
-      <div class="intro-variant intro-sigil" data-variant-panel="a1Compass" hidden>
-        <svg class="intro-art sigil-art" viewBox="0 0 260 260" role="img" aria-label={text.variants.a1Compass.artAriaLabel}>
-          <path class="sigil-draw stroke-blue soft-line" style="--d: 80ms; --dash: 190;" d="M130 36 L130 224" />
-          <path class="sigil-draw stroke-blue soft-line" style="--d: 120ms; --dash: 190;" d="M36 130 L224 130" />
-          <path class="sigil-draw stroke-blue soft-line" style="--d: 160ms; --dash: 260;" d="M63 63 L197 197" />
-          <path class="sigil-draw stroke-blue soft-line" style="--d: 200ms; --dash: 260;" d="M197 63 L63 197" />
-          <circle class="sigil-draw stroke-ink" style="--d: 330ms; --dash: 530;" cx="130" cy="130" r="76" />
-          <circle class="sigil-draw stroke-gold" style="--d: 460ms; --dash: 420;" cx="130" cy="130" r="58" />
-          <path class="sigil-pop fill-blue" style="--d: 570ms; --o: .18;" d="M130 76 C162 76 184 99 184 130 C184 161 162 184 130 184 C98 184 76 161 76 130 C76 99 98 76 130 76 Z" />
-          <g class="sigil-paw">
-            <ellipse class="sigil-pop fill-ink" style="--d: 710ms;" cx="94" cy="112" rx="9" ry="15" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 750ms;" cx="118" cy="99" rx="10" ry="16" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 790ms;" cx="142" cy="99" rx="10" ry="16" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 830ms;" cx="166" cy="112" rx="9" ry="15" />
-            <path class="sigil-pop fill-ink" style="--d: 900ms;" d="M130 134 C152 134 169 151 169 171 C169 187 153 195 130 195 C107 195 91 187 91 171 C91 151 108 134 130 134 Z" />
-          </g>
-          <path class="sigil-star fill-gold" style="--d: 1010ms;" d="M130 48 L134 58 L145 62 L135 66 L130 77 L126 66 L115 62 L126 58 Z" />
-        </svg>
-      </div>
-
-      <div class="intro-variant intro-sigil" data-variant-panel="a2SoftStamp" hidden>
-        <svg class="intro-art sigil-art" viewBox="0 0 260 260" role="img" aria-label={text.variants.a2SoftStamp.artAriaLabel}>
-          <path class="sigil-pop fill-blue" style="--d: 120ms; --o: .14;" d="M130 43 C146 57 162 52 177 62 C190 71 191 89 204 103 C217 118 207 133 213 151 C218 169 202 179 194 193 C184 208 166 205 151 214 C134 225 120 212 103 214 C86 215 79 199 64 190 C49 181 55 164 48 148 C40 131 55 118 56 102 C58 84 75 79 87 66 C99 53 115 58 130 43 Z" />
-          <path class="sigil-draw stroke-ink" style="--d: 260ms; --dash: 580;" d="M130 43 C146 57 162 52 177 62 C190 71 191 89 204 103 C217 118 207 133 213 151 C218 169 202 179 194 193 C184 208 166 205 151 214 C134 225 120 212 103 214 C86 215 79 199 64 190 C49 181 55 164 48 148 C40 131 55 118 56 102 C58 84 75 79 87 66 C99 53 115 58 130 43 Z" />
-          <path class="sigil-draw stroke-gold" style="--d: 480ms; --dash: 250;" d="M78 170 C106 192 153 196 187 170" />
-          <g class="sigil-paw">
-            <ellipse class="sigil-pop fill-gold" style="--d: 610ms;" cx="92" cy="109" rx="10" ry="16" />
-            <ellipse class="sigil-pop fill-gold" style="--d: 650ms;" cx="117" cy="95" rx="11" ry="17" />
-            <ellipse class="sigil-pop fill-gold" style="--d: 690ms;" cx="143" cy="95" rx="11" ry="17" />
-            <ellipse class="sigil-pop fill-gold" style="--d: 730ms;" cx="168" cy="109" rx="10" ry="16" />
-            <path class="sigil-pop fill-gold" style="--d: 800ms;" d="M130 132 C153 132 171 150 171 172 C171 190 153 199 130 199 C107 199 89 190 89 172 C89 150 107 132 130 132 Z" />
-          </g>
-          <path class="sigil-star fill-gold" style="--d: 940ms;" d="M198 92 L202 102 L213 106 L203 110 L198 121 L194 110 L183 106 L194 102 Z" />
-        </svg>
-      </div>
-
-      <div class="intro-variant intro-sigil" data-variant-panel="a3ThinRing" hidden>
-        <svg class="intro-art sigil-art" viewBox="0 0 260 260" role="img" aria-label={text.variants.a3ThinRing.artAriaLabel}>
-          <circle class="sigil-draw stroke-ink" style="--d: 110ms; --dash: 520; --sw: 1.7;" cx="130" cy="130" r="78" />
-          <circle class="sigil-draw stroke-blue soft-line" style="--d: 240ms; --dash: 390; --sw: 1.2;" cx="130" cy="130" r="58" />
-          <path class="sigil-draw stroke-gold" style="--d: 360ms; --dash: 180;" d="M76 177 C108 193 151 193 184 177" />
-          <g class="sigil-paw">
-            <ellipse class="sigil-pop fill-ink" style="--d: 540ms;" cx="96" cy="112" rx="8" ry="13" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 580ms;" cx="119" cy="101" rx="9" ry="14" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 620ms;" cx="141" cy="101" rx="9" ry="14" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 660ms;" cx="164" cy="112" rx="8" ry="13" />
-            <path class="sigil-pop fill-ink" style="--d: 730ms;" d="M130 134 C151 134 167 150 167 169 C167 185 152 193 130 193 C108 193 93 185 93 169 C93 150 109 134 130 134 Z" />
-          </g>
-          <path class="sigil-star fill-gold" style="--d: 870ms;" d="M130 60 L133 69 L143 73 L134 77 L130 87 L126 77 L117 73 L127 69 Z" />
-        </svg>
-      </div>
-
-      <div class="intro-variant intro-sigil" data-variant-panel="c1Ribbon" hidden>
-        <svg class="intro-art sigil-art trace-sigil-art" viewBox="0 0 320 220" role="img" aria-label={text.variants.c1Ribbon.artAriaLabel}>
-          <path class="sigil-draw stroke-ink" style="--d: 90ms; --dash: 430; --sw: 5;" d="M38 137 C76 77 128 166 174 113 C207 75 248 72 287 94" />
-          <path class="sigil-draw stroke-gold" style="--d: 560ms; --dash: 240;" d="M62 166 C116 194 220 188 267 151" />
-          <path class="sigil-star fill-rose" style="--d: 430ms;" d="M74 87 L78 98 L90 102 L79 107 L74 119 L69 107 L58 102 L70 98 Z" />
-          <path class="sigil-star fill-blue" style="--d: 510ms;" d="M146 60 L149 68 L158 71 L150 75 L146 84 L142 75 L134 71 L143 68 Z" />
-          <g class="sigil-paw">
-            <ellipse class="sigil-pop fill-ink" style="--d: 720ms;" cx="215" cy="84" rx="8" ry="12" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 760ms;" cx="232" cy="73" rx="9" ry="13" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 800ms;" cx="251" cy="75" rx="9" ry="13" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 840ms;" cx="267" cy="88" rx="8" ry="12" />
-            <path class="sigil-pop fill-ink" style="--d: 900ms;" d="M242 99 C259 99 274 113 274 129 C274 142 261 149 242 149 C223 149 210 142 210 129 C210 113 225 99 242 99 Z" />
-          </g>
-        </svg>
-      </div>
-
-      <div class="intro-variant intro-sigil" data-variant-panel="c2Comet" hidden>
-        <svg class="intro-art sigil-art trace-sigil-art" viewBox="0 0 320 220" role="img" aria-label={text.variants.c2Comet.artAriaLabel}>
-          <path class="sigil-draw stroke-blue soft-line" style="--d: 90ms; --dash: 260;" d="M42 147 C99 106 153 91 219 99" />
-          <path class="sigil-draw stroke-gold" style="--d: 190ms; --dash: 230;" d="M61 170 C118 127 172 114 238 123" />
-          <path class="sigil-draw stroke-ink" style="--d: 310ms; --dash: 260; --sw: 4;" d="M77 127 C128 82 185 64 248 74" />
-          <path class="sigil-star fill-gold" style="--d: 470ms;" d="M70 116 L74 126 L85 130 L75 134 L70 145 L66 134 L55 130 L66 126 Z" />
-          <g class="sigil-paw">
-            <ellipse class="sigil-pop fill-blue" style="--d: 650ms;" cx="222" cy="76" rx="8" ry="12" />
-            <ellipse class="sigil-pop fill-blue" style="--d: 690ms;" cx="239" cy="65" rx="9" ry="13" />
-            <ellipse class="sigil-pop fill-blue" style="--d: 730ms;" cx="258" cy="68" rx="9" ry="13" />
-            <ellipse class="sigil-pop fill-blue" style="--d: 770ms;" cx="274" cy="82" rx="8" ry="12" />
-            <path class="sigil-pop fill-blue" style="--d: 850ms;" d="M249 95 C268 95 284 110 284 128 C284 143 270 151 249 151 C228 151 214 143 214 128 C214 110 230 95 249 95 Z" />
-          </g>
-          <path class="sigil-draw stroke-gold" style="--d: 960ms; --dash: 120;" d="M220 165 C241 174 266 171 286 157" />
-        </svg>
-      </div>
-
-      <div class="intro-variant intro-sigil" data-variant-panel="c3Signature" hidden>
-        <svg class="intro-art sigil-art trace-sigil-art" viewBox="0 0 320 220" role="img" aria-label={text.variants.c3Signature.artAriaLabel}>
-          <path class="sigil-draw stroke-ink" style="--d: 100ms; --dash: 470; --sw: 5;" d="M42 146 C83 86 141 83 164 115 C185 144 136 159 118 134 C95 101 162 66 224 82 C257 91 281 111 292 139" />
-          <path class="sigil-draw stroke-gold" style="--d: 560ms; --dash: 180;" d="M99 170 C150 189 221 185 267 159" />
-          <path class="sigil-star fill-gold" style="--d: 470ms;" d="M230 63 L234 73 L245 77 L235 81 L230 92 L226 81 L215 77 L226 73 Z" />
-          <g class="sigil-paw small-paw">
-            <ellipse class="sigil-pop fill-ink" style="--d: 760ms;" cx="260" cy="98" rx="5" ry="8" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 790ms;" cx="271" cy="91" rx="5" ry="9" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 820ms;" cx="283" cy="93" rx="5" ry="9" />
-            <path class="sigil-pop fill-ink" style="--d: 880ms;" d="M273 109 C285 109 294 118 294 130 C294 139 285 144 273 144 C261 144 252 139 252 130 C252 118 261 109 273 109 Z" />
-          </g>
-        </svg>
-      </div>
-
-      <div class="intro-variant intro-sigil" data-variant-panel="d1House" hidden>
-        <svg class="intro-art sigil-art" viewBox="0 0 260 260" role="img" aria-label={text.variants.d1House.artAriaLabel}>
-          <path class="sigil-draw stroke-ink" style="--d: 90ms; --dash: 500; --sw: 3;" d="M130 37 L201 80 L201 161 L130 222 L59 161 L59 80 Z" />
-          <path class="sigil-draw stroke-gold" style="--d: 300ms; --dash: 120; --sw: 3;" d="M83 101 L130 68 L177 101" />
-          <path class="sigil-draw stroke-blue soft-line" style="--d: 440ms; --dash: 180;" d="M91 172 C91 140 108 118 130 118 C152 118 169 140 169 172 L169 188 L91 188 Z" />
-          <g class="sigil-paw">
-            <circle class="sigil-pop fill-ink" style="--d: 620ms;" cx="104" cy="126" r="7" />
-            <circle class="sigil-pop fill-ink" style="--d: 660ms;" cx="121" cy="116" r="8" />
-            <circle class="sigil-pop fill-ink" style="--d: 700ms;" cx="139" cy="116" r="8" />
-            <circle class="sigil-pop fill-ink" style="--d: 740ms;" cx="156" cy="126" r="7" />
-            <path class="sigil-pop fill-ink" style="--d: 810ms;" d="M130 135 C145 135 159 149 159 164 C159 177 147 183 130 183 C113 183 101 177 101 164 C101 149 115 135 130 135 Z" />
-          </g>
-          <path class="sigil-star fill-gold" style="--d: 950ms;" d="M130 76 L134 86 L145 90 L135 94 L130 105 L126 94 L115 90 L126 86 Z" />
-        </svg>
-      </div>
-
-      <div class="intro-variant intro-sigil" data-variant-panel="d2Gate" hidden>
-        <svg class="intro-art sigil-art" viewBox="0 0 260 260" role="img" aria-label={text.variants.d2Gate.artAriaLabel}>
-          <path class="sigil-draw stroke-ink" style="--d: 90ms; --dash: 420; --sw: 4;" d="M71 210 L71 128 C71 82 96 51 130 51 C164 51 189 82 189 128 L189 210" />
-          <path class="sigil-draw stroke-gold" style="--d: 290ms; --dash: 240;" d="M92 210 L92 132 C92 98 107 77 130 77 C153 77 168 98 168 132 L168 210" />
-          <path class="sigil-draw stroke-blue soft-line" style="--d: 470ms; --dash: 118;" d="M60 210 L200 210" />
-          <path class="sigil-star fill-gold" style="--d: 560ms;" d="M130 43 L134 54 L146 58 L135 63 L130 75 L125 63 L114 58 L126 54 Z" />
-          <g class="sigil-paw">
-            <circle class="sigil-pop fill-gold" style="--d: 690ms;" cx="103" cy="128" r="8" />
-            <circle class="sigil-pop fill-gold" style="--d: 730ms;" cx="121" cy="116" r="8.5" />
-            <circle class="sigil-pop fill-gold" style="--d: 770ms;" cx="139" cy="116" r="8.5" />
-            <circle class="sigil-pop fill-gold" style="--d: 810ms;" cx="157" cy="128" r="8" />
-            <path class="sigil-pop fill-gold" style="--d: 880ms;" d="M130 138 C147 138 161 153 161 170 C161 184 148 191 130 191 C112 191 99 184 99 170 C99 153 113 138 130 138 Z" />
-          </g>
-          <path class="sigil-draw stroke-blue soft-line" style="--d: 1010ms; --dash: 86;" d="M78 224 C104 232 156 232 182 224" />
-        </svg>
-      </div>
-
-      <div class="intro-variant intro-sigil" data-variant-panel="d3Corner" hidden>
-        <svg class="intro-art sigil-art" viewBox="0 0 260 260" role="img" aria-label={text.variants.d3Corner.artAriaLabel}>
-          <path class="sigil-draw stroke-green" style="--d: 80ms; --dash: 64;" d="M54 85 L54 54 L85 54" />
-          <path class="sigil-draw stroke-green" style="--d: 150ms; --dash: 64;" d="M175 54 L206 54 L206 85" />
-          <path class="sigil-draw stroke-green" style="--d: 220ms; --dash: 64;" d="M206 175 L206 206 L175 206" />
-          <path class="sigil-draw stroke-green" style="--d: 290ms; --dash: 64;" d="M85 206 L54 206 L54 175" />
-          <path class="sigil-draw stroke-ink" style="--d: 390ms; --dash: 280; --sw: 4;" d="M75 161 C103 92 154 78 196 104" />
-          <path class="sigil-draw stroke-gold" style="--d: 560ms; --dash: 170;" d="M80 181 C112 200 158 199 185 179" />
-          <path class="sigil-star fill-gold" style="--d: 660ms;" d="M188 91 L193 103 L206 108 L194 113 L188 126 L183 113 L170 108 L183 103 Z" />
-          <g class="sigil-paw">
-            <ellipse class="sigil-pop fill-ink" style="--d: 790ms;" cx="99" cy="118" rx="8" ry="13" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 830ms;" cx="120" cy="106" rx="9" ry="14" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 870ms;" cx="144" cy="107" rx="9" ry="14" />
-            <ellipse class="sigil-pop fill-ink" style="--d: 910ms;" cx="166" cy="119" rx="8" ry="13" />
-            <path class="sigil-pop fill-ink" style="--d: 980ms;" d="M132 139 C153 139 169 156 169 175 C169 190 153 198 132 198 C111 198 95 190 95 175 C95 156 111 139 132 139 Z" />
-          </g>
+          <path class="b1-star" d="M221 56 L226 68 L239 72 L227 78 L221 91 L216 78 L203 72 L216 68 Z" />
         </svg>
       </div>
     </div>
   </section>
-  <script type="application/json" id="intro-variant-text" set:html={introVariantsJson} />
+
   <script is:inline>
-  const root = document.querySelector("[data-intro-demo]");
-  const loader = document.querySelector("[data-intro-loader]");
-  const replayButton = document.querySelector("[data-replay-intro]");
-  const variantButtons = [...document.querySelectorAll("[data-variant-choice]")];
-  const variantPanels = [...document.querySelectorAll("[data-variant-panel]")];
-  const variantTitle = document.querySelector("[data-variant-title]");
-  const variantNote = document.querySelector("[data-variant-note]");
-  const variantText = document.querySelector("#intro-variant-text");
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const variants = JSON.parse(variantText?.textContent || "{}");
-  let finishTimer;
-  let hideTimer;
+    const root = document.querySelector("[data-intro-demo]");
+    const loader = document.querySelector("[data-intro-loader]");
+    const replayButton = document.querySelector("[data-replay-intro]");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let finishTimer;
+    let hideTimer;
 
-  const parseDuration = (value) => {
-    const trimmed = value.trim();
+    const parseDuration = (value) => {
+      const trimmed = value.trim();
 
-    if (!trimmed) {
-      return 1700;
-    }
-
-    if (trimmed.endsWith("ms")) {
-      return Number.parseFloat(trimmed);
-    }
-
-    if (trimmed.endsWith("s")) {
-      return Number.parseFloat(trimmed) * 1000;
-    }
-
-    return Number.parseFloat(trimmed) || 1700;
-  };
-
-  const getIntroDuration = () => {
-    if (!root) {
-      return 1700;
-    }
-
-    const styles = window.getComputedStyle(root);
-    return parseDuration(styles.getPropertyValue("--intro-duration"));
-  };
-
-  const setVariant = (variant) => {
-    if (!root || !variants[variant]) {
-      return;
-    }
-
-    root.dataset.variant = variant;
-
-    if (variantTitle) {
-      variantTitle.textContent = variants[variant].title;
-    }
-
-    if (variantNote) {
-      variantNote.textContent = variants[variant].note;
-    }
-
-    variantButtons.forEach((button) => {
-      button.setAttribute("aria-pressed", String(button.dataset.variantChoice === variant));
-    });
-
-    variantPanels.forEach((panel) => {
-      panel.hidden = panel.dataset.variantPanel !== variant;
-    });
-  };
-
-  const finishIntro = () => {
-    root?.classList.add("is-revealed");
-    loader?.classList.add("is-finished");
-    hideTimer = window.setTimeout(() => {
-      if (loader) {
-        loader.hidden = true;
+      if (!trimmed) {
+        return 1280;
       }
-    }, reducedMotion.matches ? 40 : 260);
-  };
 
-  const playIntro = () => {
-    if (!root || !loader) {
-      return;
-    }
+      if (trimmed.endsWith("ms")) {
+        return Number.parseFloat(trimmed);
+      }
 
-    window.clearTimeout(finishTimer);
-    window.clearTimeout(hideTimer);
+      if (trimmed.endsWith("s")) {
+        return Number.parseFloat(trimmed) * 1000;
+      }
 
-    loader.hidden = false;
-    root.classList.remove("is-revealed");
-    loader.classList.remove("is-playing", "is-finished");
-    void loader.offsetWidth;
-    loader.classList.add("is-playing");
+      return Number.parseFloat(trimmed) || 1280;
+    };
 
-    finishTimer = window.setTimeout(
-      finishIntro,
-      reducedMotion.matches ? 120 : getIntroDuration()
-    );
-  };
+    const getIntroDuration = () => {
+      if (!root) {
+        return 1280;
+      }
 
-  variantButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      setVariant(button.dataset.variantChoice);
-      playIntro();
-    });
-  });
+      return parseDuration(window.getComputedStyle(root).getPropertyValue("--intro-duration"));
+    };
 
-  replayButton?.addEventListener("click", playIntro);
-  window.requestAnimationFrame(playIntro);
+    const finishIntro = () => {
+      root?.classList.add("is-revealed");
+      loader?.classList.add("is-finished");
+      hideTimer = window.setTimeout(() => {
+        if (loader) {
+          loader.hidden = true;
+        }
+      }, reducedMotion.matches ? 40 : 320);
+    };
+
+    const playIntro = () => {
+      if (!root || !loader) {
+        return;
+      }
+
+      window.clearTimeout(finishTimer);
+      window.clearTimeout(hideTimer);
+
+      loader.hidden = false;
+      root.classList.remove("is-revealed");
+      loader.classList.remove("is-playing", "is-finished");
+      void loader.offsetWidth;
+      loader.classList.add("is-playing");
+
+      finishTimer = window.setTimeout(
+        finishIntro,
+        reducedMotion.matches ? 120 : getIntroDuration()
+      );
+    };
+
+    replayButton?.addEventListener("click", playIntro);
+    window.requestAnimationFrame(playIntro);
   </script>
 </BaseLayout>

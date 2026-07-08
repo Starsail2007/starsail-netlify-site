@@ -125,6 +125,19 @@ API-Football
 本地/Codex 修改 -> GitHub -> Netlify 自动构建 -> 公网更新
 ```
 
+### 公网发布一致性约定
+
+所有需要发布到公网的改动，都要保证 GitHub Pages 和 Netlify 两个公网入口内容一致：
+
+```text
+https://starsail2007.github.io/starsail-netlify-site/
+https://starsail.netlify.app/
+```
+
+每次 Codex 完成一个明确改动、阶段任务或工程整理后，即使用户没有主动提到发布，也需要先向用户确认是否同步到公网。
+
+用户确认发布后，应把同一份源码/构建结果同步到 GitHub Pages 和 Netlify，并检查两个公网地址是否都已更新到同一版本。若 Netlify 自动部署因为 credits、权限或其他平台状态被跳过，可以使用本地构建产物发布 draft deploy，确认后再将该 deploy 发布或恢复为 production。
+
 ### Netlify 额度与省额度部署
 
 本项目不依赖 Netlify AI 开发。常规开发流程是本地改代码、运行 `pnpm build` 验证、推送 GitHub，再由 Netlify 普通自动部署。不要在 Netlify Dashboard 中使用 `Build with an AI agent` / `Run AI agent`，这些属于 Netlify Agent Runners，会消耗 AI inference credits。

@@ -1,0 +1,35 @@
+---
+import siteText from "../content/siteText";
+
+const text = siteText.introDemo;
+const variant = text.variants.b1SailPaw;
+---
+
+<div class="intro-loader site-entry-loader is-playing" aria-hidden="true" data-site-entry-loader>
+  <div class="intro-field" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="intro-sigil" aria-hidden="true">
+    <svg class="intro-art b1-art" viewBox="0 0 280 260" role="img" aria-label={variant.artAriaLabel}>
+      <path class="b1-orbit b1-draw" d="M48 158 C88 101 162 58 230 82" />
+      <path class="b1-orbit-echo b1-draw" d="M61 173 C104 128 171 98 224 112" />
+      <line class="b1-mast b1-draw" x1="132" y1="44" x2="132" y2="205" />
+      <path class="b1-sail b1-sail-main" d="M143 52 L216 168 L143 146 Z" />
+      <path class="b1-sail b1-sail-soft" d="M121 73 L75 176 L121 153 Z" />
+      <path class="b1-hull b1-draw" d="M77 189 C111 207 168 210 211 189" />
+      <path class="b1-hull-glow b1-draw" d="M97 199 C126 209 166 209 195 198" />
+      <g class="b1-paw">
+        <ellipse class="b1-pad" cx="119" cy="159" rx="5" ry="8" />
+        <ellipse class="b1-pad" cx="132" cy="151" rx="5" ry="9" />
+        <ellipse class="b1-pad" cx="146" cy="151" rx="5" ry="9" />
+        <ellipse class="b1-pad" cx="159" cy="159" rx="5" ry="8" />
+        <path class="b1-pad b1-pad-main" d="M139 166 C150 166 159 175 160 186 C161 196 151 202 141 198 C139 197 138 197 136 198 C126 202 116 196 117 186 C118 175 128 166 139 166 Z" />
+      </g>
+      <path class="b1-star" d="M221 56 L226 68 L239 72 L227 78 L221 91 L216 78 L203 72 L216 68 Z" />
+    </svg>
+  </div>
+</div>

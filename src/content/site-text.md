@@ -172,6 +172,12 @@ worldcup:
       ariaLabel: "切换精彩瞬间时间顺序"
       asc: "正序"
       desc: "倒序"
+    dateFilter:
+      toggleAriaLabel: "按日期筛选精彩瞬间"
+      allLabel: "全部日期"
+      allOptionLabel: "全部"
+      countTemplate: "{count} 场"
+      emptyLabel: "暂无精彩瞬间日期"
     structureSubtitle: "先看场次，点击后放大查看精彩瞬间"
     detailEmpty: "选择一场比赛查看精彩瞬间"
     matchEventsTemplate: "{count} 个瞬间"
@@ -291,111 +297,21 @@ worldcup:
 introDemo:
   meta:
     title: "Starsail Intro Loader Prototype"
-    description: "Sixteen flat symbolic Starsail intro loader animation directions."
+    description: "B1 balanced sail paw intro loader animation prototype."
   pageAriaLabel: "Starsail intro loader prototype"
   brandLabel: "Starsail"
-  eyebrow: "Animated sigil studies"
+  eyebrow: "B1 intro study"
   title: "Starsail"
-  subtitle: "Flat symbolic intro directions, now animated from the Figma exploration."
+  subtitle: "A flatter sail-and-paw loader direction, tuned for a smoother entrance."
   variantPickerAriaLabel: "Intro variants"
   replayButton: "Replay Intro"
   variants:
-    moonlit:
-      shortcut: "A+01"
-      buttonLabel: "Moonlit"
-      title: "Moonlit Seal"
-      note: "Recommended direction. Ring draws first, star appears, paw lands, lower arc opens."
-      artAriaLabel: "Animated moonlit paw seal intro mark"
-    compassStamp:
-      shortcut: "A+02"
-      buttonLabel: "Compass"
-      title: "Compass Stamp"
-      note: "Ceremonial paw stamp with compass ticks and a cleaner radial hierarchy."
-      artAriaLabel: "Animated compass paw stamp intro mark"
-    softCrest:
-      shortcut: "A+03"
-      buttonLabel: "Crest"
-      title: "Soft Crest"
-      note: "Softer crest outline with a quiet star gesture and rounded paw mass."
-      artAriaLabel: "Animated soft paw crest intro mark"
-    minimalRing:
-      shortcut: "A+04"
-      buttonLabel: "Ring"
-      title: "Minimal Ring"
-      note: "Most restrained refined mark, built from a thin moon ring and small paw."
-      artAriaLabel: "Animated minimal paw ring intro mark"
     b1SailPaw:
       shortcut: "B1"
       buttonLabel: "Sail"
       title: "Balanced Sail Paw"
-      note: "A flat sail and paw lockup with mast, hull, and a single star beat."
+      note: "A flat sail and paw lockup with a slower orbit trace, softer sail reveal, and calmer paw landing."
       artAriaLabel: "Animated balanced sail paw intro mark"
-    b2Constellation:
-      shortcut: "B2"
-      buttonLabel: "Constellation"
-      title: "Constellation Paw"
-      note: "Paw pads arrive like star points connected by a soft orbital trace."
-      artAriaLabel: "Animated constellation paw intro mark"
-    b3CrestSail:
-      shortcut: "B3"
-      buttonLabel: "Sail Crest"
-      title: "Crest Sail Paw"
-      note: "A badge-like sail crest where the paw reads as a folded emblem."
-      artAriaLabel: "Animated crest sail paw intro mark"
-    a1Compass:
-      shortcut: "A1"
-      buttonLabel: "Compass"
-      title: "Compass Paw"
-      note: "Classic seal rhythm: compass cross, double ring, then a centered paw."
-      artAriaLabel: "Animated compass paw intro mark"
-    a2SoftStamp:
-      shortcut: "A2"
-      buttonLabel: "Stamp"
-      title: "Soft Stamp"
-      note: "Rounded stamp silhouette with a gentler paw landing and small star lift."
-      artAriaLabel: "Animated soft stamp paw intro mark"
-    a3ThinRing:
-      shortcut: "A3"
-      buttonLabel: "Thin Ring"
-      title: "Thin Ring"
-      note: "Thin orbital seal, minimal paw, and a small bottom arc opening."
-      artAriaLabel: "Animated thin ring paw intro mark"
-    c1Ribbon:
-      shortcut: "C1"
-      buttonLabel: "Ribbon"
-      title: "Ribbon Trace"
-      note: "A single flat ribbon sweep writes the motion before the paw lands."
-      artAriaLabel: "Animated ribbon trace intro mark"
-    c2Comet:
-      shortcut: "C2"
-      buttonLabel: "Comet"
-      title: "Comet Paw"
-      note: "Comet trails converge into a paw, making the entrance feel light and fast."
-      artAriaLabel: "Animated comet paw intro mark"
-    c3Signature:
-      shortcut: "C3"
-      buttonLabel: "Signature"
-      title: "Signature"
-      note: "A handwritten Starsail trace, reduced to a symbol and tiny landing mark."
-      artAriaLabel: "Animated signature trace intro mark"
-    d1House:
-      shortcut: "D1"
-      buttonLabel: "House"
-      title: "House Sigil"
-      note: "Small den geometry with roof, frame, paw, and star arranged as a sign."
-      artAriaLabel: "Animated house sigil intro mark"
-    d2Gate:
-      shortcut: "D2"
-      buttonLabel: "Gate"
-      title: "Gate Paw"
-      note: "Gate-like arch opens first, then the paw settles inside the doorway."
-      artAriaLabel: "Animated gate paw intro mark"
-    d3Corner:
-      shortcut: "D3"
-      buttonLabel: "Corner"
-      title: "Corner Mark"
-      note: "Four registration corners assemble into a compact identity mark."
-      artAriaLabel: "Animated corner paw intro mark"
 entryRedesign:
   meta:
     title: "Starsail Entry Redesign Prototype"
@@ -451,12 +367,13 @@ entryRedesign:
       avatarAlt: "星帆Starsail 的头像"
       creditLabel: "Designed by"
       creditName: "星帆Starsail"
+      versionLabel: "正式版v1.0"
     hero:
       headline: "待探索的空间"
       subcopy:
         beforeStrong: "恭喜你发现了这里。现在，这里只是一个"
-        strong: "安静的入口"
-        afterStrong: "，通向星帆小狼的一处小窝。之后在里面放些什么呢？还有待探索。"
+        strong: "安静的小窝"
+        afterStrong: "。之后在里面放些什么呢？还有待探索。"
     options:
       ariaLabel: "入口选项"
       emptyPrompt: "该放些什么好呢？"
@@ -469,7 +386,7 @@ entryRedesign:
           href: "#"
           icon: "2"
           prompt: "该放些什么好呢？"
-        - name: "maimai B50"
+        - name: "神秘面板"
           href: "/maimai/"
           icon: "3"
           prompt: ""
@@ -485,13 +402,52 @@ entryRedesign:
       label: "更新日志"
       ariaLabel: "打开更新日志"
       closeAriaLabel: "关闭更新日志"
+      title: "更新日志"
+      items:
+        - date: "2026.6.27"
+          parts:
+            - text: "于紫金港。这个构想始于在期末周劳累复习之余的灵光一闪。那天做了一个"
+            - text: "临时demo"
+              emphasis: true
+            - text: "。"
+        - date: "2026.6.30"
+          parts:
+            - text: "同样是在期末周摸鱼。鼓捣一番，于是上线了"
+            - text: "测试版网站"
+              emphasis: true
+            - text: "。"
+        - date: "2026.7.8"
+          parts:
+            - text: "于北京海淀。在北京之旅抽空完善了这个项目，"
+            - text: "正式版1.0"
+              emphasis: true
+            - text: "上线——优化了首页展示，更新了世界杯展示页，和某个神秘面板。"
     avatarModal:
       closeAriaLabel: "关闭头像展示"
       closeButton: "x"
       avatarAlt: "星帆Starsail 的头像放大图"
       title: "星帆Starsail"
       motto: "天接云涛连晓雾，星河欲转千帆舞。"
-      description: "该小窝由星帆Starsail筑成。"
+      description: "欢迎对网站提出宝贵的意见，也欢迎来多多交流"
+      contact:
+        ariaLabel: "星帆Starsail 的联系方式"
+        qq:
+          label: "QQ"
+          value: "1012169369"
+          qrSrc: "/assets/contact/qq-qrcode.jpg"
+          qrAlt: "星帆Starsail 的 QQ 好友二维码"
+          qrAriaLabel: "放大查看星帆Starsail 的 QQ 好友二维码"
+          zoomAriaLabel: "星帆Starsail 的 QQ 好友二维码放大图"
+          zoomCloseAriaLabel: "关闭 QQ 二维码放大图"
+          downloadLabel: "保存二维码"
+          copyLabel: "复制 QQ"
+          copyDone: "已复制"
+        gmail:
+          label: "Gmail"
+          address: "xingfanstarsail@gmail.com"
+          mailLabel: "写邮件"
+          copyLabel: "复制邮箱"
+          copyDone: "已复制"
   variants:
     quiet:
       id: "quiet"

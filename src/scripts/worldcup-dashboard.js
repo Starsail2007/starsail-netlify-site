@@ -30,6 +30,7 @@ let playerNameDataPromise = null;
 const root = document.querySelector("[data-worldcup-root]");
 let dismissedChampionKey = "";
 let selectedScheduleDate = "";
+let selectedMomentsDate = "";
 
 if (root) {
   const elements = {
@@ -49,6 +50,10 @@ if (root) {
     momentsModeButtons: [...root.querySelectorAll("[data-moments-mode]")],
     momentsPanels: [...root.querySelectorAll("[data-moments-panel]")],
     momentsSort: root.querySelector("[data-moments-sort]"),
+    momentsDateFilter: root.querySelector("[data-moments-date-filter]"),
+    momentsDateToggle: root.querySelector("[data-moments-date-toggle]"),
+    momentsDateLabel: root.querySelector("[data-moments-date-label]"),
+    momentsDateMenu: root.querySelector("[data-moments-date-menu]"),
     momentsStructure: root.querySelector("[data-moments-structure]"),
     momentsModal: root.querySelector("[data-moments-modal]"),
     momentsDetail: root.querySelector("[data-moments-detail]"),
@@ -119,9 +124,14 @@ if (root) {
   setupScheduleDateFilter(elements, () => data, (nextDate) => {
     selectedScheduleDate = nextDate;
   }, () => selectedScheduleDate);
-  setupMomentsControls(elements, () => data, () => ({ activeMomentsMode, momentsSortDirection }), (nextState) => {
+  setupMomentsControls(elements, () => data, () => ({
+    activeMomentsMode,
+    momentsSortDirection,
+    momentsDate: selectedMomentsDate
+  }), (nextState) => {
     activeMomentsMode = nextState.activeMomentsMode ?? activeMomentsMode;
     momentsSortDirection = nextState.momentsSortDirection ?? momentsSortDirection;
+    selectedMomentsDate = nextState.momentsDate ?? selectedMomentsDate;
   });
   setupDraggableBracket(elements.bracket);
   elements.championCelebration?.addEventListener("click", (event) => {
@@ -149,6 +159,7 @@ if (root) {
 
   window.addEventListener("resize", () => {
     window.requestAnimationFrame(() => drawBracketLines(elements.bracket));
+    window.requestAnimationFrame(() => drawBracketLines(elements.momentsStructure?.querySelector("[data-moments-bracket]")));
     window.requestAnimationFrame(() => syncTabViewportHeight(elements, activeSectionTab));
     window.requestAnimationFrame(() => updateScheduleWheelState(elements));
   });
@@ -175,32 +186,93 @@ if (root) {
     for (const button of pageElements.momentsModeButtons) {
       button.addEventListener("click", () => {
         const state = readState();
-        writeState({
+        const nextState = {
           ...state,
           activeMomentsMode: button.dataset.momentsMode || "time"
-        });
-        renderMomentsPanelFromData(readData(), pageElements);
+        };
+        writeState(nextState);
+        renderMomentsPanelFromData(readData(), pageElements, nextState);
       });
     }
 
     pageElements.momentsSort?.addEventListener("click", () => {
       const state = readState();
-      writeState({
+      const nextState = {
         ...state,
         momentsSortDirection: state.momentsSortDirection === "desc" ? "asc" : "desc"
-      });
-      renderMomentsPanelFromData(readData(), pageElements);
+      };
+      writeState(nextState);
+      renderMomentsPanelFromData(readData(), pageElements, nextState);
     });
 
-    pageElements.momentsStructure?.addEventListener("click", (event) => {
+    pageElements.momentsDateToggle?.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const isOpen = pageElements.momentsDateToggle.getAttribute("aria-expanded") === "true";
+
+      if (isOpen) {
+        closeMomentsDateMenu(pageElements);
+      } else {
+        openMomentsDateMenu(pageElements);
+      }
+    });
+
+    pageElements.momentsDateMenu?.addEventListener("click", (event) => {
+      const option = event.target.closest("[data-moments-date-option]");
+
+      if (!option) {
+        return;
+      }
+
+      const nextState = {
+        ...readState(),
+        momentsDate: option.dataset.momentsDateOption || ""
+      };
+      writeState(nextState);
+      closeMomentsDateMenu(pageElements);
+      renderMomentsPanelFromData(readData(), pageElements, nextState);
+    });
+
+    const openMomentMatch = (matchId) => {
+      renderMomentsDetail(
+        matchId,
+        readData(),
+        pageElements,
+        filterMatchesByScheduleDate(getMomentSourceMatches(readData()), selectedMomentsDate)
+      );
+      syncTabViewportHeight(pageElements, activeSectionTab);
+    };
+
+    root?.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-moments-match-id]");
+
+      if (!button || !pageElements.momentsStructure?.contains(button)) {
+        return;
+      }
+
+      const dragHost = button.closest(".bracket-scroll");
+
+      if (dragHost?.dataset.suppressClick === "true") {
+        return;
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+      openMomentMatch(button.dataset.momentsMatchId);
+    }, true);
+
+    pageElements.momentsStructure?.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") {
+        return;
+      }
+
       const button = event.target.closest("[data-moments-match-id]");
 
       if (!button) {
         return;
       }
 
-      renderMomentsDetail(button.dataset.momentsMatchId, readData(), pageElements);
-      syncTabViewportHeight(pageElements, activeSectionTab);
+      event.preventDefault();
+      openMomentMatch(button.dataset.momentsMatchId);
     });
 
     pageElements.momentsModal?.addEventListener("click", (event) => {
@@ -213,6 +285,18 @@ if (root) {
 
       clearMomentsDetail(pageElements);
       syncTabViewportHeight(pageElements, activeSectionTab);
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!pageElements.momentsDateFilter?.contains(event.target)) {
+        closeMomentsDateMenu(pageElements);
+      }
+    });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMomentsDateMenu(pageElements);
+      }
     });
   }
 
@@ -391,12 +475,12 @@ function renderOverviewPanelFromData(nextData, elements) {
   window.setTimeout(() => drawBracketLines(elements.bracket), 280);
 }
 
-function renderMomentsPanelFromData(nextData, elements) {
+function renderMomentsPanelFromData(nextData, elements, overrideState = null) {
   if (!nextData) {
     return;
   }
 
-  renderMomentsFromData(nextData, elements, readMomentsState(elements));
+  renderMomentsFromData(nextData, elements, overrideState || readMomentsState(elements));
   loadPlayerNameData().then(() => {
     if (root?.dataset.activeWorldcupTab !== "moments") {
       return;
@@ -409,7 +493,8 @@ function renderMomentsPanelFromData(nextData, elements) {
 function readMomentsState(elements) {
   return {
     activeMomentsMode: root?.dataset.activeMomentsMode || "time",
-    momentsSortDirection: elements.momentsSort?.dataset.sortDirection || "desc"
+    momentsSortDirection: elements.momentsSort?.dataset.sortDirection || "desc",
+    momentsDate: selectedMomentsDate
   };
 }
 
@@ -457,6 +542,65 @@ function renderScheduleDateOption(option) {
       <em>${escapeHtml(formatTemplate(dateText.countTemplate, { count: option.count }))}</em>
     </button>
   `;
+}
+
+function renderMomentsDateFilter(matches, elements) {
+  if (!elements.momentsDateLabel || !elements.momentsDateMenu || !elements.momentsDateToggle) {
+    return;
+  }
+
+  const dateText = worldcupText.moments.dateFilter;
+  const dates = buildMomentDateOptions(matches);
+  const selected = dates.find((date) => date.key === selectedMomentsDate);
+  const label = selected ? selected.label : dateText.allLabel;
+
+  elements.momentsDateLabel.textContent = label;
+  elements.momentsDateToggle.classList.toggle("is-filtered", Boolean(selected));
+  elements.momentsDateToggle.setAttribute("aria-label", selected ? label : dateText.toggleAriaLabel);
+
+  if (!dates.length) {
+    elements.momentsDateMenu.innerHTML = `<div class="schedule-date-empty">${escapeHtml(dateText.emptyLabel)}</div>`;
+    return;
+  }
+
+  elements.momentsDateMenu.innerHTML = `
+    ${renderMomentsDateOption({
+      key: "",
+      label: dateText.allOptionLabel,
+      count: buildTimelineGroups(matches).length,
+      isActive: !selectedMomentsDate
+    })}
+    <div class="schedule-date-grid">
+      ${dates.map((date) => renderMomentsDateOption({
+        ...date,
+        isActive: date.key === selectedMomentsDate
+      })).join("")}
+    </div>
+  `;
+}
+
+function renderMomentsDateOption(option) {
+  const dateText = worldcupText.moments.dateFilter;
+
+  return `
+    <button class="schedule-date-option ${option.isActive ? "is-active" : ""}" type="button" role="option" aria-selected="${String(option.isActive)}" data-moments-date-option="${escapeAttribute(option.key)}">
+      <span>${escapeHtml(option.label)}</span>
+      <em>${escapeHtml(formatTemplate(dateText.countTemplate, { count: option.count }))}</em>
+    </button>
+  `;
+}
+
+function buildMomentDateOptions(matches) {
+  return buildScheduleDateOptions(matches.filter((match) => Array.isArray(match.events) && match.events.length));
+}
+
+function normalizeSelectedMomentDate(dateKey, matches) {
+  if (!dateKey) {
+    return "";
+  }
+
+  const availableDates = new Set(buildMomentDateOptions(matches).map((date) => date.key));
+  return availableDates.has(dateKey) ? dateKey : "";
 }
 
 function buildScheduleDateOptions(matches) {
@@ -545,6 +689,24 @@ function closeScheduleDateMenu(elements) {
   elements.scheduleDateToggle.setAttribute("aria-expanded", "false");
 }
 
+function openMomentsDateMenu(elements) {
+  if (!elements.momentsDateMenu || !elements.momentsDateToggle) {
+    return;
+  }
+
+  elements.momentsDateMenu.hidden = false;
+  elements.momentsDateToggle.setAttribute("aria-expanded", "true");
+}
+
+function closeMomentsDateMenu(elements) {
+  if (!elements.momentsDateMenu || !elements.momentsDateToggle) {
+    return;
+  }
+
+  elements.momentsDateMenu.hidden = true;
+  elements.momentsDateToggle.setAttribute("aria-expanded", "false");
+}
+
 function renderScheduleWheel(matches, previousData) {
   if (!matches.length) {
     return `<div class="empty-state">${escapeHtml(runtimeText.states.noUpcomingMatches)}</div>`;
@@ -576,9 +738,9 @@ function renderScheduleWheelCard(match, previousData, focusMatchId) {
       <div class="schedule-wheel-score">
         <span>${escapeHtml(stageLabel(match.stage))}</span>
         <strong aria-label="${escapeAttribute(scoreLabel(match))}">
-          <b class="${homeChanged ? "score-pop" : ""}">${formatScore(match.home?.score)}</b>
+          <b class="${homeChanged ? "score-pop" : ""}">${escapeHtml(formatSideScore(match, "home"))}</b>
           <em>:</em>
-          <b class="${awayChanged ? "score-pop" : ""}">${formatScore(match.away?.score)}</b>
+          <b class="${awayChanged ? "score-pop" : ""}">${escapeHtml(formatSideScore(match, "away"))}</b>
         </strong>
         <small>${escapeHtml(match.minute ? formatEventMinute(match.minute) : formatKickoffDateTime(match.kickoffTime))}</small>
       </div>
@@ -939,7 +1101,9 @@ function renderMomentsFromData(nextData, elements, state = {}) {
 
   const activeMode = state.activeMomentsMode || "time";
   const sortDirection = state.momentsSortDirection === "asc" ? "asc" : "desc";
-  const matches = getMomentSourceMatches(nextData);
+  const sourceMatches = getMomentSourceMatches(nextData);
+  selectedMomentsDate = normalizeSelectedMomentDate(state.momentsDate ?? selectedMomentsDate, sourceMatches);
+  const matches = filterMatchesByScheduleDate(sourceMatches, selectedMomentsDate);
 
   if (root) {
     root.dataset.activeMomentsMode = activeMode;
@@ -958,12 +1122,13 @@ function renderMomentsFromData(nextData, elements, state = {}) {
   }
 
   if (elements.momentsSort) {
-    elements.momentsSort.hidden = activeMode !== "time";
     elements.momentsSort.dataset.sortDirection = sortDirection;
     elements.momentsSort.textContent = sortDirection === "asc"
       ? worldcupText.moments.sort.asc
       : worldcupText.moments.sort.desc;
   }
+
+  renderMomentsDateFilter(sourceMatches, elements);
 
   if (elements.timeline) {
     elements.timeline.innerHTML = renderTimeline(matches, {
@@ -977,12 +1142,25 @@ function renderMomentsFromData(nextData, elements, state = {}) {
       matches,
       nextData.groupStage || [],
       nextData.knockout || [],
-      elements.momentsDetail?.dataset.selectedMatchId || ""
+      elements.momentsDetail?.dataset.selectedMatchId || "",
+      sortDirection
     );
+
+    const momentsBracket = elements.momentsStructure.querySelector("[data-moments-bracket]");
+
+    if (momentsBracket) {
+      setupDraggableBracket(momentsBracket);
+      window.requestAnimationFrame(() => drawBracketLines(momentsBracket));
+      window.setTimeout(() => drawBracketLines(momentsBracket), 280);
+    }
   }
 
-  if (elements.momentsDetail?.dataset.selectedMatchId) {
-    renderMomentsDetail(elements.momentsDetail.dataset.selectedMatchId, nextData, elements);
+  const selectedMatchId = elements.momentsDetail?.dataset.selectedMatchId || "";
+  const selectedStillVisible = selectedMatchId
+    && getStructureMomentSourceMatches(nextData, matches).some((match) => String(match.id) === String(selectedMatchId));
+
+  if (selectedStillVisible) {
+    renderMomentsDetail(selectedMatchId, nextData, elements, matches);
   } else {
     clearMomentsDetail(elements);
   }
@@ -1000,27 +1178,59 @@ function getMomentSourceMatches(nextData) {
   return nextData?.timelineMatches || [];
 }
 
-function renderMomentsStructure(matches, groupStage, knockout, selectedMatchId = "") {
-  const groups = buildTimelineGroups(matches, "matchTimeDesc");
+function renderMomentsStructure(matches, groupStage, knockout, selectedMatchId = "", sortDirection = "desc") {
+  const sortMode = sortDirection === "asc" ? "matchTimeAsc" : "matchTimeDesc";
+  const groups = buildTimelineGroups(matches, sortMode);
 
   if (!groups.length) {
     return `<div class="empty-state">${escapeHtml(runtimeText.states.noTimelineEvents)}</div>`;
   }
 
-  const groupSections = renderMomentGroupStageSections(groups, groupStage, selectedMatchId);
-  const knockoutSections = renderMomentKnockoutSections(groups, knockout, selectedMatchId);
-  const fallbackSections = groupSections || knockoutSections
-    ? ""
-    : renderMomentStageSection(stageLabel("Group Stage"), groups, selectedMatchId);
+  const momentMatchIds = new Set(groups.map(({ match }) => String(match.id)));
+  const interactiveMatchIds = buildStructureMatchIds(groupStage, knockout);
+  const hasKnockout = Array.isArray(knockout) && knockout.length;
+  const hasGroupStage = Array.isArray(groupStage) && groupStage.length;
 
   return `
-    ${groupSections}
-    ${knockoutSections}
-    ${fallbackSections}
+    <div class="moments-structure-visual">
+      ${hasKnockout ? `
+        <section class="moments-structure-section moments-structure-bracket">
+          <h3>${escapeHtml(worldcupText.panels.bracket.title)}</h3>
+          <div class="bracket-scroll moments-bracket-scroll" data-moments-bracket>
+            ${renderBracket(knockout, [], {
+              momentMatchIds,
+              interactiveMatchIds,
+              selectedMatchId,
+              interactiveMoments: true
+            })}
+          </div>
+        </section>
+      ` : ""}
+      ${hasGroupStage ? `
+        <section class="moments-structure-section moments-structure-groups">
+          <h3>${escapeHtml(worldcupText.panels.groupStage.title)}</h3>
+          <div class="group-stage-scroll moments-group-stage-scroll">
+            ${renderGroupStage(groupStage, {
+              momentMatchIds,
+              interactiveMatchIds,
+              selectedMatchId
+            })}
+          </div>
+        </section>
+      ` : ""}
+      ${!hasKnockout && !hasGroupStage ? renderMomentStageSection(stageLabel("Group Stage"), groups, selectedMatchId) : ""}
+    </div>
   `;
 }
 
-function renderMomentGroupStageSections(momentGroups, groupStage, selectedMatchId) {
+function buildStructureMatchIds(groupStage, knockout) {
+  return new Set([
+    ...(knockout || []).map((match) => String(match.id)),
+    ...(groupStage || []).flatMap((group) => (group.matches || []).map((match) => String(match.id)))
+  ]);
+}
+
+function renderMomentGroupStageSections(momentGroups, groupStage, selectedMatchId, sortDirection = "desc") {
   if (!groupStage.length) {
     const groupOnly = momentGroups.filter(({ match }) => isGroupStageMatch(match));
     return groupOnly.length
@@ -1031,7 +1241,8 @@ function renderMomentGroupStageSections(momentGroups, groupStage, selectedMatchI
   const groupMap = new Map(momentGroups.map((group) => [String(group.match.id), group]));
 
   return groupStage.map((group) => {
-    const sectionGroups = sortMatchesByKickoff(group.matches || [])
+    const orderedMatches = sortMatchesByKickoff(group.matches || []);
+    const sectionGroups = (sortDirection === "asc" ? orderedMatches : [...orderedMatches].reverse())
       .map((match) => groupMap.get(String(match.id)))
       .filter(Boolean);
 
@@ -1082,7 +1293,7 @@ function renderMomentStageSection(title, groups, selectedMatchId) {
 function renderMomentMatchButton(group, selectedMatchId) {
   const { match, events } = group;
   const selected = String(match.id) === String(selectedMatchId);
-  const score = `${formatScore(match.home?.score)}:${formatScore(match.away?.score)}`;
+  const score = formatMatchScore(match);
 
   return `
     <button class="moments-match-button ${selected ? "is-selected" : ""}" type="button" data-moments-match-id="${escapeAttribute(match.id)}" aria-label="${escapeAttribute(formatTemplate(worldcupText.moments.expandMatchAriaLabel, { match: formatMatchTitle(match) }))}">
@@ -1092,18 +1303,20 @@ function renderMomentMatchButton(group, selectedMatchId) {
       </span>
       <span class="moments-match-teams">
         <span>${renderTeamFlag(match.home?.name)}${escapeHtml(teamDisplayName(match.home?.name))}</span>
-        <strong>${escapeHtml(score)}</strong>
+          <strong>${escapeHtml(score)}</strong>
         <span>${renderTeamFlag(match.away?.name)}${escapeHtml(teamDisplayName(match.away?.name))}</span>
       </span>
     </button>
   `;
 }
 
-function renderMomentsDetail(matchId, nextData, elements) {
-  const group = buildTimelineGroups(getMomentSourceMatches(nextData), "matchTimeDesc")
-    .find(({ match }) => String(match.id) === String(matchId));
+function renderMomentsDetail(matchId, nextData, elements, sourceMatches = null) {
+  const source = getStructureMomentSourceMatches(nextData, sourceMatches);
+  const groups = buildTimelineGroups(source, "matchTimeDesc");
+  const group = groups.find(({ match }) => String(match.id) === String(matchId));
+  const fallbackMatch = source.find((match) => String(match.id) === String(matchId));
 
-  if (!elements.momentsDetail || !elements.momentsModal || !group) {
+  if (!elements.momentsDetail || !elements.momentsModal || (!group && !fallbackMatch)) {
     clearMomentsDetail(elements);
     return;
   }
@@ -1111,11 +1324,57 @@ function renderMomentsDetail(matchId, nextData, elements) {
   elements.momentsDetail.dataset.selectedMatchId = String(matchId);
   elements.momentsModal.hidden = false;
   elements.momentsModal.classList.add("is-visible");
-  elements.momentsDetail.innerHTML = renderMomentDetailCard(group.match, group.events);
+  elements.momentsDetail.innerHTML = renderMomentDetailCard(group?.match || fallbackMatch, group?.events || []);
 
   for (const button of elements.momentsStructure?.querySelectorAll("[data-moments-match-id]") || []) {
     button.classList.toggle("is-selected", button.dataset.momentsMatchId === String(matchId));
   }
+}
+
+function getStructureMomentSourceMatches(nextData, sourceMatches = null) {
+  const source = sourceMatches || getMomentSourceMatches(nextData);
+  const byId = new Map(source.map((match) => [String(match.id), match]));
+
+  for (const match of nextData?.knockout || []) {
+    if (!byId.has(String(match.id))) {
+      byId.set(String(match.id), bracketMatchToMomentMatch(match));
+    }
+  }
+
+  for (const group of nextData?.groupStage || []) {
+    for (const match of group.matches || []) {
+      if (!byId.has(String(match.id))) {
+        byId.set(String(match.id), match);
+      }
+    }
+  }
+
+  return [...byId.values()];
+}
+
+function bracketMatchToMomentMatch(match) {
+  return {
+    id: match.id,
+    status: match.status,
+    statusText: match.statusText,
+    stage: match.round,
+    round: match.round,
+    group: "",
+    venue: match.venue || runtimeText.states.defaultVenue,
+    kickoffTime: match.kickoffTime || "",
+    home: {
+      name: match.home,
+      score: match.homeScore
+    },
+    away: {
+      name: match.away,
+      score: match.awayScore
+    },
+    homePenaltyScore: match.homePenaltyScore,
+    awayPenaltyScore: match.awayPenaltyScore,
+    penaltyScore: match.penaltyScore,
+    events: []
+  };
 }
 
 function clearMomentsDetail(elements) {
@@ -1144,10 +1403,9 @@ function renderMomentDetailCard(match, events) {
           <strong>${escapeHtml(formatMatchTitle(match))}</strong>
           <span>${escapeHtml(formatKickoffDateTime(match.kickoffTime))} · ${escapeHtml(match.group ? formatGroupLabel(match.group) : stageLabel(match.stage))}</span>
         </div>
-        <button type="button" data-moments-close>${escapeHtml(worldcupText.moments.closeDetail)}</button>
       </header>
       <div class="timeline-event-list">
-        ${events.map((event) => renderTimelineEvent(event)).join("")}
+        ${events.length ? events.map((event) => renderTimelineEvent(event)).join("") : `<div class="empty-state">${escapeHtml(runtimeText.states.noTimelineEvents)}</div>`}
       </div>
     </article>
   `;
@@ -1354,9 +1612,9 @@ function renderHero(match, previousMatch, data) {
     <div class="hero-versus">
       ${renderHeroTeam(match.home, "home")}
       <div class="hero-score" aria-label="${escapeAttribute(scoreLabel(match))}">
-        <span class="score-number ${homeChanged ? "score-pop" : ""}">${formatMatchScoreValue(match.home.score, match.status)}</span>
+        <span class="score-number ${homeChanged ? "score-pop" : ""}">${escapeHtml(formatSideScore(match, "home", { unknownWhenNotStarted: true }))}</span>
         <span class="score-divider">:</span>
-        <span class="score-number ${awayChanged ? "score-pop" : ""}">${formatMatchScoreValue(match.away.score, match.status)}</span>
+        <span class="score-number ${awayChanged ? "score-pop" : ""}">${escapeHtml(formatSideScore(match, "away", { unknownWhenNotStarted: true }))}</span>
       </div>
       ${renderHeroTeam(match.away, "away")}
     </div>
@@ -1404,9 +1662,9 @@ function renderMatchCard(match, previousData) {
       </div>
       ${renderMiniTeam(match.home)}
       <div class="card-score-row">
-        <span class="${homeChanged ? "score-pop" : ""}">${formatScore(match.home.score)}</span>
+        <span class="${homeChanged ? "score-pop" : ""}">${escapeHtml(formatSideScore(match, "home"))}</span>
         <small>${match.minute ? formatEventMinute(match.minute) : formatKickoffDateTime(match.kickoffTime)}</small>
-        <span class="${awayChanged ? "score-pop" : ""}">${formatScore(match.away.score)}</span>
+        <span class="${awayChanged ? "score-pop" : ""}">${escapeHtml(formatSideScore(match, "away"))}</span>
       </div>
       ${renderMiniTeam(match.away)}
     </article>
@@ -1479,15 +1737,15 @@ function renderTimelineEvent(event) {
   `;
 }
 
-function renderGroupStage(groups) {
+function renderGroupStage(groups, options = {}) {
   if (!groups.length) {
     return `<div class="empty-state">${escapeHtml(runtimeText.states.noGroupStageData)}</div>`;
   }
 
-  return groups.map((group) => renderGroupCard(group)).join("");
+  return groups.map((group) => renderGroupCard(group, options)).join("");
 }
 
-function renderGroupCard(group) {
+function renderGroupCard(group, options = {}) {
   const matches = sortMatchesByKickoff(group.matches || []);
   const played = matches.filter(hasCompleteScore).length;
 
@@ -1513,7 +1771,7 @@ function renderGroupCard(group) {
         )).join("")}
       </div>
       <div class="group-fixtures">
-        ${matches.map(renderGroupFixture).join("")}
+        ${matches.map((match) => renderGroupFixture(match, options)).join("")}
       </div>
     </section>
   `;
@@ -1536,20 +1794,37 @@ function renderAdvanceLine() {
   `;
 }
 
-function renderGroupFixture(match) {
+function renderGroupFixture(match, options = {}) {
+  const matchId = String(match.id);
+  const hasMomentFilter = options.momentMatchIds instanceof Set;
+  const hasMoments = hasMomentFilter && options.momentMatchIds.has(matchId);
+  const isInteractive = options.interactiveMatchIds instanceof Set && options.interactiveMatchIds.has(matchId);
+  const isSelected = String(options.selectedMatchId || "") === matchId;
+  const tag = isInteractive ? "button" : "article";
+  const attrs = isInteractive
+    ? ` type="button" data-moments-match-id="${escapeAttribute(match.id)}" aria-label="${escapeAttribute(formatTemplate(worldcupText.moments.expandMatchAriaLabel, { match: formatMatchTitle(match) }))}"`
+    : "";
+  const className = [
+    "group-fixture",
+    hasMomentFilter ? "moments-group-fixture" : "",
+    hasMoments ? "has-moments" : hasMomentFilter ? "is-muted" : "",
+    isInteractive ? "is-interactive" : "",
+    isSelected ? "is-selected" : ""
+  ].filter(Boolean).join(" ");
+
   return `
-    <article class="group-fixture">
+    <${tag} class="${escapeAttribute(className)}"${attrs}>
       <span>${escapeHtml(formatKickoffDateTime(match.kickoffTime))}</span>
       <div>
         <strong>${renderTeamFlag(match.home.name)}<span>${escapeHtml(teamDisplayName(match.home.name))}</span></strong>
-        <small>${formatScore(match.home.score)} : ${formatScore(match.away.score)}</small>
+        <small>${escapeHtml(formatMatchScore(match))}</small>
         <strong>${renderTeamFlag(match.away.name)}<span>${escapeHtml(teamDisplayName(match.away.name))}</span></strong>
       </div>
-    </article>
+    </${tag}>
   `;
 }
 
-function renderBracket(knockout, groupStage = []) {
+function renderBracket(knockout, groupStage = [], options = {}) {
   if (!knockout.length) {
     return `<div class="empty-state">${escapeHtml(runtimeText.states.noBracketData)}</div>`;
   }
@@ -1564,11 +1839,11 @@ function renderBracket(knockout, groupStage = []) {
         <section class="bracket-round" data-round="${escapeAttribute(column.round)}">
           <h3>${escapeHtml(stageLabel(column.label))}</h3>
           <div class="bracket-round-track">
-            ${column.matches.map(({ match, index }) => renderBracketMatch(match, match.round, index)).join("")}
+            ${column.matches.map(({ match, index }) => renderBracketMatch(match, match.round, index, options)).join("")}
           </div>
         </section>
       `).join("")}
-      ${renderChampionColumn(knockout)}
+      ${renderChampionColumn(knockout, options)}
     </div>
   `;
 }
@@ -1668,7 +1943,7 @@ function renderBracketGroupCutLine() {
   return `<span class="bracket-group-cut-line" aria-hidden="true"></span>`;
 }
 
-function renderChampionColumn(knockout) {
+function renderChampionColumn(knockout, options = {}) {
   const finalMatch = knockout.find((match) => match.round === "Final");
   const thirdPlaceMatch = knockout.find((match) => match.round === "Match for third place");
   const champion = finalMatch?.winner || "";
@@ -1685,15 +1960,18 @@ function renderChampionColumn(knockout) {
             <strong>${escapeHtml(champion ? teamDisplayName(champion) : runtimeText.states.defaultTeam)}</strong>
           </div>
         </article>
-        ${thirdPlaceMatch ? renderBracketResultMatch(thirdPlaceMatch, thirdPlaceMatch.round) : ""}
+        ${thirdPlaceMatch ? renderBracketResultMatch(thirdPlaceMatch, thirdPlaceMatch.round, options) : ""}
       </div>
     </section>
   `;
 }
 
-function renderBracketResultMatch(match, round) {
+function renderBracketResultMatch(match, round, options = {}) {
+  const momentAttrs = renderMomentMatchAttrs(match, options);
+  const momentClass = renderMomentMatchClass(match, options);
+
   return `
-    <article class="bracket-match bracket-result-match bracket-third-place-match status-${escapeAttribute(match.status.toLowerCase())}" style="--slot: 21; --span: 5;" data-match-id="${escapeAttribute(match.id)}" data-bracket-round="${escapeAttribute(round)}">
+    <article class="bracket-match bracket-result-match bracket-third-place-match ${momentClass} status-${escapeAttribute(match.status.toLowerCase())}" style="--slot: 21; --span: 5;" data-match-id="${escapeAttribute(match.id)}" data-bracket-round="${escapeAttribute(round)}"${momentAttrs}>
       <span class="bracket-result-kicker">${escapeHtml(stageLabel(round))}</span>
       ${renderBracketTeamRow(match, round, "home")}
       ${renderBracketTeamRow(match, round, "away")}
@@ -1701,19 +1979,49 @@ function renderBracketResultMatch(match, round) {
   `;
 }
 
-function renderBracketMatch(match, round, index) {
+function renderBracketMatch(match, round, index, options = {}) {
   const advanceText = match.nextMatchId
     ? formatTemplate(runtimeText.states.advanceTemplate, { nextMatchId: match.nextMatchId })
     : "";
   const placement = bracketPlacement(round, index);
+  const momentAttrs = renderMomentMatchAttrs(match, options);
+  const momentClass = renderMomentMatchClass(match, options);
 
   return `
-    <article class="bracket-match status-${escapeAttribute(match.status.toLowerCase())}" style="--slot: ${placement.slot}; --span: ${placement.span};" data-match-id="${escapeAttribute(match.id)}" data-bracket-round="${escapeAttribute(round)}" data-next-match-id="${escapeAttribute(match.nextMatchId || "")}" data-next-match-ids="${escapeAttribute((match.nextMatchIds || []).join(","))}">
+    <article class="bracket-match ${momentClass} status-${escapeAttribute(match.status.toLowerCase())}" style="--slot: ${placement.slot}; --span: ${placement.span};" data-match-id="${escapeAttribute(match.id)}" data-bracket-round="${escapeAttribute(round)}" data-next-match-id="${escapeAttribute(match.nextMatchId || "")}" data-next-match-ids="${escapeAttribute((match.nextMatchIds || []).join(","))}"${momentAttrs}>
       ${renderBracketTeamRow(match, round, "home")}
       ${renderBracketTeamRow(match, round, "away")}
       <small>${escapeHtml(statusLabel(match.status))}${advanceText ? ` · ${escapeHtml(advanceText)}` : ""}</small>
     </article>
   `;
+}
+
+function renderMomentMatchAttrs(match, options = {}) {
+  const canOpen = options.interactiveMatchIds instanceof Set
+    ? options.interactiveMatchIds.has(String(match.id))
+    : options.momentMatchIds instanceof Set && options.momentMatchIds.has(String(match.id));
+
+  if (!options.interactiveMoments || !canOpen) {
+    return "";
+  }
+
+  return ` data-moments-match-id="${escapeAttribute(match.id)}" role="button" tabindex="0" aria-label="${escapeAttribute(formatTemplate(worldcupText.moments.expandMatchAriaLabel, { match: formatBracketMatchTitle(match) }))}"`;
+}
+
+function renderMomentMatchClass(match, options = {}) {
+  if (!options.interactiveMoments || !(options.momentMatchIds instanceof Set)) {
+    return "";
+  }
+
+  const hasMoments = options.momentMatchIds.has(String(match.id));
+  const isInteractive = options.interactiveMatchIds instanceof Set && options.interactiveMatchIds.has(String(match.id));
+  const selected = String(options.selectedMatchId || "") === String(match.id);
+
+  return [
+    hasMoments ? "has-moments" : "is-muted",
+    isInteractive ? "is-interactive" : "",
+    selected ? "is-selected" : ""
+  ].filter(Boolean).join(" ");
 }
 
 function renderBracketTeamRow(match, round, side) {
@@ -1728,7 +2036,7 @@ function renderBracketTeamRow(match, round, side) {
         <b>${escapeHtml(teamDisplayName(team))}</b>
         ${placementLabel ? `<em class="bracket-placement-badge">${escapeHtml(placementLabel)}</em>` : ""}
       </span>
-      <strong>${formatScore(score)}</strong>
+      <strong>${escapeHtml(formatSideScore(match, side, { score }))}</strong>
     </div>
   `;
 }
@@ -1977,13 +2285,37 @@ function setupDraggableBracket(container) {
   let hasMoved = false;
   let startX = 0;
   let startScrollLeft = 0;
+  let suppressClickAfterDrag = false;
+  let suppressClickTimer = 0;
+
+  const isInteractiveTarget = (target) => Boolean(target?.closest?.("[data-moments-match-id]"));
+
+  const clearSuppressedClick = () => {
+    suppressClickAfterDrag = false;
+    hasMoved = false;
+    container.dataset.suppressClick = "";
+    window.clearTimeout(suppressClickTimer);
+  };
 
   const stopDragging = () => {
+    if (isDragging && hasMoved) {
+      suppressClickAfterDrag = true;
+      container.dataset.suppressClick = "true";
+      window.clearTimeout(suppressClickTimer);
+      suppressClickTimer = window.setTimeout(clearSuppressedClick, 120);
+    }
+
     isDragging = false;
     container.classList.remove("is-dragging");
   };
 
   container.addEventListener("pointerdown", (event) => {
+    clearSuppressedClick();
+
+    if (isInteractiveTarget(event.target)) {
+      return;
+    }
+
     if (event.button !== 0 || event.pointerType === "touch" || container.scrollWidth <= container.clientWidth) {
       return;
     }
@@ -2018,13 +2350,13 @@ function setupDraggableBracket(container) {
   container.addEventListener("pointercancel", stopDragging);
   container.addEventListener("lostpointercapture", stopDragging);
   container.addEventListener("click", (event) => {
-    if (!hasMoved) {
+    if (!suppressClickAfterDrag && !hasMoved) {
       return;
     }
 
     event.preventDefault();
     event.stopPropagation();
-    hasMoved = false;
+    clearSuppressedClick();
   }, true);
 }
 
@@ -2266,16 +2598,115 @@ function formatScore(score) {
   return score === null || score === undefined ? "–" : String(score);
 }
 
-function formatMatchScoreValue(score, status) {
-  if (status === "NS" && (score === null || score === undefined)) {
+function formatBaseScoreValue(score, status, options = {}) {
+  if (options.unknownWhenNotStarted && status === "NS" && (score === null || score === undefined)) {
     return "?";
   }
 
   return formatScore(score);
 }
 
+function formatSideScore(match, side, options = {}) {
+  const score = options.score !== undefined ? options.score : readSideScore(match, side);
+  const baseScore = formatBaseScoreValue(score, match?.status, options);
+  const penaltyScore = readPenaltyScore(match, side);
+
+  return penaltyScore === null ? baseScore : `${baseScore}(${penaltyScore})`;
+}
+
+function formatMatchScore(match, options = {}) {
+  return `${formatSideScore(match, "home", options)}:${formatSideScore(match, "away", options)}`;
+}
+
+function readSideScore(match, side) {
+  if (!match || side !== "home" && side !== "away") {
+    return null;
+  }
+
+  if (match[side] && typeof match[side] === "object" && "score" in match[side]) {
+    return match[side].score;
+  }
+
+  return side === "home" ? match.homeScore : match.awayScore;
+}
+
+function readPenaltyScore(match, side) {
+  if (!isPenaltyShootoutScoreVisible(match) || side !== "home" && side !== "away") {
+    return null;
+  }
+
+  const direct = side === "home" ? match.homePenaltyScore : match.awayPenaltyScore;
+
+  if (isExplicitScoreValue(direct)) {
+    return String(Number(direct));
+  }
+
+  const source = match.penaltyScore || match.penalties || match.penalty || match.score?.penalty || match.score?.p;
+  let value = null;
+
+  if (Array.isArray(source)) {
+    value = side === "home" ? source[0] : source[1];
+  } else if (source && typeof source === "object") {
+    value = side === "home"
+      ? source.home ?? source.homeScore ?? source.team1
+      : source.away ?? source.awayScore ?? source.team2;
+  }
+
+  return isExplicitScoreValue(value) ? String(Number(value)) : null;
+}
+
+function isPenaltyShootoutScoreVisible(match) {
+  if (!match || !isKnockoutStageForPenalty(match)) {
+    return false;
+  }
+
+  const homeScore = readSideScore(match, "home");
+  const awayScore = readSideScore(match, "away");
+
+  if (!isExplicitScoreValue(homeScore) || !isExplicitScoreValue(awayScore) || Number(homeScore) !== Number(awayScore)) {
+    return false;
+  }
+
+  return hasPenaltyPair(match);
+}
+
+function hasPenaltyPair(match) {
+  const homeDirect = match?.homePenaltyScore;
+  const awayDirect = match?.awayPenaltyScore;
+
+  if (isExplicitScoreValue(homeDirect) && isExplicitScoreValue(awayDirect)) {
+    return true;
+  }
+
+  const source = match?.penaltyScore || match?.penalties || match?.penalty || match?.score?.penalty || match?.score?.p;
+
+  if (Array.isArray(source)) {
+    return isExplicitScoreValue(source[0]) && isExplicitScoreValue(source[1]);
+  }
+
+  if (!source || typeof source !== "object") {
+    return false;
+  }
+
+  return isExplicitScoreValue(source.home ?? source.homeScore ?? source.team1)
+    && isExplicitScoreValue(source.away ?? source.awayScore ?? source.team2);
+}
+
+function isKnockoutStageForPenalty(match) {
+  const label = String(match.round || match.stage || "");
+  return !isGroupStageMatch(match)
+    && /Round of 32|Round of 16|Quarter|Semi|Final|third place/i.test(label);
+}
+
+function isExplicitScoreValue(value) {
+  return value !== null
+    && value !== undefined
+    && value !== ""
+    && Number.isFinite(Number(value));
+}
+
 function scoreLabel(match) {
-  return `${teamDisplayName(match.home.name)} ${formatMatchScoreValue(match.home.score, match.status)}, ${teamDisplayName(match.away.name)} ${formatMatchScoreValue(match.away.score, match.status)}`;
+  return `${teamDisplayName(match.home.name)} ${formatSideScore(match, "home", { unknownWhenNotStarted: true })}, ${teamDisplayName(match.away.name)} ${formatSideScore(match, "away", { unknownWhenNotStarted: true })}`;
 }
 
 export function formatTime(value) {
@@ -2429,6 +2860,14 @@ function formatMatchTitle(match) {
     teamDisplayName(match.home?.name),
     runtimeText.states.versus,
     teamDisplayName(match.away?.name)
+  ].join(" ");
+}
+
+function formatBracketMatchTitle(match) {
+  return [
+    teamDisplayName(match.home),
+    runtimeText.states.versus,
+    teamDisplayName(match.away)
   ].join(" ");
 }
 

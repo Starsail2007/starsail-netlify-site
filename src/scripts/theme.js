@@ -1,13 +1,14 @@
 import siteText from "../content/siteText";
 
-const themeToggle = document.querySelector(".theme-toggle");
-const themeLabel = document.querySelector(".theme-label");
+const themeToggles = [...document.querySelectorAll(".theme-toggle")];
 const storageKey = "starsail-theme";
 const themeText = siteText.shared.theme;
+const validThemes = new Set(["dark", "light"]);
 
 const readSavedTheme = () => {
   try {
-    return window.localStorage.getItem(storageKey);
+    const theme = window.localStorage.getItem(storageKey);
+    return validThemes.has(theme) ? theme : null;
   } catch {
     return null;
   }
@@ -22,27 +23,41 @@ const saveTheme = (theme) => {
 };
 
 const setTheme = (theme) => {
-  document.documentElement.dataset.theme = theme;
+  const nextTheme = validThemes.has(theme) ? theme : "dark";
+  document.documentElement.dataset.theme = nextTheme;
 
-  if (!themeToggle || !themeLabel) {
+  if (themeToggles.length === 0) {
     return;
   }
 
-  themeLabel.textContent = theme === "dark" ? themeText.darkLabel : themeText.lightLabel;
-  themeToggle.setAttribute(
-    "aria-label",
-    theme === "dark"
-      ? themeText.darkAriaLabel
-      : themeText.lightAriaLabel
-  );
+  themeToggles.forEach((toggle) => {
+    const label = toggle.querySelector(".theme-label");
+
+    if (label) {
+      label.textContent = nextTheme === "dark" ? themeText.darkLabel : themeText.lightLabel;
+    }
+
+    toggle.setAttribute(
+      "aria-label",
+      nextTheme === "dark"
+        ? themeText.darkAriaLabel
+        : themeText.lightAriaLabel
+    );
+  });
 };
 
-const forceDarkInitialTheme = document.body.classList.contains("maimai-body");
-const initialTheme = forceDarkInitialTheme ? "dark" : readSavedTheme() === "light" ? "light" : "dark";
-setTheme(initialTheme);
+setTheme(readSavedTheme() || document.documentElement.dataset.theme || "dark");
 
-themeToggle?.addEventListener("click", () => {
-  const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-  setTheme(nextTheme);
-  saveTheme(nextTheme);
+themeToggles.forEach((toggle) => {
+  toggle.addEventListener("click", () => {
+    const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+    saveTheme(nextTheme);
+  });
+});
+
+window.addEventListener("storage", (event) => {
+  if (event.key === storageKey) {
+    setTheme(validThemes.has(event.newValue) ? event.newValue : "dark");
+  }
 });

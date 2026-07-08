@@ -18,8 +18,20 @@ const SCHEDULE_LOOKAHEAD_DAYS = 3;
 const OPENFOOTBALL_2026_URL = "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json";
 const OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses";
 const DEFAULT_OPENAI_MODEL = "gpt-5.5";
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Cache-Control"
+};
 
-export default async function handler() {
+export default async function handler(request) {
+  if (request?.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: CORS_HEADERS
+    });
+  }
+
   const apiKey = process.env.FOOTBALL_API_KEY;
   const leagueId = process.env.FOOTBALL_LEAGUE_ID || DEFAULT_LEAGUE_ID;
   const season = process.env.FOOTBALL_SEASON || DEFAULT_SEASON;
@@ -99,6 +111,7 @@ function jsonResponse(payload, status = 200, headers = {}) {
   return new Response(JSON.stringify(payload), {
     status,
     headers: {
+      ...CORS_HEADERS,
       "Content-Type": "application/json; charset=utf-8",
       ...headers
     }

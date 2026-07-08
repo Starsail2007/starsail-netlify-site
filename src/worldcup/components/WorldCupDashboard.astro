@@ -1,6 +1,7 @@
 ---
 import siteText from "../../content/siteText";
 import { withBasePath } from "../../lib/basePath";
+import ThemeToggle from "../../components/ThemeToggle.astro";
 
 const text = siteText.worldcup;
 const homeHref = withBasePath("/");
@@ -17,6 +18,7 @@ const championLogoSrc = withBasePath(text.champion.logoSrc);
         <path d="M9.5 21v-6h5v6" />
       </svg>
     </a>
+    <ThemeToggle />
   </header>
 
   <main class="worldcup-shell">
@@ -125,6 +127,18 @@ const championLogoSrc = withBasePath(text.champion.logoSrc);
                   <button class="moments-mode-button" type="button" data-moments-mode="structure" aria-selected="false">
                     {text.moments.modes.structure}
                   </button>
+                </div>
+                <div class="schedule-date-filter moments-date-filter" data-moments-date-filter>
+                  <button class="schedule-date-button moments-date-button" type="button" data-moments-date-toggle aria-haspopup="listbox" aria-expanded="false" aria-label={text.moments.dateFilter.toggleAriaLabel}>
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path d="M7 2.8v3.4" />
+                      <path d="M17 2.8v3.4" />
+                      <path d="M4.6 8.4h14.8" />
+                      <path d="M5.4 4.8h13.2c1 0 1.8.8 1.8 1.8v12.1c0 1-.8 1.8-1.8 1.8H5.4c-1 0-1.8-.8-1.8-1.8V6.6c0-1 .8-1.8 1.8-1.8Z" />
+                    </svg>
+                    <span data-moments-date-label>{text.moments.dateFilter.allLabel}</span>
+                  </button>
+                  <div class="schedule-date-menu moments-date-menu" data-moments-date-menu role="listbox" hidden></div>
                 </div>
                 <button class="moments-sort-button" type="button" data-moments-sort aria-label={text.moments.sort.ariaLabel}>
                   {text.moments.sort.desc}

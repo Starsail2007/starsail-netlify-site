@@ -6,10 +6,14 @@ const { text } = Astro.props;
 const headlineChars = [...text.hero.headline];
 const modalId = "entry-original-avatar-modal";
 const avatarSrc = withBasePath("/assets/avatar.jpeg");
+const contactText = text.avatarModal.contact;
+const qqQrSrc = withBasePath(contactText.qq.qrSrc);
+const gmailHref = `mailto:${contactText.gmail.address}`;
 ---
 
 <section class="original-stage" aria-label={text.stageAriaLabel} data-interactive-root>
   <header class="original-header">
+    <div class="original-version-label">{text.header.versionLabel}</div>
     <div class="original-header-actions">
       <ThemeToggle />
       <div class="original-builder" aria-label={text.header.builderAriaLabel}>
@@ -104,13 +108,81 @@ const avatarSrc = withBasePath("/assets/avatar.jpeg");
           <p class="original-avatar-motto">{text.avatarModal.motto}</p>
           <p>{text.avatarModal.description}</p>
         </div>
-        <div class="original-social-slots" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
+        <div class="original-contact-panel" aria-label={contactText.ariaLabel}>
+          <article class="original-contact-card original-contact-card-qq">
+            <div class="original-contact-copy">
+              <span class="original-contact-label">{contactText.qq.label}</span>
+              <strong class="original-contact-value">{contactText.qq.value}</strong>
+              <div class="original-contact-actions">
+                <button
+                  class="original-contact-action"
+                  type="button"
+                  data-entry-copy={contactText.qq.value}
+                  data-copy-label={contactText.qq.copyLabel}
+                  data-copy-done={contactText.qq.copyDone}
+                >
+                  {contactText.qq.copyLabel}
+                </button>
+              </div>
+            </div>
+            <button
+              class="original-contact-qr"
+              type="button"
+              aria-label={contactText.qq.qrAriaLabel}
+              data-entry-qr-open
+            >
+              <img src={qqQrSrc} alt={contactText.qq.qrAlt} loading="lazy" />
+            </button>
+          </article>
+
+          <article class="original-contact-card original-contact-card-mail">
+            <div class="original-contact-copy">
+              <span class="original-contact-label">{contactText.gmail.label}</span>
+              <strong class="original-contact-value original-contact-email">{contactText.gmail.address}</strong>
+              <div class="original-contact-actions">
+                <a class="original-contact-action" href={gmailHref}>
+                  {contactText.gmail.mailLabel}
+                </a>
+                <button
+                  class="original-contact-action"
+                  type="button"
+                  data-entry-copy={contactText.gmail.address}
+                  data-copy-label={contactText.gmail.copyLabel}
+                  data-copy-done={contactText.gmail.copyDone}
+                >
+                  {contactText.gmail.copyLabel}
+                </button>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
+    </div>
+
+    <div
+      class="original-qr-zoom"
+      role="dialog"
+      aria-label={contactText.qq.zoomAriaLabel}
+      hidden
+      data-entry-qr-zoom
+    >
+      <div class="original-qr-zoom-backdrop" data-entry-qr-close></div>
+      <section class="original-qr-zoom-card">
+        <button
+          class="entry-modal-close original-modal-close original-qr-zoom-close"
+          type="button"
+          aria-label={contactText.qq.zoomCloseAriaLabel}
+          data-entry-qr-close
+        ></button>
+        <img class="original-qr-zoom-image" src={qqQrSrc} alt={contactText.qq.qrAlt} loading="lazy" />
+        <a
+          class="original-contact-action original-qr-download"
+          href={qqQrSrc}
+          download="starsail-qq-qrcode.jpg"
+        >
+          {contactText.qq.downloadLabel}
+        </a>
+      </section>
     </div>
   </section>
 </div>
@@ -119,7 +191,7 @@ const avatarSrc = withBasePath("/assets/avatar.jpeg");
   class="original-changelog-modal"
   role="dialog"
   aria-modal="true"
-  aria-label={text.changelog.label}
+  aria-labelledby="original-changelog-title"
   hidden
   data-original-changelog-modal
 >
@@ -131,5 +203,20 @@ const avatarSrc = withBasePath("/assets/avatar.jpeg");
       aria-label={text.changelog.closeAriaLabel}
       data-original-changelog-close
     ></button>
+    <div class="original-changelog-content">
+      <h2 id="original-changelog-title">{text.changelog.title}</h2>
+      <ol class="original-changelog-timeline">
+        {text.changelog.items.map((item) => (
+          <li>
+            <time>{item.date}</time>
+            <p>
+              {item.parts.map((part) => (
+                part.emphasis ? <strong>{part.text}</strong> : <span>{part.text}</span>
+              ))}
+            </p>
+          </li>
+        ))}
+      </ol>
+    </div>
   </section>
 </div>

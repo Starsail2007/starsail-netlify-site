@@ -81,6 +81,8 @@ function normalizeFixture(item) {
 
   const status = fixture.status?.short || "NS";
 
+  const penaltyScore = readApiFootballPenaltyScore(item.score);
+
   return {
     id: String(fixture.id),
     status,
@@ -93,6 +95,7 @@ function normalizeFixture(item) {
     kickoffTime: fixture.date,
     home: normalizeTeam(home, item.goals?.home),
     away: normalizeTeam(away, item.goals?.away),
+    penaltyScore,
     events: normalizeEvents(item.events)
   };
 }
@@ -114,6 +117,7 @@ function normalizeOpenAIMatch(item) {
     kickoffTime: item.kickoffTime,
     home: normalizeScheduleTeam(item.home),
     away: normalizeScheduleTeam(item.away),
+    penaltyScore: normalizePenaltyScore(item.penaltyScore || item.score?.penalty || item.score?.p),
     events: Array.isArray(item.events) ? item.events : []
   };
 }
@@ -130,7 +134,8 @@ function normalizeOpenFootballMatch(item) {
   }
 
   const score = readOpenFootballScore(item.score);
-  const status = score ? "FT" : readScheduleStatus(kickoffTime);
+  const penaltyScore = readOpenFootballPenaltyScore(item.score);
+  const status = penaltyScore ? "PEN" : score ? "FT" : readScheduleStatus(kickoffTime);
 
   return {
     id: String(item.num || `openfootball-${item.date}-${item.team1}-${item.team2}`),
@@ -150,6 +155,7 @@ function normalizeOpenFootballMatch(item) {
       name: item.team2,
       score: score?.[1] ?? null
     }),
+    penaltyScore,
     events: normalizeOpenFootballGoals(item)
   };
 }
@@ -197,6 +203,42 @@ function readOpenFootballScore(score) {
   }
 
   return null;
+}
+
+function readOpenFootballPenaltyScore(score) {
+  return normalizePenaltyScore(score?.p);
+}
+
+function readApiFootballPenaltyScore(score) {
+  return normalizePenaltyScore(score?.penalty);
+}
+
+function normalizePenaltyScore(value) {
+  let home = null;
+  let away = null;
+
+  if (Array.isArray(value)) {
+    [home, away] = value;
+  } else if (value && typeof value === "object") {
+    home = value.home ?? value.homeScore ?? value.team1 ?? null;
+    away = value.away ?? value.awayScore ?? value.team2 ?? null;
+  }
+
+  if (!isExplicitScoreValue(home) || !isExplicitScoreValue(away)) {
+    return null;
+  }
+
+  return {
+    home: Number(home),
+    away: Number(away)
+  };
+}
+
+function isExplicitScoreValue(value) {
+  return value !== null
+    && value !== undefined
+    && value !== ""
+    && Number.isFinite(Number(value));
 }
 
 function normalizeOpenFootballGoals(item) {
@@ -265,6 +307,7 @@ function buildOpenFootballKnockout(matches) {
   return knockoutMatches
     .map((match) => {
       const score = readOpenFootballScore(match.score);
+      const penaltyScore = readOpenFootballPenaltyScore(match.score);
       const winner = readOpenFootballWinner(match);
       const nextMatchIds = findOpenFootballNextMatchIds(match, knockoutMatches, winner);
 
@@ -275,8 +318,11 @@ function buildOpenFootballKnockout(matches) {
         away: match.team2,
         homeScore: score?.[0] ?? null,
         awayScore: score?.[1] ?? null,
+        homePenaltyScore: penaltyScore?.home ?? null,
+        awayPenaltyScore: penaltyScore?.away ?? null,
+        penaltyScore,
         winner,
-        status: score ? "FT" : "NS",
+        status: penaltyScore ? "PEN" : score ? "FT" : "NS",
         nextMatchId: nextMatchIds[0] || "",
         nextMatchIds
       };

@@ -10,7 +10,7 @@
 
 - 首页：夜间默认的个人入口，包含头像展示、入口选项、更新日志弹层和若干入口/loader 原型。
 - maimai：静态快照优先的成绩展示页，包含 B50、Rating 曲线、同步时间线和建议面板；远端刷新是可选能力。
-- 世界杯：实时赛事展示页，包含赛程滚轮、日期筛选、分组/淘汰赛、关键瞬间和冠军庆祝层；数据优先读取 GitHub 静态 JSON，并保留 Netlify Function 兜底。
+- 世界杯：实时赛事展示页，包含赛程滚轮、日期筛选、分组/淘汰赛、关键瞬间和冠军庆祝层；数据优先读取 GitHub 静态 JSON，GitHub Actions 负责更新，Netlify Function 仅作兜底。
 - 实验页：保留入口改版、loader、候选方案等探索页面，作为设计迭代空间。
 - 公网主地址：`https://starsail.netlify.app/`
 - GitHub Pages 静态备用地址：`https://starsail2007.github.io/starsail-netlify-site/`

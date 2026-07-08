@@ -2,7 +2,9 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import siteText from "../content/siteText";
 import EntryOriginalDemo from "../components/prototypes/EntryOriginalDemo.astro";
+import IntroLoader from "../components/IntroLoader.astro";
 import "../styles/entry-original-demo.css";
+import "../styles/intro-loader.css";
 
 const text = siteText.entryRedesign.originalDemo;
 ---
@@ -12,8 +14,9 @@ const text = siteText.entryRedesign.originalDemo;
   description={siteText.shared.defaults.description}
   bodyClass="original-demo-body"
 >
-  <main class="original-demo-page" aria-label={text.pageAriaLabel}>
+  <main class="original-demo-page is-entry-loading" aria-label={text.pageAriaLabel} data-site-entry-page>
     <EntryOriginalDemo text={text} />
+    <IntroLoader />
   </main>
 </BaseLayout>
 
@@ -21,4 +24,5 @@ const text = siteText.entryRedesign.originalDemo;
   import "../scripts/theme.js";
   import "../scripts/entry-redesign.js";
   import "../scripts/motion.js";
+  import "../scripts/site-entry-loader.js";
 </script>

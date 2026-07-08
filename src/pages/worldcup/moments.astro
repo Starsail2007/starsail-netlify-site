@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import siteText from "../../content/siteText";
 import { withBasePath } from "../../lib/basePath";
+import ThemeToggle from "../../components/ThemeToggle.astro";
 import "../../styles/worldcup.css";
 
 const text = siteText.worldcup;
@@ -17,7 +18,10 @@ const worldcupHref = withBasePath("/worldcup/");
   <section class="worldcup-page worldcup-moments-page" data-worldcup-moments-root aria-label={pageText.pageAriaLabel}>
     <header class="worldcup-topbar">
       <a class="worldcup-back" href={worldcupHref}>{pageText.backLink}</a>
-      <div class="worldcup-live-pill" data-source-pill>{pageText.sourceInitial}</div>
+      <div class="worldcup-topbar-actions">
+        <div class="worldcup-live-pill" data-source-pill>{pageText.sourceInitial}</div>
+        <ThemeToggle />
+      </div>
     </header>
 
     <main class="worldcup-shell">
@@ -50,5 +54,7 @@ const worldcupHref = withBasePath("/worldcup/");
 </BaseLayout>
 
 <script>
+  import "../../scripts/theme.js";
+  import "../../scripts/motion.js";
   import "../../scripts/worldcup-moments.js";
 </script>
