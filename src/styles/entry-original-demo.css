@@ -460,6 +460,18 @@ html[data-theme="light"] .theme-glyph {
   overflow: hidden;
 }
 
+.original-option-visual-mask {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  -webkit-clip-path: inset(0 round 999px);
+  clip-path: inset(0 round 999px);
+  contain: paint;
+  pointer-events: none;
+}
+
 .original-option-maimai-light {
   position: absolute;
   inset: -18px -18px -18px 43%;
@@ -473,7 +485,7 @@ html[data-theme="light"] .theme-glyph {
   pointer-events: none;
 }
 
-.original-option-featured::before {
+.original-option-featured .original-option-visual-mask::before {
   content: "";
   position: absolute;
   inset: -32% -18% -32% 38%;
@@ -714,7 +726,7 @@ html[data-theme="light"] .original-option-football {
   filter: blur(.8px) saturate(.82) contrast(.94) brightness(.96);
 }
 
-html[data-theme="light"] .original-option-featured::before {
+html[data-theme="light"] .original-option-featured .original-option-visual-mask::before {
   opacity: .56;
   filter: blur(1px) saturate(1) contrast(.94) brightness(.96);
 }

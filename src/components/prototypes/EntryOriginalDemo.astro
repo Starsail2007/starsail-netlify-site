@@ -65,29 +65,31 @@ const gmailHref = `mailto:${contactText.gmail.address}`;
             data-entry-disabled={item.href === "#" ? "true" : undefined}
             data-option-prompt={item.prompt || undefined}
           >
-            {isMaimaiOption && (
-              <>
-                <span class="original-option-maimai-light" aria-hidden="true"></span>
-                <img
-                  class="original-option-derakkuma"
-                  src={derakkumaHeadSrc}
-                  alt=""
-                  loading="eager"
-                  decoding="async"
-                  aria-hidden="true"
-                />
-                <span class="original-option-maimai-glass" aria-hidden="true"></span>
-              </>
-            )}
-            {item.featured && (
-              <img
-                class="original-option-football"
-                src={footballSrc}
-                alt=""
-                loading="eager"
-                decoding="async"
-                aria-hidden="true"
-              />
+            {(isMaimaiOption || item.featured) && (
+              <span class="original-option-visual-mask" aria-hidden="true">
+                {isMaimaiOption && (
+                  <>
+                    <span class="original-option-maimai-light"></span>
+                    <img
+                      class="original-option-derakkuma"
+                      src={derakkumaHeadSrc}
+                      alt=""
+                      loading="eager"
+                      decoding="async"
+                    />
+                    <span class="original-option-maimai-glass"></span>
+                  </>
+                )}
+                {item.featured && (
+                  <img
+                    class="original-option-football"
+                    src={footballSrc}
+                    alt=""
+                    loading="eager"
+                    decoding="async"
+                  />
+                )}
+              </span>
             )}
             <strong>{item.label || item.name}</strong>
           </a>
