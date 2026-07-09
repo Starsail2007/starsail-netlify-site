@@ -5686,8 +5686,8 @@
     },
     {
       "id": "97",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Quarter-final",
       "round": "Quarter-final",
@@ -5700,7 +5700,7 @@
         "iso2": "fr",
         "logo": "https://flagcdn.com/fr.svg",
         "flagUrl": "https://flagcdn.com/fr.svg",
-        "score": null
+        "score": 2
       },
       "away": {
         "name": "Morocco",
@@ -5708,10 +5708,31 @@
         "iso2": "ma",
         "logo": "https://flagcdn.com/ma.svg",
         "flagUrl": "https://flagcdn.com/ma.svg",
-        "score": null
+        "score": 0
       },
       "penaltyScore": null,
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "60",
+          "minuteSort": 60,
+          "team": "France",
+          "teamName": "France",
+          "player": "Kylian Mbappé",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "66",
+          "minuteSort": 66,
+          "team": "France",
+          "teamName": "France",
+          "player": "Ousmane Dembélé",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "98",
@@ -11604,8 +11625,8 @@
     },
     {
       "id": "97",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Quarter-final",
       "round": "Quarter-final",
@@ -11618,7 +11639,7 @@
         "iso2": "fr",
         "logo": "https://flagcdn.com/fr.svg",
         "flagUrl": "https://flagcdn.com/fr.svg",
-        "score": null
+        "score": 2
       },
       "away": {
         "name": "Morocco",
@@ -11626,10 +11647,31 @@
         "iso2": "ma",
         "logo": "https://flagcdn.com/ma.svg",
         "flagUrl": "https://flagcdn.com/ma.svg",
-        "score": null
+        "score": 0
       },
       "penaltyScore": null,
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "60",
+          "minuteSort": 60,
+          "team": "France",
+          "teamName": "France",
+          "player": "Kylian Mbappé",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "66",
+          "minuteSort": 66,
+          "team": "France",
+          "teamName": "France",
+          "player": "Ousmane Dembélé",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "98",
@@ -11837,35 +11879,6 @@
   ],
   "upcomingMatches": [
     {
-      "id": "97",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Quarter-final",
-      "round": "Quarter-final",
-      "group": "",
-      "venue": "Boston (Foxborough)",
-      "kickoffTime": "2026-07-09T20:00:00.000Z",
-      "home": {
-        "name": "France",
-        "code": "F",
-        "iso2": "fr",
-        "logo": "https://flagcdn.com/fr.svg",
-        "flagUrl": "https://flagcdn.com/fr.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Morocco",
-        "code": "M",
-        "iso2": "ma",
-        "logo": "https://flagcdn.com/ma.svg",
-        "flagUrl": "https://flagcdn.com/ma.svg",
-        "score": null
-      },
-      "penaltyScore": null,
-      "events": []
-    },
-    {
       "id": "98",
       "status": "NS",
       "statusText": "未开始",
@@ -12070,6 +12083,56 @@
     }
   ],
   "timelineMatches": [
+    {
+      "id": "97",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Quarter-final",
+      "round": "Quarter-final",
+      "group": "",
+      "venue": "Boston (Foxborough)",
+      "kickoffTime": "2026-07-09T20:00:00.000Z",
+      "home": {
+        "name": "France",
+        "code": "F",
+        "iso2": "fr",
+        "logo": "https://flagcdn.com/fr.svg",
+        "flagUrl": "https://flagcdn.com/fr.svg",
+        "score": 2
+      },
+      "away": {
+        "name": "Morocco",
+        "code": "M",
+        "iso2": "ma",
+        "logo": "https://flagcdn.com/ma.svg",
+        "flagUrl": "https://flagcdn.com/ma.svg",
+        "score": 0
+      },
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "60",
+          "minuteSort": 60,
+          "team": "France",
+          "teamName": "France",
+          "player": "Kylian Mbappé",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "66",
+          "minuteSort": 66,
+          "team": "France",
+          "teamName": "France",
+          "player": "Ousmane Dembélé",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
+    },
     {
       "id": "95",
       "status": "FT",
@@ -12625,59 +12688,6 @@
           "team": "Argentina",
           "teamName": "Argentina",
           "player": "Diney Borges",
-          "penalty": false,
-          "ownGoal": true
-        }
-      ]
-    },
-    {
-      "id": "88",
-      "status": "PEN",
-      "statusText": "点球结束",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Dallas (Arlington)",
-      "kickoffTime": "2026-07-03T18:00:00.000Z",
-      "home": {
-        "name": "Australia",
-        "code": "A",
-        "iso2": "au",
-        "logo": "https://flagcdn.com/au.svg",
-        "flagUrl": "https://flagcdn.com/au.svg",
-        "score": 1
-      },
-      "away": {
-        "name": "Egypt",
-        "code": "E",
-        "iso2": "eg",
-        "logo": "https://flagcdn.com/eg.svg",
-        "flagUrl": "https://flagcdn.com/eg.svg",
-        "score": 1
-      },
-      "penaltyScore": {
-        "home": 2,
-        "away": 4
-      },
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "13",
-          "minuteSort": 13,
-          "team": "Egypt",
-          "teamName": "Egypt",
-          "player": "Emam Ashour",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "55",
-          "minuteSort": 55,
-          "team": "Australia",
-          "teamName": "Australia",
-          "player": "Mohamed Hany",
           "penalty": false,
           "ownGoal": true
         }
@@ -18191,13 +18201,13 @@
       "round": "Quarter-final",
       "home": "France",
       "away": "Morocco",
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 2,
+      "awayScore": 0,
       "homePenaltyScore": null,
       "awayPenaltyScore": null,
       "penaltyScore": null,
-      "winner": "",
-      "status": "NS",
+      "winner": "France",
+      "status": "FT",
       "nextMatchId": "101",
       "nextMatchIds": [
         "101"
@@ -18351,17 +18361,17 @@
     "label": "near-match",
     "due": false,
     "intervalSeconds": 3600,
-    "nextFetchAt": "2026-07-09T18:32:15.530Z",
-    "generatedAt": "2026-07-09T17:32:15.530Z",
+    "nextFetchAt": "2026-07-09T23:46:00.082Z",
+    "generatedAt": "2026-07-09T22:46:00.082Z",
     "nextMatch": {
-      "id": "97",
+      "id": "98",
       "stage": "Quarter-final",
-      "kickoffTime": "2026-07-09T20:00:00.000Z",
-      "home": "France",
-      "away": "Morocco",
+      "kickoffTime": "2026-07-10T19:00:00.000Z",
+      "home": "Spain",
+      "away": "Belgium",
       "status": "NS"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-09T17:32:15.530Z"
+  "lastUpdated": "2026-07-09T22:46:00.082Z"
 }
