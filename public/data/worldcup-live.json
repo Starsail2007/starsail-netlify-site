@@ -5736,8 +5736,8 @@
     },
     {
       "id": "98",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Quarter-final",
       "round": "Quarter-final",
@@ -5750,7 +5750,7 @@
         "iso2": "es",
         "logo": "https://flagcdn.com/es.svg",
         "flagUrl": "https://flagcdn.com/es.svg",
-        "score": null
+        "score": 2
       },
       "away": {
         "name": "Belgium",
@@ -5758,10 +5758,41 @@
         "iso2": "be",
         "logo": "https://flagcdn.com/be.svg",
         "flagUrl": "https://flagcdn.com/be.svg",
-        "score": null
+        "score": 1
       },
       "penaltyScore": null,
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "30",
+          "minuteSort": 30,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Fabián Ruiz",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "41",
+          "minuteSort": 41,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Charles De Ketelaere",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "88",
+          "minuteSort": 88,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Mikel Merino",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "99",
@@ -11675,8 +11706,8 @@
     },
     {
       "id": "98",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Quarter-final",
       "round": "Quarter-final",
@@ -11689,7 +11720,7 @@
         "iso2": "es",
         "logo": "https://flagcdn.com/es.svg",
         "flagUrl": "https://flagcdn.com/es.svg",
-        "score": null
+        "score": 2
       },
       "away": {
         "name": "Belgium",
@@ -11697,10 +11728,41 @@
         "iso2": "be",
         "logo": "https://flagcdn.com/be.svg",
         "flagUrl": "https://flagcdn.com/be.svg",
-        "score": null
+        "score": 1
       },
       "penaltyScore": null,
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "30",
+          "minuteSort": 30,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Fabián Ruiz",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "41",
+          "minuteSort": 41,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Charles De Ketelaere",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "88",
+          "minuteSort": 88,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Mikel Merino",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "99",
@@ -11879,35 +11941,6 @@
   ],
   "upcomingMatches": [
     {
-      "id": "98",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Quarter-final",
-      "round": "Quarter-final",
-      "group": "",
-      "venue": "Los Angeles (Inglewood)",
-      "kickoffTime": "2026-07-10T19:00:00.000Z",
-      "home": {
-        "name": "Spain",
-        "code": "S",
-        "iso2": "es",
-        "logo": "https://flagcdn.com/es.svg",
-        "flagUrl": "https://flagcdn.com/es.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Belgium",
-        "code": "B",
-        "iso2": "be",
-        "logo": "https://flagcdn.com/be.svg",
-        "flagUrl": "https://flagcdn.com/be.svg",
-        "score": null
-      },
-      "penaltyScore": null,
-      "events": []
-    },
-    {
       "id": "99",
       "status": "NS",
       "statusText": "未开始",
@@ -12083,6 +12116,66 @@
     }
   ],
   "timelineMatches": [
+    {
+      "id": "98",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Quarter-final",
+      "round": "Quarter-final",
+      "group": "",
+      "venue": "Los Angeles (Inglewood)",
+      "kickoffTime": "2026-07-10T19:00:00.000Z",
+      "home": {
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
+        "score": 2
+      },
+      "away": {
+        "name": "Belgium",
+        "code": "B",
+        "iso2": "be",
+        "logo": "https://flagcdn.com/be.svg",
+        "flagUrl": "https://flagcdn.com/be.svg",
+        "score": 1
+      },
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "30",
+          "minuteSort": 30,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Fabián Ruiz",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "41",
+          "minuteSort": 41,
+          "team": "Belgium",
+          "teamName": "Belgium",
+          "player": "Charles De Ketelaere",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "88",
+          "minuteSort": 88,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Mikel Merino",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
+    },
     {
       "id": "97",
       "status": "FT",
@@ -12610,86 +12703,6 @@
           "player": "Jhon Arias",
           "penalty": false,
           "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "86",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Miami (Miami Gardens)",
-      "kickoffTime": "2026-07-03T22:00:00.000Z",
-      "home": {
-        "name": "Argentina",
-        "code": "A",
-        "iso2": "ar",
-        "logo": "https://flagcdn.com/ar.svg",
-        "flagUrl": "https://flagcdn.com/ar.svg",
-        "score": 3
-      },
-      "away": {
-        "name": "Cape Verde",
-        "code": "CV",
-        "iso2": "cv",
-        "logo": "https://flagcdn.com/cv.svg",
-        "flagUrl": "https://flagcdn.com/cv.svg",
-        "score": 2
-      },
-      "penaltyScore": null,
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "29",
-          "minuteSort": 29,
-          "team": "Argentina",
-          "teamName": "Argentina",
-          "player": "Lionel Messi",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "59",
-          "minuteSort": 59,
-          "team": "Cape Verde",
-          "teamName": "Cape Verde",
-          "player": "Deroy Duarte",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "92",
-          "minuteSort": 92,
-          "team": "Argentina",
-          "teamName": "Argentina",
-          "player": "Lisandro Martínez",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "103",
-          "minuteSort": 103,
-          "team": "Cape Verde",
-          "teamName": "Cape Verde",
-          "player": "Sidny Lopes Cabral",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "111",
-          "minuteSort": 111,
-          "team": "Argentina",
-          "teamName": "Argentina",
-          "player": "Diney Borges",
-          "penalty": false,
-          "ownGoal": true
         }
       ]
     }
@@ -18218,13 +18231,13 @@
       "round": "Quarter-final",
       "home": "Spain",
       "away": "Belgium",
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 2,
+      "awayScore": 1,
       "homePenaltyScore": null,
       "awayPenaltyScore": null,
       "penaltyScore": null,
-      "winner": "",
-      "status": "NS",
+      "winner": "Spain",
+      "status": "FT",
       "nextMatchId": "101",
       "nextMatchIds": [
         "101"
@@ -18361,17 +18374,17 @@
     "label": "near-match",
     "due": false,
     "intervalSeconds": 3600,
-    "nextFetchAt": "2026-07-10T18:22:43.087Z",
-    "generatedAt": "2026-07-10T17:22:43.087Z",
+    "nextFetchAt": "2026-07-10T22:31:17.651Z",
+    "generatedAt": "2026-07-10T21:31:17.651Z",
     "nextMatch": {
-      "id": "98",
+      "id": "99",
       "stage": "Quarter-final",
-      "kickoffTime": "2026-07-10T19:00:00.000Z",
-      "home": "Spain",
-      "away": "Belgium",
+      "kickoffTime": "2026-07-11T21:00:00.000Z",
+      "home": "Norway",
+      "away": "England",
       "status": "NS"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-10T17:22:43.087Z"
+  "lastUpdated": "2026-07-10T21:31:17.651Z"
 }
