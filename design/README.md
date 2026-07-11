@@ -6,3 +6,18 @@
 - `exports/`：从 Canva/Figma 导出的临时素材
 
 最终要被网站直接引用的素材，请整理到 `public/assets/design/`。
+
+Canva 侧项目文件夹：
+
+```text
+Starsail Visual Workflow
+https://www.canva.com/folder/FAHO4G_onjg
+```
+
+新的设计接入建议先用命令创建记录：
+
+```bash
+pnpm design:intake -- --name "Homepage visual refresh" --figma "https://www.figma.com/design/<fileKey>/<fileName>?node-id=123-456"
+```
+
+更多约定见 `docs/DESIGN_CONNECTORS.md`、`docs/DESIGN_WORKFLOW.md` 和 `docs/VISUAL_WORKFLOW_STATUS.md`。

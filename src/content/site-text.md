@@ -154,6 +154,16 @@ worldcup:
         allOptionLabel: "全部"
         countTemplate: "{count} 场"
         emptyLabel: "暂无赛程"
+        calendarAriaLabel: "世界杯赛程日历"
+        dayAriaLabelTemplate: "{date}，{count}"
+        weekdays:
+          - "一"
+          - "二"
+          - "三"
+          - "四"
+          - "五"
+          - "六"
+          - "日"
     groupStage:
       title: "小组赛阶段"
       subtitle: "分组赛程与积分"
@@ -186,6 +196,17 @@ worldcup:
       allOptionLabel: "全部"
       countTemplate: "{count} 场"
       emptyLabel: "暂无精彩瞬间日期"
+      calendarAriaLabel: "世界杯赛事日历"
+      dayAriaLabelTemplate: "{date}，{count}"
+      weekdays:
+        - "一"
+        - "二"
+        - "三"
+        - "四"
+        - "五"
+        - "六"
+        - "日"
+    scrollDateAriaLabel: "当前浏览日期"
     structureSubtitle: "先看场次，点击后放大查看精彩瞬间"
     detailEmpty: "选择一场比赛查看精彩瞬间"
     matchEventsTemplate: "{count} 个瞬间"
@@ -378,7 +399,7 @@ entryRedesign:
       avatarAlt: "星帆Starsail 的头像"
       creditLabel: "Designed by"
       creditName: "星帆Starsail"
-      versionLabel: "v1.1"
+      versionLabel: "v1.2"
     hero:
       headline: "待探索的空间"
       subcopy:
@@ -438,9 +459,13 @@ entryRedesign:
           version: "v1.1"
           parts:
             - text: "优化了一些视觉效果，修复了一些已知问题。"
+        - date: "2026.7.8"
+          version: "v1.2"
+          parts:
+            - text: "修复了世界杯页面的一些已知问题，优化了一些视觉体验。"
     announcement:
       ariaLabel: "站点公告"
-      message: "正式版v1.1已上线"
+      message: "正式版v1.2已上线"
     avatarModal:
       closeAriaLabel: "关闭头像展示"
       closeButton: "x"

@@ -1,0 +1,13 @@
+{
+  "name": "Starsail Visual Workflow",
+  "folderId": "FAHO4G_onjg",
+  "folderUrl": "https://www.canva.com/folder/FAHO4G_onjg",
+  "createdAt": "2026-07-09",
+  "purpose": "Canva staging folder for Starsail website visual exploration, generated candidates, copied references, and design handoff.",
+  "brandKits": [],
+  "notes": [
+    "Canva connector is available in Codex for this thread.",
+    "No Canva brand kits were visible during setup.",
+    "Final website production remains GitHub/Netlify from this Astro repository, not Canva publish links."
+  ]
+}

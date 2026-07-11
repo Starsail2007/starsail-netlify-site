@@ -10,6 +10,7 @@
     "deploy:check": "pnpm test && pnpm typecheck && pnpm build",
     "test": "node --test tests/**/*.test.mjs",
     "text:check": "node scripts/check-site-text.mjs",
+    "design:intake": "node scripts/design/create-intake.mjs",
     "preview": "astro preview --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
     "worldcup:update": "node scripts/worldcup/update-live-data.mjs",

@@ -30,7 +30,10 @@ const DEFAULT_WORLDCUP_TEXT = {
         allLabel: "All dates",
         allOptionLabel: "All",
         countTemplate: "{count} matches",
-        emptyLabel: "No matches"
+        emptyLabel: "No matches",
+        calendarAriaLabel: "World Cup schedule calendar",
+        dayAriaLabelTemplate: "{date}, {count}",
+        weekdays: ["M", "T", "W", "T", "F", "S", "S"]
       }
     },
     groupStage: {
@@ -54,8 +57,12 @@ const DEFAULT_WORLDCUP_TEXT = {
       allLabel: "All dates",
       allOptionLabel: "All",
       countTemplate: "{count} matches",
-      emptyLabel: "No moment dates"
+      emptyLabel: "No moment dates",
+      calendarAriaLabel: "World Cup calendar",
+      dayAriaLabelTemplate: "{date}, {count}",
+      weekdays: ["M", "T", "W", "T", "F", "S", "S"]
     },
+    scrollDateAriaLabel: "Current browsing date",
     matchEventsTemplate: "{count} moments",
     expandMatchAriaLabel: "View moments for {match}",
     playerNameTemplate: "{zh}（{original}）",
@@ -218,6 +225,8 @@ if (root) {
     momentsDateToggle: root.querySelector("[data-moments-date-toggle]"),
     momentsDateLabel: root.querySelector("[data-moments-date-label]"),
     momentsDateMenu: root.querySelector("[data-moments-date-menu]"),
+    momentsScrollDate: root.querySelector("[data-moments-scroll-date]"),
+    momentsScrollDatePinned: root.querySelector("[data-moments-scroll-date-pinned]"),
     momentsStructure: root.querySelector("[data-moments-structure]"),
     momentsModal: root.querySelector("[data-moments-modal]"),
     momentsDetail: root.querySelector("[data-moments-detail]"),
@@ -297,6 +306,7 @@ if (root) {
     momentsSortDirection = nextState.momentsSortDirection ?? momentsSortDirection;
     selectedMomentsDate = nextState.momentsDate ?? selectedMomentsDate;
   });
+  setupMomentsScrollDateIndicator(elements);
   setupDraggableBracket(elements.bracket);
   setupHorizontalMomentumScroller(elements.groupStage);
   elements.championCelebration?.addEventListener("click", (event) => {
@@ -323,10 +333,14 @@ if (root) {
   });
 
   window.addEventListener("resize", () => {
+    syncScheduleWheelEdgePadding(elements);
+    syncBracketPosterScale(elements.bracket);
+    syncBracketPosterScale(elements.momentsStructure?.querySelector("[data-moments-bracket]"));
     window.requestAnimationFrame(() => drawBracketLines(elements.bracket));
     window.requestAnimationFrame(() => drawBracketLines(elements.momentsStructure?.querySelector("[data-moments-bracket]")));
     window.requestAnimationFrame(() => syncTabViewportHeight(elements, activeSectionTab));
     window.requestAnimationFrame(() => updateScheduleWheelState(elements));
+    window.requestAnimationFrame(() => updateMomentsScrollDateIndicator(elements));
   });
 
   function scheduleNextRefresh(nextData, callback, pageElements) {
@@ -400,7 +414,7 @@ if (root) {
 
     const openMomentMatch = (matchId, options = {}) => {
       const currentData = readData();
-      const sourceMatches = options.sourceMatches || filterMatchesByScheduleDate(getMomentSourceMatches(currentData), selectedMomentsDate);
+      const sourceMatches = options.sourceMatches || getActiveMomentSourceMatches(currentData);
 
       renderMomentsDetail(
         matchId,
@@ -438,7 +452,7 @@ if (root) {
       event.preventDefault();
       event.stopPropagation();
       const currentData = readData();
-      const sourceMatches = filterMatchesByScheduleDate(getMomentSourceMatches(currentData), selectedMomentsDate);
+      const sourceMatches = getActiveMomentSourceMatches(currentData);
 
       openMomentMatch(button.dataset.momentsMatchId, { sourceMatches });
     }, true);
@@ -457,7 +471,7 @@ if (root) {
 
       event.preventDefault();
       const currentData = readData();
-      const sourceMatches = filterMatchesByScheduleDate(getMomentSourceMatches(currentData), selectedMomentsDate);
+      const sourceMatches = getActiveMomentSourceMatches(currentData);
 
       openMomentMatch(button.dataset.momentsMatchId, { sourceMatches });
     });
@@ -487,6 +501,28 @@ if (root) {
     });
   }
 
+  function setupMomentsScrollDateIndicator(pageElements) {
+    if (!pageElements.momentsScrollDate || !pageElements.timeline) {
+      return;
+    }
+
+    let frame = 0;
+    const queueUpdate = () => {
+      if (frame) {
+        return;
+      }
+
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        updateMomentsScrollDateIndicator(pageElements);
+      });
+    };
+
+    window.addEventListener("scroll", queueUpdate, { passive: true });
+    pageElements.tabViewport?.addEventListener("transitionend", queueUpdate);
+    queueUpdate();
+  }
+
   function setupScheduleWheel(pageElements, readData) {
     pageElements.scheduleCenter?.addEventListener("click", () => {
       stopScheduleInertia(pageElements, scheduleDragState);
@@ -508,7 +544,6 @@ if (root) {
       scheduleScrollFrame = window.requestAnimationFrame(() => {
         constrainScheduleWheelScroll(pageElements);
         updateScheduleWheelState(pageElements);
-        queueScheduleWheelSnap(pageElements, scheduleDragState);
       });
     }, { passive: true });
 
@@ -620,6 +655,7 @@ function setActiveSectionTab(elements, tab) {
   }
 
   syncTabViewportHeight(elements, nextTab);
+  window.requestAnimationFrame(() => updateMomentsScrollDateIndicator(elements));
   window.setTimeout(() => syncTabViewportHeight(elements, nextTab), 460);
 }
 
@@ -694,9 +730,17 @@ function renderActivePanelData(nextData, elements) {
 function renderOverviewPanelFromData(nextData, elements) {
   elements.groupStage.innerHTML = renderGroupStage(nextData.groupStage || []);
   elements.bracket.innerHTML = renderBracket(nextData.knockout || [], nextData.groupStage || []);
+  delete elements.bracket.dataset.bracketScrollCentered;
   setupHorizontalMomentumScroller(elements.groupStage);
-  window.requestAnimationFrame(() => drawBracketLines(elements.bracket));
-  window.setTimeout(() => drawBracketLines(elements.bracket), 280);
+  syncBracketPosterScale(elements.bracket);
+  window.requestAnimationFrame(() => {
+    syncBracketPosterScale(elements.bracket);
+    drawBracketLines(elements.bracket);
+  });
+  window.setTimeout(() => {
+    syncBracketPosterScale(elements.bracket);
+    drawBracketLines(elements.bracket);
+  }, 280);
 }
 
 function renderMomentsPanelFromData(nextData, elements, overrideState = null, options = {}) {
@@ -768,37 +812,19 @@ function renderScheduleDateFilter(matches, elements) {
   elements.scheduleDateLabel.textContent = label;
   elements.scheduleDateToggle.classList.toggle("is-filtered", Boolean(selected));
   elements.scheduleDateToggle.setAttribute("aria-label", selected ? label : dateText.toggleAriaLabel);
+  elements.scheduleDateMenu.classList.toggle("has-calendar", Boolean(dates.length));
 
   if (!dates.length) {
     elements.scheduleDateMenu.innerHTML = `<div class="schedule-date-empty">${escapeHtml(dateText.emptyLabel)}</div>`;
     return;
   }
 
-  elements.scheduleDateMenu.innerHTML = `
-    ${renderScheduleDateOption({
-      key: "",
-      label: dateText.allOptionLabel,
-      count: matches.length,
-      isActive: !selectedScheduleDate
-    })}
-    <div class="schedule-date-grid">
-      ${dates.map((date) => renderScheduleDateOption({
-        ...date,
-        isActive: date.key === selectedScheduleDate
-      })).join("")}
-    </div>
-  `;
-}
-
-function renderScheduleDateOption(option) {
-  const dateText = worldcupText.panels.schedule.dateFilter;
-
-  return `
-    <button class="schedule-date-option ${option.isActive ? "is-active" : ""}" type="button" role="option" aria-selected="${String(option.isActive)}" data-schedule-date-option="${escapeAttribute(option.key)}">
-      <span>${escapeHtml(option.label)}</span>
-      <em>${escapeHtml(formatTemplate(dateText.countTemplate, { count: option.count }))}</em>
-    </button>
-  `;
+  elements.scheduleDateMenu.innerHTML = renderWorldCupDateCalendar(
+    matches,
+    selectedScheduleDate,
+    dateText,
+    "data-schedule-date-option"
+  );
 }
 
 function renderMomentsDateFilter(matches, elements) {
@@ -814,41 +840,105 @@ function renderMomentsDateFilter(matches, elements) {
   elements.momentsDateLabel.textContent = label;
   elements.momentsDateToggle.classList.toggle("is-filtered", Boolean(selected));
   elements.momentsDateToggle.setAttribute("aria-label", selected ? label : dateText.toggleAriaLabel);
+  elements.momentsDateMenu.classList.toggle("has-calendar", Boolean(dates.length));
 
   if (!dates.length) {
     elements.momentsDateMenu.innerHTML = `<div class="schedule-date-empty">${escapeHtml(dateText.emptyLabel)}</div>`;
     return;
   }
 
-  elements.momentsDateMenu.innerHTML = `
-    ${renderMomentsDateOption({
-      key: "",
-      label: dateText.allOptionLabel,
-      count: buildTimelineGroups(matches).length,
-      isActive: !selectedMomentsDate
-    })}
-    <div class="schedule-date-grid">
-      ${dates.map((date) => renderMomentsDateOption({
-        ...date,
-        isActive: date.key === selectedMomentsDate
-      })).join("")}
+  elements.momentsDateMenu.innerHTML = renderMomentsCalendar(matches, selectedMomentsDate);
+}
+
+function renderMomentsCalendar(matches, selectedDate = "") {
+  const dateText = worldcupText.moments.dateFilter;
+  return renderWorldCupDateCalendar(matches, selectedDate, dateText, "data-moments-date-option");
+}
+
+function renderWorldCupDateCalendar(matches, selectedDate, dateText, optionAttribute) {
+  const calendar = buildMomentCalendar(matches);
+  const weekdays = Array.isArray(dateText.weekdays) ? dateText.weekdays.slice(0, 7) : [];
+
+  if (!calendar.days.length) {
+    return `<div class="schedule-date-empty">${escapeHtml(dateText.emptyLabel)}</div>`;
+  }
+
+  return `
+    <div class="moments-calendar" aria-label="${escapeAttribute(dateText.calendarAriaLabel)}">
+      <div class="moments-calendar-heading">
+        <strong>${escapeHtml(calendar.rangeLabel)}</strong>
+        <button class="moments-calendar-all ${selectedDate ? "" : "is-active"}" type="button" role="option" aria-selected="${String(!selectedDate)}" ${optionAttribute}="">
+          ${escapeHtml(dateText.allOptionLabel)}
+        </button>
+      </div>
+      <div class="moments-calendar-weekdays" aria-hidden="true">
+        ${weekdays.map((weekday) => `<span>${escapeHtml(weekday)}</span>`).join("")}
+      </div>
+      <div class="moments-calendar-grid">
+        ${Array.from({ length: calendar.leadingBlanks }, () => `<span class="moments-calendar-blank" aria-hidden="true"></span>`).join("")}
+        ${calendar.days.map((day) => {
+          const isActive = day.key === selectedDate;
+          const countLabel = formatTemplate(dateText.countTemplate, { count: day.count });
+          const ariaLabel = formatTemplate(dateText.dayAriaLabelTemplate, {
+            date: day.label,
+            count: countLabel
+          });
+
+          return `
+            <button class="moments-calendar-day ${day.count ? "has-matches" : "is-idle"} ${isActive ? "is-active" : ""}" type="button" role="option" aria-selected="${String(isActive)}" aria-label="${escapeAttribute(ariaLabel)}" ${optionAttribute}="${escapeAttribute(day.key)}" ${day.count ? "" : "disabled"}>
+              <span>${escapeHtml(String(day.dayNumber))}</span>
+              <i aria-hidden="true"></i>
+            </button>
+          `;
+        }).join("")}
+        ${Array.from({ length: calendar.trailingBlanks }, () => `<span class="moments-calendar-blank" aria-hidden="true"></span>`).join("")}
+      </div>
     </div>
   `;
 }
 
-function renderMomentsDateOption(option) {
-  const dateText = worldcupText.moments.dateFilter;
-
-  return `
-    <button class="schedule-date-option ${option.isActive ? "is-active" : ""}" type="button" role="option" aria-selected="${String(option.isActive)}" data-moments-date-option="${escapeAttribute(option.key)}">
-      <span>${escapeHtml(option.label)}</span>
-      <em>${escapeHtml(formatTemplate(dateText.countTemplate, { count: option.count }))}</em>
-    </button>
-  `;
+function buildMomentDateOptions(matches) {
+  return buildScheduleDateOptions(matches);
 }
 
-function buildMomentDateOptions(matches) {
-  return buildScheduleDateOptions(matches.filter((match) => Array.isArray(match.events) && match.events.length));
+function buildMomentCalendar(matches) {
+  const dateOptions = buildScheduleDateOptions(matches);
+
+  if (!dateOptions.length) {
+    return { days: [], leadingBlanks: 0, trailingBlanks: 0, rangeLabel: "" };
+  }
+
+  const countByDate = new Map(dateOptions.map((date) => [date.key, date.count]));
+  const start = parseScheduleDateKey(dateOptions[0].key);
+  const end = parseScheduleDateKey(dateOptions[dateOptions.length - 1].key);
+
+  if (!start || !end) {
+    return { days: [], leadingBlanks: 0, trailingBlanks: 0, rangeLabel: "" };
+  }
+
+  const days = [];
+  const cursor = new Date(start);
+
+  while (cursor.getTime() <= end.getTime()) {
+    const key = formatScheduleDateKey(cursor);
+    days.push({
+      key,
+      count: countByDate.get(key) || 0,
+      dayNumber: cursor.getDate(),
+      label: formatScheduleDateLabel(key)
+    });
+    cursor.setDate(cursor.getDate() + 1);
+  }
+
+  const leadingBlanks = (start.getDay() + 6) % 7;
+  const trailingBlanks = (7 - ((leadingBlanks + days.length) % 7)) % 7;
+
+  return {
+    days,
+    leadingBlanks,
+    trailingBlanks,
+    rangeLabel: formatMomentCalendarRange(start, end)
+  };
 }
 
 function normalizeSelectedMomentDate(dateKey, matches) {
@@ -924,6 +1014,45 @@ function formatScheduleDateLabel(dateKey) {
   }).format(date);
 }
 
+function parseScheduleDateKey(dateKey) {
+  const date = new Date(`${dateKey}T00:00:00`);
+
+  return Number.isFinite(date.getTime()) ? date : null;
+}
+
+function formatScheduleDateKey(date) {
+  return [
+    date.getFullYear(),
+    padDatePart(date.getMonth() + 1),
+    padDatePart(date.getDate())
+  ].join("-");
+}
+
+function formatMomentCalendarRange(start, end) {
+  const dateFormatter = new Intl.DateTimeFormat("zh-CN", {
+    month: "2-digit",
+    day: "2-digit"
+  });
+
+  return `${start.getFullYear()} · ${dateFormatter.format(start)}–${dateFormatter.format(end)}`;
+}
+
+function formatMomentScrollDateLabel(dateKey) {
+  const date = parseScheduleDateKey(dateKey);
+
+  if (!date) {
+    return "";
+  }
+
+  const datePart = new Intl.DateTimeFormat("zh-CN", {
+    month: "2-digit",
+    day: "2-digit"
+  }).format(date);
+  const weekday = new Intl.DateTimeFormat("zh-CN", { weekday: "short" }).format(date);
+
+  return `${datePart} · ${weekday}`;
+}
+
 function padDatePart(value) {
   return String(value).padStart(2, "0");
 }
@@ -934,6 +1063,7 @@ function openScheduleDateMenu(elements) {
   }
 
   elements.scheduleDateMenu.hidden = false;
+  elements.scheduleDateMenu.scrollTop = 0;
   elements.scheduleDateToggle.setAttribute("aria-expanded", "true");
 }
 
@@ -952,6 +1082,7 @@ function openMomentsDateMenu(elements) {
   }
 
   elements.momentsDateMenu.hidden = false;
+  elements.momentsDateMenu.scrollTop = 0;
   elements.momentsDateToggle.setAttribute("aria-expanded", "true");
 }
 
@@ -1100,25 +1231,10 @@ function handleScheduleWheelInput(elements, state) {
   }
 
   window.cancelAnimationFrame(state.frame);
-  state.frame = 0;
-  wheel.classList.add("is-gliding");
-  queueScheduleWheelSnap(elements, state);
-}
-
-function queueScheduleWheelSnap(elements, state, delay = 560) {
-  const wheel = elements.schedule;
-
-  if (!wheel || state.active || state.frame) {
-    return;
-  }
-
-  wheel.classList.add("is-gliding");
   window.clearTimeout(state.wheelTimer);
-  state.wheelTimer = window.setTimeout(() => {
-    state.wheelTimer = 0;
-    wheel.classList.remove("is-gliding");
-    snapScheduleWheelToNearest(elements);
-  }, delay);
+  state.frame = 0;
+  state.wheelTimer = 0;
+  wheel.classList.remove("is-gliding");
 }
 
 function moveScheduleDrag(event, elements, state) {
@@ -1327,9 +1443,6 @@ function updateScheduleWheelState(elements) {
     const absDistance = Math.abs(distance);
 
     card.style.setProperty("--wheel-distance", clampedDistance.toFixed(3));
-    card.style.setProperty("--wheel-tilt", `${(-clampedDistance * 5).toFixed(2)}deg`);
-    card.style.setProperty("--wheel-scale", Math.max(.92, 1 - absDistance * .06).toFixed(3));
-    card.style.setProperty("--wheel-opacity", Math.max(.48, 1 - absDistance * .24).toFixed(3));
     card.classList.toggle("is-before-center", distance < -.22);
     card.classList.toggle("is-after-center", distance > .22);
 
@@ -1360,6 +1473,39 @@ function updateScheduleFlagWash(elements, card) {
   elements.schedulePanel.style.setProperty("--wheel-distance", distance);
 }
 
+function syncScheduleWheelEdgePadding(elements) {
+  const wheel = elements.schedule;
+
+  if (!wheel) {
+    return;
+  }
+
+  wheel.style.removeProperty("--schedule-wheel-padding-start");
+  wheel.style.removeProperty("--schedule-wheel-padding-end");
+
+  const cards = [...wheel.querySelectorAll("[data-schedule-card]")];
+
+  if (!cards.length) {
+    return;
+  }
+
+  const styles = window.getComputedStyle(wheel);
+  const basePaddingStart = Number.parseFloat(styles.paddingTop) || 0;
+  const basePaddingEnd = Number.parseFloat(styles.paddingBottom) || 0;
+  const firstCard = cards[0];
+  const lastCard = cards[cards.length - 1];
+  const firstCenterTop = firstCard.offsetTop + firstCard.offsetHeight / 2 - wheel.clientHeight / 2;
+  const nativeMaxTop = Math.max(0, wheel.scrollHeight - wheel.clientHeight);
+  const lastCenterTop = lastCard.offsetTop + lastCard.offsetHeight / 2 - wheel.clientHeight / 2;
+  const startCorrection = Math.max(0, firstCenterTop);
+  const endCorrection = Math.max(0, nativeMaxTop - lastCenterTop);
+  const nextPaddingStart = Math.max(0, basePaddingStart - startCorrection);
+  const nextPaddingEnd = Math.max(0, basePaddingEnd - endCorrection);
+
+  wheel.style.setProperty("--schedule-wheel-padding-start", `${nextPaddingStart.toFixed(1)}px`);
+  wheel.style.setProperty("--schedule-wheel-padding-end", `${nextPaddingEnd.toFixed(1)}px`);
+}
+
 function constrainScheduleWheelScroll(elements) {
   const wheel = elements.schedule;
 
@@ -1384,22 +1530,94 @@ function clampScheduleScrollTop(wheel, scrollTop) {
 
 function getScheduleScrollBounds(wheel) {
   const nativeMaxTop = Math.max(0, (wheel?.scrollHeight || 0) - (wheel?.clientHeight || 0));
-  const cards = [...(wheel?.querySelectorAll?.("[data-schedule-card]") || [])];
-
-  if (!wheel || !cards.length) {
-    return { minTop: 0, maxTop: nativeMaxTop };
-  }
-
-  const lastCard = cards[cards.length - 1];
-  const lastCardStyle = window.getComputedStyle(lastCard);
-  const lastMargin = Number.parseFloat(lastCardStyle.marginBottom) || 0;
-  const visibleBottomGap = Math.max(10, lastMargin + 8);
-  const maxTop = Math.max(0, lastCard.offsetTop + lastCard.offsetHeight + visibleBottomGap - wheel.clientHeight);
 
   return {
     minTop: 0,
-    maxTop: Math.min(nativeMaxTop, maxTop)
+    maxTop: nativeMaxTop
   };
+}
+
+function updateMomentsScrollDateIndicator(elements) {
+  const indicator = elements?.momentsScrollDate;
+  const pinnedIndicator = elements?.momentsScrollDatePinned;
+  const timeline = elements?.timeline;
+  const isTimeMode = root?.dataset.activeWorldcupTab === "moments"
+    && root?.dataset.activeMomentsMode === "time";
+
+  if (!indicator || !timeline || !isTimeMode) {
+    if (indicator) {
+      indicator.hidden = true;
+    }
+    if (pinnedIndicator) {
+      pinnedIndicator.hidden = true;
+      pinnedIndicator.classList.remove("is-stacked");
+    }
+    return;
+  }
+
+  const cards = [...timeline.querySelectorAll("[data-timeline-date]")];
+
+  if (!cards.length) {
+    indicator.hidden = true;
+    if (pinnedIndicator) {
+      pinnedIndicator.hidden = true;
+      pinnedIndicator.classList.remove("is-stacked");
+    }
+    return;
+  }
+
+  const tabNav = root?.querySelector(".worldcup-section-tabs");
+  const timePanel = timeline.closest('[data-moments-panel="time"]');
+  const heading = indicator.closest(".moments-panel-heading");
+  const navRect = tabNav?.getBoundingClientRect();
+  const anchorY = Math.max(16, (navRect?.bottom || 0) + 12);
+  const currentCard = cards.find((card) => {
+    const rect = card.getBoundingClientRect();
+    return rect.bottom > anchorY && rect.top < window.innerHeight;
+  }) || cards[0];
+  const dateKey = currentCard.dataset.timelineDate || "";
+  const label = formatMomentScrollDateLabel(dateKey);
+
+  if (!label) {
+    indicator.hidden = true;
+    if (pinnedIndicator) {
+      pinnedIndicator.hidden = true;
+    }
+    return;
+  }
+
+  indicator.hidden = false;
+  indicator.textContent = label;
+  indicator.dataset.currentDate = dateKey;
+
+  if (pinnedIndicator) {
+    pinnedIndicator.textContent = label;
+    pinnedIndicator.dataset.currentDate = dateKey;
+  }
+
+  const headingRect = heading?.getBoundingClientRect();
+  const panelRect = timePanel?.getBoundingClientRect();
+  const shouldPin = Boolean(navRect && headingRect && panelRect
+    && headingRect.bottom <= navRect.bottom + 8
+    && panelRect.bottom > navRect.bottom + 52);
+
+  if (!pinnedIndicator || !shouldPin || !navRect) {
+    if (pinnedIndicator) {
+      pinnedIndicator.hidden = true;
+      pinnedIndicator.classList.remove("is-stacked");
+    }
+    return;
+  }
+
+  pinnedIndicator.hidden = false;
+  const availableRight = window.innerWidth - navRect.right;
+  const shouldStack = availableRight < pinnedIndicator.offsetWidth + 18;
+  pinnedIndicator.classList.toggle("is-stacked", shouldStack);
+  pinnedIndicator.style.setProperty("--moments-date-pin-left", `${Math.round(navRect.right + 10)}px`);
+  pinnedIndicator.style.setProperty(
+    "--moments-date-pin-top",
+    `${Math.round(shouldStack ? navRect.bottom + 8 : navRect.top + (navRect.height - pinnedIndicator.offsetHeight) / 2)}px`
+  );
 }
 
 function renderMomentsFromData(nextData, elements, state = {}) {
@@ -1411,7 +1629,7 @@ function renderMomentsFromData(nextData, elements, state = {}) {
   const sortDirection = state.momentsSortDirection === "asc" ? "asc" : "desc";
   const sourceMatches = getMomentSourceMatches(nextData);
   selectedMomentsDate = normalizeSelectedMomentDate(state.momentsDate ?? selectedMomentsDate, sourceMatches);
-  const matches = filterMatchesByScheduleDate(sourceMatches, selectedMomentsDate);
+  const timeMatches = filterMatchesByScheduleDate(sourceMatches, selectedMomentsDate);
 
   if (root) {
     root.dataset.activeMomentsMode = activeMode;
@@ -1439,15 +1657,17 @@ function renderMomentsFromData(nextData, elements, state = {}) {
   renderMomentsDateFilter(sourceMatches, elements);
 
   if (elements.timeline) {
-    elements.timeline.innerHTML = renderTimeline(matches, {
+    elements.timeline.innerHTML = renderTimeline(timeMatches, {
       limit: Number.POSITIVE_INFINITY,
       sortMode: sortDirection === "asc" ? "matchTimeAsc" : "matchTimeDesc"
     });
   }
 
+  window.requestAnimationFrame(() => updateMomentsScrollDateIndicator(elements));
+
   if (elements.momentsStructure) {
     elements.momentsStructure.innerHTML = renderMomentsStructure(
-      matches,
+      sourceMatches,
       nextData.groupStage || [],
       nextData.knockout || [],
       elements.momentsDetail?.dataset.selectedMatchId || "",
@@ -1468,11 +1688,12 @@ function renderMomentsFromData(nextData, elements, state = {}) {
   }
 
   const selectedMatchId = elements.momentsDetail?.dataset.selectedMatchId || "";
+  const detailSourceMatches = activeMode === "structure" ? sourceMatches : timeMatches;
   const selectedStillVisible = selectedMatchId
-    && getStructureMomentSourceMatches(nextData, matches).some((match) => String(match.id) === String(selectedMatchId));
+    && getStructureMomentSourceMatches(nextData, detailSourceMatches).some((match) => String(match.id) === String(selectedMatchId));
 
   if (selectedStillVisible) {
-    renderMomentsDetail(selectedMatchId, nextData, elements, matches);
+    renderMomentsDetail(selectedMatchId, nextData, elements, detailSourceMatches);
   } else {
     clearMomentsDetail(elements);
   }
@@ -1488,6 +1709,14 @@ function getMomentSourceMatches(nextData) {
   }
 
   return nextData?.timelineMatches || [];
+}
+
+function getActiveMomentSourceMatches(nextData) {
+  const sourceMatches = getMomentSourceMatches(nextData);
+
+  return root?.dataset.activeMomentsMode === "structure"
+    ? sourceMatches
+    : filterMatchesByScheduleDate(sourceMatches, selectedMomentsDate);
 }
 
 function renderMomentsStructure(matches, groupStage, knockout, selectedMatchId = "", sortDirection = "desc") {
@@ -1811,8 +2040,9 @@ function renderDashboard(nextData, previousData, elements) {
   const shouldAutoCenterSchedule = elements.schedule.dataset.hasAutoCentered !== "true";
 
   elements.schedule.innerHTML = renderScheduleWheel(scheduleMatches, previousData);
+  syncScheduleWheelEdgePadding(elements);
   if (!shouldAutoCenterSchedule) {
-    elements.schedule.scrollTop = scheduleScrollTop;
+    elements.schedule.scrollTop = clampScheduleScrollTop(elements.schedule, scheduleScrollTop);
   }
   window.requestAnimationFrame(() => {
     if (shouldAutoCenterSchedule) {
@@ -2032,11 +2262,13 @@ export function renderTimeline(matches, options = {}) {
     const tag = linked ? "a" : "article";
     const href = linked ? ` href="${escapeAttribute(timelineMatchHref(match))}"` : "";
     const id = withAnchors ? ` id="${escapeAttribute(timelineAnchorId(match))}"` : "";
+    const dateKey = scheduleDateKey(match);
+    const dateAttr = dateKey ? ` data-timeline-date="${escapeAttribute(dateKey)}"` : "";
     const displayEvents = compact ? events.slice(0, 2) : events;
     const hiddenEventCount = Math.max(0, events.length - displayEvents.length);
 
     return `
-    <${tag} class="timeline-match ${compact ? "timeline-match-compact" : ""}"${href}${id}>
+    <${tag} class="timeline-match ${compact ? "timeline-match-compact" : ""}"${href}${id}${dateAttr}>
       <header class="timeline-match-header">
         <div>
           <strong>${escapeHtml(formatMatchTitle(match))}</strong>
@@ -2162,23 +2394,365 @@ function renderBracket(knockout, groupStage = [], options = {}) {
     return `<div class="empty-state">${escapeHtml(runtimeText.states.noBracketData)}</div>`;
   }
 
-  const columns = buildBracketColumns(knockout);
+  const model = buildPosterBracketModel(knockout);
 
   return `
     <svg class="bracket-lines" data-bracket-lines aria-hidden="true"></svg>
-    <div class="bracket-columns">
-      ${renderBracketGroupColumn(groupStage)}
-      ${columns.map((column) => `
-        <section class="bracket-round" data-round="${escapeAttribute(column.round)}">
-          <h3>${escapeHtml(stageLabel(column.label))}</h3>
-          <div class="bracket-round-track">
-            ${column.matches.map(({ match, index }) => renderBracketMatch(match, match.round, index, options)).join("")}
-          </div>
-        </section>
-      `).join("")}
-      ${renderChampionColumn(knockout, options)}
+    <div class="bracket-poster" data-bracket-poster>
+      <div class="bracket-poster-label bracket-poster-label-top">${escapeHtml(stageLabel("Round of 32"))}</div>
+      <div class="bracket-poster-label bracket-poster-label-center">${escapeHtml(stageLabel("Final"))}</div>
+      <div class="bracket-poster-label bracket-poster-label-bottom">${escapeHtml(stageLabel("Round of 32"))}</div>
+      ${model.nodes.map((node) => renderPosterBracketMatch(node, options, model.context)).join("")}
     </div>
   `;
+}
+
+function buildPosterBracketModel(knockout) {
+  const finalMatch = knockout.find((match) => match.round === "Final");
+  const matchMap = new Map(knockout.map((match) => [String(match.id), match]));
+  const context = {
+    matchMap,
+    roundIndex: buildBracketRoundIndexMap(knockout)
+  };
+  const sourcesByTarget = buildBracketSourcesByTarget(knockout);
+  const nodes = [];
+  const seen = new Set();
+
+  const addBranch = (match, half, leafStart, leafSpan) => {
+    if (!match) {
+      return;
+    }
+
+    const matchId = String(match.id);
+    const placement = posterBranchPlacement(match, half, leafStart, leafSpan);
+
+    if (!seen.has(matchId)) {
+      nodes.push({
+        match,
+        placement,
+        kind: "branch"
+      });
+      seen.add(matchId);
+    }
+
+    const sources = readPosterSourceMatches(match, sourcesByTarget);
+    const childSpan = sources.length ? leafSpan / sources.length : 0;
+
+    sources.forEach((source, index) => {
+      addBranch(source, half, leafStart + childSpan * index, childSpan);
+    });
+  };
+
+  const finalSources = finalMatch ? readPosterSourceMatches(finalMatch, sourcesByTarget).slice(0, 2) : [];
+
+  if (finalSources.length >= 2) {
+    addBranch(finalSources[0], "top", 0, 8);
+    addBranch(finalSources[1], "bottom", 0, 8);
+  } else {
+    addFallbackPosterBranches(knockout, nodes, seen);
+  }
+
+  if (finalMatch) {
+    nodes.push({
+      match: finalMatch,
+      placement: {
+        x: 50,
+        y: 50,
+        width: 21,
+        depth: 4,
+        half: "center"
+      },
+      kind: "final"
+    });
+  }
+
+  normalizePosterNodeColumns(nodes);
+
+  return {
+    context,
+    nodes: nodes.sort((nodeA, nodeB) => nodeA.placement.y - nodeB.placement.y || nodeA.placement.x - nodeB.placement.x)
+  };
+}
+
+function buildBracketSourcesByTarget(knockout) {
+  const matchMap = new Map(knockout.map((match) => [String(match.id), match]));
+  const sourcesByTarget = new Map();
+
+  for (const match of knockout) {
+    for (const nextId of readNextMatchIds(match)) {
+      const target = matchMap.get(String(nextId));
+
+      if (!target || target.round === "Match for third place") {
+        continue;
+      }
+
+      if (!sourcesByTarget.has(String(nextId))) {
+        sourcesByTarget.set(String(nextId), []);
+      }
+
+      sourcesByTarget.get(String(nextId)).push(match);
+    }
+  }
+
+  return sourcesByTarget;
+}
+
+function readPosterSourceMatches(match, sourcesByTarget) {
+  return [...(sourcesByTarget.get(String(match.id)) || [])]
+    .filter((source) => source.round !== "Match for third place")
+    .sort((sourceA, sourceB) => sourceSideOrder(sourceA, match) - sourceSideOrder(sourceB, match) || compareMatchIds(sourceA, sourceB));
+}
+
+function posterBranchPlacement(match, half, leafStart, leafSpan) {
+  const depth = posterRoundDepth(match.round);
+  const leafCenter = leafStart + leafSpan / 2;
+
+  if (depth === 0) {
+    return {
+      x: posterRoundX(leafCenter),
+      y: posterRoundY(depth, half),
+      width: posterRoundWidth(depth),
+      depth,
+      half
+    };
+  }
+
+  const x = posterRoundX(leafCenter);
+
+  return {
+    x,
+    y: posterRoundY(depth, half),
+    width: posterRoundWidth(depth),
+    depth,
+    half
+  };
+}
+
+function posterRoundX(leafCenter) {
+  return 6 + (leafCenter / 8) * 88;
+}
+
+function normalizePosterNodeColumns(nodes) {
+  const fixedColumns = new Map([
+    [0, [9, 21, 33, 45, 55, 67, 79, 91]],
+    [1, [15, 39, 61, 85]],
+    [2, [27, 73]],
+    [3, [50]]
+  ]);
+  const groups = new Map();
+
+  for (const node of nodes) {
+    const { placement } = node;
+
+    if (!placement || placement.half === "center" || !Number.isFinite(placement.depth)) {
+      continue;
+    }
+
+    const key = `${placement.half}:${placement.depth}`;
+
+    if (!groups.has(key)) {
+      groups.set(key, []);
+    }
+
+    groups.get(key).push(node);
+  }
+
+  for (const groupedNodes of groups.values()) {
+    groupedNodes.sort((nodeA, nodeB) => nodeA.placement.x - nodeB.placement.x);
+
+    const depth = groupedNodes[0]?.placement.depth;
+    const columns = fixedColumns.get(depth);
+
+    groupedNodes.forEach((node, index) => {
+      node.placement.x = columns?.[index] ?? ((index + .5) / groupedNodes.length) * 100;
+    });
+  }
+}
+
+function posterRoundDepth(round) {
+  if (round === "Round of 16") {
+    return 1;
+  }
+
+  if (round === "Quarter-final" || round === "Quarterfinal") {
+    return 2;
+  }
+
+  if (round === "Semi-final" || round === "Semifinal") {
+    return 3;
+  }
+
+  if (round === "Final" || round === "Finals") {
+    return 4;
+  }
+
+  return 0;
+}
+
+function posterRoundY(depth, half) {
+  const topRows = [7.2, 20.2, 33.4, 39.2, 50];
+  const bottomRows = [92.8, 79.8, 66.6, 60.8, 50];
+  const rows = half === "bottom" ? bottomRows : topRows;
+
+  return rows[Math.min(depth, rows.length - 1)];
+}
+
+function posterRoundWidth(depth) {
+  const widths = [8.2, 18, 15.4, 21.6, 20];
+
+  return widths[Math.min(depth, widths.length - 1)];
+}
+
+function addFallbackPosterBranches(knockout, nodes, seen) {
+  const rounds = buildBracketColumns(knockout).filter((column) => column.round !== "Finals");
+  const upperHalfCut = Math.ceil(rounds.length / 2);
+
+  rounds.forEach((column, roundIndex) => {
+    const depth = posterRoundDepth(column.round);
+    const half = roundIndex < upperHalfCut ? "top" : "bottom";
+    const matches = column.matches || [];
+    const denominator = Math.max(1, matches.length);
+
+    matches.forEach(({ match }, index) => {
+      const matchId = String(match.id);
+
+      if (seen.has(matchId) || match.round === "Final" || match.round === "Match for third place") {
+        return;
+      }
+
+      nodes.push({
+        match,
+        placement: {
+          x: ((index + .5) / denominator) * 100,
+          y: posterRoundY(depth, half),
+          width: posterRoundWidth(depth),
+          depth,
+          half
+        },
+        kind: "branch"
+      });
+      seen.add(matchId);
+    });
+  });
+}
+
+function renderPosterBracketMatch(node, options = {}, context = {}) {
+  const { match, placement, kind } = node;
+  const momentAttrs = renderMomentMatchAttrs(match, options);
+  const momentClass = renderMomentMatchClass(match, options);
+  const classes = [
+    "bracket-match",
+    "bracket-poster-match",
+    kind === "final" ? "bracket-final-match" : "",
+    kind === "third" ? "bracket-result-match bracket-third-place-match" : "",
+    momentClass,
+    `status-${String(match.status || "").toLowerCase()}`
+  ].filter(Boolean).join(" ");
+
+  return `
+    <article class="${classes}" style="--x: ${placement.x.toFixed(3)}; --y: ${placement.y.toFixed(3)}; --w: ${placement.width.toFixed(3)}%;" data-match-id="${escapeAttribute(match.id)}" data-bracket-round="${escapeAttribute(match.round)}" data-bracket-half="${escapeAttribute(placement.half)}" data-bracket-depth="${escapeAttribute(String(placement.depth))}" data-next-match-id="${escapeAttribute(match.nextMatchId || "")}" data-next-match-ids="${escapeAttribute((match.nextMatchIds || []).join(","))}"${momentAttrs}>
+      <div class="bracket-tree-pair">
+        ${renderPosterTeamSlot(match, "home", context)}
+        ${renderPosterMatchMeta(match, kind, context)}
+        ${renderPosterTeamSlot(match, "away", context)}
+      </div>
+      ${kind === "final" ? renderPosterChampionLine(match) : ""}
+    </article>
+  `;
+}
+
+function renderPosterTeamSlot(match, side, context = {}) {
+  const participant = formatBracketParticipant(match[side], context);
+  const winnerClass = match.winner && match.winner === match[side] ? " is-winner" : "";
+  const placeholderClass = participant.isPlaceholder ? " is-placeholder" : "";
+
+  return `
+    <span class="bracket-tree-team bracket-tree-team-${side}${winnerClass}${placeholderClass}" data-bracket-participant-team="${escapeAttribute(match[side])}">
+      ${participant.flagName ? renderTeamFlag(participant.flagName) : `<i class="bracket-team-placeholder" aria-hidden="true"></i>`}
+      <b>${escapeHtml(participant.label)}</b>
+    </span>
+  `;
+}
+
+function renderPosterMatchMeta(match, kind, context = {}) {
+  const isPlayed = isFinished(match.status) || isLive(match.status);
+  const date = isPlayed ? "" : formatPosterKickoffDate(match.kickoffTime) || posterRoundFallbackDate(match, context);
+  const score = isPlayed
+    ? formatMatchScore(match).replace(":", "-")
+    : kind === "final" ? "VS" : date;
+  const secondaryDate = !isPlayed && kind === "final" ? date : "";
+
+  if (!score) {
+    return `<span class="bracket-tree-meta is-empty" aria-hidden="true"></span>`;
+  }
+
+  return `
+    <span class="bracket-tree-meta">
+      <b>${escapeHtml(score)}</b>
+      ${secondaryDate ? `<small>${escapeHtml(secondaryDate)}</small>` : ""}
+    </span>
+  `;
+}
+
+function posterRoundFallbackDate(match, context = {}) {
+  const round = String(match.round || "");
+  const index = context.roundIndex?.get?.(String(match.id)) || 0;
+
+  if (round === "Quarter-final" || round === "Quarterfinal") {
+    return ["07/10", "07/11", "07/12", "07/12"][index - 1] || "";
+  }
+
+  if (round === "Semi-final" || round === "Semifinal") {
+    return ["07/15", "07/16"][index - 1] || "";
+  }
+
+  if (round === "Final" || round === "Finals") {
+    return "07/20";
+  }
+
+  return "";
+}
+
+function formatPosterKickoffDate(value) {
+  if (!value) {
+    return "";
+  }
+
+  return new Intl.DateTimeFormat("zh-CN", {
+    month: "2-digit",
+    day: "2-digit"
+  }).format(new Date(value));
+}
+
+function renderPosterChampionLine(match) {
+  const champion = match.winner || "";
+
+  if (!champion || !isFinished(match.status)) {
+    return "";
+  }
+
+  return `
+    <div class="bracket-final-champion">
+      ${renderTeamFlag(champion)}
+      <b>${escapeHtml(teamDisplayName(champion))}</b>
+    </div>
+  `;
+}
+
+function buildBracketRoundIndexMap(knockout) {
+  const index = new Map();
+  const orderedMatches = buildOrderedBracketMatches(knockout);
+
+  for (const round of orderBracketRounds([...new Set(knockout.map((match) => match.round))])) {
+    const matches = (orderedMatches.get(round) || knockout.filter((match) => match.round === round))
+      .sort(compareMatchIds);
+
+    matches.forEach((match, matchIndex) => {
+      index.set(String(match.id), matchIndex + 1);
+    });
+  }
+
+  return index;
 }
 
 function buildBracketColumns(knockout) {
@@ -2357,21 +2931,96 @@ function renderMomentMatchClass(match, options = {}) {
   ].filter(Boolean).join(" ");
 }
 
-function renderBracketTeamRow(match, round, side) {
+function renderBracketTeamRow(match, round, side, options = {}) {
   const team = match[side];
   const score = side === "home" ? match.homeScore : match.awayScore;
-  const placementLabel = bracketPlacementLabel(match, round, team);
+  const participant = formatBracketParticipant(team, options.bracketContext);
+  const placementLabel = participant.isPlaceholder ? "" : bracketPlacementLabel(match, round, team);
 
   return `
-    <div class="bracket-row ${match.winner === team ? "winner" : ""} ${placementLabel ? "has-placement-badge" : ""}">
+    <div class="bracket-row ${match.winner === team ? "winner" : ""} ${placementLabel ? "has-placement-badge" : ""} ${participant.isPlaceholder ? "is-placeholder" : ""}">
       <span data-bracket-participant-team="${escapeAttribute(team)}">
-        ${renderTeamFlag(team)}
-        <b>${escapeHtml(teamDisplayName(team))}</b>
+        ${participant.flagName ? renderTeamFlag(participant.flagName) : ""}
+        <b>${escapeHtml(participant.label)}</b>
         ${placementLabel ? `<em class="bracket-placement-badge">${escapeHtml(placementLabel)}</em>` : ""}
       </span>
       <strong>${escapeHtml(formatSideScore(match, side, { score }))}</strong>
     </div>
   `;
+}
+
+function formatBracketParticipant(team, context = {}) {
+  const rawTeam = String(team || "").trim();
+  const placeholder = rawTeam.match(/^([WL])(.+)$/);
+
+  if (!placeholder || !context?.matchMap) {
+    return {
+      flagName: placeholder ? "" : rawTeam,
+      isPlaceholder: Boolean(placeholder),
+      label: placeholder ? runtimeText.states.defaultTeam : teamDisplayName(team)
+    };
+  }
+
+  const [, resultType, sourceId] = placeholder;
+  const sourceMatch = context.matchMap.get(String(sourceId));
+
+  if (!sourceMatch) {
+    return {
+      flagName: "",
+      isPlaceholder: true,
+      label: rawTeam || runtimeText.states.defaultTeam
+    };
+  }
+
+  const resolvedTeam = resolveBracketSourceTeam(resultType, sourceMatch);
+
+  if (resolvedTeam) {
+    return {
+      flagName: resolvedTeam,
+      isPlaceholder: false,
+      label: teamDisplayName(resolvedTeam)
+    };
+  }
+
+  if (!isBracketPlaceholder(sourceMatch.home) && !isBracketPlaceholder(sourceMatch.away)) {
+    return {
+      flagName: "",
+      isPlaceholder: true,
+      label: `${teamDisplayName(sourceMatch.home)}/${teamDisplayName(sourceMatch.away)}`
+    };
+  }
+
+  return {
+    flagName: "",
+    isPlaceholder: true,
+    label: runtimeText.states.defaultTeam
+  };
+}
+
+function resolveBracketSourceTeam(resultType, sourceMatch) {
+  const winner = sourceMatch?.winner || "";
+
+  if (!winner) {
+    return "";
+  }
+
+  if (resultType === "W") {
+    return winner;
+  }
+
+  if (sourceMatch.home === winner) {
+    return sourceMatch.away;
+  }
+
+  if (sourceMatch.away === winner) {
+    return sourceMatch.home;
+  }
+
+  return "";
+}
+
+function isBracketPlaceholder(value) {
+  return /^([WL])\d+$/.test(String(value || "").trim());
 }
 
 function bracketPlacementLabel(match, round, team) {
@@ -2532,6 +3181,8 @@ function drawBracketLines(container) {
     return;
   }
 
+  syncBracketPosterScale(container);
+
   const containerRect = container.getBoundingClientRect();
   const width = Math.max(container.scrollWidth, container.clientWidth);
   const height = Math.max(container.scrollHeight, container.clientHeight);
@@ -2545,9 +3196,46 @@ function drawBracketLines(container) {
   svg.innerHTML = paths.join("");
 }
 
+function syncBracketPosterScale(container) {
+  const poster = container?.querySelector?.("[data-bracket-poster]");
+
+  if (!container || !poster) {
+    return;
+  }
+
+  const styles = window.getComputedStyle(container);
+  const designWidth = Number.parseFloat(styles.getPropertyValue("--bracket-design-width")) || 960;
+  const minScale = Number.parseFloat(styles.getPropertyValue("--bracket-min-scale")) || .58;
+  const maxScale = Number.parseFloat(styles.getPropertyValue("--bracket-max-scale")) || 1;
+  const paddingInline = (Number.parseFloat(styles.paddingLeft) || 0) + (Number.parseFloat(styles.paddingRight) || 0);
+  const availableWidth = Math.max(1, container.clientWidth - paddingInline);
+  const nextScale = Math.min(maxScale, Math.max(minScale, availableWidth / designWidth));
+
+  container.style.setProperty("--bracket-scale", nextScale.toFixed(4));
+
+  const isScrollLocked = styles.overflowX === "hidden";
+  const hasHorizontalOverflow = container.scrollWidth > container.clientWidth + 2;
+
+  if (isScrollLocked || !hasHorizontalOverflow) {
+    container.scrollLeft = 0;
+    delete container.dataset.bracketScrollCentered;
+    return;
+  }
+
+  if (container.dataset.bracketScrollCentered !== "true") {
+    container.scrollLeft = Math.max(0, (container.scrollWidth - container.clientWidth) / 2);
+    container.dataset.bracketScrollCentered = "true";
+  }
+}
+
 function buildKnockoutPaths(container, containerRect) {
   const paths = [];
   const matches = [...container.querySelectorAll("[data-match-id]")];
+  const isPoster = Boolean(container.querySelector("[data-bracket-poster]"));
+
+  if (isPoster) {
+    return buildPosterKnockoutPaths(container, containerRect, matches);
+  }
 
   for (const match of matches) {
     const nextIds = String(match.dataset.nextMatchIds || match.dataset.nextMatchId || "")
@@ -2562,9 +3250,16 @@ function buildKnockoutPaths(container, containerRect) {
         continue;
       }
 
+      const fromPoint = isPoster
+        ? pointBetweenBracketRects(match.getBoundingClientRect(), target.getBoundingClientRect(), containerRect, container, "from")
+        : pointFromRect(match.getBoundingClientRect(), containerRect, "right", container);
+      const toPoint = isPoster
+        ? pointBetweenBracketRects(match.getBoundingClientRect(), target.getBoundingClientRect(), containerRect, container, "to")
+        : pointFromRect(target.getBoundingClientRect(), containerRect, "left", container);
+
       paths.push(renderBracketPath(
-        pointFromRect(match.getBoundingClientRect(), containerRect, "right", container),
-        pointFromRect(target.getBoundingClientRect(), containerRect, "left", container),
+        fromPoint,
+        toPoint,
         "knockout"
       ));
     }
@@ -2585,14 +3280,194 @@ function buildKnockoutPaths(container, containerRect) {
   return paths;
 }
 
+function buildPosterKnockoutPaths(container, containerRect, matches) {
+  const paths = [];
+  const poster = container.querySelector("[data-bracket-poster]");
+  const posterRect = poster?.getBoundingClientRect();
+  const matchesById = new Map(matches.map((match) => [String(match.dataset.matchId), match]));
+  const sourcesByTarget = new Map();
+
+  if (!poster || !posterRect) {
+    return paths;
+  }
+
+  for (const match of matches) {
+    const nextIds = String(match.dataset.nextMatchIds || match.dataset.nextMatchId || "")
+      .split(",")
+      .map((id) => id.trim())
+      .filter(Boolean);
+
+    for (const nextId of nextIds) {
+      const target = matchesById.get(nextId);
+
+      if (!target || target.dataset.bracketRound === "Match for third place") {
+        continue;
+      }
+
+      const sourceDepth = Number.parseInt(match.dataset.bracketDepth || "", 10);
+      const targetDepth = Number.parseInt(target.dataset.bracketDepth || "", 10);
+
+      if (Number.isFinite(sourceDepth) && Number.isFinite(targetDepth) && targetDepth !== sourceDepth + 1) {
+        continue;
+      }
+
+      if (!sourcesByTarget.has(nextId)) {
+        sourcesByTarget.set(nextId, []);
+      }
+
+      sourcesByTarget.get(nextId).push(match);
+    }
+  }
+
+  for (const [targetId, sources] of sourcesByTarget.entries()) {
+    const target = matchesById.get(targetId);
+
+    if (!target) {
+      continue;
+    }
+
+    const targetPoint = posterPointFromMatch(target, posterRect, containerRect, container);
+    const sourcePoints = sources
+      .map((source) => posterPointFromMatch(source, posterRect, containerRect, container))
+      .sort((pointA, pointB) => pointA.y - pointB.y || pointA.x - pointB.x);
+
+    if (sourcePoints.length >= 2) {
+      paths.push(renderPosterMergedBracketPath(sourcePoints[0], sourcePoints[1], targetPoint, "knockout"));
+    } else if (sourcePoints.length === 1) {
+      paths.push(renderPosterBracketPath(sourcePoints[0], targetPoint, "knockout"));
+    }
+  }
+
+  return paths;
+}
+
 function pointFromRect(rect, containerRect, side, container) {
+  const scrollLeft = container?.scrollLeft || 0;
+  const scrollTop = container?.scrollTop || 0;
+  const x = rect.left - containerRect.left + scrollLeft;
+  const y = rect.top - containerRect.top + scrollTop;
+
+  if (side === "top" || side === "bottom") {
+    return {
+      x: x + rect.width / 2,
+      y: y + (side === "bottom" ? rect.height : 0)
+    };
+  }
+
   return {
-    x: (side === "left" ? rect.left - containerRect.left : rect.right - containerRect.left) + (container?.scrollLeft || 0),
-    y: rect.top - containerRect.top + rect.height / 2 + (container?.scrollTop || 0)
+    x: x + (side === "left" ? 0 : rect.width),
+    y: y + rect.height / 2
   };
 }
 
+function pointBetweenBracketRects(fromRect, toRect, containerRect, container, role) {
+  const fromCenter = {
+    x: fromRect.left + fromRect.width / 2,
+    y: fromRect.top + fromRect.height / 2
+  };
+  const toCenter = {
+    x: toRect.left + toRect.width / 2,
+    y: toRect.top + toRect.height / 2
+  };
+  const verticalTravel = Math.abs(toCenter.y - fromCenter.y) >= Math.abs(toCenter.x - fromCenter.x) * .62;
+
+  if (verticalTravel) {
+    const targetIsLower = toCenter.y >= fromCenter.y;
+    const fromSide = targetIsLower ? "bottom" : "top";
+    const toSide = targetIsLower ? "top" : "bottom";
+
+    return role === "from"
+      ? pointFromRect(fromRect, containerRect, fromSide, container)
+      : pointFromRect(toRect, containerRect, toSide, container);
+  }
+
+  const targetIsRight = toCenter.x >= fromCenter.x;
+  const fromSide = targetIsRight ? "right" : "left";
+  const toSide = targetIsRight ? "left" : "right";
+
+  return role === "from"
+    ? pointFromRect(fromRect, containerRect, fromSide, container)
+    : pointFromRect(toRect, containerRect, toSide, container);
+}
+
+function posterPointFromMatch(match, posterRect, containerRect, container) {
+  const scrollLeft = container?.scrollLeft || 0;
+  const scrollTop = container?.scrollTop || 0;
+  const x = Number.parseFloat(match.style.getPropertyValue("--x")) || 50;
+  const y = Number.parseFloat(match.style.getPropertyValue("--y")) || 50;
+  const depth = Number.parseInt(match.dataset.bracketDepth || "", 10);
+  const half = match.dataset.bracketHalf || "";
+  const leafOffset = depth === 0
+    ? (half === "bottom" ? -10 : 10)
+    : 0;
+
+  return {
+    x: posterRect.left - containerRect.left + scrollLeft + posterRect.width * x / 100,
+    y: posterRect.top - containerRect.top + scrollTop + posterRect.height * y / 100 + leafOffset
+  };
+}
+
+function renderPosterBracketPath(from, to, kind) {
+  const midY = from.y + (to.y - from.y) * .5;
+  const d = [
+    `M ${from.x.toFixed(1)} ${from.y.toFixed(1)}`,
+    `V ${midY.toFixed(1)}`,
+    `H ${to.x.toFixed(1)}`,
+    `V ${to.y.toFixed(1)}`
+  ].join(" ");
+
+  return `<path class="bracket-line bracket-line-${kind}" d="${d}" />`;
+}
+
+function renderPosterMergedBracketPath(sourceA, sourceB, target, kind) {
+  if (Math.abs(sourceA.x - sourceB.x) < 1) {
+    const d = [
+      `M ${sourceA.x.toFixed(1)} ${sourceA.y.toFixed(1)}`,
+      `V ${sourceB.y.toFixed(1)}`,
+      `V ${target.y.toFixed(1)}`
+    ].join(" ");
+
+    return `<path class="bracket-line bracket-line-${kind}" d="${d}" />`;
+  }
+
+  if (Math.abs(sourceA.y - sourceB.y) > Math.abs(target.y - (sourceA.y + sourceB.y) / 2) * .5) {
+    const d = [
+      `M ${sourceA.x.toFixed(1)} ${sourceA.y.toFixed(1)}`,
+      `V ${target.y.toFixed(1)}`,
+      `M ${sourceB.x.toFixed(1)} ${sourceB.y.toFixed(1)}`,
+      `V ${target.y.toFixed(1)}`
+    ].join(" ");
+
+    return `<path class="bracket-line bracket-line-${kind}" d="${d}" />`;
+  }
+
+  const joinY = sourceA.y + (target.y - sourceA.y) * .58;
+  const midX = (sourceA.x + sourceB.x) / 2;
+  const d = [
+    `M ${sourceA.x.toFixed(1)} ${sourceA.y.toFixed(1)}`,
+    `V ${joinY.toFixed(1)}`,
+    `H ${sourceB.x.toFixed(1)}`,
+    `V ${sourceB.y.toFixed(1)}`,
+    `M ${midX.toFixed(1)} ${joinY.toFixed(1)}`,
+    `V ${target.y.toFixed(1)}`
+  ].join(" ");
+
+  return `<path class="bracket-line bracket-line-${kind}" d="${d}" />`;
+}
+
 function renderBracketPath(from, to, kind) {
+  if (Math.abs(to.y - from.y) > Math.abs(to.x - from.x) * .72) {
+    const midY = from.y + (to.y - from.y) * .5;
+    const d = [
+      `M ${from.x.toFixed(1)} ${from.y.toFixed(1)}`,
+      `V ${midY.toFixed(1)}`,
+      `H ${to.x.toFixed(1)}`,
+      `V ${to.y.toFixed(1)}`
+    ].join(" ");
+
+    return `<path class="bracket-line bracket-line-${kind}" d="${d}" />`;
+  }
+
   const midX = from.x + Math.max(24, (to.x - from.x) * 0.5);
   const d = [
     `M ${from.x.toFixed(1)} ${from.y.toFixed(1)}`,

@@ -1,0 +1,44 @@
+{
+  "title": "Design Intake Template",
+  "slug": "topic",
+  "createdAt": "YYYY-MM-DD",
+  "status": "intake",
+  "sourceLinks": {
+    "figma": [
+      {
+        "url": "https://www.figma.com/design/<fileKey>/<fileName>?node-id=123-456",
+        "kind": "design",
+        "fileKey": "<fileKey>",
+        "branchKey": "",
+        "nodeId": "123:456",
+        "needsNodeSpecificUrl": false,
+        "codexToolHint": "figma.get_design_context"
+      }
+    ],
+    "canva": [
+      {
+        "url": "https://www.canva.com/design/<designId>/...",
+        "kind": "design",
+        "designId": "<designId>"
+      }
+    ],
+    "references": []
+  },
+  "canvaWorkspace": {
+    "name": "Starsail Visual Workflow",
+    "folderId": "FAHO4G_onjg",
+    "folderUrl": "https://www.canva.com/folder/FAHO4G_onjg"
+  },
+  "implementationTarget": {
+    "pages": [],
+    "components": [],
+    "styles": [],
+    "publicAssets": []
+  },
+  "notes": "",
+  "nextCodexActions": [
+    "For Figma links with nodeId, call the Figma design-context tool and save screenshot/assets into this folder.",
+    "For Canva links or exports, place source exports under design/exports/<slug>/ before moving final public assets.",
+    "Translate approved visual decisions into src/components/, src/styles/, and src/pages/ without using Canva/Figma as the production host."
+  ]
+}

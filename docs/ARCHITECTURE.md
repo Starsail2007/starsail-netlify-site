@@ -91,6 +91,10 @@ docs/
 
 其中 `DESIGN_WORKFLOW.md` 专门说明 Canva/Figma、Codex、GitHub、Netlify 之间如何配合。
 
+`DESIGN_CONNECTORS.md` 记录 Figma / Canva 插件、节点链接、导出素材和 `pnpm design:intake` 接入命令的约定。
+
+`VISUAL_WORKFLOW_STATUS.md` 记录当前 Figma / Canva 连接器状态、Canva 工作区、准备清单和未完成项。
+
 `docs/optimization-prompts/` 保存可投喂给后续 Codex 对话的优化任务提示词，便于把复杂治理拆成独立工作流。
 
 ```text

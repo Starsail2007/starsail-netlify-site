@@ -66,7 +66,7 @@ export const TEAM_NAME_ZH = {
   Croatia: "克罗地亚",
   "Curaçao": "库拉索",
   "Czech Republic": "捷克",
-  "DR Congo": "刚果（金）",
+  "DR Congo": "刚果金",
   Ecuador: "厄瓜多尔",
   Egypt: "埃及",
   England: "英格兰",

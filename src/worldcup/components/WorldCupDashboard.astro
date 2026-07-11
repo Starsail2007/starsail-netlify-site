@@ -63,6 +63,7 @@ const clientTextJson = serializeJsonForHtml({
         {text.tabs.moments}
       </button>
     </nav>
+    <output class="moments-scroll-date moments-scroll-date-pinned" data-moments-scroll-date-pinned aria-hidden="true" hidden></output>
 
     <section class="worldcup-tab-viewport" data-worldcup-tabs>
       <div class="worldcup-tab-track" data-worldcup-tab-track>
@@ -141,6 +142,7 @@ const clientTextJson = serializeJsonForHtml({
                     {text.moments.modes.structure}
                   </button>
                 </div>
+                <output class="moments-scroll-date" data-moments-scroll-date aria-label={text.moments.scrollDateAriaLabel} aria-live="polite" hidden></output>
                 <div class="schedule-date-filter moments-date-filter" data-moments-date-filter>
                   <button class="schedule-date-button moments-date-button" type="button" data-moments-date-toggle aria-haspopup="listbox" aria-expanded="false" aria-label={text.moments.dateFilter.toggleAriaLabel}>
                     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
