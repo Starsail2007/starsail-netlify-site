@@ -5863,19 +5863,19 @@
       "venue": "Dallas (Arlington)",
       "kickoffTime": "2026-07-14T19:00:00.000Z",
       "home": {
-        "name": "W97",
-        "code": "W97",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "France",
+        "code": "F",
+        "iso2": "fr",
+        "logo": "https://flagcdn.com/fr.svg",
+        "flagUrl": "https://flagcdn.com/fr.svg",
         "score": null
       },
       "away": {
-        "name": "W98",
-        "code": "W98",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
         "score": null
       },
       "penaltyScore": null,
@@ -11833,19 +11833,19 @@
       "venue": "Dallas (Arlington)",
       "kickoffTime": "2026-07-14T19:00:00.000Z",
       "home": {
-        "name": "W97",
-        "code": "W97",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "France",
+        "code": "F",
+        "iso2": "fr",
+        "logo": "https://flagcdn.com/fr.svg",
+        "flagUrl": "https://flagcdn.com/fr.svg",
         "score": null
       },
       "away": {
-        "name": "W98",
-        "code": "W98",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
         "score": null
       },
       "penaltyScore": null,
@@ -12009,19 +12009,19 @@
       "venue": "Dallas (Arlington)",
       "kickoffTime": "2026-07-14T19:00:00.000Z",
       "home": {
-        "name": "W97",
-        "code": "W97",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "France",
+        "code": "F",
+        "iso2": "fr",
+        "logo": "https://flagcdn.com/fr.svg",
+        "flagUrl": "https://flagcdn.com/fr.svg",
         "score": null
       },
       "away": {
-        "name": "W98",
-        "code": "W98",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
         "score": null
       },
       "penaltyScore": null,
@@ -17871,7 +17871,8 @@
       "nextMatchId": "89",
       "nextMatchIds": [
         "89",
-        "97"
+        "97",
+        "101"
       ]
     },
     {
@@ -17994,7 +17995,8 @@
       "nextMatchId": "93",
       "nextMatchIds": [
         "93",
-        "98"
+        "98",
+        "101"
       ]
     },
     {
@@ -18084,7 +18086,8 @@
       "status": "FT",
       "nextMatchId": "97",
       "nextMatchIds": [
-        "97"
+        "97",
+        "101"
       ]
     },
     {
@@ -18152,7 +18155,8 @@
       "status": "FT",
       "nextMatchId": "98",
       "nextMatchIds": [
-        "98"
+        "98",
+        "101"
       ]
     },
     {
@@ -18280,8 +18284,8 @@
     {
       "id": "101",
       "round": "Semi-final",
-      "home": "W97",
-      "away": "W98",
+      "home": "France",
+      "away": "Spain",
       "homeScore": null,
       "awayScore": null,
       "homePenaltyScore": null,
@@ -18374,8 +18378,8 @@
     "label": "near-match",
     "due": false,
     "intervalSeconds": 3600,
-    "nextFetchAt": "2026-07-11T11:37:19.602Z",
-    "generatedAt": "2026-07-11T10:37:19.602Z",
+    "nextFetchAt": "2026-07-11T15:36:15.501Z",
+    "generatedAt": "2026-07-11T14:36:15.501Z",
     "nextMatch": {
       "id": "99",
       "stage": "Quarter-final",
@@ -18386,5 +18390,5 @@
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-11T10:37:19.602Z"
+  "lastUpdated": "2026-07-11T14:36:15.501Z"
 }
