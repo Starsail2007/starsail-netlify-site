@@ -5796,8 +5796,8 @@
     },
     {
       "id": "99",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Quarter-final",
       "round": "Quarter-final",
@@ -11766,8 +11766,8 @@
     },
     {
       "id": "99",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Quarter-final",
       "round": "Quarter-final",
@@ -11940,35 +11940,6 @@
     }
   ],
   "upcomingMatches": [
-    {
-      "id": "99",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Quarter-final",
-      "round": "Quarter-final",
-      "group": "",
-      "venue": "Miami (Miami Gardens)",
-      "kickoffTime": "2026-07-11T21:00:00.000Z",
-      "home": {
-        "name": "Norway",
-        "code": "N",
-        "iso2": "no",
-        "logo": "https://flagcdn.com/no.svg",
-        "flagUrl": "https://flagcdn.com/no.svg",
-        "score": null
-      },
-      "away": {
-        "name": "England",
-        "code": "E",
-        "iso2": "gb-eng",
-        "logo": "https://flagcdn.com/gb-eng.svg",
-        "flagUrl": "https://flagcdn.com/gb-eng.svg",
-        "score": null
-      },
-      "penaltyScore": null,
-      "events": []
-    },
     {
       "id": "100",
       "status": "NS",
@@ -18378,17 +18349,17 @@
     "label": "near-match",
     "due": false,
     "intervalSeconds": 3600,
-    "nextFetchAt": "2026-07-11T20:30:00.000Z",
-    "generatedAt": "2026-07-11T20:27:42.163Z",
+    "nextFetchAt": "2026-07-12T00:30:00.000Z",
+    "generatedAt": "2026-07-11T23:36:51.063Z",
     "nextMatch": {
-      "id": "99",
+      "id": "100",
       "stage": "Quarter-final",
-      "kickoffTime": "2026-07-11T21:00:00.000Z",
-      "home": "Norway",
-      "away": "England",
+      "kickoffTime": "2026-07-12T01:00:00.000Z",
+      "home": "Argentina",
+      "away": "Switzerland",
       "status": "NS"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-11T20:27:42.163Z"
+  "lastUpdated": "2026-07-11T23:36:51.063Z"
 }
