@@ -5810,7 +5810,7 @@
         "iso2": "no",
         "logo": "https://flagcdn.com/no.svg",
         "flagUrl": "https://flagcdn.com/no.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "England",
@@ -5818,15 +5818,46 @@
         "iso2": "gb-eng",
         "logo": "https://flagcdn.com/gb-eng.svg",
         "flagUrl": "https://flagcdn.com/gb-eng.svg",
-        "score": null
+        "score": 2
       },
       "penaltyScore": null,
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "36",
+          "minuteSort": 36,
+          "team": "Norway",
+          "teamName": "Norway",
+          "player": "Andreas Schjelderup",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "45+2",
+          "minuteSort": 47,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "93",
+          "minuteSort": 93,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "100",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Quarter-final",
       "round": "Quarter-final",
@@ -5839,7 +5870,7 @@
         "iso2": "ar",
         "logo": "https://flagcdn.com/ar.svg",
         "flagUrl": "https://flagcdn.com/ar.svg",
-        "score": null
+        "score": 3
       },
       "away": {
         "name": "Switzerland",
@@ -5847,10 +5878,51 @@
         "iso2": "ch",
         "logo": "https://flagcdn.com/ch.svg",
         "flagUrl": "https://flagcdn.com/ch.svg",
-        "score": null
+        "score": 1
       },
       "penaltyScore": null,
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "10",
+          "minuteSort": 10,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Alexis Mac Allister",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "67",
+          "minuteSort": 67,
+          "team": "Switzerland",
+          "teamName": "Switzerland",
+          "player": "Dan Ndoye",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "112",
+          "minuteSort": 112,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Julián Álvarez",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "120+1",
+          "minuteSort": 121,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lautaro Martínez",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "101",
@@ -11780,7 +11852,7 @@
         "iso2": "no",
         "logo": "https://flagcdn.com/no.svg",
         "flagUrl": "https://flagcdn.com/no.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "England",
@@ -11788,15 +11860,46 @@
         "iso2": "gb-eng",
         "logo": "https://flagcdn.com/gb-eng.svg",
         "flagUrl": "https://flagcdn.com/gb-eng.svg",
-        "score": null
+        "score": 2
       },
       "penaltyScore": null,
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "36",
+          "minuteSort": 36,
+          "team": "Norway",
+          "teamName": "Norway",
+          "player": "Andreas Schjelderup",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "45+2",
+          "minuteSort": 47,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "93",
+          "minuteSort": 93,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "100",
-      "status": "NS",
-      "statusText": "未开始",
+      "status": "FT",
+      "statusText": "完场",
       "minute": null,
       "stage": "Quarter-final",
       "round": "Quarter-final",
@@ -11809,7 +11912,7 @@
         "iso2": "ar",
         "logo": "https://flagcdn.com/ar.svg",
         "flagUrl": "https://flagcdn.com/ar.svg",
-        "score": null
+        "score": 3
       },
       "away": {
         "name": "Switzerland",
@@ -11817,10 +11920,51 @@
         "iso2": "ch",
         "logo": "https://flagcdn.com/ch.svg",
         "flagUrl": "https://flagcdn.com/ch.svg",
-        "score": null
+        "score": 1
       },
       "penaltyScore": null,
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "10",
+          "minuteSort": 10,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Alexis Mac Allister",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "67",
+          "minuteSort": 67,
+          "team": "Switzerland",
+          "teamName": "Switzerland",
+          "player": "Dan Ndoye",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "112",
+          "minuteSort": 112,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Julián Álvarez",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "120+1",
+          "minuteSort": 121,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lautaro Martínez",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "101",
@@ -11941,35 +12085,6 @@
   ],
   "upcomingMatches": [
     {
-      "id": "100",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Quarter-final",
-      "round": "Quarter-final",
-      "group": "",
-      "venue": "Kansas City",
-      "kickoffTime": "2026-07-12T01:00:00.000Z",
-      "home": {
-        "name": "Argentina",
-        "code": "A",
-        "iso2": "ar",
-        "logo": "https://flagcdn.com/ar.svg",
-        "flagUrl": "https://flagcdn.com/ar.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Switzerland",
-        "code": "S",
-        "iso2": "ch",
-        "logo": "https://flagcdn.com/ch.svg",
-        "flagUrl": "https://flagcdn.com/ch.svg",
-        "score": null
-      },
-      "penaltyScore": null,
-      "events": []
-    },
-    {
       "id": "101",
       "status": "NS",
       "statusText": "未开始",
@@ -12087,6 +12202,136 @@
     }
   ],
   "timelineMatches": [
+    {
+      "id": "100",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Quarter-final",
+      "round": "Quarter-final",
+      "group": "",
+      "venue": "Kansas City",
+      "kickoffTime": "2026-07-12T01:00:00.000Z",
+      "home": {
+        "name": "Argentina",
+        "code": "A",
+        "iso2": "ar",
+        "logo": "https://flagcdn.com/ar.svg",
+        "flagUrl": "https://flagcdn.com/ar.svg",
+        "score": 3
+      },
+      "away": {
+        "name": "Switzerland",
+        "code": "S",
+        "iso2": "ch",
+        "logo": "https://flagcdn.com/ch.svg",
+        "flagUrl": "https://flagcdn.com/ch.svg",
+        "score": 1
+      },
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "10",
+          "minuteSort": 10,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Alexis Mac Allister",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "67",
+          "minuteSort": 67,
+          "team": "Switzerland",
+          "teamName": "Switzerland",
+          "player": "Dan Ndoye",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "112",
+          "minuteSort": 112,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Julián Álvarez",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "120+1",
+          "minuteSort": 121,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lautaro Martínez",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
+    },
+    {
+      "id": "99",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Quarter-final",
+      "round": "Quarter-final",
+      "group": "",
+      "venue": "Miami (Miami Gardens)",
+      "kickoffTime": "2026-07-11T21:00:00.000Z",
+      "home": {
+        "name": "Norway",
+        "code": "N",
+        "iso2": "no",
+        "logo": "https://flagcdn.com/no.svg",
+        "flagUrl": "https://flagcdn.com/no.svg",
+        "score": 1
+      },
+      "away": {
+        "name": "England",
+        "code": "E",
+        "iso2": "gb-eng",
+        "logo": "https://flagcdn.com/gb-eng.svg",
+        "flagUrl": "https://flagcdn.com/gb-eng.svg",
+        "score": 2
+      },
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "36",
+          "minuteSort": 36,
+          "team": "Norway",
+          "teamName": "Norway",
+          "player": "Andreas Schjelderup",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "45+2",
+          "minuteSort": 47,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "93",
+          "minuteSort": 93,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
+    },
     {
       "id": "98",
       "status": "FT",
@@ -12573,106 +12818,6 @@
           "teamName": "France",
           "player": "Kylian Mbappé",
           "penalty": true,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "90",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 16",
-      "round": "Round of 16",
-      "group": "",
-      "venue": "Houston",
-      "kickoffTime": "2026-07-04T17:00:00.000Z",
-      "home": {
-        "name": "Canada",
-        "code": "C",
-        "iso2": "ca",
-        "logo": "https://flagcdn.com/ca.svg",
-        "flagUrl": "https://flagcdn.com/ca.svg",
-        "score": 0
-      },
-      "away": {
-        "name": "Morocco",
-        "code": "M",
-        "iso2": "ma",
-        "logo": "https://flagcdn.com/ma.svg",
-        "flagUrl": "https://flagcdn.com/ma.svg",
-        "score": 3
-      },
-      "penaltyScore": null,
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "50",
-          "minuteSort": 50,
-          "team": "Morocco",
-          "teamName": "Morocco",
-          "player": "Azzedine Ounahi",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "82",
-          "minuteSort": 82,
-          "team": "Morocco",
-          "teamName": "Morocco",
-          "player": "Azzedine Ounahi",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "90+8",
-          "minuteSort": 98,
-          "team": "Morocco",
-          "teamName": "Morocco",
-          "player": "Soufiane Rahimi",
-          "penalty": false,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "87",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 32",
-      "round": "Round of 32",
-      "group": "",
-      "venue": "Kansas City",
-      "kickoffTime": "2026-07-04T01:30:00.000Z",
-      "home": {
-        "name": "Colombia",
-        "code": "C",
-        "iso2": "co",
-        "logo": "https://flagcdn.com/co.svg",
-        "flagUrl": "https://flagcdn.com/co.svg",
-        "score": 1
-      },
-      "away": {
-        "name": "Ghana",
-        "code": "G",
-        "iso2": "gh",
-        "logo": "https://flagcdn.com/gh.svg",
-        "flagUrl": "https://flagcdn.com/gh.svg",
-        "score": 0
-      },
-      "penaltyScore": null,
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "14",
-          "minuteSort": 14,
-          "team": "Colombia",
-          "teamName": "Colombia",
-          "player": "Jhon Arias",
-          "penalty": false,
           "ownGoal": false
         }
       ]
@@ -18223,13 +18368,13 @@
       "round": "Quarter-final",
       "home": "Norway",
       "away": "England",
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 1,
+      "awayScore": 2,
       "homePenaltyScore": null,
       "awayPenaltyScore": null,
       "penaltyScore": null,
-      "winner": "",
-      "status": "NS",
+      "winner": "England",
+      "status": "FT",
       "nextMatchId": "102",
       "nextMatchIds": [
         "102"
@@ -18240,13 +18385,13 @@
       "round": "Quarter-final",
       "home": "Argentina",
       "away": "Switzerland",
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 3,
+      "awayScore": 1,
       "homePenaltyScore": null,
       "awayPenaltyScore": null,
       "penaltyScore": null,
-      "winner": "",
-      "status": "NS",
+      "winner": "Argentina",
+      "status": "FT",
       "nextMatchId": "102",
       "nextMatchIds": [
         "102"
@@ -18345,21 +18490,21 @@
   "leagueId": "1",
   "season": "2026",
   "polling": {
-    "mode": "near-match",
-    "label": "near-match",
+    "mode": "quiet",
+    "label": "quiet",
     "due": false,
-    "intervalSeconds": 3600,
-    "nextFetchAt": "2026-07-12T00:30:00.000Z",
-    "generatedAt": "2026-07-11T23:36:51.063Z",
+    "intervalSeconds": 21600,
+    "nextFetchAt": "2026-07-12T13:48:06.926Z",
+    "generatedAt": "2026-07-12T07:48:06.926Z",
     "nextMatch": {
-      "id": "100",
-      "stage": "Quarter-final",
-      "kickoffTime": "2026-07-12T01:00:00.000Z",
-      "home": "Argentina",
-      "away": "Switzerland",
+      "id": "101",
+      "stage": "Semi-final",
+      "kickoffTime": "2026-07-14T19:00:00.000Z",
+      "home": "France",
+      "away": "Spain",
       "status": "NS"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-11T23:36:51.063Z"
+  "lastUpdated": "2026-07-12T07:48:06.926Z"
 }
