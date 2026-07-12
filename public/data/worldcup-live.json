@@ -5964,19 +5964,19 @@
       "venue": "Atlanta",
       "kickoffTime": "2026-07-15T19:00:00.000Z",
       "home": {
-        "name": "W99",
-        "code": "W99",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "England",
+        "code": "E",
+        "iso2": "gb-eng",
+        "logo": "https://flagcdn.com/gb-eng.svg",
+        "flagUrl": "https://flagcdn.com/gb-eng.svg",
         "score": null
       },
       "away": {
-        "name": "W100",
-        "code": "W100",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Argentina",
+        "code": "A",
+        "iso2": "ar",
+        "logo": "https://flagcdn.com/ar.svg",
+        "flagUrl": "https://flagcdn.com/ar.svg",
         "score": null
       },
       "penaltyScore": null,
@@ -12006,19 +12006,19 @@
       "venue": "Atlanta",
       "kickoffTime": "2026-07-15T19:00:00.000Z",
       "home": {
-        "name": "W99",
-        "code": "W99",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "England",
+        "code": "E",
+        "iso2": "gb-eng",
+        "logo": "https://flagcdn.com/gb-eng.svg",
+        "flagUrl": "https://flagcdn.com/gb-eng.svg",
         "score": null
       },
       "away": {
-        "name": "W100",
-        "code": "W100",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Argentina",
+        "code": "A",
+        "iso2": "ar",
+        "logo": "https://flagcdn.com/ar.svg",
+        "flagUrl": "https://flagcdn.com/ar.svg",
         "score": null
       },
       "penaltyScore": null,
@@ -12124,19 +12124,19 @@
       "venue": "Atlanta",
       "kickoffTime": "2026-07-15T19:00:00.000Z",
       "home": {
-        "name": "W99",
-        "code": "W99",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "England",
+        "code": "E",
+        "iso2": "gb-eng",
+        "logo": "https://flagcdn.com/gb-eng.svg",
+        "flagUrl": "https://flagcdn.com/gb-eng.svg",
         "score": null
       },
       "away": {
-        "name": "W100",
-        "code": "W100",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Argentina",
+        "code": "A",
+        "iso2": "ar",
+        "logo": "https://flagcdn.com/ar.svg",
+        "flagUrl": "https://flagcdn.com/ar.svg",
         "score": null
       },
       "penaltyScore": null,
@@ -18041,7 +18041,8 @@
       "nextMatchId": "92",
       "nextMatchIds": [
         "92",
-        "99"
+        "99",
+        "102"
       ]
     },
     {
@@ -18148,7 +18149,8 @@
       "nextMatchId": "95",
       "nextMatchIds": [
         "95",
-        "100"
+        "100",
+        "102"
       ]
     },
     {
@@ -18254,7 +18256,8 @@
       "status": "FT",
       "nextMatchId": "99",
       "nextMatchIds": [
-        "99"
+        "99",
+        "102"
       ]
     },
     {
@@ -18306,7 +18309,8 @@
       "status": "FT",
       "nextMatchId": "100",
       "nextMatchIds": [
-        "100"
+        "100",
+        "102"
       ]
     },
     {
@@ -18418,8 +18422,8 @@
     {
       "id": "102",
       "round": "Semi-final",
-      "home": "W99",
-      "away": "W100",
+      "home": "England",
+      "away": "Argentina",
       "homeScore": null,
       "awayScore": null,
       "homePenaltyScore": null,
@@ -18494,8 +18498,8 @@
     "label": "quiet",
     "due": false,
     "intervalSeconds": 21600,
-    "nextFetchAt": "2026-07-12T20:44:44.728Z",
-    "generatedAt": "2026-07-12T14:44:44.728Z",
+    "nextFetchAt": "2026-07-13T05:37:03.570Z",
+    "generatedAt": "2026-07-12T23:37:03.570Z",
     "nextMatch": {
       "id": "101",
       "stage": "Semi-final",
@@ -18506,5 +18510,5 @@
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-12T14:44:44.728Z"
+  "lastUpdated": "2026-07-12T23:37:03.570Z"
 }
