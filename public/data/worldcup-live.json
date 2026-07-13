@@ -18498,8 +18498,8 @@
     "label": "quiet",
     "due": false,
     "intervalSeconds": 21600,
-    "nextFetchAt": "2026-07-13T05:37:03.570Z",
-    "generatedAt": "2026-07-12T23:37:03.570Z",
+    "nextFetchAt": "2026-07-13T16:45:22.013Z",
+    "generatedAt": "2026-07-13T10:45:22.013Z",
     "nextMatch": {
       "id": "101",
       "stage": "Semi-final",
@@ -18510,5 +18510,5 @@
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-12T23:37:03.570Z"
+  "lastUpdated": "2026-07-13T10:45:22.013Z"
 }
