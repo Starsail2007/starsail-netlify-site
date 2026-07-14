@@ -5928,7 +5928,7 @@
       "id": "101",
       "status": "LIVE",
       "statusText": "进行中",
-      "minute": 52,
+      "minute": 106,
       "stage": "Semi-final",
       "round": "Semi-final",
       "group": "",
@@ -11970,7 +11970,7 @@
       "id": "101",
       "status": "LIVE",
       "statusText": "进行中",
-      "minute": 52,
+      "minute": 106,
       "stage": "Semi-final",
       "round": "Semi-final",
       "group": "",
@@ -18469,8 +18469,8 @@
     "label": "live",
     "due": false,
     "intervalSeconds": 300,
-    "nextFetchAt": "2026-07-14T19:57:51.542Z",
-    "generatedAt": "2026-07-14T19:52:51.542Z",
+    "nextFetchAt": "2026-07-14T20:51:16.442Z",
+    "generatedAt": "2026-07-14T20:46:16.442Z",
     "nextMatch": {
       "id": "101",
       "stage": "Semi-final",
@@ -18481,5 +18481,5 @@
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-14T19:52:51.542Z"
+  "lastUpdated": "2026-07-14T20:46:16.442Z"
 }
