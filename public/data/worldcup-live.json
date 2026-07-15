@@ -5976,9 +5976,9 @@
     },
     {
       "id": "102",
-      "status": "LIVE",
-      "statusText": "进行中",
-      "minute": 105,
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
       "stage": "Semi-final",
       "round": "Semi-final",
       "group": "",
@@ -5990,7 +5990,7 @@
         "iso2": "gb-eng",
         "logo": "https://flagcdn.com/gb-eng.svg",
         "flagUrl": "https://flagcdn.com/gb-eng.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Argentina",
@@ -5998,10 +5998,41 @@
         "iso2": "ar",
         "logo": "https://flagcdn.com/ar.svg",
         "flagUrl": "https://flagcdn.com/ar.svg",
-        "score": null
+        "score": 2
       },
       "penaltyScore": null,
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "55",
+          "minuteSort": 55,
+          "team": "England",
+          "teamName": "England",
+          "player": "Anthony Gordon",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "86",
+          "minuteSort": 86,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Enzo Fernández",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "92",
+          "minuteSort": 92,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lautaro Martínez",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "103",
@@ -6022,11 +6053,11 @@
         "score": null
       },
       "away": {
-        "name": "L102",
-        "code": "L102",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "England",
+        "code": "E",
+        "iso2": "gb-eng",
+        "logo": "https://flagcdn.com/gb-eng.svg",
+        "flagUrl": "https://flagcdn.com/gb-eng.svg",
         "score": null
       },
       "penaltyScore": null,
@@ -6051,11 +6082,11 @@
         "score": null
       },
       "away": {
-        "name": "W102",
-        "code": "W102",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Argentina",
+        "code": "A",
+        "iso2": "ar",
+        "logo": "https://flagcdn.com/ar.svg",
+        "flagUrl": "https://flagcdn.com/ar.svg",
         "score": null
       },
       "penaltyScore": null,
@@ -12039,9 +12070,9 @@
     },
     {
       "id": "102",
-      "status": "LIVE",
-      "statusText": "进行中",
-      "minute": 105,
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
       "stage": "Semi-final",
       "round": "Semi-final",
       "group": "",
@@ -12053,7 +12084,7 @@
         "iso2": "gb-eng",
         "logo": "https://flagcdn.com/gb-eng.svg",
         "flagUrl": "https://flagcdn.com/gb-eng.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Argentina",
@@ -12061,10 +12092,41 @@
         "iso2": "ar",
         "logo": "https://flagcdn.com/ar.svg",
         "flagUrl": "https://flagcdn.com/ar.svg",
-        "score": null
+        "score": 2
       },
       "penaltyScore": null,
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "55",
+          "minuteSort": 55,
+          "team": "England",
+          "teamName": "England",
+          "player": "Anthony Gordon",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "86",
+          "minuteSort": 86,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Enzo Fernández",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "92",
+          "minuteSort": 92,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lautaro Martínez",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "103",
@@ -12085,11 +12147,11 @@
         "score": null
       },
       "away": {
-        "name": "L102",
-        "code": "L102",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "England",
+        "code": "E",
+        "iso2": "gb-eng",
+        "logo": "https://flagcdn.com/gb-eng.svg",
+        "flagUrl": "https://flagcdn.com/gb-eng.svg",
         "score": null
       },
       "penaltyScore": null,
@@ -12114,11 +12176,11 @@
         "score": null
       },
       "away": {
-        "name": "W102",
-        "code": "W102",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Argentina",
+        "code": "A",
+        "iso2": "ar",
+        "logo": "https://flagcdn.com/ar.svg",
+        "flagUrl": "https://flagcdn.com/ar.svg",
         "score": null
       },
       "penaltyScore": null,
@@ -12145,11 +12207,11 @@
         "score": null
       },
       "away": {
-        "name": "L102",
-        "code": "L102",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "England",
+        "code": "E",
+        "iso2": "gb-eng",
+        "logo": "https://flagcdn.com/gb-eng.svg",
+        "flagUrl": "https://flagcdn.com/gb-eng.svg",
         "score": null
       },
       "penaltyScore": null,
@@ -12174,11 +12236,11 @@
         "score": null
       },
       "away": {
-        "name": "W102",
-        "code": "W102",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Argentina",
+        "code": "A",
+        "iso2": "ar",
+        "logo": "https://flagcdn.com/ar.svg",
+        "flagUrl": "https://flagcdn.com/ar.svg",
         "score": null
       },
       "penaltyScore": null,
@@ -12186,6 +12248,66 @@
     }
   ],
   "timelineMatches": [
+    {
+      "id": "102",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Semi-final",
+      "round": "Semi-final",
+      "group": "",
+      "venue": "Atlanta",
+      "kickoffTime": "2026-07-15T19:00:00.000Z",
+      "home": {
+        "name": "England",
+        "code": "E",
+        "iso2": "gb-eng",
+        "logo": "https://flagcdn.com/gb-eng.svg",
+        "flagUrl": "https://flagcdn.com/gb-eng.svg",
+        "score": 1
+      },
+      "away": {
+        "name": "Argentina",
+        "code": "A",
+        "iso2": "ar",
+        "logo": "https://flagcdn.com/ar.svg",
+        "flagUrl": "https://flagcdn.com/ar.svg",
+        "score": 2
+      },
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "55",
+          "minuteSort": 55,
+          "team": "England",
+          "teamName": "England",
+          "player": "Anthony Gordon",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "86",
+          "minuteSort": 86,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Enzo Fernández",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "92",
+          "minuteSort": 92,
+          "team": "Argentina",
+          "teamName": "Argentina",
+          "player": "Lautaro Martínez",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
+    },
     {
       "id": "101",
       "status": "FT",
@@ -12751,66 +12873,6 @@
           "team": "Mexico",
           "teamName": "Mexico",
           "player": "Raúl Jiménez",
-          "penalty": true,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "91",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 16",
-      "round": "Round of 16",
-      "group": "",
-      "venue": "New York/New Jersey (East Rutherford)",
-      "kickoffTime": "2026-07-05T20:00:00.000Z",
-      "home": {
-        "name": "Brazil",
-        "code": "B",
-        "iso2": "br",
-        "logo": "https://flagcdn.com/br.svg",
-        "flagUrl": "https://flagcdn.com/br.svg",
-        "score": 1
-      },
-      "away": {
-        "name": "Norway",
-        "code": "N",
-        "iso2": "no",
-        "logo": "https://flagcdn.com/no.svg",
-        "flagUrl": "https://flagcdn.com/no.svg",
-        "score": 2
-      },
-      "penaltyScore": null,
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "79",
-          "minuteSort": 79,
-          "team": "Norway",
-          "teamName": "Norway",
-          "player": "Erling Haaland",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "90",
-          "minuteSort": 90,
-          "team": "Norway",
-          "teamName": "Norway",
-          "player": "Erling Haaland",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "90+10",
-          "minuteSort": 100,
-          "team": "Brazil",
-          "teamName": "Brazil",
-          "player": "Neymar",
           "penalty": true,
           "ownGoal": false
         }
@@ -18037,7 +18099,8 @@
       "nextMatchIds": [
         "92",
         "99",
-        "102"
+        "102",
+        "103"
       ]
     },
     {
@@ -18146,7 +18209,8 @@
       "nextMatchIds": [
         "95",
         "100",
-        "102"
+        "102",
+        "104"
       ]
     },
     {
@@ -18254,7 +18318,8 @@
       "nextMatchId": "99",
       "nextMatchIds": [
         "99",
-        "102"
+        "102",
+        "103"
       ]
     },
     {
@@ -18308,7 +18373,8 @@
       "nextMatchId": "100",
       "nextMatchIds": [
         "100",
-        "102"
+        "102",
+        "104"
       ]
     },
     {
@@ -18381,7 +18447,8 @@
       "status": "FT",
       "nextMatchId": "102",
       "nextMatchIds": [
-        "102"
+        "102",
+        "103"
       ]
     },
     {
@@ -18398,7 +18465,8 @@
       "status": "FT",
       "nextMatchId": "102",
       "nextMatchIds": [
-        "102"
+        "102",
+        "104"
       ]
     },
     {
@@ -18423,16 +18491,15 @@
       "round": "Semi-final",
       "home": "England",
       "away": "Argentina",
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 1,
+      "awayScore": 2,
       "homePenaltyScore": null,
       "awayPenaltyScore": null,
       "penaltyScore": null,
-      "winner": "",
-      "status": "NS",
-      "nextMatchId": "103",
+      "winner": "Argentina",
+      "status": "FT",
+      "nextMatchId": "104",
       "nextMatchIds": [
-        "103",
         "104"
       ]
     },
@@ -18440,7 +18507,7 @@
       "id": "103",
       "round": "Match for third place",
       "home": "France",
-      "away": "L102",
+      "away": "England",
       "homeScore": null,
       "awayScore": null,
       "homePenaltyScore": null,
@@ -18455,7 +18522,7 @@
       "id": "104",
       "round": "Final",
       "home": "Spain",
-      "away": "W102",
+      "away": "Argentina",
       "homeScore": null,
       "awayScore": null,
       "homePenaltyScore": null,
@@ -18493,21 +18560,21 @@
   "leagueId": "1",
   "season": "2026",
   "polling": {
-    "mode": "live",
-    "label": "live",
+    "mode": "quiet",
+    "label": "quiet",
     "due": false,
-    "intervalSeconds": 300,
-    "nextFetchAt": "2026-07-15T20:50:03.714Z",
-    "generatedAt": "2026-07-15T20:45:03.714Z",
+    "intervalSeconds": 21600,
+    "nextFetchAt": "2026-07-16T03:40:27.474Z",
+    "generatedAt": "2026-07-15T21:40:27.474Z",
     "nextMatch": {
-      "id": "102",
-      "stage": "Semi-final",
-      "kickoffTime": "2026-07-15T19:00:00.000Z",
-      "home": "England",
-      "away": "Argentina",
-      "status": "LIVE"
+      "id": "103",
+      "stage": "Match for third place",
+      "kickoffTime": "2026-07-18T21:00:00.000Z",
+      "home": "France",
+      "away": "England",
+      "status": "NS"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-15T20:45:03.714Z"
+  "lastUpdated": "2026-07-15T21:40:27.474Z"
 }
