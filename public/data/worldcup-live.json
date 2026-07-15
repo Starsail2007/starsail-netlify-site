@@ -6014,11 +6014,11 @@
       "venue": "Miami (Miami Gardens)",
       "kickoffTime": "2026-07-18T21:00:00.000Z",
       "home": {
-        "name": "L101",
-        "code": "L101",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "France",
+        "code": "F",
+        "iso2": "fr",
+        "logo": "https://flagcdn.com/fr.svg",
+        "flagUrl": "https://flagcdn.com/fr.svg",
         "score": null
       },
       "away": {
@@ -6043,11 +6043,11 @@
       "venue": "New York/New Jersey (East Rutherford)",
       "kickoffTime": "2026-07-19T19:00:00.000Z",
       "home": {
-        "name": "W101",
-        "code": "W101",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
         "score": null
       },
       "away": {
@@ -12077,11 +12077,11 @@
       "venue": "Miami (Miami Gardens)",
       "kickoffTime": "2026-07-18T21:00:00.000Z",
       "home": {
-        "name": "L101",
-        "code": "L101",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "France",
+        "code": "F",
+        "iso2": "fr",
+        "logo": "https://flagcdn.com/fr.svg",
+        "flagUrl": "https://flagcdn.com/fr.svg",
         "score": null
       },
       "away": {
@@ -12106,11 +12106,11 @@
       "venue": "New York/New Jersey (East Rutherford)",
       "kickoffTime": "2026-07-19T19:00:00.000Z",
       "home": {
-        "name": "W101",
-        "code": "W101",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
         "score": null
       },
       "away": {
@@ -12166,11 +12166,11 @@
       "venue": "Miami (Miami Gardens)",
       "kickoffTime": "2026-07-18T21:00:00.000Z",
       "home": {
-        "name": "L101",
-        "code": "L101",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "France",
+        "code": "F",
+        "iso2": "fr",
+        "logo": "https://flagcdn.com/fr.svg",
+        "flagUrl": "https://flagcdn.com/fr.svg",
         "score": null
       },
       "away": {
@@ -12195,11 +12195,11 @@
       "venue": "New York/New Jersey (East Rutherford)",
       "kickoffTime": "2026-07-19T19:00:00.000Z",
       "home": {
-        "name": "W101",
-        "code": "W101",
-        "iso2": "",
-        "logo": "",
-        "flagUrl": "",
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
         "score": null
       },
       "away": {
@@ -18011,7 +18011,8 @@
       "nextMatchIds": [
         "89",
         "97",
-        "101"
+        "101",
+        "103"
       ]
     },
     {
@@ -18136,7 +18137,8 @@
       "nextMatchIds": [
         "93",
         "98",
-        "101"
+        "101",
+        "104"
       ]
     },
     {
@@ -18228,7 +18230,8 @@
       "nextMatchId": "97",
       "nextMatchIds": [
         "97",
-        "101"
+        "101",
+        "103"
       ]
     },
     {
@@ -18298,7 +18301,8 @@
       "nextMatchId": "98",
       "nextMatchIds": [
         "98",
-        "101"
+        "101",
+        "104"
       ]
     },
     {
@@ -18370,7 +18374,8 @@
       "status": "FT",
       "nextMatchId": "101",
       "nextMatchIds": [
-        "101"
+        "101",
+        "103"
       ]
     },
     {
@@ -18387,7 +18392,8 @@
       "status": "FT",
       "nextMatchId": "101",
       "nextMatchIds": [
-        "101"
+        "101",
+        "104"
       ]
     },
     {
@@ -18436,9 +18442,8 @@
       "penaltyScore": null,
       "winner": "Spain",
       "status": "FT",
-      "nextMatchId": "103",
+      "nextMatchId": "104",
       "nextMatchIds": [
-        "103",
         "104"
       ]
     },
@@ -18463,7 +18468,7 @@
     {
       "id": "103",
       "round": "Match for third place",
-      "home": "L101",
+      "home": "France",
       "away": "L102",
       "homeScore": null,
       "awayScore": null,
@@ -18478,7 +18483,7 @@
     {
       "id": "104",
       "round": "Final",
-      "home": "W101",
+      "home": "Spain",
       "away": "W102",
       "homeScore": null,
       "awayScore": null,
@@ -18521,8 +18526,8 @@
     "label": "near-match",
     "due": false,
     "intervalSeconds": 3600,
-    "nextFetchAt": "2026-07-15T07:01:48.847Z",
-    "generatedAt": "2026-07-15T06:01:48.847Z",
+    "nextFetchAt": "2026-07-15T09:28:59.237Z",
+    "generatedAt": "2026-07-15T08:28:59.237Z",
     "nextMatch": {
       "id": "102",
       "stage": "Semi-final",
@@ -18533,5 +18538,5 @@
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-15T06:01:48.847Z"
+  "lastUpdated": "2026-07-15T08:28:59.237Z"
 }
