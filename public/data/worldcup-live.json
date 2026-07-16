@@ -18564,8 +18564,8 @@
     "label": "quiet",
     "due": false,
     "intervalSeconds": 21600,
-    "nextFetchAt": "2026-07-16T16:53:51.816Z",
-    "generatedAt": "2026-07-16T10:53:51.816Z",
+    "nextFetchAt": "2026-07-16T22:56:54.414Z",
+    "generatedAt": "2026-07-16T16:56:54.414Z",
     "nextMatch": {
       "id": "103",
       "stage": "Match for third place",
@@ -18576,5 +18576,5 @@
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-16T10:53:51.816Z"
+  "lastUpdated": "2026-07-16T16:56:54.414Z"
 }
