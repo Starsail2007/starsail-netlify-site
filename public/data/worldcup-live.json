@@ -6038,7 +6038,7 @@
       "id": "103",
       "status": "LIVE",
       "statusText": "进行中",
-      "minute": 70,
+      "minute": 120,
       "stage": "Match for third place",
       "round": "Match for third place",
       "group": "",
@@ -12132,7 +12132,7 @@
       "id": "103",
       "status": "LIVE",
       "statusText": "进行中",
-      "minute": 70,
+      "minute": 120,
       "stage": "Match for third place",
       "round": "Match for third place",
       "group": "",
@@ -18535,8 +18535,8 @@
     "label": "live",
     "due": false,
     "intervalSeconds": 300,
-    "nextFetchAt": "2026-07-18T22:15:34.673Z",
-    "generatedAt": "2026-07-18T22:10:34.673Z",
+    "nextFetchAt": "2026-07-18T23:12:37.638Z",
+    "generatedAt": "2026-07-18T23:07:37.638Z",
     "nextMatch": {
       "id": "103",
       "stage": "Match for third place",
@@ -18547,5 +18547,5 @@
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-18T22:10:34.673Z"
+  "lastUpdated": "2026-07-18T23:07:37.638Z"
 }
