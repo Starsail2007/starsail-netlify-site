@@ -6036,9 +6036,9 @@
     },
     {
       "id": "103",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
+      "status": "LIVE",
+      "statusText": "进行中",
+      "minute": 22,
       "stage": "Match for third place",
       "round": "Match for third place",
       "group": "",
@@ -12130,9 +12130,9 @@
     },
     {
       "id": "103",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
+      "status": "LIVE",
+      "statusText": "进行中",
+      "minute": 22,
       "stage": "Match for third place",
       "round": "Match for third place",
       "group": "",
@@ -12188,35 +12188,6 @@
     }
   ],
   "upcomingMatches": [
-    {
-      "id": "103",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Match for third place",
-      "round": "Match for third place",
-      "group": "",
-      "venue": "Miami (Miami Gardens)",
-      "kickoffTime": "2026-07-18T21:00:00.000Z",
-      "home": {
-        "name": "France",
-        "code": "F",
-        "iso2": "fr",
-        "logo": "https://flagcdn.com/fr.svg",
-        "flagUrl": "https://flagcdn.com/fr.svg",
-        "score": null
-      },
-      "away": {
-        "name": "England",
-        "code": "E",
-        "iso2": "gb-eng",
-        "logo": "https://flagcdn.com/gb-eng.svg",
-        "flagUrl": "https://flagcdn.com/gb-eng.svg",
-        "score": null
-      },
-      "penaltyScore": null,
-      "events": []
-    },
     {
       "id": "104",
       "status": "NS",
@@ -18560,21 +18531,21 @@
   "leagueId": "1",
   "season": "2026",
   "polling": {
-    "mode": "near-match",
-    "label": "near-match",
+    "mode": "live",
+    "label": "live",
     "due": false,
-    "intervalSeconds": 3600,
-    "nextFetchAt": "2026-07-18T20:30:00.000Z",
-    "generatedAt": "2026-07-18T19:43:45.420Z",
+    "intervalSeconds": 300,
+    "nextFetchAt": "2026-07-18T21:27:53.439Z",
+    "generatedAt": "2026-07-18T21:22:53.439Z",
     "nextMatch": {
       "id": "103",
       "stage": "Match for third place",
       "kickoffTime": "2026-07-18T21:00:00.000Z",
       "home": "France",
       "away": "England",
-      "status": "NS"
+      "status": "LIVE"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-18T19:43:45.420Z"
+  "lastUpdated": "2026-07-18T21:22:53.439Z"
 }
