@@ -6168,7 +6168,7 @@
       "id": "104",
       "status": "LIVE",
       "statusText": "进行中",
-      "minute": 43,
+      "minute": 88,
       "stage": "Final",
       "round": "Final",
       "group": "",
@@ -12363,7 +12363,7 @@
       "id": "104",
       "status": "LIVE",
       "statusText": "进行中",
-      "minute": 43,
+      "minute": 88,
       "stage": "Final",
       "round": "Final",
       "group": "",
@@ -18757,8 +18757,8 @@
     "label": "live",
     "due": false,
     "intervalSeconds": 300,
-    "nextFetchAt": "2026-07-19T19:48:40.622Z",
-    "generatedAt": "2026-07-19T19:43:40.622Z",
+    "nextFetchAt": "2026-07-19T20:33:46.868Z",
+    "generatedAt": "2026-07-19T20:28:46.868Z",
     "nextMatch": {
       "id": "104",
       "stage": "Final",
@@ -18769,5 +18769,5 @@
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-19T19:43:40.622Z"
+  "lastUpdated": "2026-07-19T20:28:46.868Z"
 }
