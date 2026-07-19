@@ -6166,9 +6166,9 @@
     },
     {
       "id": "104",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
+      "status": "LIVE",
+      "statusText": "进行中",
+      "minute": 43,
       "stage": "Final",
       "round": "Final",
       "group": "",
@@ -12361,9 +12361,9 @@
     },
     {
       "id": "104",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
+      "status": "LIVE",
+      "statusText": "进行中",
+      "minute": 43,
       "stage": "Final",
       "round": "Final",
       "group": "",
@@ -12389,37 +12389,7 @@
       "events": []
     }
   ],
-  "upcomingMatches": [
-    {
-      "id": "104",
-      "status": "NS",
-      "statusText": "未开始",
-      "minute": null,
-      "stage": "Final",
-      "round": "Final",
-      "group": "",
-      "venue": "New York/New Jersey (East Rutherford)",
-      "kickoffTime": "2026-07-19T19:00:00.000Z",
-      "home": {
-        "name": "Spain",
-        "code": "S",
-        "iso2": "es",
-        "logo": "https://flagcdn.com/es.svg",
-        "flagUrl": "https://flagcdn.com/es.svg",
-        "score": null
-      },
-      "away": {
-        "name": "Argentina",
-        "code": "A",
-        "iso2": "ar",
-        "logo": "https://flagcdn.com/ar.svg",
-        "flagUrl": "https://flagcdn.com/ar.svg",
-        "score": null
-      },
-      "penaltyScore": null,
-      "events": []
-    }
-  ],
+  "upcomingMatches": [],
   "timelineMatches": [
     {
       "id": "103",
@@ -18783,21 +18753,21 @@
   "leagueId": "1",
   "season": "2026",
   "polling": {
-    "mode": "match-window",
-    "label": "match-window",
+    "mode": "live",
+    "label": "live",
     "due": false,
     "intervalSeconds": 300,
-    "nextFetchAt": "2026-07-19T18:36:45.282Z",
-    "generatedAt": "2026-07-19T18:31:45.282Z",
+    "nextFetchAt": "2026-07-19T19:48:40.622Z",
+    "generatedAt": "2026-07-19T19:43:40.622Z",
     "nextMatch": {
       "id": "104",
       "stage": "Final",
       "kickoffTime": "2026-07-19T19:00:00.000Z",
       "home": "Spain",
       "away": "Argentina",
-      "status": "NS"
+      "status": "LIVE"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-19T18:31:45.282Z"
+  "lastUpdated": "2026-07-19T19:43:40.622Z"
 }
