@@ -6036,9 +6036,9 @@
     },
     {
       "id": "103",
-      "status": "LIVE",
-      "statusText": "进行中",
-      "minute": 120,
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
       "stage": "Match for third place",
       "round": "Match for third place",
       "group": "",
@@ -6050,7 +6050,7 @@
         "iso2": "fr",
         "logo": "https://flagcdn.com/fr.svg",
         "flagUrl": "https://flagcdn.com/fr.svg",
-        "score": null
+        "score": 4
       },
       "away": {
         "name": "England",
@@ -6058,10 +6058,111 @@
         "iso2": "gb-eng",
         "logo": "https://flagcdn.com/gb-eng.svg",
         "flagUrl": "https://flagcdn.com/gb-eng.svg",
-        "score": null
+        "score": 6
       },
       "penaltyScore": null,
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "3",
+          "minuteSort": 3,
+          "team": "England",
+          "teamName": "England",
+          "player": "Declan Rice",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "18",
+          "minuteSort": 18,
+          "team": "England",
+          "teamName": "England",
+          "player": "Ezri Konsa",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "37",
+          "minuteSort": 37,
+          "team": "England",
+          "teamName": "England",
+          "player": "Bukayo Saka",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "45+1",
+          "minuteSort": 46,
+          "team": "England",
+          "teamName": "England",
+          "player": "Bukayo Saka",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "48",
+          "minuteSort": 48,
+          "team": "France",
+          "teamName": "France",
+          "player": "Kylian Mbappé",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "54",
+          "minuteSort": 54,
+          "team": "France",
+          "teamName": "France",
+          "player": "Bradley Barcola",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "66",
+          "minuteSort": 66,
+          "team": "France",
+          "teamName": "France",
+          "player": "Kylian Mbappé",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "87",
+          "minuteSort": 87,
+          "team": "England",
+          "teamName": "England",
+          "player": "Bukayo Saka",
+          "penalty": true,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+6",
+          "minuteSort": 96,
+          "team": "France",
+          "teamName": "France",
+          "player": "Ousmane Dembélé",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+8",
+          "minuteSort": 98,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "104",
@@ -12130,9 +12231,9 @@
     },
     {
       "id": "103",
-      "status": "LIVE",
-      "statusText": "进行中",
-      "minute": 120,
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
       "stage": "Match for third place",
       "round": "Match for third place",
       "group": "",
@@ -12144,7 +12245,7 @@
         "iso2": "fr",
         "logo": "https://flagcdn.com/fr.svg",
         "flagUrl": "https://flagcdn.com/fr.svg",
-        "score": null
+        "score": 4
       },
       "away": {
         "name": "England",
@@ -12152,10 +12253,111 @@
         "iso2": "gb-eng",
         "logo": "https://flagcdn.com/gb-eng.svg",
         "flagUrl": "https://flagcdn.com/gb-eng.svg",
-        "score": null
+        "score": 6
       },
       "penaltyScore": null,
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "3",
+          "minuteSort": 3,
+          "team": "England",
+          "teamName": "England",
+          "player": "Declan Rice",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "18",
+          "minuteSort": 18,
+          "team": "England",
+          "teamName": "England",
+          "player": "Ezri Konsa",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "37",
+          "minuteSort": 37,
+          "team": "England",
+          "teamName": "England",
+          "player": "Bukayo Saka",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "45+1",
+          "minuteSort": 46,
+          "team": "England",
+          "teamName": "England",
+          "player": "Bukayo Saka",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "48",
+          "minuteSort": 48,
+          "team": "France",
+          "teamName": "France",
+          "player": "Kylian Mbappé",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "54",
+          "minuteSort": 54,
+          "team": "France",
+          "teamName": "France",
+          "player": "Bradley Barcola",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "66",
+          "minuteSort": 66,
+          "team": "France",
+          "teamName": "France",
+          "player": "Kylian Mbappé",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "87",
+          "minuteSort": 87,
+          "team": "England",
+          "teamName": "England",
+          "player": "Bukayo Saka",
+          "penalty": true,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+6",
+          "minuteSort": 96,
+          "team": "France",
+          "teamName": "France",
+          "player": "Ousmane Dembélé",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+8",
+          "minuteSort": 98,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     },
     {
       "id": "104",
@@ -12219,6 +12421,136 @@
     }
   ],
   "timelineMatches": [
+    {
+      "id": "103",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Match for third place",
+      "round": "Match for third place",
+      "group": "",
+      "venue": "Miami (Miami Gardens)",
+      "kickoffTime": "2026-07-18T21:00:00.000Z",
+      "home": {
+        "name": "France",
+        "code": "F",
+        "iso2": "fr",
+        "logo": "https://flagcdn.com/fr.svg",
+        "flagUrl": "https://flagcdn.com/fr.svg",
+        "score": 4
+      },
+      "away": {
+        "name": "England",
+        "code": "E",
+        "iso2": "gb-eng",
+        "logo": "https://flagcdn.com/gb-eng.svg",
+        "flagUrl": "https://flagcdn.com/gb-eng.svg",
+        "score": 6
+      },
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "3",
+          "minuteSort": 3,
+          "team": "England",
+          "teamName": "England",
+          "player": "Declan Rice",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "18",
+          "minuteSort": 18,
+          "team": "England",
+          "teamName": "England",
+          "player": "Ezri Konsa",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "37",
+          "minuteSort": 37,
+          "team": "England",
+          "teamName": "England",
+          "player": "Bukayo Saka",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "45+1",
+          "minuteSort": 46,
+          "team": "England",
+          "teamName": "England",
+          "player": "Bukayo Saka",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "48",
+          "minuteSort": 48,
+          "team": "France",
+          "teamName": "France",
+          "player": "Kylian Mbappé",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "54",
+          "minuteSort": 54,
+          "team": "France",
+          "teamName": "France",
+          "player": "Bradley Barcola",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "66",
+          "minuteSort": 66,
+          "team": "France",
+          "teamName": "France",
+          "player": "Kylian Mbappé",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "87",
+          "minuteSort": 87,
+          "team": "England",
+          "teamName": "England",
+          "player": "Bukayo Saka",
+          "penalty": true,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+6",
+          "minuteSort": 96,
+          "team": "France",
+          "teamName": "France",
+          "player": "Ousmane Dembélé",
+          "penalty": false,
+          "ownGoal": false
+        },
+        {
+          "type": "Goal",
+          "minute": "90+8",
+          "minuteSort": 98,
+          "team": "England",
+          "teamName": "England",
+          "player": "Jude Bellingham",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
+    },
     {
       "id": "102",
       "status": "FT",
@@ -12765,86 +13097,6 @@
           "teamName": "Spain",
           "player": "Mikel Merino",
           "penalty": false,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "92",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 16",
-      "round": "Round of 16",
-      "group": "",
-      "venue": "Mexico City",
-      "kickoffTime": "2026-07-06T00:00:00.000Z",
-      "home": {
-        "name": "Mexico",
-        "code": "M",
-        "iso2": "mx",
-        "logo": "https://flagcdn.com/mx.svg",
-        "flagUrl": "https://flagcdn.com/mx.svg",
-        "score": 2
-      },
-      "away": {
-        "name": "England",
-        "code": "E",
-        "iso2": "gb-eng",
-        "logo": "https://flagcdn.com/gb-eng.svg",
-        "flagUrl": "https://flagcdn.com/gb-eng.svg",
-        "score": 3
-      },
-      "penaltyScore": null,
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "36",
-          "minuteSort": 36,
-          "team": "England",
-          "teamName": "England",
-          "player": "Jude Bellingham",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "38",
-          "minuteSort": 38,
-          "team": "England",
-          "teamName": "England",
-          "player": "Jude Bellingham",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "42",
-          "minuteSort": 42,
-          "team": "Mexico",
-          "teamName": "Mexico",
-          "player": "Julián Quiñones",
-          "penalty": false,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "60",
-          "minuteSort": 60,
-          "team": "England",
-          "teamName": "England",
-          "player": "Harry Kane",
-          "penalty": true,
-          "ownGoal": false
-        },
-        {
-          "type": "Goal",
-          "minute": "69",
-          "minuteSort": 69,
-          "team": "Mexico",
-          "teamName": "Mexico",
-          "player": "Raúl Jiménez",
-          "penalty": true,
           "ownGoal": false
         }
       ]
@@ -18479,13 +18731,13 @@
       "round": "Match for third place",
       "home": "France",
       "away": "England",
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 4,
+      "awayScore": 6,
       "homePenaltyScore": null,
       "awayPenaltyScore": null,
       "penaltyScore": null,
-      "winner": "",
-      "status": "NS",
+      "winner": "England",
+      "status": "FT",
       "nextMatchId": "",
       "nextMatchIds": []
     },
@@ -18531,21 +18783,21 @@
   "leagueId": "1",
   "season": "2026",
   "polling": {
-    "mode": "live",
-    "label": "live",
+    "mode": "near-match",
+    "label": "near-match",
     "due": false,
-    "intervalSeconds": 300,
-    "nextFetchAt": "2026-07-18T23:12:37.638Z",
-    "generatedAt": "2026-07-18T23:07:37.638Z",
+    "intervalSeconds": 3600,
+    "nextFetchAt": "2026-07-19T01:04:43.583Z",
+    "generatedAt": "2026-07-19T00:04:43.583Z",
     "nextMatch": {
-      "id": "103",
-      "stage": "Match for third place",
-      "kickoffTime": "2026-07-18T21:00:00.000Z",
-      "home": "France",
-      "away": "England",
-      "status": "LIVE"
+      "id": "104",
+      "stage": "Final",
+      "kickoffTime": "2026-07-19T19:00:00.000Z",
+      "home": "Spain",
+      "away": "Argentina",
+      "status": "NS"
     },
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-18T23:07:37.638Z"
+  "lastUpdated": "2026-07-19T00:04:43.583Z"
 }
