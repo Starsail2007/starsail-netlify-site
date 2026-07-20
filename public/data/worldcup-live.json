@@ -6180,7 +6180,7 @@
         "iso2": "es",
         "logo": "https://flagcdn.com/es.svg",
         "flagUrl": "https://flagcdn.com/es.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Argentina",
@@ -6188,10 +6188,21 @@
         "iso2": "ar",
         "logo": "https://flagcdn.com/ar.svg",
         "flagUrl": "https://flagcdn.com/ar.svg",
-        "score": null
+        "score": 0
       },
       "penaltyScore": null,
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "106",
+          "minuteSort": 106,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Ferran Torres",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     }
   ],
   "allMatches": [
@@ -12375,7 +12386,7 @@
         "iso2": "es",
         "logo": "https://flagcdn.com/es.svg",
         "flagUrl": "https://flagcdn.com/es.svg",
-        "score": null
+        "score": 1
       },
       "away": {
         "name": "Argentina",
@@ -12383,14 +12394,65 @@
         "iso2": "ar",
         "logo": "https://flagcdn.com/ar.svg",
         "flagUrl": "https://flagcdn.com/ar.svg",
-        "score": null
+        "score": 0
       },
       "penaltyScore": null,
-      "events": []
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "106",
+          "minuteSort": 106,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Ferran Torres",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
     }
   ],
   "upcomingMatches": [],
   "timelineMatches": [
+    {
+      "id": "104",
+      "status": "FT",
+      "statusText": "完场",
+      "minute": null,
+      "stage": "Final",
+      "round": "Final",
+      "group": "",
+      "venue": "New York/New Jersey (East Rutherford)",
+      "kickoffTime": "2026-07-19T19:00:00.000Z",
+      "home": {
+        "name": "Spain",
+        "code": "S",
+        "iso2": "es",
+        "logo": "https://flagcdn.com/es.svg",
+        "flagUrl": "https://flagcdn.com/es.svg",
+        "score": 1
+      },
+      "away": {
+        "name": "Argentina",
+        "code": "A",
+        "iso2": "ar",
+        "logo": "https://flagcdn.com/ar.svg",
+        "flagUrl": "https://flagcdn.com/ar.svg",
+        "score": 0
+      },
+      "penaltyScore": null,
+      "events": [
+        {
+          "type": "Goal",
+          "minute": "106",
+          "minuteSort": 106,
+          "team": "Spain",
+          "teamName": "Spain",
+          "player": "Ferran Torres",
+          "penalty": false,
+          "ownGoal": false
+        }
+      ]
+    },
     {
       "id": "103",
       "status": "FT",
@@ -13026,46 +13088,6 @@
           "team": "Belgium",
           "teamName": "Belgium",
           "player": "Romelu Lukaku",
-          "penalty": false,
-          "ownGoal": false
-        }
-      ]
-    },
-    {
-      "id": "93",
-      "status": "FT",
-      "statusText": "完场",
-      "minute": null,
-      "stage": "Round of 16",
-      "round": "Round of 16",
-      "group": "",
-      "venue": "Dallas (Arlington)",
-      "kickoffTime": "2026-07-06T19:00:00.000Z",
-      "home": {
-        "name": "Portugal",
-        "code": "P",
-        "iso2": "pt",
-        "logo": "https://flagcdn.com/pt.svg",
-        "flagUrl": "https://flagcdn.com/pt.svg",
-        "score": 0
-      },
-      "away": {
-        "name": "Spain",
-        "code": "S",
-        "iso2": "es",
-        "logo": "https://flagcdn.com/es.svg",
-        "flagUrl": "https://flagcdn.com/es.svg",
-        "score": 1
-      },
-      "penaltyScore": null,
-      "events": [
-        {
-          "type": "Goal",
-          "minute": "90+1",
-          "minuteSort": 91,
-          "team": "Spain",
-          "teamName": "Spain",
-          "player": "Mikel Merino",
           "penalty": false,
           "ownGoal": false
         }
@@ -18716,13 +18738,13 @@
       "round": "Final",
       "home": "Spain",
       "away": "Argentina",
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 1,
+      "awayScore": 0,
       "homePenaltyScore": null,
       "awayPenaltyScore": null,
       "penaltyScore": null,
-      "winner": "",
-      "status": "NS",
+      "winner": "Spain",
+      "status": "FT",
       "nextMatchId": "",
       "nextMatchIds": []
     }
@@ -18757,10 +18779,10 @@
     "label": "tournament-complete",
     "due": false,
     "intervalSeconds": 21600,
-    "nextFetchAt": "2026-07-20T10:01:24.348Z",
-    "generatedAt": "2026-07-20T04:01:24.348Z",
+    "nextFetchAt": "2026-07-20T18:06:01.333Z",
+    "generatedAt": "2026-07-20T12:06:01.333Z",
     "nextMatch": null,
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-20T04:01:24.348Z"
+  "lastUpdated": "2026-07-20T12:06:01.333Z"
 }
