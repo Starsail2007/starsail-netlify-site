@@ -18753,21 +18753,14 @@
   "leagueId": "1",
   "season": "2026",
   "polling": {
-    "mode": "match-window",
-    "label": "match-window",
+    "mode": "complete",
+    "label": "tournament-complete",
     "due": false,
-    "intervalSeconds": 300,
-    "nextFetchAt": "2026-07-19T21:29:37.481Z",
-    "generatedAt": "2026-07-19T21:24:37.481Z",
-    "nextMatch": {
-      "id": "104",
-      "stage": "Final",
-      "kickoffTime": "2026-07-19T19:00:00.000Z",
-      "home": "Spain",
-      "away": "Argentina",
-      "status": "FT"
-    },
+    "intervalSeconds": 21600,
+    "nextFetchAt": "2026-07-20T10:01:24.348Z",
+    "generatedAt": "2026-07-20T04:01:24.348Z",
+    "nextMatch": null,
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-19T21:24:37.481Z"
+  "lastUpdated": "2026-07-20T04:01:24.348Z"
 }
