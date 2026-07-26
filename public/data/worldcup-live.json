@@ -18779,10 +18779,10 @@
     "label": "tournament-complete",
     "due": false,
     "intervalSeconds": 21600,
-    "nextFetchAt": "2026-07-26T23:34:26.803Z",
-    "generatedAt": "2026-07-26T17:34:26.803Z",
+    "nextFetchAt": "2026-07-27T05:35:36.616Z",
+    "generatedAt": "2026-07-26T23:35:36.616Z",
     "nextMatch": null,
     "generatedBy": "github-actions-static-json"
   },
-  "lastUpdated": "2026-07-26T17:34:26.803Z"
+  "lastUpdated": "2026-07-26T23:35:36.616Z"
 }
