@@ -11,17 +11,16 @@ import type { MaimaiRatingPoint, MaimaiSnapshot } from "../../lib/maimai/types";
 interface Props {
   snapshot: MaimaiSnapshot;
   history: MaimaiRatingPoint[];
-  remoteRefresh?: boolean;
 }
 
-const { snapshot, history, remoteRefresh = false } = Astro.props;
+const { snapshot, history } = Astro.props;
 const nearRankUp = getNearRankUpItems(snapshot);
 const borderItems = getBorderItems(snapshot);
 const practiceItems = getHighValuePracticeItems(snapshot);
 const text = siteText.maimai;
 ---
 
-<div class="maimai-dashboard" data-maimai-dashboard data-maimai-remote-refresh={remoteRefresh ? "true" : "false"}>
+<div class="maimai-dashboard" data-maimai-dashboard>
   <PlayerHero snapshot={snapshot} />
 
   <B50Grid title={text.sections.b35.title} subtitle={text.sections.b35.subtitle} items={snapshot.b35} target="b35" />

@@ -4,7 +4,6 @@ import ThemeToggle from "../components/ThemeToggle.astro";
 import MaimaiDashboard from "../components/maimai/MaimaiDashboard.astro";
 import siteText from "../content/siteText";
 import { withBasePath } from "../lib/basePath";
-import { serializeJsonForHtml } from "../lib/htmlJson";
 import latestSnapshot from "../data/maimai/latest.snapshot.json";
 import historySnapshots from "../data/maimai/history.snapshots.json";
 import "../styles/maimai.css";
@@ -15,18 +14,7 @@ const history = historySnapshots.map((snapshot) => ({
   b35Rating: snapshot.b35Rating,
   b15Rating: snapshot.b15Rating
 }));
-const remoteRefresh = import.meta.env.PUBLIC_MAIMAI_REMOTE_REFRESH === "true";
 const text = siteText.maimai;
-const initialDataJson = remoteRefresh ? serializeJsonForHtml({ history }) : "";
-const clientTextJson = serializeJsonForHtml({
-  maimai: {
-    hero: {
-      stats: text.hero.stats
-    },
-    sections: text.sections,
-    b50: text.b50
-  }
-});
 const homeHref = withBasePath("/");
 ---
 
@@ -46,15 +34,9 @@ const homeHref = withBasePath("/");
       </a>
       <ThemeToggle />
     </header>
-    <MaimaiDashboard snapshot={latestSnapshot} history={history} remoteRefresh={remoteRefresh} />
-    <div class="maimai-empty-state" data-maimai-empty hidden>
-      <strong>{text.emptyState.title}</strong>
-      <span>{text.emptyState.description}</span>
-    </div>
+    <MaimaiDashboard snapshot={latestSnapshot} history={history} />
   </div>
 
-  {initialDataJson ? <script type="application/json" id="maimai-initial-data" set:html={initialDataJson} /> : null}
-  <script type="application/json" id="maimai-client-text" set:html={clientTextJson} />
   <script>
     import "../scripts/theme.js";
     import "../scripts/motion.js";

@@ -80,7 +80,7 @@ pnpm design:intake -- --name "Homepage visual refresh" \
   --figma "https://www.figma.com/design/<fileKey>/<fileName>?node-id=123-456" \
   --pages "src/pages/index.astro" \
   --components "src/components" \
-  --styles "src/styles/home.css,src/styles/tokens.css" \
+  --styles "src/styles/entry-original-demo.css,src/styles/tokens.css" \
   --notes "保持夜间默认、克制留白，只优化视觉层次和动效节奏"
 ```
 

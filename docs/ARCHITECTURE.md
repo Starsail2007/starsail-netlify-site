@@ -37,7 +37,7 @@ src/pages/
 - `src/pages/maimai.astro`：maimai 静态成绩页。
 - `src/pages/worldcup.astro`：世界杯实时展示页。
 - `src/pages/worldcup/moments.astro`：世界杯关键瞬间独立页。
-- `src/pages/lab/`、`src/pages/intro-demo.astro`：设计和交互实验页。
+- 实验路由已归档，不再进入公网构建；见 `docs/ARCHIVED_FEATURES.md`。
 
 ```text
 src/layouts/
@@ -49,7 +49,7 @@ src/layouts/
 src/components/
 ```
 
-可复用界面组件。当前包括站点头部、主题切换按钮、头像弹窗、首页原型组件，以及 maimai 局部组件。世界杯主界面组件位于 `src/worldcup/components/`，让世界杯功能系统和通用站点组件分开。
+可复用界面组件。当前包括主题切换、首页入口与 loader，以及 maimai 局部组件。世界杯主界面组件位于 `src/worldcup/components/`，让世界杯功能系统和通用站点组件分开。
 
 ```text
 src/worldcup/
@@ -65,10 +65,10 @@ src/styles/
 
 - `tokens.css`：颜色、阴影、主题变量
 - `base.css`：页面基础样式和通用按钮样式
-- `home.css`：当前首页的布局、动效和响应式样式
+- `entry-original-demo.css`：当前首页的布局、动效和响应式样式
 - `maimai.css`：maimai 页面样式
 - `worldcup.css`：世界杯页面样式
-- `entry-redesign.css`、`intro-loader.css` 等：实验入口和 loader 样式
+- `intro-loader.css`：首页入口 loader 样式
 
 ```text
 src/scripts/
@@ -78,8 +78,8 @@ src/scripts/
 
 - `theme.js`：日夜主题切换
 - `motion.js`：文字拆分、动效模式切换、鼠标光晕位置
-- `avatar-modal.js`：头像弹窗打开、关闭和键盘退出
-- `maimai-dashboard.js`：maimai 前端渲染与静态数据展示
+- `entry-redesign.js`：当前首页头像、联系方式和更新日志交互
+- `maimai-dashboard.js`：maimai 曲绘加载失败时替换为本地默认图
 - `worldcup-dashboard.js`：世界杯页面交互、渲染和 UI 状态
 - `worldcup/`：世界杯浏览器端小模块，例如数据客户端
 
@@ -125,9 +125,9 @@ pnpm build
 
 生成的静态文件位于 `dist/`，由 Netlify 发布。
 
-GitHub Pages 备用部署由 `.github/workflows/github-pages.yml` 负责。它同样构建 `dist/`，但会设置 `BASE_PATH=/starsail-netlify-site`，让静态资源和站内链接适配 GitHub Pages 的项目子路径。GitHub Pages 不能运行 Netlify Functions，因此需要依赖静态 JSON、GitHub Actions 定时数据或前端可直接访问的公开数据源。
+GitHub Pages 备用部署由 `.github/workflows/github-pages.yml` 负责。它同样构建 `dist/`，但会设置 `BASE_PATH=/starsail-netlify-site`，让静态资源和站内链接适配 GitHub Pages 的项目子路径。GitHub Pages 不能运行 Netlify Functions，因此依赖随构建发布的静态快照和前端可直接访问的 `worldcup-data` 数据分支。
 
-世界杯数据主链路是：GitHub `worldcup-data` 分支静态 JSON -> 站内同步静态 JSON -> Netlify Function 兜底。GitHub Actions 是唯一的数据更新入口；每次生成新鲜数据后，会先推送 `worldcup-data`，再把同一份 `public/data/worldcup-live.json` 同步到 `main`，让 Netlify 和 GitHub Pages 的构建快照也保持新鲜。生产环境不自动使用 mock 数据，只有本地开发或显式演示模式会启用。
+世界杯数据主链路是：GitHub `worldcup-data` 分支静态 JSON -> 当前部署携带的静态快照。赛事结束后，数据工作流只保留手动触发，且只更新 `worldcup-data`，不再回写 `main`。代码发布时两个公网入口来自同一个 `main` 提交；数据分支独立更新，不触发站点重建。生产环境不自动使用 mock 数据，只有本地开发或显式演示模式会启用。
 
 maimai 页面默认使用打包进项目的静态快照。远端刷新和 Supabase 历史是可选能力，需要环境变量显式开启。
 

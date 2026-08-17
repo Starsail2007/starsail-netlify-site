@@ -4,8 +4,6 @@ const LOCAL_DATA_TIMEOUT_MS = 1_200;
 const REMOTE_DATA_TIMEOUT_MS = 2_800;
 const REPOSITORY_DATA_ENDPOINT = "https://raw.githubusercontent.com/Starsail2007/starsail-netlify-site/worldcup-data/public/data/worldcup-live.json";
 const STATIC_DATA_ENDPOINT = withBasePath("/data/worldcup-live.json");
-const NETLIFY_FUNCTION_ENDPOINT = withBasePath("/.netlify/functions/worldcup-live");
-const NETLIFY_FUNCTION_ORIGIN_ENDPOINT = "https://starsail.netlify.app/.netlify/functions/worldcup-live";
 const ENABLE_PRODUCTION_MOCK = String(import.meta.env.PUBLIC_WORLDCUP_ALLOW_MOCK || "false") === "true";
 
 export const DATA_ENDPOINT = REPOSITORY_DATA_ENDPOINT;
@@ -78,18 +76,10 @@ function buildDataEndpoints() {
   const localHosts = new Set(["localhost", "127.0.0.1", "::1"]);
 
   if (localHosts.has(window.location.hostname)) {
-    return uniqueEndpoints([STATIC_DATA_ENDPOINT, REPOSITORY_DATA_ENDPOINT, NETLIFY_FUNCTION_ORIGIN_ENDPOINT]);
+    return uniqueEndpoints([STATIC_DATA_ENDPOINT, REPOSITORY_DATA_ENDPOINT]);
   }
 
-  if (window.location.hostname.endsWith("github.io")) {
-    return uniqueEndpoints([REPOSITORY_DATA_ENDPOINT, STATIC_DATA_ENDPOINT, NETLIFY_FUNCTION_ORIGIN_ENDPOINT]);
-  }
-
-  if (window.location.hostname.endsWith("netlify.app")) {
-    return uniqueEndpoints([REPOSITORY_DATA_ENDPOINT, STATIC_DATA_ENDPOINT, NETLIFY_FUNCTION_ENDPOINT]);
-  }
-
-  return uniqueEndpoints([REPOSITORY_DATA_ENDPOINT, STATIC_DATA_ENDPOINT, NETLIFY_FUNCTION_ORIGIN_ENDPOINT]);
+  return uniqueEndpoints([REPOSITORY_DATA_ENDPOINT, STATIC_DATA_ENDPOINT]);
 }
 
 function withBasePath(path) {

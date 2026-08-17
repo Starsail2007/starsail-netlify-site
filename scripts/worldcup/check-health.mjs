@@ -5,7 +5,6 @@ import { computeWorldCupRefreshPolicy } from "../../src/worldcup/lib/refreshPoli
 
 const DEFAULT_TIMEOUT_MS = 15_000;
 const REPOSITORY_DATA_ENDPOINT = "https://raw.githubusercontent.com/Starsail2007/starsail-netlify-site/worldcup-data/public/data/worldcup-live.json";
-const NETLIFY_FUNCTION_ENDPOINT = "https://starsail.netlify.app/.netlify/functions/worldcup-live";
 const NETLIFY_STATIC_ENDPOINT = "https://starsail.netlify.app/data/worldcup-live.json";
 const GITHUB_PAGES_STATIC_ENDPOINT = "https://starsail2007.github.io/starsail-netlify-site/data/worldcup-live.json";
 
@@ -21,13 +20,6 @@ const endpoints = [
     type: "remote",
     url: process.env.WORLD_CUP_REPOSITORY_DATA_URL || REPOSITORY_DATA_ENDPOINT,
     primary: true
-  },
-  {
-    id: "netlify-function",
-    label: "Netlify Function",
-    type: "remote",
-    url: process.env.WORLD_CUP_NETLIFY_FUNCTION_URL || NETLIFY_FUNCTION_ENDPOINT,
-    fallback: true
   },
   {
     id: "netlify-static",
@@ -120,16 +112,15 @@ async function checkEndpoint(endpoint) {
 
 function buildReport(checks) {
   const primary = checks.find((check) => check.primary);
-  const functionFallback = checks.find((check) => check.id === "netlify-function");
   const freshChecks = checks.filter((check) => check.fresh);
   const reachableChecks = checks.filter((check) => check.reachable);
   const reference = pickReferenceCheck(freshChecks.length ? freshChecks : reachableChecks);
-  const status = determineOverallStatus({ primary, functionFallback, freshChecks, reachableChecks });
+  const status = determineOverallStatus({ primary, freshChecks, reachableChecks });
 
   return {
     status,
     checkedAt: now.toISOString(),
-    summary: buildSummary({ status, primary, functionFallback, reference, freshChecks, reachableChecks }),
+    summary: buildSummary({ status, primary, reference, freshChecks, reachableChecks }),
     expectedMode: reference?.policy?.mode || "",
     expectedNextFetchAt: reference?.policy?.nextFetchAt || "",
     nextMatch: reference?.nextMatch || null,
@@ -137,12 +128,12 @@ function buildReport(checks) {
   };
 }
 
-function determineOverallStatus({ primary, functionFallback, freshChecks, reachableChecks }) {
+function determineOverallStatus({ primary, freshChecks, reachableChecks }) {
   if (primary?.fresh) {
     return "OK";
   }
 
-  if (functionFallback?.fresh || freshChecks.length) {
+  if (freshChecks.length) {
     return "DEGRADED";
   }
 
@@ -153,13 +144,9 @@ function determineOverallStatus({ primary, functionFallback, freshChecks, reacha
   return "FAILED";
 }
 
-function buildSummary({ status, primary, functionFallback, reference, freshChecks, reachableChecks }) {
+function buildSummary({ status, primary, reference, freshChecks, reachableChecks }) {
   if (status === "OK") {
     return "Primary static data is fresh.";
-  }
-
-  if (status === "DEGRADED" && functionFallback?.fresh) {
-    return "Primary static data is stale, but Netlify Function can serve a fresh fallback.";
   }
 
   if (status === "DEGRADED" && freshChecks.length) {

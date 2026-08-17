@@ -1,6 +1,9 @@
 [build]
   command = "pnpm build"
   publish = "dist"
+  # Git pushes remain the source-of-truth signal, but production publishing is
+  # intentionally performed from a verified local dist/ via Netlify CLI.
+  ignore = "exit 0"
 
 [build.environment]
   NODE_VERSION = "24.14.0"

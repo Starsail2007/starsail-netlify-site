@@ -78,7 +78,6 @@ export function getEnvPresence(): Array<{ key: string; present: boolean; private
     { key: "MAIMAI_USERNAME", present: Boolean(process.env.MAIMAI_USERNAME), private: false },
     { key: "MAIMAI_QQ", present: Boolean(process.env.MAIMAI_QQ), private: false },
     { key: "MAIMAI_LOCAL_CACHE_DIR", present: Boolean(process.env.MAIMAI_LOCAL_CACHE_DIR), private: false },
-    { key: "MAIMAI_UPDATE_SECRET", present: Boolean(process.env.MAIMAI_UPDATE_SECRET), private: true },
     { key: "DIVING_FISH_IMPORT_TOKEN", present: Boolean(process.env.DIVING_FISH_IMPORT_TOKEN), private: true },
     { key: "DIVING_FISH_DEVELOPER_TOKEN", present: Boolean(process.env.DIVING_FISH_DEVELOPER_TOKEN), private: true },
     { key: "LXNS_DEVELOPER_TOKEN", present: Boolean(process.env.LXNS_DEVELOPER_TOKEN || process.env.LXNS_TOKEN), private: true },

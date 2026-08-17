@@ -21,7 +21,6 @@ jobs:
     env:
       SITE_URL: https://starsail2007.github.io/starsail-netlify-site
       BASE_PATH: /starsail-netlify-site
-      PUBLIC_MAIMAI_REMOTE_REFRESH: "false"
     steps:
       - name: Check out source
         uses: actions/checkout@v4
